@@ -292,7 +292,8 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .p3-tabs{display:flex;gap:6px;}
 .p3-tab{padding:5px 14px;border-radius:20px;border:1.5px solid var(--g300);background:#fff;font-family:inherit;font-size:12px;font-weight:500;color:var(--g600);cursor:pointer;}
 .p3-tab.active{background:var(--amber-light);border-color:var(--amber);color:var(--amber);}
-.p3-body{flex:1;overflow-y:auto;padding:12px 20px;display:flex;flex-direction:column;gap:10px;}
+.p3-body{flex:1;overflow-y:auto;padding:14px 20px;display:flex;flex-direction:column;gap:14px;}
+#p3cards,#p4cards{display:flex;flex-direction:column;gap:14px;}
 .rv-card{background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden;}
 .rv-card.validated{border-left:4px solid var(--green);}
 .rv-card.pending{border-left:4px solid var(--amber);}
@@ -318,6 +319,7 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .pbi-preview-icon svg{width:16px;height:16px;fill:#fff;}
 .pbi-preview-info{flex:1;min-width:0;}
 .pbi-preview-label{font-size:12px;font-weight:700;color:var(--purple);}
+.pbi-preview-title{font-size:11.5px;font-weight:700;color:var(--g900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:1px;}
 .pbi-preview-url{font-size:10.5px;color:var(--g500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .pbi-preview-arrow{font-size:16px;color:var(--purple);font-weight:700;flex-shrink:0;}
 .pbi-preview-empty{font-size:11.5px;color:var(--g400);font-style:italic;padding:4px 0;}
@@ -403,6 +405,29 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .t-lvl-btn{flex:1;padding:7px;border-radius:var(--r);border:1px solid var(--g300);background:#fff;color:var(--g600);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;text-align:center;transition:all .15s;}
 .t-lvl-btn:hover{border-color:var(--g400);}
 .t-lvl-btn.active{background:var(--blue-light);border-color:var(--blue);color:var(--blue);font-weight:700;}
+/* Reporting Check multi-select filters */
+.rc-filter-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.rc-ms{position:relative;flex-shrink:0;}
+.rc-ms-btn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;max-width:170px;}
+.rc-ms-btn:hover{border-color:var(--blue);color:var(--blue);}
+.rc-ms-btn.active{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.rc-ms-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.rc-ms-btn svg{width:8px;height:5px;fill:currentColor;flex-shrink:0;}
+.rc-ms-panel{display:none;position:absolute;top:calc(100% + 4px);left:0;width:250px;background:#fff;border:1.5px solid var(--g200);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.16);z-index:10000;overflow:hidden;}
+.rc-ms-search{width:100%;padding:7px 10px;border:0;border-bottom:1px solid var(--g200);background:var(--g50);font-family:inherit;font-size:12px;outline:none;}
+.rc-ms-actions{display:flex;justify-content:space-between;padding:6px 10px;border-bottom:1px solid var(--g100);font-size:11px;}
+.rc-ms-actions button{border:0;background:none;color:var(--blue);font:inherit;font-weight:600;cursor:pointer;padding:0;}
+.rc-ms-list{max-height:230px;overflow-y:auto;padding:4px 0;}
+.rc-ms-opt{display:flex;align-items:center;gap:8px;padding:6px 10px;font-size:12px;color:var(--g700);cursor:pointer;}
+.rc-ms-opt:hover{background:var(--blue-light);}
+.rc-ms-opt input{accent-color:var(--blue);width:14px;height:14px;flex-shrink:0;}
+.rc-ms-opt .count{margin-left:auto;color:var(--g400);font-family:monospace;font-size:10.5px;}
+.rc-kpi{border:1px solid var(--g200);border-radius:8px;padding:8px 16px;display:flex;flex-direction:column;gap:1px;min-width:95px;box-shadow:0 1px 3px rgba(0,0,0,.05);font-family:inherit;text-align:left;cursor:pointer;transition:transform .12s,border-color .12s,box-shadow .12s;}
+.rc-kpi:hover{transform:translateY(-1px);border-color:var(--kpi-color);box-shadow:0 3px 8px rgba(0,0,0,.10);}
+.rc-kpi.active{border-color:var(--kpi-color);box-shadow:0 0 0 2px color-mix(in srgb,var(--kpi-color) 22%,transparent);}
+.rc-kpi:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
+.rc-kpi-static{cursor:default;transition:none;}
+.rc-kpi-static:hover{transform:none;border-color:var(--g200);box-shadow:0 1px 3px rgba(0,0,0,.05);}
 </style>
 <body>
 
@@ -435,10 +460,82 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 <script>
 const _SB  = 'https://qooytgsjjzvkqaumoqmw.supabase.co';
 const _KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvb3l0Z3Nqanp2a3FhdW1vcW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUzNjM0ODMsImV4cCI6MjA0MDkzOTQ4M30.Oai2A8Qii0aOfD91NFwHsNq3Tgq1yFHwih-GRFnsEC0';
+const LOGIN_ENABLED = true;
+const AUTH_STORAGE_KEY = 'insights_supabase_session_v1';
+let authRefreshTimer = null;
+let authRefreshPromise = null;
 
 function showLoginError(msg){
   document.getElementById('pinError').textContent = msg;
-  setTimeout(()=>{ document.getElementById('pinError').textContent=''; }, 2500);
+}
+
+function authDisplayName(user){
+  const meta=user?.user_metadata||{};
+  return meta.full_name||meta.name||meta.display_name||(user?.email||'').split('@')[0]||'User';
+}
+
+function clearStoredAuth(){
+  if(authRefreshTimer){clearTimeout(authRefreshTimer);authRefreshTimer=null;}
+  try{localStorage.removeItem(AUTH_STORAGE_KEY);}catch(e){}
+  window._authSession=null;
+  window._currentUser=null;
+}
+
+function storeAuthSession(session){
+  const normalized={
+    ...session,
+    expires_at:session.expires_at||Math.floor(Date.now()/1000)+(Number(session.expires_in)||3600)
+  };
+  window._authSession=normalized;
+  window._currentUser={name:authDisplayName(normalized.user),email:normalized.user?.email||''};
+  try{localStorage.setItem(AUTH_STORAGE_KEY,JSON.stringify(normalized));}catch(e){}
+  scheduleAuthRefresh();
+  return normalized;
+}
+
+function scheduleAuthRefresh(){
+  if(authRefreshTimer)clearTimeout(authRefreshTimer);
+  const session=window._authSession;
+  if(!session?.refresh_token)return;
+  const delay=Math.max(5000,((Number(session.expires_at)||0)-Math.floor(Date.now()/1000)-60)*1000);
+  authRefreshTimer=setTimeout(()=>refreshSupabaseSession().catch(()=>doLogout()),delay);
+}
+
+async function refreshSupabaseSession(){
+  if(authRefreshPromise)return authRefreshPromise;
+  const refreshToken=window._authSession?.refresh_token;
+  if(!refreshToken)throw new Error('No refresh token');
+  authRefreshPromise=(async()=>{
+    const response=await fetch(`${_SB}/auth/v1/token?grant_type=refresh_token`,{
+      method:'POST',
+      headers:{'apikey':_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({refresh_token:refreshToken})
+    });
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok||!data.access_token)throw new Error('Session expired');
+    return storeAuthSession(data);
+  })();
+  try{return await authRefreshPromise;}finally{authRefreshPromise=null;}
+}
+
+async function ensureFreshSession(){
+  if(!LOGIN_ENABLED)return null;
+  const session=window._authSession;
+  if(!session)throw new Error('Please sign in');
+  if((Number(session.expires_at)||0)<=Math.floor(Date.now()/1000)+60)return refreshSupabaseSession();
+  return session;
+}
+
+function revealAuthenticatedApp(){
+  const lock=document.getElementById('pinLock');
+  if(lock){
+    lock.style.transition='opacity .3s';
+    lock.style.opacity='0';
+    setTimeout(()=>{lock.style.display='none';},300);
+  }
+  window._pinUnlocked=true;
+  if(typeof updateUserGreeting==='function')updateUserGreeting();
+  if(typeof startInsightsApp==='function')startInsightsApp();
 }
 
 async function doLogin(){
@@ -451,41 +548,21 @@ async function doLogin(){
   btn.textContent = 'Signing in…';
 
   try{
-    const r = await fetch(`${_SB}/rest/v1/app_users?select=name,email,password&email=eq.${encodeURIComponent(email)}`, {
-      headers: { 'apikey': _KEY, 'Authorization': 'Bearer '+_KEY }
+    const response=await fetch(`${_SB}/auth/v1/token?grant_type=password`,{
+      method:'POST',
+      headers:{'apikey':_KEY,'Content-Type':'application/json'},
+      body:JSON.stringify({email,password:pass})
     });
-    const rows = await r.json();
-    const user = rows && rows[0];
-
-    if(!user || user.password !== pass){
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok||!data.access_token){
       showLoginError('Incorrect email or password');
       btn.disabled = false;
       btn.textContent = 'Sign in';
       return;
     }
-
-    // Success
-    window._currentUser = { name: user.name, email: user.email };
-    try{ sessionStorage.setItem('insights_user', JSON.stringify(window._currentUser)); }catch(e){}
-
-    const lock = document.getElementById('pinLock');
-    lock.style.transition = 'opacity .3s';
-    lock.style.opacity = '0';
-    setTimeout(()=> lock.style.display = 'none', 300);
-
-    window._pinUnlocked = true;
-    if(typeof switchTab==='function') switchTab(0);
-    if(typeof setHeaderDate==='function') setHeaderDate();
-    if(typeof updateUserGreeting==='function') updateUserGreeting();
-    if(typeof init==='function'){
-      init();
-    } else {
-      document.addEventListener('DOMContentLoaded', ()=>{
-        if(typeof setHeaderDate==='function') setHeaderDate();
-        if(typeof updateUserGreeting==='function') updateUserGreeting();
-        if(typeof init==='function') init();
-      });
-    }
+    storeAuthSession(data);
+    document.getElementById('loginPassword').value='';
+    revealAuthenticatedApp();
   } catch(e){
     showLoginError('Connection error — try again');
     btn.disabled = false;
@@ -500,19 +577,31 @@ document.addEventListener('keydown', e=>{
   if(e.key==='Enter') doLogin();
 });
 
-// Restore session if already logged in this browser session
-(function(){
+async function restoreSupabaseSession(){
+  if(!LOGIN_ENABLED){
+    window._pinUnlocked=true;
+    document.getElementById('pinLock').style.display='none';
+    return true;
+  }
   try{
-    const saved = sessionStorage.getItem('insights_user');
-    if(saved){
-      window._currentUser = JSON.parse(saved);
-      window._pinUnlocked = true;
-      const lock = document.getElementById('pinLock');
-      if(lock) lock.style.display = 'none';
-      if(typeof updateUserGreeting==='function') updateUserGreeting();
-    }
-  }catch(e){}
-})();
+    const saved=localStorage.getItem(AUTH_STORAGE_KEY);
+    if(!saved)return false;
+    window._authSession=JSON.parse(saved);
+    await ensureFreshSession();
+    const response=await fetch(`${_SB}/auth/v1/user`,{
+      headers:{'apikey':_KEY,'Authorization':'Bearer '+window._authSession.access_token}
+    });
+    if(!response.ok)throw new Error('Invalid session');
+    const user=await response.json();
+    storeAuthSession({...window._authSession,user});
+    const lock=document.getElementById('pinLock');
+    if(lock)lock.style.display='none';
+    window._pinUnlocked=true;
+    return true;
+  }catch(e){clearStoredAuth();return false;}
+}
+
+window._authReady=restoreSupabaseSession();
 </script>
 
 <style>
@@ -843,8 +932,11 @@ document.addEventListener('keydown', e=>{
     <div class="p3-header">
       <div class="p3-top">
         <h2>Under Review — Validation Queue</h2>
-        <select class="company-filter" id="p3-company-filter" onchange="renderP3()" title="Filter by company">
+        <select class="company-filter" id="p3-company-filter" onchange="updateReviewCompanyFilter(3)" title="Filter by company">
           <option value="">All companies</option>
+        </select>
+        <select class="company-filter" id="p3-sector-filter" onchange="renderP3()" title="Filter by sector">
+          <option value="">All sectors</option>
         </select>
         <button onclick="loadP3()" style="display:flex;align-items:center;gap:5px;padding:6px 14px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
@@ -869,8 +961,11 @@ document.addEventListener('keydown', e=>{
     <div class="p3-header">
       <div class="p3-top">
         <h2>Ready to Send</h2>
-        <select class="company-filter" id="p4-company-filter" onchange="renderP4()" title="Filter by company">
+        <select class="company-filter" id="p4-company-filter" onchange="updateReviewCompanyFilter(4)" title="Filter by company">
           <option value="">All companies</option>
+        </select>
+        <select class="company-filter" id="p4-sector-filter" onchange="renderP4()" title="Filter by sector">
+          <option value="">All sectors</option>
         </select>
         <button onclick="loadP3().then(()=>renderP4())" title="Refresh" style="display:flex;align-items:center;gap:5px;padding:6px 14px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
@@ -1040,7 +1135,7 @@ document.addEventListener('keydown', e=>{
     <!-- Table side -->
     <div style="display:flex;flex-direction:column;overflow:hidden;">
       <div style="padding:12px 20px;border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:10px;background:#fff;">
-        <input id="t_filter" placeholder="Filter by brand, shop, type…" oninput="t_renderTable()" style="height:32px;padding:0 10px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;width:240px;background:var(--g50);">
+        <input id="t_filter" placeholder="Filter by ID, brand, shop, type…" oninput="t_renderTable()" style="height:32px;padding:0 10px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;width:260px;background:var(--g50);">
         <span id="t_countBadge" style="margin-left:auto;font-size:11px;color:var(--g500);font-family:monospace;">— entries</span>
       </div>
       <div style="overflow-y:auto;flex:1;">
@@ -1048,6 +1143,7 @@ document.addEventListener('keydown', e=>{
         <table id="t_tbl" style="display:none;width:100%;border-collapse:collapse;font-size:13px;">
           <thead>
             <tr style="background:var(--g50);">
+              <th onclick="t_sortBy('id')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">ID</th>
               <th onclick="t_sortBy('brand')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Brand</th>
               <th onclick="t_sortBy('item')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Item</th>
               <th onclick="t_sortBy('shop')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Shop</th>
@@ -1073,42 +1169,13 @@ document.addEventListener('keydown', e=>{
 
     <!-- Date range -->
     <span style="font-size:12px;color:var(--g600);font-weight:500;">From</span>
-    <input type="date" id="rc_from" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
+    <input type="date" id="rc_from" onchange="rc_scheduleLoad()" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
     <span style="font-size:12px;color:var(--g600);font-weight:500;">To</span>
-    <input type="date" id="rc_to" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
+    <input type="date" id="rc_to" onchange="rc_scheduleLoad()" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
 
-    <!-- Agency filter -->
-    <select id="rc_agency" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;background:#fff;appearance:none;min-width:90px;">
-      <option value="">All agencies</option>
-    </select>
+    <!-- Checkbox filters are generated after the reporting data loads -->
+    <div id="rc_filter_bar" class="rc-filter-bar"></div>
 
-    <!-- Brand filter -->
-    <select id="rc_brand" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;background:#fff;appearance:none;min-width:130px;">
-      <option value="">All brands</option>
-    </select>
-
-    <!-- Store filter -->
-    <select id="rc_store" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;background:#fff;appearance:none;min-width:120px;">
-      <option value="">All stores</option>
-    </select>
-
-    <!-- Promoter filter -->
-    <select id="rc_promoter" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;background:#fff;appearance:none;min-width:140px;">
-      <option value="">All promoters</option>
-    </select>
-
-    <!-- Status filter -->
-    <select id="rc_status" onchange="rc_render()" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;background:#fff;appearance:none;min-width:130px;">
-      <option value="">All statuses</option>
-      <option value="complete">✅ Reported</option>
-      <option value="partial">⚠️ Partial</option>
-      <option value="missing">❌ Missing</option>
-    </select>
-
-    <button onclick="rc_load()" style="display:flex;align-items:center;gap:5px;height:30px;padding:0 14px;background:var(--blue);color:#fff;border:none;border-radius:var(--r);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;margin-left:4px;">
-      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M13.65 2.35A8 8 0 1 0 15 8h-2a6 6 0 1 1-1.76-4.24l-2.3 2.3H15V2l-1.35.35z"/></svg>
-      Load
-    </button>
     <button onclick="rc_resetFilters()" style="display:flex;align-items:center;gap:5px;height:30px;padding:0 14px;background:#fff;color:var(--g600);border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;">
       <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M3 3v4h4M13 13v-4h-4M3 7a5 5 0 0 1 8.5-3.5M13 9a5 5 0 0 1-8.5 3.5"/></svg>
       Reset
@@ -1124,14 +1191,16 @@ document.addEventListener('keydown', e=>{
   </div>
 
   <!-- Summary stat pills -->
-  <div id="rc_stats" style="display:flex;gap:10px;padding:10px 24px;flex-shrink:0;flex-wrap:wrap;background:#fff;border-bottom:1px solid var(--g200);"></div>
+  <div id="rc_stats" style="display:flex;gap:10px;padding:10px 24px;flex-shrink:0;flex-wrap:wrap;align-items:center;background:#fff;border-bottom:1px solid var(--g200);">
+    <div id="rc_kpis" style="display:flex;gap:10px;flex-wrap:wrap;"></div>
+  </div>
 
   <!-- Table -->
   <div style="flex:1;overflow:hidden;padding:16px 24px;display:flex;">
     <div id="rc_area" style="background:#fff;border:1px solid var(--g200);border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:auto;width:100%;">
       <div style="padding:48px;text-align:center;color:var(--g400);">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="var(--g300)" style="display:block;margin:0 auto 10px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-        Select a date range and click Load
+        Select a date range — results load automatically
       </div>
     </div>
   </div>
@@ -1181,7 +1250,16 @@ document.addEventListener('keydown', e=>{
 <script>
 const SB  = 'https://qooytgsjjzvkqaumoqmw.supabase.co';
 const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvb3l0Z3Nqanp2a3FhdW1vcW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUzNjM0ODMsImV4cCI6MjA0MDkzOTQ4M30.Oai2A8Qii0aOfD91NFwHsNq3Tgq1yFHwih-GRFnsEC0';
-const H   = {'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=representation'};
+const supabaseHeaders=(prefer='return=representation')=>({
+  'apikey':KEY,
+  'Authorization':'Bearer '+(window._authSession?.access_token||KEY),
+  'Content-Type':'application/json',
+  ...(prefer?{'Prefer':prefer}:{})
+});
+const authenticatedFetch=async(url,options={})=>{
+  await ensureFreshSession();
+  return fetch(url,{...options,headers:{...supabaseHeaders(null),...(options.headers||{})}});
+};
 
 // ── Global Filter — Smart Cascading ──────────────────────────────────────────
 const GF_KEYS=['company','sector','store','client','brand','sapcode','reporttype','year'];
@@ -1191,9 +1269,9 @@ const gFOpts={company:[],sector:[],store:[],client:[],brand:[],sapcode:[],report
 
 // Build base option pools from lookup tables (used values only)
 function initGFOpts(){
-  const usedCo  = new Set(allRec.flatMap(r=>(r.company_ids||[]).map(String)));
-  const usedSec = new Set(allRec.flatMap(r=>(r.sector_ids||[]).map(String)));
-  const usedSt  = new Set(allRec.flatMap(r=>(r.store_ids||[]).map(String)));
+  const usedCo  = new Set(allRec.flatMap(recordCompanyIds));
+  const usedSec = new Set(allRec.flatMap(recordSectorIds));
+  const usedSt  = new Set(allRec.flatMap(recordStoreIds));
   const usedCl  = new Set(allRec.map(r=>String(r.client_fk)).filter(v=>v&&v!=='null'));
   const usedBr  = new Set(allRec.flatMap(r=>(r.brand_ids||[]).map(String)));
   const usedRT  = new Set(allRec.flatMap(r=>(r.report_type_ids||[]).map(String)));
@@ -1216,26 +1294,26 @@ function cascadeGF(){
   // 1. Company
   let sectorOpts = gFOpts.sector;
   if(gF.company){
-    recs = recs.filter(r=>(r.company_ids||[]).map(String).includes(gF.company));
+    recs = recs.filter(r=>recordCompanyIds(r).includes(gF.company));
     sectorOpts = sectorOpts.filter(s=>s.cid===gF.company);
   }
-  const usedSec = new Set(recs.flatMap(r=>(r.sector_ids||[]).map(String)));
+  const usedSec = new Set(recs.flatMap(recordSectorIds));
   sectorOpts = sectorOpts.filter(s=>usedSec.has(s.v));
 
   // 2. Sector
   let storeOpts = gFOpts.store;
   if(gF.sector){
-    recs = recs.filter(r=>(r.sector_ids||[]).map(String).includes(gF.sector));
+    recs = recs.filter(r=>recordSectorIds(r).includes(gF.sector));
     storeOpts = storeOpts.filter(s=>s.sid===gF.sector);
   } else if(gF.company){
     const validSecIds = new Set(sectorOpts.map(s=>s.v));
     storeOpts = storeOpts.filter(s=>validSecIds.has(s.sid));
   }
-  const usedSt = new Set(recs.flatMap(r=>(r.store_ids||[]).map(String)));
+  const usedSt = new Set(recs.flatMap(recordStoreIds));
   storeOpts = storeOpts.filter(s=>usedSt.has(s.v));
 
   // 3. Store
-  if(gF.store) recs = recs.filter(r=>(r.store_ids||[]).map(String).includes(gF.store));
+  if(gF.store) recs = recs.filter(r=>recordStoreIds(r).includes(gF.store));
 
   // 4. Client
   const usedCl = new Set(recs.map(r=>String(r.client_fk)).filter(v=>v&&v!=='null'));
@@ -1289,10 +1367,21 @@ function _gfRenderList(key, opts, q){
   if(!el)return;
   const filtered=q?opts.filter(o=>o.l.toLowerCase().includes(q.toLowerCase())):opts;
   if(!filtered.length){el.innerHTML='<div class="gfd-empty">No results</div>';return;}
-  let html='';
-  if(gF[key]) html+=`<div class="gfd-opt-clear" onclick="selectGFOpt('${key}','')">✕ Clear selection</div>`;
-  html+=filtered.map(o=>`<div class="gfd-opt${gF[key]===o.v?' sel':''}" onclick="selectGFOpt('${key}','${o.v.replace(/'/g,"\'")}')">${esc(o.l)}</div>`).join('');
-  el.innerHTML=html;
+  el.replaceChildren();
+  if(gF[key]){
+    const clear=document.createElement('div');
+    clear.className='gfd-opt-clear';
+    clear.textContent='✕ Clear selection';
+    clear.addEventListener('click',()=>selectGFOpt(key,''));
+    el.appendChild(clear);
+  }
+  filtered.forEach(o=>{
+    const opt=document.createElement('div');
+    opt.className='gfd-opt'+(gF[key]===o.v?' sel':'');
+    opt.textContent=o.l;
+    opt.addEventListener('click',()=>selectGFOpt(key,o.v));
+    el.appendChild(opt);
+  });
 }
 
 function _gfUpdateBtn(key, opts){
@@ -1356,9 +1445,9 @@ function _gfRefresh(){
 
 function applyGlobalFilter(records){
   let r=records;
-  if(gF.company)    r=r.filter(rec=>(rec.company_ids||[]).map(String).includes(gF.company));
-  if(gF.sector)     r=r.filter(rec=>(rec.sector_ids||[]).map(String).includes(gF.sector));
-  if(gF.store)      r=r.filter(rec=>(rec.store_ids||[]).map(String).includes(gF.store));
+  if(gF.company)    r=r.filter(rec=>recordCompanyIds(rec).includes(gF.company));
+  if(gF.sector)     r=r.filter(rec=>recordSectorIds(rec).includes(gF.sector));
+  if(gF.store)      r=r.filter(rec=>recordStoreIds(rec).includes(gF.store));
   if(gF.client)     r=r.filter(rec=>String(rec.client_fk)===gF.client);
   if(gF.brand)      r=r.filter(rec=>(rec.brand_ids||[]).map(String).includes(gF.brand));
   if(gF.sapcode)    r=r.filter(rec=>rec.sapcode===gF.sapcode);
@@ -1372,9 +1461,9 @@ function showGFilterBar(show){
   if(bar)bar.style.display=show?'flex':'none';
 }
 
-const sbGet   = async p      => { const r=await fetch(SB+'/rest/v1/'+p,{headers:H}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
-const sbPost  = async (t,d)  => { const r=await fetch(SB+'/rest/v1/'+t,{method:'POST',headers:H,body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
-const sbPatch = async (t,id,d)=>{ const sid=parseInt(id); if(isNaN(sid)) throw new Error('Bad ID: '+id); const r=await fetch(SB+'/rest/v1/'+t+'?id=eq.'+sid,{method:'PATCH',headers:H,body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
+const sbGet   = async p      => { await ensureFreshSession(); const r=await fetch(SB+'/rest/v1/'+p,{headers:supabaseHeaders()}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
+const sbPost  = async (t,d)  => { await ensureFreshSession(); const r=await fetch(SB+'/rest/v1/'+t,{method:'POST',headers:supabaseHeaders(),body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
+const sbPatch = async (t,id,d)=>{ await ensureFreshSession(); const sid=parseInt(id); if(isNaN(sid)) throw new Error('Bad ID: '+id); const r=await fetch(SB+'/rest/v1/'+t+'?id=eq.'+sid,{method:'PATCH',headers:supabaseHeaders(),body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
 
 // ── State ──────────────────────────────────────────────────────────────────
 let allCo=[],allCl=[],allBr=[],allSt=[],allCon=[],allRT=[],allSectors=[];
@@ -1451,7 +1540,7 @@ async function init(){
   }catch(e){
     const loader = document.getElementById('initLoader');
     if(loader) loader.innerHTML = `<div style="color:var(--red);padding:20px;font-size:14px;">
-      ❌ Load failed: ${e.message}<br><br>
+      ❌ Load failed: ${esc(e.message)}<br><br>
       <button onclick="init()" style="padding:8px 16px;background:var(--blue);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;">Retry</button>
     </div>`;
     console.error('init error:', e);
@@ -1489,13 +1578,34 @@ function liHTML(r,cur){
   </div>`;
 }
 function populateCompanyFilters(){
-  const opts='<option value="">All companies</option>'+allCo.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  const opts='<option value="">All companies</option>'+allCo.map(c=>`<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');
   ['sb-company-filter','p2-company-filter','p3-company-filter','p4-company-filter'].forEach(id=>{    const el=document.getElementById(id);
     if(el){const v=el.value;el.innerHTML=opts;el.value=v;}
   });
+  populateReviewSectorFilter(3);
+  populateReviewSectorFilter(4);
 }
 function getCompanyFilter(id){const el=document.getElementById(id);return el?el.value:'';}
-function matchesCompany(r,cid){if(!cid)return true;if(!r.company_ids)return false;return r.company_ids.map(String).includes(String(cid));}
+function matchesCompany(r,cid){return !cid||recordCompanyIds(r).includes(String(cid));}
+function matchesSector(r,sid){return !sid||recordSectorIds(r).includes(String(sid));}
+function populateReviewSectorFilter(page){
+  const select=document.getElementById(`p${page}-sector-filter`);
+  if(!select)return;
+  const previous=select.value;
+  const companyId=getCompanyFilter(`p${page}-company-filter`);
+  const source=page===4?p3All.filter(r=>!!r.validated_date):p3All;
+  const companyRows=companyId?source.filter(r=>matchesCompany(r,companyId)):source;
+  const used=new Set(companyRows.flatMap(recordSectorIds));
+  let sectors=allSectors.filter(sector=>used.has(String(sector.id)));
+  if(companyId)sectors=sectors.filter(sector=>String(sector.companyid)===String(companyId));
+  sectors.sort((a,b)=>String(a.Name||'').localeCompare(String(b.Name||'')));
+  select.innerHTML='<option value="">All sectors</option>'+sectors.map(sector=>`<option value="${esc(sector.id)}">${esc(sector.Name)}</option>`).join('');
+  select.value=sectors.some(sector=>String(sector.id)===previous)?previous:'';
+}
+function updateReviewCompanyFilter(page){
+  populateReviewSectorFilter(page);
+  if(page===3)renderP3();else renderP4();
+}
 
 function filterList(){
   const q=document.getElementById('searchInput').value.toLowerCase();
@@ -1513,7 +1623,19 @@ function filterList(){
 const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const fd=d=>{if(!d)return'';const p=(d+'').split('T')[0].split('-');return`${p[0]} - ${MONTHS[parseInt(p[1])-1]} - ${p[2]}`;};
 const fdToday=()=>{const t=TODAY;return`${t.getFullYear()} - ${MONTHS[t.getMonth()]} - ${String(t.getDate()).padStart(2,'0')}`;};
-const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({
+  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[ch]));
+const safeHttpUrl=value=>{
+  try{
+    const url=new URL(String(value??'').trim());
+    return url.protocol==='https:'||url.protocol==='http:'?url.href:'';
+  }catch(e){return'';}
+};
+const safeEmail=value=>{
+  const email=String(value??'').trim();
+  return /^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i.test(email)?email:'';
+};
 
 // Resolve IDs to short names from lookup tables
 const resolveIds=(ids,pool,key='store')=>{
@@ -1530,7 +1652,32 @@ const resolveId=(id,pool,key='label')=>{
 const shortStores=(r)=>{const v=resolveIds(r.store_ids,allSt,'store');return v.length?v:((r.store||'').split(',').map(s=>s.trim()).filter(Boolean));};
 const shortBrands=(r)=>{const v=resolveIds(r.brand_ids,allBr,'brand');return v.length?v:((r.brand||'').split(',').map(s=>s.trim()).filter(Boolean));};
 const shortClient=(r)=>{const v=resolveId(r.client_fk,allCl,'client');return v||r.client||'';};
-const shortSectors=(r)=>resolveIds(r.sector_ids,allSectors,'Name').filter(Boolean);
+const recordStoreIds=(r)=>{
+  const ids=new Set((r.store_ids||[]).map(String));
+  const names=new Set((r.store||'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean));
+  if(names.size)allSt.forEach(store=>{if(names.has(String(store.store||'').trim().toLowerCase()))ids.add(String(store.id));});
+  return [...ids];
+};
+const recordSectorIds=(r)=>{
+  const ids=new Set((r.sector_ids||[]).map(String));
+  const stores=new Set(recordStoreIds(r));
+  allSt.forEach(store=>{if(stores.has(String(store.id))&&store.Sector_id!=null)ids.add(String(store.Sector_id));});
+  return [...ids];
+};
+const recordCompanyIds=(r)=>{
+  const ids=new Set((r.company_ids||[]).map(String));
+  if(!ids.size){
+    const sectors=new Set(recordSectorIds(r));
+    allSectors.forEach(sector=>{if(sectors.has(String(sector.id))&&sector.companyid!=null)ids.add(String(sector.companyid));});
+  }
+  if(!ids.size){
+    const stores=new Set(recordStoreIds(r));
+    const countries=new Set(allSt.filter(store=>stores.has(String(store.id))&&store.country_id!=null).map(store=>String(store.country_id)));
+    allCo.forEach(company=>{if(company.country_id!=null&&countries.has(String(company.country_id)))ids.add(String(company.id));});
+  }
+  return [...ids];
+};
+const shortSectors=(r)=>resolveIds(recordSectorIds(r),allSectors,'Name').filter(Boolean);
 const shortReportTypes=(r)=>resolveIds(r.report_type_ids,allRT,'type').filter(Boolean);
 
 // ── Form: Load / New / Clear ───────────────────────────────────────────────
@@ -1624,16 +1771,30 @@ function updateUserGreeting(){
   const el = document.getElementById('userGreeting');
   if(!el) return;
   const user = window._currentUser;
-  if(!user){ el.innerHTML=''; return; }
-  el.innerHTML = `Hello, ${user.name}
+  if(!user){ el.replaceChildren(); return; }
+  el.innerHTML = `Hello, ${esc(user.name)}
     <button onclick="doLogout()" title="Sign out" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;padding:2px;display:flex;align-items:center;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2c1.1 0 2 .9 2 2v2h-2V4H5v16h9v-2h2v2c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h9z"/></svg>
     </button>`;
 }
 
-function doLogout(){
-  try{ sessionStorage.removeItem('insights_user'); }catch(e){}
-  window._currentUser = null;
+async function doLogout(){
+  if(!LOGIN_ENABLED){
+    window._pinUnlocked = true;
+    const lock = document.getElementById('pinLock');
+    if(lock) lock.style.display='none';
+    return;
+  }
+  const accessToken=window._authSession?.access_token;
+  if(accessToken){
+    try{
+      await fetch(`${SB}/auth/v1/logout?scope=local`,{
+        method:'POST',
+        headers:{'apikey':KEY,'Authorization':'Bearer '+accessToken}
+      });
+    }catch(e){}
+  }
+  clearStoredAuth();
   window._pinUnlocked = false;
   document.getElementById('loginEmail').value='';
   document.getElementById('loginPassword').value='';
@@ -1921,8 +2082,8 @@ function renderEFLanding(){
 
   const active   = filtRec.filter(isInRange);
   const upcoming = filtRec.filter(r=>r.startdate&&r.startdate>todayISO);
-  const past     = filtRec.filter(r=>!isInRange(r));
-  const total  = allRec.length;
+  const past     = filtRec.filter(r=>r.startdate&&r.startdate<todayISO);
+  const total    = filtRec.length;
 
   // Stats — breakdown of active records
   const activeSent   = active.filter(r=>!!r.first_report_date).length;
@@ -2109,7 +2270,7 @@ function cancelEdit(){
   renderEFLanding();
 }
 
-async function sbDelete(table,id){const r=await fetch(`${SB}/rest/v1/${table}?id=eq.${id}`,{method:'DELETE',headers:H});if(!r.ok)throw new Error(await r.text());}
+async function sbDelete(table,id){await ensureFreshSession();const r=await fetch(`${SB}/rest/v1/${table}?id=eq.${id}`,{method:'DELETE',headers:supabaseHeaders()});if(!r.ok)throw new Error(await r.text());}
 
 async function confirmDelete(){
   if(!curRec)return;
@@ -2188,8 +2349,8 @@ async function saveRecord(){
 // ── Dependent filters ──────────────────────────────────────────────────────
 function applyClientFilter(reset=true){
   const cId=ms.client.selected[0]?.id||null;
-  ms.brand.all  =(cId?allBr.filter(b=>b.client_giid===cId):allBr).map(b=>({id:b.id,label:b.brand,sub:'',meta:b}));
-  ms.contact.all=(cId?allCon.filter(c=>c.client_id===cId):allCon).map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
+  ms.brand.all  =(cId?allBr.filter(b=>String(b.client_giid)===String(cId)):allBr).map(b=>({id:b.id,label:b.brand,sub:'',meta:b}));
+  ms.contact.all=(cId?allCon.filter(c=>String(c.client_id)===String(cId)):allCon).map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
   if(reset){ms.brand.selected=[];ms.contact.selected=[];renderTags('brand');renderTags('contact');}
 }
 function applySectorFilter(){
@@ -2213,8 +2374,8 @@ function applyCompanyFilter(){
     ms.store.all=allSt.map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
     ms.sector.all=allSectors.map(s=>({id:s.id,label:s.Name,sub:'',meta:s}));
   }else{
-    const ctry=allCo.filter(c=>ids.includes(String(c.id))).map(c=>c.country_id).filter(Boolean);
-    ms.store.all=(ctry.length?allSt.filter(s=>ctry.includes(s.country_id)):allSt).map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
+    const ctry=allCo.filter(c=>ids.includes(String(c.id))).map(c=>String(c.country_id)).filter(Boolean);
+    ms.store.all=(ctry.length?allSt.filter(s=>s.country_id!=null&&ctry.includes(String(s.country_id))):allSt).map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
     // Filter sectors strictly by companyid matching selected company IDs
     ms.sector.all=allSectors.filter(s=>s.companyid!=null&&ids.includes(String(s.companyid))).map(s=>({id:s.id,label:s.Name,sub:'',meta:s}));
   }
@@ -2325,7 +2486,13 @@ async function refreshP2(){
 async function loadP2(){
   try{
     const rows=await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments,comments_status,powerbi_url,powerbi_title,first_report_date,under_review_date,cancelled_date,not_sent_date,not_sent_reason&order=startdate.desc.nullslast');
-    p2All=rows; applyP2Filter();
+    p2All=rows;
+    const refreshedById=new Map(rows.map(row=>[String(row.id),row]));
+    allRec=allRec.map(row=>refreshedById.has(String(row.id))?{...row,...refreshedById.get(String(row.id))}:row);
+    rows.forEach(row=>{if(!allRec.some(existing=>String(existing.id)===String(row.id)))allRec.push(row);});
+    filtRec=applyGlobalFilter(allRec);
+    initGFOpts();
+    applyP2Filter();
   }catch(e){toast('P2 load error: '+e.message,'error');}
 }
 
@@ -2399,7 +2566,7 @@ function applyP2Filter(){
 
 function renderP2Stats(){
   const NO_REP='9';
-  const all = p2All.filter(r=>!r.report_type_ids||!r.report_type_ids.map(String).every(id=>id===NO_REP));
+  const all = applyGlobalFilter(p2All).filter(r=>!r.report_type_ids||!r.report_type_ids.map(String).every(id=>id===NO_REP));
   const totalAll   = all.length;
   const activeNow  = all.filter(p2IsActive);
   const activeCount= activeNow.length;
@@ -2488,7 +2655,8 @@ function p2Row(r){
   const title   = r.Title || client;
   const canRow  = r.cancelled_date?'cancelled-row':'';
   const sentRow = r.first_report_date&&!r.cancelled_date?'p2-sent-row':'';
-  const pbiLink = r.powerbi_url?`<a class="pbi-link" href="${esc(r.powerbi_url)}" target="_blank" title="Open Power BI"><svg viewBox="0 0 24 24"><path d="M3 3h7v4H3zm0 6h7v12H3zm9-6h9v18h-9z"/></svg></a>`:'';
+  const pbiUrl = safeHttpUrl(r.powerbi_url);
+  const pbiLink = pbiUrl?`<a class="pbi-link" href="${esc(pbiUrl)}" target="_blank" rel="noopener noreferrer" title="Open Power BI"><svg viewBox="0 0 24 24"><path d="M3 3h7v4H3zm0 6h7v12H3zm9-6h9v18h-9z"/></svg></a>`:'';
 
   // Alert: started but not under review, and no report sent, and not cancelled
   const needsAlert = r.startdate && r.startdate<=todayISO
@@ -2525,7 +2693,7 @@ function p2Row(r){
     <td>${sBtn(r,'cancelled_date','Cancelled','s-cancel')}</td>
     <td><textarea class="ie" rows="2" placeholder="Status comment…" onblur="saveField(${r.id},'comments_status',this.value)">${esc(r.comments_status||'')}</textarea></td>
     <td style="min-width:140px"><div style="display:flex;flex-direction:column;gap:4px;">
-      ${r.powerbi_url?`<a class="pbi-link" href="${esc(r.powerbi_url)}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;font-size:11px;font-weight:600;color:var(--purple);text-decoration:none;background:var(--purple-light);border-radius:4px;width:fit-content;"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h7v4H3zm0 6h7v12H3zm9-6h9v18h-9z"/></svg>${esc(r.powerbi_title||'Open Report')}</a>`:''}
+      ${pbiUrl?`<a class="pbi-link" href="${esc(pbiUrl)}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;padding:3px 8px;font-size:11px;font-weight:600;color:var(--purple);text-decoration:none;background:var(--purple-light);border-radius:4px;width:fit-content;"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h7v4H3zm0 6h7v12H3zm9-6h9v18h-9z"/></svg>${esc(r.powerbi_title||'Open Report')}</a>`:''}
       <input type="text" class="ie" placeholder="Report name…" value="${esc(r.powerbi_title||'')}" onblur="saveField(${r.id},'powerbi_title',this.value)" style="font-size:11px;">
       <input type="url" class="ie" placeholder="Paste URL…" value="${esc(r.powerbi_url||'')}" onblur="saveField2(${r.id},'powerbi_url',this.value)" style="font-size:11px;" title="${esc(r.powerbi_url||'')}">
     </div></td>
@@ -2627,9 +2795,11 @@ let p3All=[], p3View='pending', p3EmailBodies={}, p3OpsContacts=[], p3ValidatorS
 
 async function loadP3(){
   try{
-    const rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date&under_review_date=not.is.null&order=under_review_date.desc');
+    const rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date&under_review_date=not.is.null&order=under_review_date.desc');
     p3All = rows;
     p3ValidatorSelections = {};
+    populateReviewSectorFilter(3);
+    populateReviewSectorFilter(4);
   }catch(e){ toast('Records load error: '+e.message,'error'); }
 
   // Load ops contacts separately so a permission error doesn't break the whole page
@@ -2655,8 +2825,10 @@ let p3PageSize=30, p3Page=0, p3CurrentRows=[];
 function renderP3(){
   const body=document.getElementById('p3body');
   const cid3=getCompanyFilter('p3-company-filter');
+  const sid3=getCompanyFilter('p3-sector-filter');
   let rows = p3View==='all' ? p3All : p3All.filter(r=>!r.validated_date);
   if(cid3) rows=rows.filter(r=>matchesCompany(r,cid3));
+  if(sid3) rows=rows.filter(r=>matchesSector(r,sid3));
   p3CurrentRows=rows;
   p3Page=0;
   if(!rows.length){
@@ -2708,8 +2880,10 @@ function renderP4(){
   const body=document.getElementById('p4body');
   if(!body) return;
   const cid4=getCompanyFilter('p4-company-filter');
+  const sid4=getCompanyFilter('p4-sector-filter');
   const validated = p3All.filter(r=>!!r.validated_date
-    &&(cid4?matchesCompany(r,cid4):true));
+    &&(cid4?matchesCompany(r,cid4):true)
+    &&(sid4?matchesSector(r,sid4):true));
   // "Already sent" = email_sent_date OR first_report_date (handles legacy records)
   const isSent = r=>!!(r.email_sent_date||r.first_report_date);
   const rows = p4View==='sent'
@@ -2758,13 +2932,15 @@ function rvCard(r){
       </span>`;
 
   // PBI
-  const pbiHtml=r.powerbi_url
-    ?`<a href="${esc(r.powerbi_url)}" target="_blank" class="pbi-preview-card" style="padding:6px 10px;">
+  const pbiUrl=safeHttpUrl(r.powerbi_url);
+  const pbiTitle=String(r.powerbi_title||'').trim()||'Power BI Report';
+  const pbiHtml=pbiUrl
+    ?`<a href="${esc(pbiUrl)}" target="_blank" rel="noopener noreferrer" class="pbi-preview-card" style="padding:6px 10px;">
         <div class="pbi-preview-icon" style="width:24px;height:24px;"><svg viewBox="0 0 24 24"><path d="M3 3h7v4H3zm0 6h7v12H3zm9-6h9v18h-9z"/></svg></div>
-        <div class="pbi-preview-info"><div class="pbi-preview-label" style="font-size:11px;">Power BI Report</div><div class="pbi-preview-url">${esc(r.powerbi_url.replace(/^https?:\/\//,'').substring(0,30))}…</div></div>
+        <div class="pbi-preview-info"><div class="pbi-preview-title" title="${esc(pbiTitle)}">${esc(pbiTitle)}</div><div class="pbi-preview-label" style="font-size:10.5px;">Open Power BI</div></div>
         <div class="pbi-preview-arrow" style="font-size:12px;">↗</div>
       </a>`
-    :`<span class="pbi-preview-empty">No Power BI link set</span>`;
+    :`<span class="pbi-preview-empty">${r.powerbi_title?`${esc(pbiTitle)} — `:''}No Power BI link set</span>`;
 
   // Notes section
   const notesHtml=!isVal
@@ -2796,7 +2972,7 @@ function rvCard(r){
   let emailCol='<div style="font-size:11px;color:var(--g400);margin-top:4px;">Validate to enable sending</div>';
   if(isVal){
     const raw=r.contactName_Email||'';
-    const emails=[...raw.matchAll(/<([^>]+@[^>]+)>/g)].map(m=>m[1]);
+    const emails=[...raw.matchAll(/<([^>]+@[^>]+)>/g)].map(m=>safeEmail(m[1])).filter(Boolean);
     const names=[...raw.matchAll(/([^<,]+)\s*</g)].map(m=>m[1].trim());
     const tagHtml=emails.length
       ?emails.map((e,i)=>`<span class="rv-contact-tag" style="font-size:10.5px;padding:2px 7px;">${esc(names[i]||e)}</span>`).join('')
@@ -2808,15 +2984,16 @@ function rvCard(r){
     const now=new Date(); const monthYear=now.toLocaleString('en-US',{month:'long',year:'numeric'});
     const subject=encodeURIComponent(`Globe TR - Power BI Dashboard - ${brand} - ${store} - ${monthYear}`);
     const linkLabel=`Access BI Dashboard ${brand}${store?' - '+store:''}`;
-    const pbiLink=r.powerbi_url||'[Power BI link not set]';
+    const pbiLink=pbiUrl||'[Power BI link not set]';
     const bodyText=encodeURIComponent([`Dear ${firstName},`,``,`We hope that you are doing well.`,``,`Please find below the link to the Power BI dashboard:`,`${linkLabel}: ${pbiLink}`,``,`The dashboard has been updated with the latest available data.`,``,`Should you have any questions or need further support, please don't hesitate to reach out.`,``,`Kind regards,`].join('\r\n'));
-    const htmlBody=`<p>Dear ${firstName},</p><p>We hope that you are doing well.</p><p>Please find below the link to the Power BI dashboard:</p><p><a href="${pbiLink}">${linkLabel}</a></p><p>The dashboard has been updated with the latest available data.</p><p>Should you have any questions or need further support, please don't hesitate to reach out.</p><p>Kind regards,</p>`;
+    const htmlLink=pbiUrl?`<a href="${esc(pbiUrl)}">${esc(linkLabel)}</a>`:esc(pbiLink);
+    const htmlBody=`<p>Dear ${esc(firstName)},</p><p>We hope that you are doing well.</p><p>Please find below the link to the Power BI dashboard:</p><p>${htmlLink}</p><p>The dashboard has been updated with the latest available data.</p><p>Should you have any questions or need further support, please don't hesitate to reach out.</p><p>Kind regards,</p>`;
     p3EmailBodies[r.id]=htmlBody;
     emailCol=`<div>
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g500);margin-bottom:5px;">Send to</div>
       <div class="rv-contact-tags" style="margin-bottom:8px;">${tagHtml}</div>
     </div>
-    ${to?`<a href="mailto:${to}?subject=${subject}&body=${bodyText}" class="btn-send-email-sm" onclick="markEmailSent(${r.id})">
+    ${to?`<a href="${esc(`mailto:${to}?subject=${subject}&body=${bodyText}`)}" class="btn-send-email-sm" onclick="markEmailSent(${r.id})">
       <svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       Open Email
     </a>
@@ -2875,7 +3052,7 @@ function rvCard(r){
 function buildEmailSection(r){
   // Parse emails from "Name <email@x.com>, Name2 <email2@x.com>" format
   const raw = r.contactName_Email || '';
-  const emailMatches = [...raw.matchAll(/<([^>]+@[^>]+)>/g)].map(m => m[1]);
+  const emailMatches = [...raw.matchAll(/<([^>]+@[^>]+)>/g)].map(m => safeEmail(m[1])).filter(Boolean);
   const nameMatches  = [...raw.matchAll(/([^<,]+)\s*</g)].map(m => m[1].trim());
 
   // Contact tags display
@@ -2904,7 +3081,7 @@ function buildEmailSection(r){
   const _linkLabel = `Access BI Dashboard ${_brand}${_store?' - '+_store:''}`;
 
   // Body template
-  const pbiLink = r.powerbi_url || '[Power BI link not set]';
+  const pbiLink = safeHttpUrl(r.powerbi_url) || '[Power BI link not set]';
   const bodyLines = [
     `Dear ${firstContactName},`,
     ``,
@@ -2925,10 +3102,11 @@ function buildEmailSection(r){
   const mailtoHref = `mailto:${to}?subject=${subject}&body=${body}`;
 
   // HTML email body for clipboard
-  const htmlBody = `<p>Dear ${firstContactName},</p>
+  const htmlLink = safeHttpUrl(r.powerbi_url)?`<a href="${esc(safeHttpUrl(r.powerbi_url))}">${esc(_linkLabel)}</a>`:esc(pbiLink);
+  const htmlBody = `<p>Dear ${esc(firstContactName)},</p>
 <p>We hope that you are doing well.</p>
 <p>Please find below the link to the Power BI dashboard:</p>
-<p><a href="${pbiLink}">${_linkLabel}</a></p>
+<p>${htmlLink}</p>
 <p>The dashboard has been updated with the latest available data.</p>
 <p>Should you have any questions or need further support, please don't hesitate to reach out. </p>
 <p>Kind regards,</p>`;
@@ -2938,7 +3116,7 @@ function buildEmailSection(r){
 
   const emailBtn = to
     ? `<div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
-        <a href="${mailtoHref}" class="btn-send-email" onclick="markEmailSent(${r.id})">
+        <a href="${esc(mailtoHref)}" class="btn-send-email" onclick="markEmailSent(${r.id})">
           <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           Open Email
         </a>
@@ -3009,7 +3187,7 @@ async function copyHtmlEmail(btn,id){
 function buildOpsDropdown(r){
   const {contacts, filtered} = getOpsForRecord(r.id);
   const opts = contacts.map(c =>
-    `<option value="${c.id}">${esc(c.firstname+' '+c.lastname)}${c.jobtitle?' — '+esc(c.jobtitle):''}</option>`
+    `<option value="${esc(c.id)}">${esc(c.firstname+' '+c.lastname)}${c.jobtitle?' — '+esc(c.jobtitle):''}</option>`
   ).join('');
 
   const placeholder = contacts.length ? '— Select Name —' : '— No contacts for this company —';
@@ -3099,24 +3277,18 @@ function renderOpsOptions(rid,query){
     return;
   }
 
-  const rec=p3All.find(r=>r.id===rid);
-  const contacts=getOpsForRecord(rid);
+  const {contacts}=getOpsForRecord(rid);
   const filtered=contacts.filter(c=>(c.firstname+' '+c.lastname).toLowerCase().includes(q));
   const selId=p3ValidatorSelections[rid]?.id;
 
-  // Debug line — remove once working
-  const dbg=`<div style="padding:4px 10px;font-size:10px;color:var(--g400);border-bottom:1px solid var(--g100);background:var(--g50);">
-    company_ids: ${JSON.stringify(rec?.company_ids)} | contacts loaded: ${p3OpsContacts.length} | matched: ${contacts.length}
-  </div>`;
-
   if(!filtered.length){
-    list.innerHTML=dbg+`<div style="padding:12px;font-size:12px;color:var(--g500);text-align:center;">No contacts found.<br><span style="font-size:11px;">Use "+ New" to add one.</span></div>`;
+    list.innerHTML=`<div style="padding:12px;font-size:12px;color:var(--g500);text-align:center;">No contacts found.<br><span style="font-size:11px;">Use "+ New" to add one.</span></div>`;
     return;
   }
-  list.innerHTML=dbg+filtered.map(c=>{
+  list.innerHTML=filtered.map(c=>{
     const name=c.firstname+' '+c.lastname;
     const sel=selId===c.id?'sel':'';
-    return `<div class="ops-opt ${sel}" onclick="selectOpsContact(${rid},${c.id},'${name.replace(/'/g,"\\'")}')">
+    return `<div class="ops-opt ${sel}" onclick="selectOpsContact(${Number.parseInt(rid,10)},${Number.parseInt(c.id,10)})">
       <div class="ops-opt-name">${esc(name)}</div>
       ${c.jobtitle?`<div class="ops-opt-title">${esc(c.jobtitle)}</div>`:''}
     </div>`;
@@ -3132,11 +3304,14 @@ async function reloadOpsContacts(rid){
   }catch(e){toast('Reload failed: '+e.message,'error');}
 }
 
-function selectOpsContact(rid,cid,name){
-  p3ValidatorSelections[rid]={id:cid,name:name};
+function selectOpsContact(rid,cid,name=''){
+  const contact=p3OpsContacts.find(c=>Number(c.id)===Number(cid));
+  const selectedName=name||(contact?`${contact.firstname||''} ${contact.lastname||''}`.trim():'');
+  if(!selectedName)return;
+  p3ValidatorSelections[rid]={id:cid,name:selectedName};
   // Update trigger button
   const trig=document.getElementById('opst-'+rid);
-  if(trig){trig.innerHTML=`<span>${esc(name)}</span><span class="arr">▼</span>`;trig.classList.add('selected');}
+  if(trig){trig.innerHTML=`<span>${esc(selectedName)}</span><span class="arr">▼</span>`;trig.classList.add('selected');}
   // Enable validate button
   const vbtn=document.getElementById('vbtn-'+rid);
   if(vbtn){vbtn.disabled=false;vbtn.classList.add('ready');}
@@ -3147,23 +3322,28 @@ function selectOpsContact(rid,cid,name){
 async function refreshEntryForm(){
   try{
     showLoad(true);
-    const [co,cl,br,st,con,rt,rec]=await Promise.all([
+    const [co,cl,br,st,con,rt,sec,rec]=await Promise.all([
       sbGet('GI_company?select=id,name,country_id&active=eq.true&order=name'),
       sbGet('GI_clients?select=id,client&active=eq.true&order=client'),
       sbGet('GI_brands?select=id,brand,client_giid&visible=eq.true&order=brand'),
       sbGet('GI_stores?select=id,store,country_id,Sector_id&visible=eq.true&order=store'),
       sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname'),
       sbGet('report_types?select=id,type&visible=eq.true&order=type'),
+      sbGet('Sector?select=id,Name,companyid&order=Name'),
       sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
     ]);
-    allCo=co; allCl=cl; allBr=br; allSt=st; allCon=con; allRT=rt;
-    allRec=filtRec=rec;
+    allCo=co; allCl=cl; allBr=br; allSt=st; allCon=con; allRT=rt; allSectors=sec;
+    allRec=rec;
+    filtRec=applyGlobalFilter(allRec);
     ms.company.all   =co.map(c=>({id:c.id,label:c.name,sub:'',meta:c}));
     ms.client.all    =cl.map(c=>({id:c.id,label:c.client,sub:'',meta:c}));
     ms.brand.all     =br.map(b=>({id:b.id,label:b.brand,sub:'',meta:b}));
     ms.store.all     =st.map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
+    ms.sector.all    =sec.map(s=>({id:s.id,label:s.Name,sub:'',meta:s}));
     ms.contact.all   =con.map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
     ms.reporttype.all=rt.map(r=>({id:r.id,label:r.type,sub:'',meta:r}));
+    populateCompanyFilters();
+    initGFOpts();
     renderList();
     toast('Data refreshed!','success');
   }catch(e){toast('Refresh failed: '+e.message,'error');}
@@ -3276,7 +3456,7 @@ function sc_loadData(){
   const date=dateEl.value;
   const area=document.getElementById('sc_tableArea');
   area.innerHTML='<div style="padding:40px;text-align:center;color:var(--g400);">Loading shifts…</div>';
-  fetch(`${SB_URL}/rest/v1/legacy_questionnaire?select=*&order=Brand.asc,Store.asc&"Date"=eq.${date}`,{headers:SB_HEADERS})
+  authenticatedFetch(`${SB_URL}/rest/v1/legacy_questionnaire?select=*&order=Brand.asc,Store.asc&"Date"=eq.${date}`)
     .then(r=>r.json())
     .then(data=>{
       sc_allRows=data;
@@ -3285,14 +3465,14 @@ function sc_loadData(){
       sc_updateStats();
       document.getElementById('sc_subline').textContent=`${sc_allRows.length} shift${sc_allRows.length!==1?'s':''} on ${new Date(date+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
     })
-    .catch(e=>{area.innerHTML=`<div style="padding:40px;text-align:center;color:var(--red);">Error: ${e.message}</div>`;});
+    .catch(e=>{area.innerHTML=`<div style="padding:40px;text-align:center;color:var(--red);">Error: ${esc(e.message)}</div>`;});
 }
 
 function sc_populateBrandFilter(){
   const sel=document.getElementById('sc_filterBrand');
   const cur=sel.value;
   const brands=[...new Set(sc_allRows.map(r=>r.Brand).filter(Boolean))].sort();
-  sel.innerHTML='<option value="">All brands</option>'+brands.map(b=>`<option value="${b}"${b===cur?' selected':''}>${b}</option>`).join('');
+  sel.innerHTML='<option value="">All brands</option>'+brands.map(b=>`<option value="${esc(b)}"${b===cur?' selected':''}>${esc(b)}</option>`).join('');
   sc_populateStoreFilter();
 }
 function sc_populateStoreFilter(){
@@ -3301,7 +3481,7 @@ function sc_populateStoreFilter(){
   const cur=sel.value;
   const rows=brand?sc_allRows.filter(r=>r.Brand===brand):sc_allRows;
   const stores=[...new Set(rows.map(r=>r.Store).filter(Boolean))].sort();
-  sel.innerHTML='<option value="">All stores</option>'+stores.map(s=>`<option value="${s}"${s===cur?' selected':''}>${s}</option>`).join('');
+  sel.innerHTML='<option value="">All stores</option>'+stores.map(s=>`<option value="${esc(s)}"${s===cur?' selected':''}>${esc(s)}</option>`).join('');
 }
 function sc_renderTable(){
   const brand=document.getElementById('sc_filterBrand').value;
@@ -3332,12 +3512,14 @@ function sc_renderTable(){
   const tbody=rows.map(r=>{
     const comments=r["Comments on today's shift"]||'';
     const stand=r.stand_comments||'';
-    return `<tr onclick="sc_openPanel(${r.ID})" style="cursor:pointer;border-bottom:1px solid var(--g100);" onmouseover="this.style.background='var(--g50)'" onmouseout="this.style.background=''">
-      <td style="padding:8px 10px;font-size:13px;font-weight:600;">${r.Brand||'—'}</td>
-      <td style="padding:8px 10px;font-size:13px;">${r.Store||'—'}</td>
-      <td style="padding:8px 10px;font-size:13px;">${r.Promoter||'—'}</td>
-      <td style="padding:8px 10px;font-size:11.5px;color:var(--g600);">${r.Date||'—'}</td>
-      <td style="padding:8px 10px;font-size:12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${comments||'<span style="color:var(--g400);font-style:italic;">—</span>'}</td>
+    const rowId=Number.parseInt(r.ID,10);
+    if(!Number.isSafeInteger(rowId))return'';
+    return `<tr onclick="sc_openPanel(${rowId})" style="cursor:pointer;border-bottom:1px solid var(--g100);" onmouseover="this.style.background='var(--g50)'" onmouseout="this.style.background=''">
+      <td style="padding:8px 10px;font-size:13px;font-weight:600;">${esc(r.Brand||'—')}</td>
+      <td style="padding:8px 10px;font-size:13px;">${esc(r.Store||'—')}</td>
+      <td style="padding:8px 10px;font-size:13px;">${esc(r.Promoter||'—')}</td>
+      <td style="padding:8px 10px;font-size:11.5px;color:var(--g600);">${esc(r.Date||'—')}</td>
+      <td style="padding:8px 10px;font-size:12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${comments?esc(comments):'<span style="color:var(--g400);font-style:italic;">—</span>'}</td>
       <td style="padding:8px 10px;">${stand?'<span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;">Yes</span>':'<span style="color:var(--g400);">—</span>'}</td>
     </tr>`;
   }).join('');
@@ -3366,9 +3548,9 @@ function sc_openPanel(id){
   document.getElementById('sc_panelTitle').textContent=sc_currentRow.Promoter||'—';
   document.getElementById('sc_panelSub').textContent=`${sc_currentRow.Brand} · ${sc_currentRow.Store}`;
   document.getElementById('sc_panelMeta').innerHTML=`
-    <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);">Shift date</div><div style="font-size:13px;font-weight:500;margin-top:2px;">${sc_currentRow.Date||'—'}</div></div>
-    <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);">Brand</div><div style="font-size:13px;font-weight:500;margin-top:2px;">${sc_currentRow.Brand||'—'}</div></div>
-    <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);">Store</div><div style="font-size:13px;font-weight:500;margin-top:2px;">${sc_currentRow.Store||'—'}</div></div>`;
+    <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);">Shift date</div><div style="font-size:13px;font-weight:500;margin-top:2px;">${esc(sc_currentRow.Date||'—')}</div></div>
+    <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);">Brand</div><div style="font-size:13px;font-weight:500;margin-top:2px;">${esc(sc_currentRow.Brand||'—')}</div></div>
+    <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);">Store</div><div style="font-size:13px;font-weight:500;margin-top:2px;">${esc(sc_currentRow.Store||'—')}</div></div>`;
   sc_origComments=sc_currentRow["Comments on today's shift"]||'';
   sc_origStand=sc_currentRow.stand_comments||'';
   document.getElementById('sc_editComments').value=sc_origComments;
@@ -3406,8 +3588,8 @@ async function sc_saveRow(){
   const comments=document.getElementById('sc_editComments').value;
   const stand=document.getElementById('sc_editStand').value;
   try{
-    const res=await fetch(`${SB_URL}/rest/v1/legacy_questionnaire?"ID"=eq.${sc_currentRow.ID}`,{
-      method:'PATCH',headers:{...SB_HEADERS,'Prefer':'return=minimal'},
+    const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_questionnaire?"ID"=eq.${sc_currentRow.ID}`,{
+      method:'PATCH',headers:{'Prefer':'return=minimal'},
       body:JSON.stringify({"Comments on today's shift":comments,stand_comments:stand})
     });
     if(!res.ok)throw new Error('HTTP '+res.status);
@@ -3431,22 +3613,22 @@ let t_initialized=false;
 async function t_initIfNeeded(){if(!t_initialized){t_initialized=true;await t_init();}}
 
 async function t_init(){
-  const res1=await fetch(`${SB_URL}/rest/v1/GI_brands?select=id,brand&visible=eq.true&order=brand`,{headers:SB_HEADERS});
+  const res1=await authenticatedFetch(`${SB_URL}/rest/v1/GI_brands?select=id,brand&visible=eq.true&order=brand`);
   const brands=await res1.json();
   const bs=document.getElementById('t_brand');
   [...new Map(brands.map(b=>[b.brand,b])).values()].sort((a,b)=>a.brand.localeCompare(b.brand))
-    .forEach(b=>bs.insertAdjacentHTML('beforeend',`<option value="${b.brand}">${b.brand}</option>`));
+    .forEach(b=>bs.insertAdjacentHTML('beforeend',`<option value="${esc(b.brand)}">${esc(b.brand)}</option>`));
 
-  const res2=await fetch(`${SB_URL}/rest/v1/GI_stores?select=store&visible=eq.true&order=store`,{headers:SB_HEADERS});
+  const res2=await authenticatedFetch(`${SB_URL}/rest/v1/GI_stores?select=store&visible=eq.true&order=store`);
   const shops=await res2.json();
   t_allShopsList=[...new Set(shops.map(s=>s.store))].sort();
   const ss=document.getElementById('t_shop');
-  t_allShopsList.forEach(s=>ss.insertAdjacentHTML('beforeend',`<option value="${s}">${s}</option>`));
+  t_allShopsList.forEach(s=>ss.insertAdjacentHTML('beforeend',`<option value="${esc(s)}">${esc(s)}</option>`));
 
-  const res3=await fetch(`${SB_URL}/rest/v1/target_type?select=id,name&order=id`,{headers:SB_HEADERS});
+  const res3=await authenticatedFetch(`${SB_URL}/rest/v1/target_type?select=id,name&order=id`);
   const types=await res3.json();
   const ts=document.getElementById('t_type');
-  types.forEach(t=>{t_targetTypes[t.id]=t.name;ts.insertAdjacentHTML('beforeend',`<option value="${t.id}">${t.name}</option>`);});
+  types.forEach(t=>{t_targetTypes[t.id]=t.name;ts.insertAdjacentHTML('beforeend',`<option value="${esc(t.id)}">${esc(t.name)}</option>`);});
 
   await t_loadTargets();
 }
@@ -3456,11 +3638,11 @@ async function t_loadItems(){
   const sel=document.getElementById('t_item');
   if(!brand){sel.innerHTML='<option value="">Select brand first…</option>';return;}
   sel.innerHTML='<option value="">Loading…</option>';sel.disabled=true;
-  const res=await fetch(`${SB_URL}/rest/v1/legacy_items?select=full_productname&brand=eq.${encodeURIComponent(brand)}&full_productname=not.is.null&order=full_productname`,{headers:SB_HEADERS});
+  const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_items?select=full_productname&brand=eq.${encodeURIComponent(brand)}&full_productname=not.is.null&order=full_productname`);
   const items=await res.json();
   t_allItemsList=[...new Set(items.map(i=>i.full_productname).filter(Boolean))];
   sel.innerHTML='<option value="">No specific item</option>';
-  t_allItemsList.forEach(name=>sel.insertAdjacentHTML('beforeend',`<option value="${name}">${name}</option>`));
+  t_allItemsList.forEach(name=>sel.insertAdjacentHTML('beforeend',`<option value="${esc(name)}">${esc(name)}</option>`));
   sel.disabled=false;
   if(t_multiMode&&t_multiBy==='item')t_updateMultiList();
 }
@@ -3468,7 +3650,7 @@ async function t_loadItems(){
 async function t_loadTargets(){
   document.getElementById('t_loading').style.display='block';
   document.getElementById('t_tbl').style.display='none';
-  const res=await fetch(`${SB_URL}/rest/v1/legacy_targets_v2?select=*&order=id.desc&limit=300`,{headers:SB_HEADERS});
+  const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_targets_v2?select=*&order=id.desc&limit=300`);
   t_allTargets=await res.json();
   document.getElementById('t_loading').style.display='none';
   document.getElementById('t_tbl').style.display='table';
@@ -3488,19 +3670,20 @@ function t_sortBy(col){
 
 function t_renderTable(){
   const q=document.getElementById('t_filter').value.toLowerCase();
-  let rows=t_allTargets.filter(r=>[r.brand,r.item,r.shop,r.date,t_targetTypes[r.target_type_id]].some(v=>(v||'').toLowerCase().includes(q)));
+  let rows=t_allTargets.filter(r=>[r.id,r.brand,r.item,r.shop,r.date,t_targetTypes[r.target_type_id]].some(v=>String(v??'').toLowerCase().includes(q)));
   rows.sort((a,b)=>{const av=a[t_sortCol]??'',bv=b[t_sortCol]??'';return av<bv?-t_sortDir:av>bv?t_sortDir:0;});
   document.getElementById('t_countBadge').textContent=`${rows.length} entries`;
   const levelColors={1:'var(--blue-light)',2:'#fef9c3',3:'var(--red-light)'};
   const levelText={1:'var(--blue)',2:'#92400e',3:'var(--red)'};
   document.getElementById('t_tbody').innerHTML=rows.map(r=>`
     <tr style="border-bottom:1px solid var(--g100);" onmouseover="this.style.background='var(--g50)'" onmouseout="this.style.background=''">
-      <td style="padding:8px 12px;font-size:13px;font-weight:600;">${r.brand||'—'}</td>
-      <td style="padding:8px 12px;font-size:12px;color:var(--g600);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${r.item||'—'}</td>
-      <td style="padding:8px 12px;font-size:12px;font-family:monospace;color:var(--g900);">${r.shop||'—'}</td>
-      <td style="padding:8px 12px;font-size:12px;color:var(--g600);">${r.date?r.date.slice(0,7):'—'}</td>
-      <td style="padding:8px 12px;"><span style="background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600;">${t_targetTypes[r.target_type_id]||r.target_type_id}</span></td>
-      <td style="padding:8px 12px;">${r.target_level!=null?`<span style="background:${levelColors[r.target_level]||'var(--g100)'};color:${levelText[r.target_level]||'var(--g600)'};padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700;">T${r.target_level}</span>`:'<span style="color:var(--g400);">—</span>'}</td>
+      <td style="padding:8px 12px;font-size:11px;font-family:monospace;color:var(--blue);font-weight:700;">${esc(r.id??'—')}</td>
+      <td style="padding:8px 12px;font-size:13px;font-weight:600;">${esc(r.brand||'—')}</td>
+      <td style="padding:8px 12px;font-size:12px;color:var(--g600);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(r.item||'—')}</td>
+      <td style="padding:8px 12px;font-size:12px;font-family:monospace;color:var(--g900);">${esc(r.shop||'—')}</td>
+      <td style="padding:8px 12px;font-size:12px;color:var(--g600);">${esc(r.date?r.date.slice(0,7):'—')}</td>
+      <td style="padding:8px 12px;"><span style="background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600;">${esc(t_targetTypes[r.target_type_id]||r.target_type_id)}</span></td>
+      <td style="padding:8px 12px;">${r.target_level!=null?`<span style="background:${levelColors[r.target_level]||'var(--g100)'};color:${levelText[r.target_level]||'var(--g600)'};padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700;">T${esc(r.target_level)}</span>`:'<span style="color:var(--g400);">—</span>'}</td>
       <td style="padding:8px 12px;font-size:13px;font-weight:600;font-family:monospace;">${r.value!=null?r.value.toLocaleString():'—'}</td>
     </tr>`).join('');
 }
@@ -3534,7 +3717,14 @@ function t_updateMultiList(){
     const id='t_mopt'+i;
     const div=document.createElement('div');
     div.style.cssText='display:flex;align-items:center;gap:8px;padding:6px 10px;cursor:pointer;';
-    div.innerHTML=`<input type="checkbox" id="${id}" value="${opt}" onchange="t_updateMultiCount()" style="accent-color:var(--blue);width:13px;height:13px;cursor:pointer;"/><label for="${id}" style="font-size:12px;color:var(--g900);cursor:pointer;">${opt}</label>`;
+    const checkbox=document.createElement('input');
+    checkbox.type='checkbox';checkbox.id=id;checkbox.value=opt;
+    checkbox.style.cssText='accent-color:var(--blue);width:13px;height:13px;cursor:pointer;';
+    checkbox.addEventListener('change',t_updateMultiCount);
+    const label=document.createElement('label');
+    label.htmlFor=id;label.textContent=opt;
+    label.style.cssText='font-size:12px;color:var(--g900);cursor:pointer;';
+    div.append(checkbox,label);
     list.appendChild(div);
   });
   t_updateMultiCount();
@@ -3568,8 +3758,8 @@ async function t_submitTarget(){
       if(t_multiBy==='shop')selected.forEach(s=>records.push({...baseRecord,shop:s}));
       else selected.forEach(it=>records.push({...baseRecord,item:it||null}));
     }
-    const res=await fetch(`${SB_URL}/rest/v1/legacy_targets_v2`,{
-      method:'POST',headers:{...SB_HEADERS,'Prefer':'return=minimal'},
+    const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_targets_v2`,{
+      method:'POST',headers:{'Prefer':'return=minimal'},
       body:JSON.stringify(records)
     });
     if(!res.ok)throw new Error('HTTP '+res.status);
@@ -3594,42 +3784,91 @@ function t_showToast(msg,type){
 
 // Shared Supabase headers alias for new tabs
 const SB_URL=SB; // alias to existing SB constant
-const SB_HEADERS={'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'};
 
 // ═══════════════════════════════════════════════════════════
 // PAGE 7 – REPORTING CHECK
 // ═══════════════════════════════════════════════════════════
 let rc_data = [];
 let rc_initialized = false;
+let rc_trackingSummary = {linked:0,unlinked:0,excluded:0};
+let rc_filterOptions = {};
+let rc_filterState = {};
+let rc_filterMode = {};
+let rc_forceAllFilters = false;
+let rc_loadTimer = null;
+let rc_loadRequest = 0;
+let rc_kpiFilter = '';
+const RC_EMPTY = '__RC_EMPTY__';
+const RC_FILTER_DEFS = [
+  {key:'agency',label:'Agency',values:r=>[r.agency]},
+  {key:'sector',label:'Sector',values:r=>[r.sector]},
+  {key:'campaign',label:'Campaign',values:r=>[r.campaignName]},
+  {key:'client',label:'Client',values:r=>[r.schedClient]},
+  {key:'brand',label:'Brand',values:r=>[r.schedBrand]},
+  {key:'store',label:'Store',values:r=>[r.schedStoreCode||r.schedStore]},
+  {key:'promoter',label:'Promoter',values:r=>[r.promoter]},
+  {key:'sapcode',label:'SAP Code',values:r=>[r.campaignSapCode||r.trackingSapCode]},
+  {key:'reportType',label:'Report Type',values:r=>r.reportTypes},
+  {key:'status',label:'Status',values:r=>[r.status],staticOptions:[
+    {value:'complete',label:'Reported'},
+    {value:'partial',label:'Partial'},
+    {value:'missing',label:'Missing'},
+    {value:'absent',label:'Absent'},
+    {value:'absent_backup',label:'Absent + Backup'},
+    {value:'pending',label:'Pending'},
+  ]},
+];
+
+function rcFilterValues(row,def){
+  const values=(def.values(row)||[]).map(v=>String(v??'').trim()).filter(Boolean);
+  return values.length?[...new Set(values)]:[RC_EMPTY];
+}
+function rcRowMatchesFilters(row,ignoreKey=''){
+  return RC_FILTER_DEFS.every(def=>{
+    if(def.key===ignoreKey)return true;
+    if((rc_filterMode[def.key]||'all')==='all')return true;
+    const selected=rc_filterState[def.key]||new Set();
+    return rcFilterValues(row,def).some(value=>selected.has(value));
+  });
+}
+function rcApplyKpiFilter(rows){
+  if(!rc_kpiFilter)return rows;
+  if(rc_kpiFilter==='reported'||rc_kpiFilter==='compliance')return rows.filter(row=>row.status==='complete');
+  return rows.filter(row=>row.status===rc_kpiFilter);
+}
+function rc_getFilteredRows(includeKpi=true){
+  const rows=rc_data.filter(row=>rcRowMatchesFilters(row));
+  return includeKpi?rcApplyKpiFilter(rows):rows;
+}
+function rc_selectKpi(key){
+  rc_kpiFilter=key==='all'?'':(rc_kpiFilter===key?'':key);
+  rc_render();
+}
+function rc_scheduleLoad(){
+  clearTimeout(rc_loadTimer);
+  rc_loadTimer=setTimeout(rc_load,250);
+}
 
 function rc_exportExcel(){
   if(!rc_data.length){ toast('No data to export','error'); return; }
 
-  const filterAgency   = document.getElementById('rc_agency')?.value   || '';
-  const filterStore    = document.getElementById('rc_store')?.value    || '';
-  const filterBrand    = document.getElementById('rc_brand')?.value    || '';
-  const filterPromoter = document.getElementById('rc_promoter')?.value || '';
-  const filterStatus   = document.getElementById('rc_status')?.value   || '';
-
-  let rows = rc_data.filter(r => {
-    if(filterAgency   && r.agency         !== filterAgency)   return false;
-    if(filterStore    && r.schedStoreCode !== filterStore)    return false;
-    if(filterBrand    && r.schedBrand     !== filterBrand)    return false;
-    if(filterPromoter && r.promoter       !== filterPromoter) return false;
-    if(filterStatus   && r.status         !== filterStatus)   return false;
-    return true;
-  });
+  let rows = rc_getFilteredRows();
 
   rows.sort((a,b) => {
     if(a.day !== b.day) return b.day.localeCompare(a.day);
     return (a.promoter||'').localeCompare(b.promoter||'');
   });
 
-  const statusLabel = { complete:'Reported', partial:'Partial', missing:'Missing' };
+  const statusLabel = { complete:'Reported', partial:'Partial', missing:'Missing', absent:'Absent', absent_backup:'Absent + Backup', pending:'En attente' };
 
   const sheetData = rows.map(r => ({
     'Date': r.day,
     'Mission': r.missionId ?? '',
+    'SAP Code': r.campaignSapCode || r.trackingSapCode || '',
+    'Client': r.schedClient || '',
+    'Report Type': r.reportTypes.join(', ') || 'No report type',
+    'Campaign': r.campaignName || '',
+    'Sector': r.sector || '',
     'Promoter': r.promoter,
     'Sched. Store': r.schedStore || '',
     'Sched. Brand': r.schedBrand || '',
@@ -3644,8 +3883,8 @@ function rc_exportExcel(){
 
   const ws = XLSX.utils.json_to_sheet(sheetData);
   ws['!cols'] = [
-    {wch:11},{wch:9},{wch:22},{wch:32},{wch:18},
-    {wch:13},{wch:8},{wch:18},{wch:18},{wch:11},{wch:11},{wch:11}
+    {wch:11},{wch:10},{wch:18},{wch:20},{wch:24},{wch:42},{wch:18},{wch:22},{wch:32},
+    {wch:18},{wch:14},{wch:10},{wch:24},{wch:24},{wch:12},{wch:14},{wch:18}
   ];
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Reporting Check');
@@ -3657,10 +3896,11 @@ function rc_exportExcel(){
 }
 
 function rc_resetFilters(){
-  ['rc_agency','rc_store','rc_brand','rc_promoter','rc_status'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.value = '';
-  });
+  rc_filterOptions={};
+  rc_filterState={};
+  rc_filterMode={};
+  rc_forceAllFilters=true;
+  rc_kpiFilter='';
   const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
   const yStr = yesterday.toISOString().split('T')[0];
   document.getElementById('rc_from').value = yStr;
@@ -3679,10 +3919,98 @@ function rc_initIfNeeded(){
   }
 }
 
-async function rc_load(){
+const rcNorm=value=>String(value??'')
+  .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();
+const rcBaseKey=(day,promoter)=>`${day||''}|${rcNorm(promoter)}`;
+function rcAssignEntries(schedules,entries,dateField,promoterField){
+  const schedulesByPersonDay=new Map();
+  schedules.forEach(schedule=>{
+    const key=rcBaseKey(schedule.day,schedule.promoter_fullname);
+    if(!schedulesByPersonDay.has(key))schedulesByPersonDay.set(key,[]);
+    schedulesByPersonDay.get(key).push(schedule);
+  });
+
+  const assigned=new Map(schedules.map(schedule=>[schedule,[]]));
+  entries.forEach(entry=>{
+    const candidates=schedulesByPersonDay.get(rcBaseKey(entry[dateField],entry[promoterField]))||[];
+    if(!candidates.length)return;
+    if(candidates.length===1){assigned.get(candidates[0]).push(entry);return;}
+
+    const entryStore=rcNorm(entry.Store);
+    const entryBrand=rcNorm(entry.Brand);
+    const scored=candidates.map(schedule=>{
+      const stores=[schedule.store_code,schedule.pos].map(rcNorm).filter(Boolean);
+      const storeMatch=!!entryStore&&stores.includes(entryStore);
+      const brandMatch=!!entryBrand&&rcNorm(schedule.brand)===entryBrand;
+      return{schedule,score:(storeMatch?2:0)+(brandMatch?1:0)};
+    });
+    const bestScore=Math.max(...scored.map(item=>item.score));
+    const winners=scored.filter(item=>item.score===bestScore);
+    if(bestScore>0&&winners.length===1)assigned.get(winners[0].schedule).push(entry);
+  });
+  return assigned;
+}
+
+const rcTrackingIds=value=>{
+  if(Array.isArray(value))return value.map(String).filter(Boolean);
+  if(typeof value==='string')return value.replace(/[{}]/g,'').split(',').map(v=>v.trim()).filter(Boolean);
+  return[];
+};
+const rcIsNoReporting=record=>{
+  const ids=rcTrackingIds(record?.report_type_ids);
+  return ids.length>0&&ids.every(id=>id==='9');
+};
+const rcSameValue=(left,right)=>!!rcNorm(left)&&rcNorm(left)===rcNorm(right);
+const rcLooseValue=(left,right)=>{
+  const a=rcNorm(left),b=rcNorm(right);
+  return !!a&&!!b&&(a===b||(a.length>=6&&b.length>=6&&(a.includes(b)||b.includes(a))));
+};
+const rcNewestTracking=(left,right)=>
+  String(right.startdate||'').localeCompare(String(left.startdate||''))||
+  String(right.createdat||'').localeCompare(String(left.createdat||''))||
+  (Number(right.id)||0)-(Number(left.id)||0);
+function rcFindTrackingRecord(schedule,trackingRows){
+  const scheduleStores=[schedule.store_code,schedule.pos].filter(Boolean);
+  const scheduleSap=rcNorm(schedule.campaign_sapcode);
+  const inRange=trackingRows.filter(record=>(!record.startdate||schedule.day>=record.startdate)&&(!record.enddate||schedule.day<=record.enddate));
+  if(scheduleSap){
+    const exactSapMatches=inRange.filter(record=>rcNorm(record.sapcode)===scheduleSap).sort(rcNewestTracking);
+    if(exactSapMatches.length)return exactSapMatches[0];
+  }
+  const scored=inRange
+    .map(record=>{
+      const trackingSap=rcNorm(record.sapcode);
+      const sapComparable=!!scheduleSap&&!!trackingSap;
+      if(sapComparable&&scheduleSap!==trackingSap)return{record,score:-1};
+      const brands=shortBrands(record);
+      const stores=shortStores(record);
+      const titleMatch=rcLooseValue(schedule.campaign_name,record.Title);
+      const brandMatch=brands.some(brand=>rcSameValue(schedule.brand,brand));
+      const storeMatch=stores.some(store=>scheduleStores.some(value=>rcSameValue(value,store)));
+      const clientMatch=rcSameValue(schedule.client,shortClient(record)||record.client);
+      return{record,score:(titleMatch?6:0)+(brandMatch?4:0)+(storeMatch?3:0)+(clientMatch?1:0)};
+    })
+    .filter(item=>item.score>=4)
+    .sort((a,b)=>b.score-a.score);
+  if(!scored.length)return null;
+  if(scored.length>1&&scored[0].score===scored[1].score)return null;
+  return scored[0].record;
+}
+function rcTrackingState(record){
+  if(!record)return{key:'unlinked',label:'Not linked'};
+  if(record.first_report_date)return{key:'sent',label:'Report sent'};
+  if(record.not_sent_date)return{key:'not_sent',label:'Not sent'};
+  if(record.under_review_date)return{key:'review',label:'Under review'};
+  return{key:'none',label:'No status'};
+}
+
+async function rc_loadLegacy(){
   const from = document.getElementById('rc_from').value;
   const to   = document.getElementById('rc_to').value;
   if(!from || !to){ toast('Please set a date range','error'); return; }
+  if(from>to){ toast('The From date must be before the To date','error'); return; }
+  const requestId=++rc_loadRequest;
 
   document.getElementById('rc_area').innerHTML = `
     <div style="padding:48px;text-align:center;color:var(--g400);">
@@ -3694,11 +4022,15 @@ async function rc_load(){
   document.getElementById('rc_sync_badge').innerHTML = '';
 
   try{
-    const schedRows = await sbGet(
-      `GI_ScheduleV2?select=day,promoter_fullname,store_code,pos,agency,brand,client,role,mission_id,campaign_name,campaign_active,synced_at&day=gte.${from}&day=lte.${to}&promoter_status=neq.Pending&brand=not.ilike.*JTI*&campaign_active=eq.true&client=neq.${encodeURIComponent('GLOBE TRAVEL RETAIL')}&pos=neq.${encodeURIComponent('TOURNEE TERRAIN')}&campaign_name=not.ilike.*FIELD SUPERVISOR*&order=day.desc,promoter_fullname.asc`
-    );
+    const [schedRows,trackingRows,reportTypeRows] = await Promise.all([
+      sbGet(`GI_ScheduleV2?select=day,promoter_fullname,store_code,pos,agency,brand,client,role,mission_id,campaign_name,campaign_sapcode,synced_at&day=gte.${from}&day=lte.${to}&promoter_status=neq.Pending&brand=not.ilike.*JTI*&client=neq.${encodeURIComponent('GLOBE TRAVEL RETAIL')}&pos=neq.${encodeURIComponent('TOURNEE TERRAIN')}&campaign_name=not.ilike.*FIELD SUPERVISOR*&order=day.desc,promoter_fullname.asc`),
+      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,client_fk,report_type_ids,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,not_sent_date'),
+      sbGet('report_types?select=id,type&order=type'),
+    ]);
+    if(requestId!==rc_loadRequest)return;
 
     if(!schedRows.length){
+      document.getElementById('rc_filter_bar').innerHTML='';
       document.getElementById('rc_area').innerHTML = '<div style="padding:48px;text-align:center;color:var(--g400);">No scheduled shifts found for this period.</div>';
       return;
     }
@@ -3712,37 +4044,42 @@ async function rc_load(){
     const seen = new Set();
     const deduped = schedRows.filter(r => {
       if(EXCLUDED_ROLES.has(r.role)) return false;
-      const key = `${r.day}|${r.store_code}|${(r.promoter_fullname||'').toUpperCase().trim()}`;
+      const key = [r.day,rcNorm(r.promoter_fullname),rcNorm(r.store_code||r.pos),rcNorm(r.brand),rcNorm(r.campaign_sapcode)].join('|');
       if(seen.has(key)) return false;
       seen.add(key); return true;
     });
 
-    const lastSynced = deduped.reduce((latest, r) => r.synced_at > latest ? r.synced_at : latest, deduped[0].synced_at);
+    const linkedSchedules=deduped.map(schedule=>({schedule,tracking:rcFindTrackingRecord(schedule,trackingRows)}));
+    const excludedSchedules=linkedSchedules.filter(item=>item.tracking&&(item.tracking.cancelled_date||rcIsNoReporting(item.tracking)));
+    const eligibleSchedules=linkedSchedules
+      .filter(item=>!item.tracking||(!item.tracking.cancelled_date&&!rcIsNoReporting(item.tracking)))
+      .map(item=>item.schedule);
+    const trackingBySchedule=new Map(linkedSchedules.map(item=>[item.schedule,item.tracking]));
+    rc_trackingSummary={
+      linked:linkedSchedules.filter(item=>!!item.tracking&&!item.tracking.cancelled_date&&!rcIsNoReporting(item.tracking)).length,
+      unlinked:linkedSchedules.filter(item=>!item.tracking).length,
+      excluded:excludedSchedules.length,
+    };
+    const lastSynced=deduped.reduce((latest,r)=>r.synced_at&&r.synced_at>latest?r.synced_at:latest,'');
 
-    const questRows = await sbGet(
-      `legacy_questionnaire?select=Date,Promoter,Store,Brand,"Pieces Sold","Turnover of the day"&Date=gte.${from}&Date=lte.${to}`
-    );
-    const qMap = {};
-    questRows.forEach(q => {
-      const key = `${q.Date}|${(q.Promoter||'').toUpperCase().trim()}`;
-      if(!qMap[key]) qMap[key] = [];
-      qMap[key].push(q);
-    });
+    const [questRows,salesRows] = await Promise.all([
+      sbGet(`legacy_questionnaire?select=Date,Promoter,Store,Brand,"Pieces Sold","Turnover of the day"&Date=gte.${from}&Date=lte.${to}`),
+      sbGet(`legacy_sales?select=Date,"Promoter Name",Store,Brand&Date=gte.${from}&Date=lte.${to}`),
+    ]);
+    if(requestId!==rc_loadRequest)return;
+    const qAssignments=rcAssignEntries(eligibleSchedules,questRows,'Date','Promoter');
+    const sAssignments=rcAssignEntries(eligibleSchedules,salesRows,'Date','Promoter Name');
+    const reportTypeById=new Map(reportTypeRows.map(type=>[String(type.id),type.type]));
+    const sectorNameById=new Map(allSectors.map(sector=>[String(sector.id),sector.Name]));
+    const sectorByStore=new Map(allSt
+      .filter(store=>store.store&&store.Sector_id!=null)
+      .map(store=>[rcNorm(store.store),sectorNameById.get(String(store.Sector_id))||'']));
 
-    const salesRows = await sbGet(
-      `legacy_sales?select=Date,"Promoter Name",Store,Brand&Date=gte.${from}&Date=lte.${to}`
-    );
-    const sMap = {};
-    salesRows.forEach(s => {
-      const key = `${s.Date}|${(s['Promoter Name']||'').toUpperCase().trim()}`;
-      if(!sMap[key]) sMap[key] = [];
-      sMap[key].push(s);
-    });
-
-    rc_data = deduped.map(r => {
-      const pKey = `${r.day}|${(r.promoter_fullname||'').toUpperCase().trim()}`;
-      const qEntries = qMap[pKey] || [];
-      const sEntries = sMap[pKey] || [];
+    rc_data = eligibleSchedules.map(r => {
+      const qEntries = qAssignments.get(r) || [];
+      const sEntries = sAssignments.get(r) || [];
+      const tracking=trackingBySchedule.get(r)||null;
+      const trackingState=rcTrackingState(tracking);
       const hasQ = qEntries.length > 0;
       const hasS = sEntries.length > 0;
 
@@ -3764,7 +4101,17 @@ async function rc_load(){
         schedStoreCode: r.store_code,
         schedBrand: r.brand,
         missionId: r.mission_id,
+        scheduleSapcode: r.campaign_sapcode||'',
         agency: r.agency,
+        sector: sectorByStore.get(rcNorm(r.store_code))||sectorByStore.get(rcNorm(r.pos))||'',
+        campaign: r.campaign_name||'',
+        client: r.client||(tracking?shortClient(tracking):'')||tracking?.client||'',
+        trackingId: tracking?.id??null,
+        trackingTitle: tracking?.Title||tracking?.brand||'',
+        trackingSapcode: tracking?.sapcode||'',
+        reportTypes: rcTrackingIds(tracking?.report_type_ids).map(id=>reportTypeById.get(id)||`Type ${id}`),
+        trackingState: trackingState.key,
+        trackingLabel: trackingState.label,
         hasQ, hasS,
         reportedStores, reportedBrands,
         pieces: (hasQ ? pieces : null),
@@ -3773,19 +4120,179 @@ async function rc_load(){
       };
     });
 
-    rc_populateFilters();
+    rc_populateFilters(rc_forceAllFilters);
+    rc_forceAllFilters=false;
     rc_render();
 
     const total = rc_data.length;
     const reported = rc_data.filter(r=>r.status==='complete').length;
     document.getElementById('rc_subline_text').textContent =
-      `${total} promoters \u00b7 ${reported} reported \u00b7 ${from} \u2192 ${to}`;
-    document.getElementById('rc_sync_badge').innerHTML =
-      `<span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600;">\ud83d\udd04 Azure sync ${rc_timeAgo(lastSynced)}</span>`;
+      `${total} shifts \u00b7 ${reported} reported \u00b7 ${rc_trackingSummary.linked} linked \u00b7 ${rc_trackingSummary.excluded} excluded \u00b7 ${from} \u2192 ${to}`;
+    document.getElementById('rc_sync_badge').innerHTML = lastSynced
+      ? `<span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600;">\ud83d\udd04 Azure sync ${rc_timeAgo(lastSynced)}</span>`
+      : '';
 
   } catch(e){
+    if(requestId!==rc_loadRequest)return;
     document.getElementById('rc_area').innerHTML =
-      `<div style="padding:48px;text-align:center;color:var(--red);">Error: ${e.message}</div>`;
+      `<div style="padding:48px;text-align:center;color:var(--red);">Error: ${esc(e.message)}</div>`;
+  }
+}
+
+async function rc_load(){
+  const from = document.getElementById('rc_from').value;
+  const to   = document.getElementById('rc_to').value;
+  if(!from || !to){ toast('Please set a date range','error'); return; }
+  if(from>to){ toast('The From date must be before the To date','error'); return; }
+  const requestId=++rc_loadRequest;
+
+  document.getElementById('rc_area').innerHTML = `
+    <div style="padding:48px;text-align:center;color:var(--g400);">
+      <div style="width:28px;height:28px;border:2px solid var(--g200);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite;margin:0 auto 10px;"></div>
+      Loading…
+    </div>`;
+  document.getElementById('rc_kpis').innerHTML = '';
+  document.getElementById('rc_subline_text').textContent = '';
+  document.getElementById('rc_sync_badge').innerHTML = '';
+
+  try{
+    const [schedRows,trackingRows,reportTypeRows,storesWithSector] = await Promise.all([
+      sbGet(`GI_ScheduleV2?select=day,promoter_id,promoter_fullname,store_code,pos,agency,brand,client,role,mission_id,campaign_name,campaign_sapcode,timeslot_status,synced_at&day=gte.${from}&day=lte.${to}&promoter_status=neq.Pending&brand=not.ilike.*JTI*&client=neq.${encodeURIComponent('GLOBE TRAVEL RETAIL')}&pos=neq.${encodeURIComponent('TOURNEE TERRAIN')}&campaign_name=not.ilike.*FIELD SUPERVISOR*&or=(timeslot_status.is.null,timeslot_status.neq.Annulé)&order=day.desc,promoter_fullname.asc`),
+      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,client_fk,report_type_ids,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,not_sent_date'),
+      sbGet('report_types?select=id,type&order=type'),
+      sbGet('GI_stores?select=id,store,Sector_id'),
+    ]);
+    if(requestId!==rc_loadRequest)return;
+
+    const excludedCampaignTerms=['training','coaching','store check','atelier s'];
+    const reportingSchedRows=schedRows.filter(row=>{
+      const campaign=String(row.campaign_name||'').trim().toLowerCase().replace(/\s+/g,' ');
+      return !excludedCampaignTerms.some(term=>campaign.includes(term));
+    });
+
+    const sectorNameById=new Map(allSectors.map(sector=>[String(sector.id),sector.Name]));
+    const sectorByStore=new Map(storesWithSector
+      .filter(store=>store.store&&store.Sector_id!=null)
+      .map(store=>[rcNorm(store.store),sectorNameById.get(String(store.Sector_id))||'']));
+
+    if(!reportingSchedRows.length){
+      rc_data=[];
+      rc_populateFilters(true);
+      rc_render();
+      document.getElementById('rc_area').innerHTML='<div style="padding:48px;text-align:center;color:var(--g400);">No scheduled shifts found for this period.</div>';
+      return;
+    }
+
+    const excludedRoles=new Set([
+      'Team Leader','Team leader','Team Leader GVA',
+      'Superviseur / euse','Superviseur/euse',
+      'Téléopérateur/trice'
+    ]);
+    const seen=new Set();
+    const deduped=reportingSchedRows.filter(row=>{
+      if(excludedRoles.has(row.role))return false;
+      const key=`${row.day}|${row.store_code}|${rcNorm(row.promoter_fullname)}`;
+      if(seen.has(key))return false;
+      seen.add(key);
+      return true;
+    });
+
+    const linkedSchedules=deduped.map(schedule=>({schedule,tracking:rcFindTrackingRecord(schedule,trackingRows)}));
+    const eligibleSchedules=linkedSchedules
+      .filter(item=>!item.tracking||(!item.tracking.cancelled_date&&!rcIsNoReporting(item.tracking)))
+      .map(item=>item.schedule);
+    const trackingBySchedule=new Map(linkedSchedules.map(item=>[item.schedule,item.tracking]));
+    const lastSynced=deduped.reduce((latest,row)=>row.synced_at&&row.synced_at>latest?row.synced_at:latest,'');
+
+    const [questRows,salesRows]=await Promise.all([
+      sbGet(`legacy_questionnaire?select=Date,Promoter,Promoterid,Store,Brand,"Pieces Sold","Turnover of the day"&Date=gte.${from}&Date=lte.${to}`),
+      sbGet(`legacy_sales?select=Date,"Promoter Name",Promoterid,Store,Brand&Date=gte.${from}&Date=lte.${to}`),
+    ]);
+    if(requestId!==rc_loadRequest)return;
+
+    const qMap={};
+    questRows.forEach(entry=>{
+      const idKey=`${entry.Date}|${entry.Promoterid}|${rcNorm(entry.Store)}`;
+      const nameKey=`${entry.Date}|${rcNorm(entry.Promoter)}|${rcNorm(entry.Store)}`;
+      [idKey,nameKey].forEach(key=>{if(!qMap[key])qMap[key]=[];qMap[key].push(entry);});
+    });
+    const sMap={};
+    salesRows.forEach(entry=>{
+      const idKey=`${entry.Date}|${entry.Promoterid}|${rcNorm(entry.Store)}`;
+      const nameKey=`${entry.Date}|${rcNorm(entry['Promoter Name'])}|${rcNorm(entry.Store)}`;
+      [idKey,nameKey].forEach(key=>{if(!sMap[key])sMap[key]=[];sMap[key].push(entry);});
+    });
+
+    const uniqueEntries=entries=>[...new Map(entries.map(entry=>[JSON.stringify(entry),entry])).values()];
+    const reportTypeById=new Map(reportTypeRows.map(type=>[String(type.id),type.type]));
+    rc_data=eligibleSchedules.map(schedule=>{
+      const storeCode=rcNorm(schedule.store_code);
+      const idKey=`${schedule.day}|${schedule.promoter_id}|${storeCode}`;
+      const nameKey=`${schedule.day}|${rcNorm(schedule.promoter_fullname)}|${storeCode}`;
+      let qEntries=qMap[idKey]||qMap[nameKey]||[];
+      let sEntries=sMap[idKey]||sMap[nameKey]||[];
+
+      const promoterShiftCount=eligibleSchedules.filter(item=>item.day===schedule.day&&String(item.promoter_id)===String(schedule.promoter_id)).length;
+      if(!qEntries.length&&promoterShiftCount===1){
+        const idPrefix=`${schedule.day}|${schedule.promoter_id}|`;
+        const namePrefix=`${schedule.day}|${rcNorm(schedule.promoter_fullname)}|`;
+        qEntries=uniqueEntries(Object.entries(qMap).filter(([key])=>key.startsWith(idPrefix)||key.startsWith(namePrefix)).flatMap(([,values])=>values));
+      }
+      if(!sEntries.length&&promoterShiftCount===1){
+        const idPrefix=`${schedule.day}|${schedule.promoter_id}|`;
+        const namePrefix=`${schedule.day}|${rcNorm(schedule.promoter_fullname)}|`;
+        sEntries=uniqueEntries(Object.entries(sMap).filter(([key])=>key.startsWith(idPrefix)||key.startsWith(namePrefix)).flatMap(([,values])=>values));
+      }
+
+      const hasQ=qEntries.length>0;
+      const hasS=sEntries.length>0;
+      const tracking=trackingBySchedule.get(schedule)||null;
+      const reportedStores=[...new Set([...qEntries.map(entry=>entry.Store),...sEntries.map(entry=>entry.Store)].filter(Boolean))];
+      const reportedBrands=[...new Set([...qEntries.map(entry=>entry.Brand),...sEntries.map(entry=>entry.Brand)].filter(Boolean))];
+      const pieces=qEntries.reduce((sum,entry)=>sum+(Number(entry['Pieces Sold'])||0),0);
+      const turnover=qEntries.reduce((sum,entry)=>sum+(Number(entry['Turnover of the day'])||0),0);
+
+      const timeslot=String(schedule.timeslot_status||'').toLowerCase();
+      let status;
+      if(timeslot.includes('absent avec'))status='absent_backup';
+      else if(timeslot.includes('absent'))status='absent';
+      else if(timeslot.includes('attente'))status='pending';
+      else if(hasQ)status='complete';
+      else if(hasS)status='partial';
+      else status='missing';
+
+      return {
+        day:schedule.day,
+        promoter:schedule.promoter_fullname,
+        promoterId:schedule.promoter_id,
+        schedStore:schedule.pos||schedule.store_code,
+        schedStoreCode:schedule.store_code,
+        schedBrand:schedule.brand,
+        schedClient:schedule.client||(tracking?shortClient(tracking):'')||tracking?.client||'',
+        campaignName:schedule.campaign_name||'',
+        campaignSapCode:schedule.campaign_sapcode||'',
+        trackingSapCode:tracking?.sapcode||'',
+        reportTypes:rcTrackingIds(tracking?.report_type_ids).map(id=>reportTypeById.get(id)||`Type ${id}`),
+        missionId:schedule.mission_id,
+        agency:schedule.agency,
+        sector:sectorByStore.get(rcNorm(schedule.store_code))||sectorByStore.get(rcNorm(schedule.pos))||'',
+        timeslotStatus:schedule.timeslot_status||null,
+        hasQ,hasS,reportedStores,reportedBrands,
+        pieces:hasQ?pieces:null,
+        turnover:hasQ?turnover:null,
+        status,
+      };
+    });
+
+    rc_populateFilters(rc_forceAllFilters);
+    rc_forceAllFilters=false;
+    rc_render();
+    document.getElementById('rc_sync_badge').innerHTML=lastSynced
+      ?`<span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600;">🔄 Azure sync ${rc_timeAgo(lastSynced)}</span>`
+      :'';
+  }catch(error){
+    if(requestId!==rc_loadRequest)return;
+    document.getElementById('rc_area').innerHTML=`<div style="padding:48px;text-align:center;color:var(--red);">Error: ${esc(error.message)}</div>`;
   }
 }
 
@@ -3796,91 +4303,171 @@ function rc_timeAgo(isoStr){
   return Math.floor(diff/1440) + 'd ago';
 }
 
-function rc_populateFilters(){
-  const agencies  = [...new Set(rc_data.map(r=>r.agency).filter(Boolean))].sort();
-  const stores    = [...new Set(rc_data.map(r=>r.schedStoreCode).filter(Boolean))].sort();
-  const brands    = [...new Set(rc_data.map(r=>r.schedBrand).filter(Boolean))].sort();
-  const promoters = [...new Set(rc_data.map(r=>r.promoter).filter(Boolean))].sort();
-
-  const ag = document.getElementById('rc_agency');
-  if(ag){
-    const cur = ag.value;
-    ag.innerHTML = '<option value="">All agencies</option>' +
-      agencies.map(a=>`<option value="${a}"${a===cur?' selected':''}>${a}</option>`).join('');
-    ag.style.display = agencies.length ? '' : 'none';
-    ag.onchange = rc_render;
+function rc_populateFilters(forceAll=false){
+  if(forceAll){
+    rc_filterMode={};
+    rc_filterState={};
   }
+  const nextOptions={};
+  RC_FILTER_DEFS.forEach(def=>{
+    const mode=rc_filterMode[def.key]||'all';
+    const selected=rc_filterState[def.key]||new Set();
+    const counts=new Map();
+    rc_data.filter(row=>rcRowMatchesFilters(row,def.key))
+      .forEach(row=>rcFilterValues(row,def).forEach(value=>counts.set(value,(counts.get(value)||0)+1)));
+    const keepSelected=value=>mode==='custom'&&selected.has(value);
+    nextOptions[def.key]=def.staticOptions
+      ? def.staticOptions.filter(option=>counts.has(option.value)||keepSelected(option.value))
+          .map(option=>({...option,count:counts.get(option.value)||0}))
+      : [...new Set([...counts.keys(),...(mode==='custom'?[...selected]:[])])]
+          .map(value=>({value,label:value===RC_EMPTY?'No value':value,count:counts.get(value)||0}))
+          .sort((a,b)=>a.label.localeCompare(b.label,undefined,{numeric:true,sensitivity:'base'}));
+  });
+  RC_FILTER_DEFS.forEach(def=>{
+    if(!rc_filterMode[def.key])rc_filterMode[def.key]='all';
+    if(!rc_filterState[def.key])rc_filterState[def.key]=new Set();
+    rc_filterOptions[def.key]=nextOptions[def.key];
+  });
 
-  const ss = document.getElementById('rc_store');
-  if(ss){
-    const cur = ss.value;
-    ss.innerHTML = '<option value="">All stores</option>' +
-      stores.map(s=>`<option value="${s}"${s===cur?' selected':''}>${s}</option>`).join('');
-    ss.onchange = rc_render;
-  }
-
-  const bs = document.getElementById('rc_brand');
-  if(bs){
-    const cur = bs.value;
-    bs.innerHTML = '<option value="">All brands</option>' +
-      brands.map(b=>`<option value="${b}"${b===cur?' selected':''}>${b}</option>`).join('');
-    bs.style.display = '';
-    bs.onchange = rc_render;
-  }
-
-  const pr = document.getElementById('rc_promoter');
-  if(pr){
-    const cur = pr.value;
-    pr.innerHTML = '<option value="">All promoters</option>' +
-      promoters.map(p=>`<option value="${p}"${p===cur?' selected':''}>${p}</option>`).join('');
-    pr.onchange = rc_render;
-  }
-
-  const stEl = document.getElementById('rc_status');
-  if(stEl) stEl.onchange = rc_render;
+  const filterBar=document.getElementById('rc_filter_bar');
+  filterBar.innerHTML=RC_FILTER_DEFS.map(def=>{
+    const options=rc_filterOptions[def.key];
+    const selected=rc_filterState[def.key];
+    const allMode=rc_filterMode[def.key]==='all';
+    const optionRows=options.map(option=>`<label class="rc-ms-opt">
+      <input type="checkbox" value="${esc(option.value)}"${allMode||selected.has(option.value)?' checked':''} onchange="rc_filterChanged('${def.key}',this)">
+      <span>${esc(option.label)}</span><span class="count">${option.count}</span>
+    </label>`).join('');
+    return `<div class="rc-ms" id="rc_filter_${def.key}">
+      <button type="button" class="rc-ms-btn" id="rc_filter_btn_${def.key}" onclick="rc_toggleFilter('${def.key}',event)" aria-expanded="false">
+        <span id="rc_filter_label_${def.key}">${esc(def.label)}</span>
+        <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="rc-ms-panel" id="rc_filter_panel_${def.key}" onclick="event.stopPropagation()">
+        <input class="rc-ms-search" type="text" placeholder="Search ${esc(def.label.toLowerCase())}…" oninput="rc_searchFilter('${def.key}',this.value)">
+        <div class="rc-ms-actions"><button type="button" onclick="rc_setFilterSelection('${def.key}',true)">Select all</button><button type="button" onclick="rc_setFilterSelection('${def.key}',false)">Deselect all</button></div>
+        <div class="rc-ms-list">${optionRows||'<div class="gfd-empty">No options</div>'}</div>
+      </div>
+    </div>`;
+  }).join('');
+  RC_FILTER_DEFS.forEach(def=>rc_updateFilterButton(def.key));
 }
 
-function rc_render(){
-  const filterAgency   = document.getElementById('rc_agency')?.value   || '';
-  const filterStore    = document.getElementById('rc_store')?.value    || '';
-  const filterBrand    = document.getElementById('rc_brand')?.value    || '';
-  const filterPromoter = document.getElementById('rc_promoter')?.value || '';
-  const filterStatus   = document.getElementById('rc_status')?.value   || '';
-
-  let rows = rc_data.filter(r => {
-    if(filterAgency   && r.agency     !== filterAgency)   return false;
-    if(filterStore    && r.schedStoreCode !== filterStore)    return false;
-    if(filterBrand    && r.schedBrand !== filterBrand)    return false;
-    if(filterPromoter && r.promoter   !== filterPromoter) return false;
-    if(filterStatus   && r.status     !== filterStatus)   return false;
-    return true;
+function rc_updateFilterButton(key){
+  const def=RC_FILTER_DEFS.find(item=>item.key===key);
+  const options=rc_filterOptions[key]||[];
+  const selected=rc_filterState[key]||new Set();
+  const allMode=(rc_filterMode[key]||'all')==='all';
+  let label='All';
+  if(!allMode){
+    if(!selected.size)label='None';
+    else if(selected.size===1){
+      const value=[...selected][0];
+      label=options.find(option=>option.value===value)?.label||value;
+    }else label=`${selected.size} selected`;
+  }
+  const labelEl=document.getElementById('rc_filter_label_'+key);
+  const button=document.getElementById('rc_filter_btn_'+key);
+  if(labelEl)labelEl.textContent=`${def.label}: ${label}`;
+  if(button)button.classList.toggle('active',!allMode);
+}
+function rc_filterChanged(key,changedInput){
+  const root=document.getElementById('rc_filter_'+key);
+  const searchValue=root.querySelector('.rc-ms-search')?.value||'';
+  const wasAllMode=(rc_filterMode[key]||'all')==='all';
+  rc_filterMode[key]='custom';
+  rc_filterState[key]=wasAllMode&&changedInput
+    ? new Set([changedInput.value])
+    : new Set([...root.querySelectorAll('input[type="checkbox"]:checked')].map(input=>input.value));
+  rc_populateFilters();
+  rc_render();
+  const panel=document.getElementById('rc_filter_panel_'+key);
+  const button=document.getElementById('rc_filter_btn_'+key);
+  if(panel&&button){
+    panel.style.display='block';
+    button.setAttribute('aria-expanded','true');
+    const search=panel.querySelector('.rc-ms-search');
+    search.value=searchValue;
+    rc_searchFilter(key,searchValue);
+    search.focus();
+  }
+}
+function rc_setFilterSelection(key,checked){
+  const root=document.getElementById('rc_filter_'+key);
+  const searchValue=root.querySelector('.rc-ms-search')?.value||'';
+  rc_filterMode[key]=checked?'all':'custom';
+  rc_filterState[key]=new Set();
+  rc_populateFilters();
+  rc_render();
+  const panel=document.getElementById('rc_filter_panel_'+key);
+  const button=document.getElementById('rc_filter_btn_'+key);
+  if(panel&&button){
+    panel.style.display='block';
+    button.setAttribute('aria-expanded','true');
+    const search=panel.querySelector('.rc-ms-search');
+    search.value=searchValue;
+    rc_searchFilter(key,searchValue);
+    search.focus();
+  }
+}
+function rc_searchFilter(key,query){
+  const term=rcNorm(query);
+  document.querySelectorAll(`#rc_filter_${key} .rc-ms-opt`).forEach(option=>{
+    option.style.display=term&&!rcNorm(option.textContent).includes(term)?'none':'';
   });
+}
+function rc_closeFilterMenus(){
+  document.querySelectorAll('.rc-ms-panel').forEach(panel=>{panel.style.display='none';});
+  document.querySelectorAll('.rc-ms-btn').forEach(button=>button.setAttribute('aria-expanded','false'));
+}
+function rc_toggleFilter(key,event){
+  event.stopPropagation();
+  const panel=document.getElementById('rc_filter_panel_'+key);
+  const button=document.getElementById('rc_filter_btn_'+key);
+  const shouldOpen=panel.style.display!=='block';
+  rc_closeFilterMenus();
+  if(shouldOpen){
+    panel.style.display='block';
+    button.setAttribute('aria-expanded','true');
+    const search=panel.querySelector('.rc-ms-search');
+    search.value='';
+    rc_searchFilter(key,'');
+    search.focus();
+  }
+}
+
+function rc_renderLegacy(){
+  const contextRows=rc_getFilteredRows(false);
+  let rows=rcApplyKpiFilter([...contextRows]);
 
   rows.sort((a,b) => {
     if(a.day !== b.day) return b.day.localeCompare(a.day);
     return (a.promoter||'').localeCompare(b.promoter||'');
   });
 
-  const total     = rows.length;
-  const complete  = rows.filter(r=>r.status==='complete').length;
-  const partial   = rows.filter(r=>r.status==='partial').length;
-  const missing   = rows.filter(r=>r.status==='missing').length;
+  const total     = contextRows.length;
+  const complete  = contextRows.filter(r=>r.status==='complete').length;
+  const partial   = contextRows.filter(r=>r.status==='partial').length;
+  const missing   = contextRows.filter(r=>r.status==='missing').length;
   const pct       = total ? Math.round(complete/total*100) : 0;
-  const totalPieces   = rows.reduce((n,r)=>n+(r.pieces||0),0);
-  const totalTurnover = rows.reduce((n,r)=>n+(r.turnover||0),0);
+  const totalPieces   = contextRows.reduce((n,r)=>n+(r.pieces||0),0);
+  const totalTurnover = contextRows.reduce((n,r)=>n+(r.turnover||0),0);
 
   document.getElementById('rc_stats').innerHTML = [
-    { val: total,    label:'Promoters', col:'var(--blue)',  bg:'#fff' },
-    { val: complete, label:'Reported',  col:'var(--green)', bg:'var(--green-light)' },
-    { val: partial,  label:'Partial',   col:'var(--amber)', bg:'var(--amber-light)' },
-    { val: missing,  label:'Missing',   col:'var(--red)',   bg:'var(--red-light)' },
-    { val: pct+'%',  label:'Compliance',col:pct>=80?'var(--green)':pct>=50?'var(--amber)':'var(--red)', bg:'var(--g50)' },
-    { val: totalPieces.toLocaleString(),   label:'Pieces sold', col:'var(--g700)', bg:'var(--g50)' },
-    { val: totalTurnover.toLocaleString(undefined,{maximumFractionDigits:0}), label:'Turnover', col:'var(--g900)', bg:'var(--g50)' },
-  ].map(s=>`<div style="background:${s.bg};border:1px solid var(--g200);border-radius:8px;padding:8px 16px;display:flex;flex-direction:column;gap:1px;min-width:95px;box-shadow:0 1px 3px rgba(0,0,0,.05);">
-    <span style="font-size:20px;font-weight:800;color:${s.col};font-family:monospace;">${s.val}</span>
-    <span style="font-size:10.5px;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;font-weight:600;">${s.label}</span>
-  </div>`).join('');
+    { key:'all',        val:total,    label:'Shifts',      col:'var(--blue)',  bg:'#fff',               title:'Show all shifts' },
+    { key:'reported',   val:complete, label:'Reported',    col:'var(--green)', bg:'var(--green-light)', title:'Show reported shifts' },
+    { key:'partial',    val:partial,  label:'Partial',     col:'var(--amber)', bg:'var(--amber-light)', title:'Show partial shifts' },
+    { key:'missing',    val:missing,  label:'Missing',     col:'var(--red)',   bg:'var(--red-light)',   title:'Show missing shifts' },
+    { key:'compliance', val:pct+'%',  label:'Compliance',  col:pct>=80?'var(--green)':pct>=50?'var(--amber)':'var(--red)', bg:'var(--g50)', title:'Show compliant shifts' },
+    { key:'pieces',     val:totalPieces.toLocaleString(), label:'Pieces sold', col:'var(--g700)', bg:'var(--g50)', static:true },
+    { key:'turnover',   val:totalTurnover.toLocaleString(undefined,{maximumFractionDigits:0}), label:'Turnover', col:'var(--g900)', bg:'var(--g50)', static:true },
+  ].map(s=>{
+    const content=`<span style="font-size:20px;font-weight:800;color:${s.col};font-family:monospace;">${s.val}</span>
+      <span style="font-size:10.5px;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;font-weight:600;">${s.label}</span>`;
+    if(s.static)return `<div class="rc-kpi rc-kpi-static" style="--kpi-color:${s.col};background:${s.bg};">${content}</div>`;
+    const active=(s.key==='all'&&!rc_kpiFilter)||rc_kpiFilter===s.key;
+    return `<button type="button" class="rc-kpi ${active?'active':''}" style="--kpi-color:${s.col};background:${s.bg};" title="${esc(s.title)}" aria-pressed="${active}" onclick="rc_selectKpi('${s.key}')">${content}</button>`;
+  }).join('');
 
   if(!rows.length){
     document.getElementById('rc_area').innerHTML = '<div style="padding:48px;text-align:center;color:var(--g400);">No results match these filters.</div>';
@@ -3902,17 +4489,20 @@ function rc_render(){
 
   const mismatchTag = (sched, reported) => {
     if(!reported.length) return '<span style="color:var(--g300);">\u2014</span>';
-    const mismatch = !reported.some(x => (x||'').toUpperCase().trim() === (sched||'').toUpperCase().trim());
+    const scheduledValues=(Array.isArray(sched)?sched:[sched]).filter(Boolean);
+    const mismatch = !reported.some(x => scheduledValues.some(value=>rcNorm(x)===rcNorm(value)));
     const txt = reported.join(', ');
+    const safeTxt=esc(txt),safeSched=esc(scheduledValues.join(' / ')||'\u2014');
     return mismatch
-      ? `<span style="color:var(--amber);font-weight:600;" title="${txt} \u2014 differs from scheduled: ${sched||'\u2014'}">${txt} \u26a0\ufe0f</span>`
-      : `<span title="${txt}">${txt}</span>`;
+      ? `<span style="color:var(--amber);font-weight:600;" title="${safeTxt} \u2014 differs from scheduled: ${safeSched}">${safeTxt} \u26a0\ufe0f</span>`
+      : `<span title="${safeTxt}">${safeTxt}</span>`;
   };
 
   let html = `<table style="width:100%;border-collapse:separate;border-spacing:0;font-size:13px;">
     <thead><tr style="background:var(--g50);position:sticky;top:0;z-index:5;">
       <th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);position:sticky;top:0;z-index:5;">Date</th>
       <th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);position:sticky;top:0;z-index:5;">Mission</th>
+      <th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);position:sticky;top:0;z-index:5;">SAP Code</th>
       <th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);position:sticky;top:0;z-index:5;">Promoter</th>
       <th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);position:sticky;top:0;z-index:5;">Sched. Store</th>
       <th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);position:sticky;top:0;z-index:5;">Sched. Brand</th>
@@ -3930,14 +4520,15 @@ function rc_render(){
 
     dayRows.forEach(r => {
       html += `<tr style="border-bottom:1px solid var(--g100);" onmouseover="this.style.background='var(--g50)'" onmouseout="this.style.background=''">
-        <td style="padding:8px 12px;font-size:12px;color:var(--g600);">${r.day}</td>
-        <td style="padding:8px 12px;font-family:monospace;font-size:11px;color:var(--g500);">${r.missionId??'\u2014'}</td>
-        <td style="padding:8px 12px;font-weight:600;">${r.promoter}</td>
-        <td style="padding:8px 12px;font-weight:600;max-width:320px;white-space:normal;line-height:1.3;" title="${r.schedStore||''}">${r.schedStore||'\u2014'}</td>
-        <td style="padding:8px 12px;color:var(--g600);">${r.schedBrand||'\u2014'}</td>
+        <td style="padding:8px 12px;font-size:12px;color:var(--g600);">${esc(r.day)}</td>
+        <td style="padding:8px 12px;font-family:monospace;font-size:11px;color:var(--g500);">${esc(r.missionId??'\u2014')}</td>
+        <td style="padding:8px 12px;font-family:monospace;font-size:11px;color:var(--g600);">${esc(r.scheduleSapcode||r.trackingSapcode||'\u2014')}</td>
+        <td style="padding:8px 12px;font-weight:600;">${esc(r.promoter)}</td>
+        <td style="padding:8px 12px;font-weight:600;max-width:320px;white-space:normal;line-height:1.3;" title="${esc(r.schedStore||'')}">${esc(r.schedStore||'\u2014')}</td>
+        <td style="padding:8px 12px;color:var(--g600);">${esc(r.schedBrand||'\u2014')}</td>
         <td style="padding:8px 12px;text-align:center;">${check(r.hasQ)}</td>
         <td style="padding:8px 12px;text-align:center;">${check(r.hasS)}</td>
-        <td style="padding:8px 12px;font-family:monospace;width:90px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${mismatchTag(r.schedStoreCode, r.reportedStores)}</td>
+        <td style="padding:8px 12px;font-family:monospace;width:90px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${mismatchTag([r.schedStoreCode,r.schedStore], r.reportedStores)}</td>
         <td style="padding:8px 12px;">${mismatchTag(r.schedBrand, r.reportedBrands)}</td>
         <td style="padding:8px 12px;text-align:right;font-family:monospace;">${r.pieces!=null ? r.pieces.toLocaleString() : '\u2014'}</td>
         <td style="padding:8px 12px;text-align:right;font-family:monospace;font-weight:600;">${r.turnover!=null ? r.turnover.toLocaleString(undefined,{maximumFractionDigits:0}) : '\u2014'}</td>
@@ -3949,17 +4540,151 @@ function rc_render(){
   html += '</tbody></table>';
   document.getElementById('rc_area').innerHTML = html;
 }
+function rc_render(){
+  const contextRows=rc_getFilteredRows(false);
+  const rows=rcApplyKpiFilter([...contextRows]).sort((a,b)=>
+    b.day.localeCompare(a.day)||(a.promoter||'').localeCompare(b.promoter||'')
+  );
+
+  const total=contextRows.length;
+  const complete=contextRows.filter(row=>row.status==='complete').length;
+  const partial=contextRows.filter(row=>row.status==='partial').length;
+  const missing=contextRows.filter(row=>row.status==='missing').length;
+  const absent=contextRows.filter(row=>row.status==='absent').length;
+  const absentBackup=contextRows.filter(row=>row.status==='absent_backup').length;
+  const pending=contextRows.filter(row=>row.status==='pending').length;
+  const complianceBase=total-absent-absentBackup-pending;
+  const pct=complianceBase?Math.round(complete/complianceBase*100):0;
+  const totalPieces=contextRows.reduce((sum,row)=>sum+(row.pieces||0),0);
+  const totalTurnover=contextRows.reduce((sum,row)=>sum+(row.turnover||0),0);
+  const from=document.getElementById('rc_from')?.value||'';
+  const to=document.getElementById('rc_to')?.value||'';
+  document.getElementById('rc_subline_text').textContent=`${total} displayed · ${complete} reported · ${from} → ${to}`;
+
+  document.getElementById('rc_kpis').innerHTML=[
+    {key:'all',val:total,label:'Promoters',col:'var(--blue)',bg:'#fff',title:'Show all promoters'},
+    {key:'reported',val:complete,label:'Reported',col:'var(--green)',bg:'var(--green-light)',title:'Show reported shifts'},
+    {key:'partial',val:partial,label:'Partial',col:'var(--amber)',bg:'var(--amber-light)',title:'Show partial shifts'},
+    {key:'missing',val:missing,label:'Missing',col:'var(--red)',bg:'var(--red-light)',title:'Show missing shifts'},
+    {key:'absent',val:absent,label:'Absent',col:'var(--red)',bg:'var(--red-light)',title:'Show absent shifts'},
+    {key:'absent_backup',val:absentBackup,label:'Absent+Backup',col:'#ea580c',bg:'#fff7ed',title:'Show absent shifts with a backup'},
+    {key:'compliance',val:pct+'%',label:'Compliance',col:pct>=80?'var(--green)':pct>=50?'var(--amber)':'var(--red)',bg:'var(--g50)',title:'Show compliant shifts'},
+    {key:'pieces',val:totalPieces.toLocaleString(),label:'Pieces sold',col:'var(--g700)',bg:'var(--g50)',static:true},
+    {key:'turnover',val:totalTurnover.toLocaleString(undefined,{maximumFractionDigits:0}),label:'Turnover',col:'var(--g900)',bg:'var(--g50)',static:true},
+  ].map(kpi=>{
+    const content=`<span style="font-size:20px;font-weight:800;color:${kpi.col};font-family:monospace;">${kpi.val}</span>
+      <span style="font-size:10.5px;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;font-weight:600;">${kpi.label}</span>`;
+    if(kpi.static)return `<div class="rc-kpi rc-kpi-static" style="--kpi-color:${kpi.col};background:${kpi.bg};">${content}</div>`;
+    const active=(kpi.key==='all'&&!rc_kpiFilter)||rc_kpiFilter===kpi.key;
+    return `<button type="button" class="rc-kpi ${active?'active':''}" style="--kpi-color:${kpi.col};background:${kpi.bg};" title="${esc(kpi.title)}" aria-pressed="${active}" onclick="rc_selectKpi('${kpi.key}')">${content}</button>`;
+  }).join('');
+
+  if(!rows.length){
+    document.getElementById('rc_area').innerHTML='<div style="padding:48px;text-align:center;color:var(--g400);">No results match these filters.</div>';
+    return;
+  }
+
+  const statusBadge=status=>{
+    if(status==='complete')return '<span style="display:inline-flex;white-space:nowrap;background:var(--green-light);color:var(--green);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;">✅ Reported</span>';
+    if(status==='partial')return '<span style="display:inline-flex;white-space:nowrap;background:var(--amber-light);color:var(--amber);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;">⚠️ Partial</span>';
+    if(status==='absent_backup')return '<span style="display:inline-flex;white-space:nowrap;background:#fff7ed;color:#ea580c;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;">🔄 Absent + Backup</span>';
+    if(status==='absent')return '<span style="display:inline-flex;white-space:nowrap;background:var(--red-light);color:var(--red);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;">🚫 Absent</span>';
+    if(status==='pending')return '<span style="display:inline-flex;white-space:nowrap;background:var(--g100);color:var(--g500);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;">⏳ En attente</span>';
+    return '<span style="display:inline-flex;white-space:nowrap;background:var(--red-light);color:var(--red);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;">❌ Missing</span>';
+  };
+  const check=ok=>ok
+    ?'<span style="color:var(--green);font-weight:800;font-size:14px;">✓</span>'
+    :'<span style="color:var(--red);font-size:14px;">✗</span>';
+  const mismatchTag=(scheduled,reported)=>{
+    if(!reported.length)return '<span style="color:var(--g300);">—</span>';
+    const mismatch=!reported.some(value=>rcNorm(value)===rcNorm(scheduled));
+    const text=reported.join(', ');
+    const safeText=esc(text);
+    const safeScheduled=esc(scheduled||'—');
+    return mismatch
+      ?`<span style="color:var(--amber);font-weight:600;" title="${safeText} — differs from scheduled: ${safeScheduled}">${safeText} ⚠️</span>`
+      :`<span title="${safeText}">${safeText}</span>`;
+  };
+
+  let table=`<table style="width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;font-size:12px;">
+    <colgroup>
+      <col style="width:7%"><col style="width:10%"><col style="width:13%"><col style="width:21%">
+      <col style="width:4.5%"><col style="width:4.5%"><col style="width:8%"><col style="width:11%">
+      <col style="width:5.5%"><col style="width:7%"><col style="width:8.5%">
+    </colgroup>
+    <thead><tr style="background:var(--g50);position:sticky;top:0;z-index:5;">
+      <th style="padding:8px;text-align:left;font-size:9.5px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Date / Mission</th>
+      <th style="padding:8px;text-align:left;font-size:9.5px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Promoter</th>
+      <th style="padding:8px;text-align:left;font-size:9.5px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Sched. Store</th>
+      <th style="padding:8px;text-align:left;font-size:9.5px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Client / Brand / Campaign</th>
+      <th style="padding:8px 4px;text-align:center;font-size:9px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Quest.</th>
+      <th style="padding:8px 4px;text-align:center;font-size:9px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Sales</th>
+      <th style="padding:8px 6px;text-align:left;font-size:9px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Reported Store</th>
+      <th style="padding:8px 6px;text-align:left;font-size:9px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Reported Brand</th>
+      <th style="padding:8px 5px;text-align:right;font-size:9px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Pcs</th>
+      <th style="padding:8px 5px;text-align:right;font-size:9px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Turnover</th>
+      <th style="padding:8px 6px;text-align:left;font-size:9px;color:var(--g600);border-bottom:2px solid var(--g200);background:var(--g50);">Status</th>
+    </tr></thead><tbody>`;
+
+  rows.forEach(row=>{
+    const isAbsent=row.status==='absent';
+    const isAbsentBackup=row.status==='absent_backup';
+    const promoterColor=isAbsent?'color:var(--red);':isAbsentBackup?'color:#ea580c;':'';
+    const promoterSuffix=isAbsent?' 🚫':isAbsentBackup?' 🔄':'';
+    const promoterParts=String(row.promoter||'').trim().split(/\s+/).filter(Boolean);
+    const promoterFirst=promoterParts.shift()||'—';
+    const promoterLast=promoterParts.join(' ');
+    const displaySap=row.campaignSapCode||row.trackingSapCode;
+
+    table+=`<tr style="border-bottom:1px solid var(--g100);height:70px;" onmouseover="this.style.background='var(--g50)'" onmouseout="this.style.background=''">
+      <td style="padding:9px 8px;vertical-align:middle;overflow-wrap:anywhere;">
+        <div style="font-size:11.5px;font-weight:800;">${esc(row.day)}</div>
+        <div style="font-family:monospace;font-size:9.5px;color:var(--g400);margin-top:3px;">Mission ${esc(row.missionId??'—')}</div>
+      </td>
+      <td style="padding:9px 8px;vertical-align:middle;line-height:1.2;overflow-wrap:anywhere;${promoterColor}">
+        <div style="font-size:12px;font-weight:700;">${esc(promoterFirst)}${!promoterLast?promoterSuffix:''}</div>
+        ${promoterLast?`<div style="font-size:11px;font-weight:600;margin-top:2px;">${esc(promoterLast)}${promoterSuffix}</div>`:''}
+      </td>
+      <td style="padding:9px 8px;font-size:11px;font-weight:650;line-height:1.25;vertical-align:middle;overflow-wrap:anywhere;" title="${esc(row.schedStore||'')}">${esc(row.schedStore||'—')}</td>
+      <td style="padding:9px 8px;vertical-align:middle;overflow-wrap:anywhere;">
+        <div style="font-size:11px;line-height:1.25;">
+          ${row.schedClient?`<span>${esc(row.schedClient)}</span>`:''}
+          ${row.schedClient&&row.schedBrand?'<span> - </span>':''}
+          ${row.schedBrand?`<strong>${esc(row.schedBrand)}</strong>`:(!row.schedClient?'<span>—</span>':'')}
+        </div>
+        ${row.campaignName?`<div style="font-size:9.5px;color:var(--g400);margin-top:3px;">${esc(row.campaignName)}</div>`:''}
+        ${displaySap?`<div style="font-family:monospace;font-size:9px;font-weight:700;color:var(--blue);margin-top:3px;">SAP: ${esc(displaySap)}</div>`:''}
+      </td>
+      <td style="padding:9px 4px;text-align:center;vertical-align:middle;">${check(row.hasQ)}</td>
+      <td style="padding:9px 4px;text-align:center;vertical-align:middle;">${check(row.hasS)}</td>
+      <td style="padding:9px 6px;font-family:monospace;font-size:10px;line-height:1.2;vertical-align:middle;overflow-wrap:anywhere;">${mismatchTag(row.schedStoreCode,row.reportedStores)}</td>
+      <td style="padding:9px 6px;font-size:10px;line-height:1.2;vertical-align:middle;overflow-wrap:anywhere;">${mismatchTag(row.schedBrand,row.reportedBrands)}</td>
+      <td style="padding:9px 5px;text-align:right;font-family:monospace;font-size:10.5px;vertical-align:middle;">${row.pieces!=null?row.pieces.toLocaleString():'—'}</td>
+      <td style="padding:9px 5px;text-align:right;font-family:monospace;font-size:10.5px;font-weight:700;vertical-align:middle;">${row.turnover!=null?row.turnover.toLocaleString(undefined,{maximumFractionDigits:0}):'—'}</td>
+      <td style="padding:9px 6px;vertical-align:middle;">${statusBadge(row.status)}</td>
+    </tr>`;
+  });
+  table+='</tbody></table>';
+  document.getElementById('rc_area').innerHTML=table;
+}
+
 // Close dropdowns when clicking outside
 document.addEventListener('click', e=>{
   if(!e.target.closest('.gfd')) closeAllGFD();
+  if(!e.target.closest('.rc-ms')) rc_closeFilterMenus();
 });
 
-// If PIN was already unlocked before main script finished loading, run init now
-if(window._pinUnlocked){
+function startInsightsApp(){
+  if(window._appStarted)return;
+  window._appStarted=true;
   setHeaderDate();
   updateUserGreeting();
   init();
 }
+
+Promise.resolve(window._authReady).then(authenticated=>{
+  if(authenticated||window._pinUnlocked)startInsightsApp();
+});
 </script>
 </body>
 </html>
