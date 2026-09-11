@@ -884,7 +884,7 @@ window._authReady=restoreSupabaseSession();
 
           <!-- Report identifiers -->
           <div class="fg full"><label>Name Conf DOPE</label><input type="text" class="fi" id="f-title" placeholder="Enter title…"></div>
-          <div class="fg"><label>Campaign ID</label><input type="number" min="0" step="1" inputmode="numeric" class="fi" id="f-campaignid" placeholder="Campaign ID…"></div>
+          <div class="fg"><label>Mission ID</label><input type="number" min="0" step="1" inputmode="numeric" class="fi" id="f-missionid" placeholder="Mission ID…"></div>
           <div class="fg"><label>Code SAP</label><input type="text" class="fi" id="f-sapcode" placeholder="SAP code…"></div>
 
           <!-- Start Date | End Date -->
@@ -1728,7 +1728,7 @@ async function init(){
       sbGet('report_types?select=id,type&visible=eq.true&order=type'),
       sbGet('Sector?select=id,Name,companyid&order=Name'),
       sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname'),
-      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,campaign_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
+      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,mission_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
     ]);
     allCo=co||[]; allCl=cl||[]; allBr=br||[]; allSt=st||[]; allCon=con||[]; allRT=rt||[]; allSectors=sec||[];
     allAccountManagers=(ops||[]).filter(isAccountManager);
@@ -1910,7 +1910,7 @@ function newRecord(){
   showEdit(); renderList();
 }
 function clearForm(){
-  ['f-title','f-sapcode','f-campaignid','f-comments'].forEach(id=>document.getElementById(id).value='');
+  ['f-title','f-sapcode','f-missionid','f-comments'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('f-startdate').value='';
   document.getElementById('f-enddate').value='';
   KEYS.forEach(k=>{ms[k].selected=[];renderTags(k);});
@@ -1918,7 +1918,7 @@ function clearForm(){
 function fillForm(r){
   document.getElementById('f-title').value    =r.Title   ||'';
   document.getElementById('f-sapcode').value  =r.sapcode ||'';
-  document.getElementById('f-campaignid').value=r.campaign_id??'';
+  document.getElementById('f-missionid').value=r.mission_id??'';
   document.getElementById('f-startdate').value=r.startdate||'';
   document.getElementById('f-enddate').value  =r.enddate ||'';
   document.getElementById('f-comments').value =r.comments||'';
@@ -2472,7 +2472,7 @@ function showView(r){
   const manager=allAccountManagers.find(contact=>String(contact.id)===String(r.account_manager_id));
   const flds=[
     {l:'Client',v:r.client},{l:'Code SAP',v:r.sapcode},
-    {l:'Campaign ID',v:r.campaign_id},{l:'Commercial Team',v:manager?accountManagerName(manager):null},
+    {l:'Mission ID',v:r.mission_id},{l:'Commercial Team',v:manager?accountManagerName(manager):null},
     {l:'Start Date',v:fd(r.startdate)},{l:'End Date',v:fd(r.enddate)},
     {l:'Brand',v:brands},{l:'Store',v:stores},
     {l:'Sector',v:sectors},{l:'Report Types',v:rtypes},
@@ -2532,7 +2532,7 @@ async function saveRecord(){
   const payload={
     Title:           document.getElementById('f-title').value.trim()||null,
     sapcode:         document.getElementById('f-sapcode').value.trim()||null,
-    campaign_id:     toInt(document.getElementById('f-campaignid').value),
+    mission_id:      toInt(document.getElementById('f-missionid').value),
     account_manager_id:managerOpt?toInt(managerOpt.id):null,
     startdate:       document.getElementById('f-startdate').value||null,
     enddate:         document.getElementById('f-enddate').value||null,
@@ -2563,7 +2563,7 @@ async function saveRecord(){
       toast('Record updated!','success');
     }
     const savedId = isNew ? payload.id : parseInt(curRec.id);
-    const fresh=await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,campaign_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc');
+    const fresh=await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,mission_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc');
     allRec=filtRec=fresh;
     const saved=await sbGet('InsightsTracking?id=eq.'+savedId+'&limit=1');
     curRec=saved[0]||null; isNew=false;
@@ -3622,7 +3622,7 @@ async function refreshEntryForm(){
       sbGet('report_types?select=id,type&visible=eq.true&order=type'),
       sbGet('Sector?select=id,Name,companyid&order=Name'),
       sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname'),
-      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,campaign_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
+      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,mission_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
     ]);
     allCo=co; allCl=cl; allBr=br; allSt=st; allCon=con; allRT=rt; allSectors=sec;
     allAccountManagers=(ops||[]).filter(isAccountManager);
