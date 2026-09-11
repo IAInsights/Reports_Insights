@@ -202,7 +202,7 @@ textarea.fi{height:72px;padding:8px 10px;resize:vertical;line-height:1.5;}
 
 /* ══════════════ PAGE 2 ══════════════ */
 .p2{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
-.p2-header{padding:14px 24px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0;}
+.p2-header{padding:10px 16px;background:var(--g50);border-bottom:1px solid var(--g200);flex-shrink:0;}
 .p2-top-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
 .p2-top-row h2{font-size:15px;font-weight:600;flex:1;}
 .p2-search{display:flex;align-items:center;border:1px solid var(--g300);border-radius:var(--r);padding:0 10px;height:34px;background:var(--g50);gap:8px;width:240px;}
@@ -212,11 +212,22 @@ textarea.fi{height:72px;padding:8px 10px;resize:vertical;line-height:1.5;}
 .p2-filters span{font-size:11.5px;font-weight:600;color:var(--g600);margin-right:4px;}
 /* Global button reset */
 button{text-decoration:none;}
-/* Merged stat-filter pills */
-.sf-pill{padding:5px 12px;border-radius:20px;border:1.5px solid var(--g300);background:#fff;font-family:inherit;font-size:12px;font-weight:500;color:var(--g600);cursor:pointer;transition:all .15s;text-decoration:none;}
-.sf-pill:hover{border-color:var(--blue);color:var(--blue);}
-.sf-pill.active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700;}
-.sf-pill span{font-weight:700;}
+/* Status Update filter panel */
+.p2-filter-panel{display:flex;flex-direction:column;gap:8px;padding:10px 12px;background:#fff;border:1px solid var(--g200);border-radius:9px;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.p2-filter-row{display:flex;align-items:center;gap:10px;min-width:0;}
+.p2-filter-row+.p2-filter-row{padding-top:8px;border-top:1px solid var(--g100);}
+.p2-filter-label{width:48px;flex:0 0 48px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--g500);}
+.p2-filter-options{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0;}
+.sf-pill{min-height:30px;padding:4px 7px 4px 11px;border-radius:17px;border:1.5px solid var(--g300);background:#fff;font-family:inherit;font-size:11.5px;font-weight:600;color:var(--g600);cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+.sf-pill:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-light);}
+.sf-pill:focus-visible{outline:3px solid rgba(16,96,232,.2);outline-offset:1px;}
+.sf-pill.active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700;box-shadow:0 1px 3px rgba(16,96,232,.25);}
+.sf-pill .sf-count{height:20px;min-width:22px;padding:0 6px;border-radius:10px;background:var(--g100);color:var(--g600);font-family:monospace;font-size:10.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
+.sf-pill.active .sf-count{background:rgba(255,255,255,.22);color:#fff;}
+.p2-filter-summary{margin-left:auto;display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:7px;background:var(--blue-light);color:var(--blue);white-space:nowrap;}
+.p2-filter-summary-label{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;opacity:.75;}
+#cnt-conversion{font-size:11.5px;font-weight:800;}
+@media(max-width:1050px){.p2-filter-summary{margin-left:58px;}.p2-filter-row{align-items:flex-start;flex-wrap:wrap;}}
 .flt-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--g300);background:#fff;font-family:inherit;font-size:12px;font-weight:500;color:var(--g600);cursor:pointer;text-decoration:none;}
 .flt-btn:hover{border-color:var(--g400);}
 .flt-btn.active{background:var(--blue);border-color:var(--blue);color:#fff;}
@@ -428,6 +439,51 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .rc-kpi:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
 .rc-kpi-static{cursor:default;transition:none;}
 .rc-kpi-static:hover{transform:none;border-color:var(--g200);box-shadow:0 1px 3px rgba(0,0,0,.05);}
+/* Items manager */
+.items-toolbar{background:#fff;border-bottom:1px solid var(--g200);padding:12px 20px;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
+.items-title{font-size:16px;font-weight:750;color:var(--g900);margin-right:8px;}
+.items-subtitle{font-size:11px;color:var(--g500);margin-top:2px;}
+.items-search{height:34px;min-width:240px;flex:1;max-width:390px;padding:0 11px;border:1.5px solid var(--g300);border-radius:var(--r);font:inherit;font-size:12px;outline:none;background:var(--g50);}
+.items-search:focus,.items-select:focus,.items-input:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(16,96,232,.10);}
+.items-select{height:34px;max-width:180px;padding:0 28px 0 10px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font:inherit;font-size:12px;color:var(--g600);outline:none;}
+.items-btn{height:34px;padding:0 14px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font:inherit;font-size:12px;font-weight:650;cursor:pointer;white-space:nowrap;}
+.items-btn:hover{border-color:var(--blue);color:var(--blue);}
+.items-btn.primary{background:var(--blue);border-color:var(--blue);color:#fff;}
+.items-btn.primary:hover{background:var(--blue-dark);}
+.items-btn:disabled{opacity:.55;cursor:not-allowed;}
+.items-stats{display:flex;gap:8px;padding:9px 20px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0;}
+.items-stat{height:29px;padding:0 12px;border:1px solid var(--g300);border-radius:16px;background:#fff;color:var(--g600);font:inherit;font-size:11.5px;font-weight:600;cursor:pointer;}
+.items-stat.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.items-main{display:flex;flex:1;min-height:0;overflow:hidden;padding:14px 20px;gap:14px;}
+.items-card{background:#fff;border:1px solid var(--g200);border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);display:flex;flex-direction:column;min-width:0;overflow:hidden;flex:1;}
+.items-table-scroll{flex:1;overflow:auto;}
+.items-table{width:100%;border-collapse:collapse;min-width:1040px;}
+.items-table th{position:sticky;top:0;z-index:2;padding:9px 10px;text-align:left;background:var(--g50);border-bottom:2px solid var(--g200);font-size:9.5px;font-weight:750;text-transform:uppercase;letter-spacing:.055em;color:var(--g600);white-space:nowrap;}
+.items-table td{padding:8px 10px;border-bottom:1px solid var(--g100);font-size:11.5px;vertical-align:middle;}
+.items-table tbody tr:hover{background:var(--g50);}
+.items-product{font-size:12px;font-weight:650;color:var(--g900);max-width:310px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.items-muted{font-size:10.5px;color:var(--g500);margin-top:2px;}
+.items-badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:12px;font-size:10.5px;font-weight:700;}
+.items-badge.visible{background:var(--green-light);color:var(--green);}
+.items-badge.hidden{background:var(--g100);color:var(--g600);}
+.items-pager{height:44px;padding:0 12px;border-top:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-shrink:0;color:var(--g500);font-size:11.5px;}
+.items-editor{width:390px;flex-shrink:0;background:#fff;border:1px solid var(--g200);border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.12);display:none;flex-direction:column;overflow:hidden;}
+.items-editor.open{display:flex;}
+.items-editor-head{padding:14px 16px;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.items-editor-body{padding:14px 16px;overflow-y:auto;display:flex;flex-direction:column;gap:13px;}
+.items-form-section{display:flex;flex-direction:column;gap:9px;}
+.items-section-title{font-size:10px;font-weight:750;text-transform:uppercase;letter-spacing:.08em;color:var(--g500);padding-bottom:5px;border-bottom:1px solid var(--g100);}
+.items-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.items-field{display:flex;flex-direction:column;gap:4px;min-width:0;}
+.items-field.full{grid-column:1/-1;}
+.items-field label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g600);}
+.items-input{height:34px;width:100%;padding:0 10px;border:1px solid var(--g300);border-radius:var(--r);background:#fff;font:inherit;font-size:12px;outline:none;}
+.items-input[readonly]{background:var(--g50);color:var(--g500);}
+.items-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.items-editor-foot{padding:12px 16px;border-top:1px solid var(--g200);display:flex;justify-content:flex-end;gap:8px;flex-shrink:0;}
+.items-empty{padding:52px 20px;text-align:center;color:var(--g400);font-size:12px;}
+.items-toast{position:fixed;right:24px;bottom:24px;z-index:10020;padding:10px 15px;border-radius:7px;color:#fff;font-size:12px;font-weight:650;box-shadow:var(--shadow);display:none;max-width:360px;}
+@media(max-width:1250px){.items-editor{position:absolute;right:20px;top:128px;bottom:16px;z-index:50;width:min(410px,calc(100% - 40px));}.items-main{position:relative;}.items-select{max-width:145px}.items-search{min-width:190px}}
 </style>
 <body>
 
@@ -460,6 +516,7 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 <script>
 const _SB  = 'https://qooytgsjjzvkqaumoqmw.supabase.co';
 const _KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFvb3l0Z3Nqanp2a3FhdW1vcW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUzNjM0ODMsImV4cCI6MjA0MDkzOTQ4M30.Oai2A8Qii0aOfD91NFwHsNq3Tgq1yFHwih-GRFnsEC0';
+// Login is enabled for the published app.
 const LOGIN_ENABLED = true;
 const AUTH_STORAGE_KEY = 'insights_supabase_session_v1';
 let authRefreshTimer = null;
@@ -625,7 +682,8 @@ window._authReady=restoreSupabaseSession();
   <button class="tab-btn"        id="tab4btn" onclick="switchTab(4)">Ready to Send</button>
   <button class="tab-btn"        id="tab5btn" onclick="switchTab(5)">Shift Comments</button>
   <button class="tab-btn"        id="tab6btn" onclick="switchTab(6)">Targets</button>
-  <button class="tab-btn"        id="tab7btn" onclick="switchTab(7)">Reporting Check</button>
+  <button class="tab-btn"        id="tab7btn" onclick="switchTab(7)">Items</button>
+  <button class="tab-btn"        id="tab8btn" onclick="switchTab(8)">Reporting Check</button>
   <div id="userGreeting" style="margin-left:16px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap;display:flex;align-items:center;gap:6px;"></div>
   <div id="headerDate" style="margin-left:16px;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.7);white-space:nowrap;letter-spacing:.02em;"></div>
   <button class="home-btn" onclick="goHome()" title="Home">
@@ -824,15 +882,16 @@ window._authReady=restoreSupabaseSession();
             </div>
           </div>
 
-          <!-- Name Conf DOPE | Code SAP -->
-          <div class="fg"><label>Name Conf DOPE</label><input type="text" class="fi" id="f-title" placeholder="Enter title…"></div>
+          <!-- Report identifiers -->
+          <div class="fg full"><label>Name Conf DOPE</label><input type="text" class="fi" id="f-title" placeholder="Enter title…"></div>
+          <div class="fg"><label>Campaign ID</label><input type="number" min="0" step="1" inputmode="numeric" class="fi" id="f-campaignid" placeholder="Campaign ID…"></div>
           <div class="fg"><label>Code SAP</label><input type="text" class="fi" id="f-sapcode" placeholder="SAP code…"></div>
 
           <!-- Start Date | End Date -->
           <div class="fg"><label>Start Date</label><input type="date" class="fi" id="f-startdate"></div>
           <div class="fg"><label>End Date</label><input type="date" class="fi" id="f-enddate"></div>
 
-          <!-- Client Contact | Type Reports -->
+          <!-- Client Contact | Commercial Team -->
           <div class="fg"><label>Client Contact
             <button class="lbl-add" onclick="openAddContact()" title="Add new contact">+ Add contact</button>
           </label>
@@ -841,7 +900,15 @@ window._authReady=restoreSupabaseSession();
               <div class="ddm" id="dm-contact" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('contact',this.value)"></div><div class="ddl" id="dl-contact"></div></div>
             </div>
           </div>
-          <div class="fg"><label>Type Reports</label>
+          <div class="fg"><label>Commercial Team
+            <button class="lbl-add" onclick="openAddAccountManager()" title="Add new Account Manager">+ Add Account Manager</button>
+          </label>
+            <div class="msw" id="ms-accountmanager">
+              <div class="mst" id="mst-accountmanager" tabindex="0" onclick="toggleDD('accountmanager')"><span class="mph" id="ph-accountmanager">Find an Account Manager</span></div>
+              <div class="ddm" id="dm-accountmanager" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('accountmanager',this.value)"></div><div class="ddl" id="dl-accountmanager"></div></div>
+            </div>
+          </div>
+          <div class="fg full"><label>Type Reports</label>
             <div class="msw" id="ms-reporttype">
               <div class="mst" id="mst-reporttype" tabindex="0" onclick="toggleDD('reporttype')"><span class="mph" id="ph-reporttype">Find items</span></div>
               <div class="ddm" id="dm-reporttype" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('reporttype',this.value)"></div><div class="ddl" id="dl-reporttype"></div></div>
@@ -881,21 +948,22 @@ window._authReady=restoreSupabaseSession();
 <div class="page" id="page2">
   <div class="p2">
     <div class="p2-header">
-      <!-- Single row: stat-filter pills + view selector + conversion -->
-      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--g200);background:#fff;">
-        <button class="sf-pill"        id="flt-active"   onclick="setFilter('active')">Active now <span id="cnt-active">—</span></button>
-        <button class="sf-pill"        id="flt-none"     onclick="setFilter('none')">No status <span id="cnt-none">—</span></button>
-        <button class="sf-pill"        id="flt-progress" onclick="setFilter('progress')">In progress <span id="cnt-progress">—</span></button>
-        <button class="sf-pill"        id="flt-review"   onclick="setFilter('review')">Under review <span id="cnt-review">—</span></button>
-        <button class="sf-pill"        id="flt-complete" onclick="setFilter('complete')">Report sent <span id="cnt-complete">—</span></button>
-        <button class="sf-pill"        id="flt-notsent"  onclick="setFilter('notsent')">Not sent <span id="cnt-notsent">—</span></button>
-        <button class="sf-pill"        id="flt-cancel"   onclick="setFilter('cancel')">Cancelled <span id="cnt-cancel">—</span></button>
-        <div style="width:1px;height:20px;background:var(--g200);margin:0 4px;"></div>
-        <button class="sf-pill active" id="flt-all"      onclick="setFilter('all')">All <span id="cnt-all">—</span></button>
-        <button id="p2BtnFuture" onclick="setP2View('future')" style="padding:5px 14px;border-radius:20px;border:1.5px solid var(--g300);background:#fff;color:var(--g600);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;text-decoration:none;">
-          Coming Soon <span id="p2FutureCount"></span>
-        </button>
-        <span id="cnt-conversion" style="margin-left:auto;font-size:12px;font-weight:700;color:var(--blue);white-space:nowrap;"></span>
+      <div class="p2-filter-panel" id="p2FilterPanel" aria-label="Status Update filters">
+        <div class="p2-filter-row">
+          <span class="p2-filter-label">Records</span>
+          <div class="p2-filter-options">
+            <button class="sf-pill active" id="flt-all" onclick="setFilter('all')" aria-pressed="true">All <span class="sf-count" id="cnt-all">—</span></button>
+            <button class="sf-pill" id="flt-active" onclick="setFilter('active')" aria-pressed="false">Active now <span class="sf-count" id="cnt-active">—</span></button>
+            <button class="sf-pill" id="p2BtnFuture" onclick="setP2View('future',true)" aria-pressed="false">Coming soon <span class="sf-count" id="p2FutureCount">—</span></button>
+            <button class="sf-pill" id="flt-progress" onclick="setFilter('progress')" aria-pressed="false">In progress <span class="sf-count" id="cnt-progress">—</span></button>
+            <button class="sf-pill" id="flt-review" onclick="setFilter('review')" aria-pressed="false">Under review <span class="sf-count" id="cnt-review">—</span></button>
+            <button class="sf-pill" id="flt-cancel" onclick="setFilter('cancel')" aria-pressed="false">Cancelled <span class="sf-count" id="cnt-cancel">—</span></button>
+          </div>
+          <div class="p2-filter-summary" title="Reports sent among records active today">
+            <span class="p2-filter-summary-label">Completion</span>
+            <span id="cnt-conversion">—</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -931,7 +999,7 @@ window._authReady=restoreSupabaseSession();
   <div class="p3">
     <div class="p3-header">
       <div class="p3-top">
-        <h2>Under Review — Validation Queue</h2>
+        <h2 id="p3-report-count">0 reports</h2>
         <select class="company-filter" id="p3-company-filter" onchange="updateReviewCompanyFilter(3)" title="Filter by company">
           <option value="">All companies</option>
         </select>
@@ -943,10 +1011,9 @@ window._authReady=restoreSupabaseSession();
           Refresh
         </button>
       </div>
-      <div class="p3-subtitle">Records marked "Under Review" — operations must validate before sending to client.</div>
       <div class="p3-tabs">
-        <button class="p3-tab active" id="p3-tab-pending" onclick="setP3View('pending')">Pending validation</button>
-        <button class="p3-tab"        id="p3-tab-all"     onclick="setP3View('all')">All under review</button>
+        <button class="p3-tab active" id="p3-tab-pending" onclick="setP3View('pending')">Pending validation <span id="p3-count-pending" style="margin-left:5px;font-family:monospace;font-weight:800;">0</span></button>
+        <button class="p3-tab"        id="p3-tab-all"     onclick="setP3View('all')">All under review <span id="p3-count-all" style="margin-left:5px;font-family:monospace;font-weight:800;">0</span></button>
       </div>
     </div>
     <div class="p3-body" id="p3body">
@@ -960,7 +1027,7 @@ window._authReady=restoreSupabaseSession();
   <div class="p3">
     <div class="p3-header">
       <div class="p3-top">
-        <h2>Ready to Send</h2>
+        <h2 id="p4-report-count">0 reports</h2>
         <select class="company-filter" id="p4-company-filter" onchange="updateReviewCompanyFilter(4)" title="Filter by company">
           <option value="">All companies</option>
         </select>
@@ -972,7 +1039,6 @@ window._authReady=restoreSupabaseSession();
           Refresh
         </button>
       </div>
-      <div class="p3-subtitle">Validated records — ready to email to client.</div>
       <div class="p3-tabs">
         <button class="p3-tab active" id="p4-tab-ready" onclick="setP4View('ready')">To send</button>
         <button class="p3-tab"        id="p4-tab-sent"  onclick="setP4View('sent')">Already sent</button>
@@ -1160,8 +1226,117 @@ window._authReady=restoreSupabaseSession();
   </div>
 </div>
 
-<!-- PAGE 7 – REPORTING CHECK -->
+<!-- PAGE 7 – ITEMS -->
 <div class="page" id="page7" style="flex-direction:column;overflow:hidden;background:var(--g50);">
+  <div class="items-toolbar">
+    <div style="margin-right:8px;">
+      <div class="items-title">Items</div>
+      <div class="items-subtitle" id="itemsSummary">Loading product catalogue…</div>
+    </div>
+    <input class="items-search" id="itemsSearch" type="search" placeholder="Search product, SKU, brand or ID…" oninput="items_applyFilters(true)">
+    <select class="items-select" id="itemsBrandFilter" onchange="items_applyFilters(true)"><option value="">All Brands</option></select>
+    <select class="items-select" id="itemsClientFilter" onchange="items_applyFilters(true)"><option value="">All Clients</option></select>
+    <select class="items-select" id="itemsSegmentFilter" onchange="items_applyFilters(true)"><option value="">All Segments</option></select>
+    <button class="items-btn" onclick="items_resetFilters()">Clear</button>
+    <button class="items-btn primary" onclick="items_openNew()">+ New Item</button>
+  </div>
+
+  <div class="items-stats">
+    <button class="items-stat active" id="itemsStatAll" onclick="items_setVisibility('all')">All <span id="itemsCountAll">—</span></button>
+    <button class="items-stat" id="itemsStatVisible" onclick="items_setVisibility('visible')">Visible <span id="itemsCountVisible">—</span></button>
+    <button class="items-stat" id="itemsStatHidden" onclick="items_setVisibility('hidden')">Hidden <span id="itemsCountHidden">—</span></button>
+    <span id="itemsFilteredCount" style="margin-left:auto;align-self:center;font-size:11.5px;color:var(--g500);"></span>
+  </div>
+
+  <div class="items-main">
+    <div class="items-card">
+      <div class="items-table-scroll" id="itemsTableArea">
+        <div class="items-empty" id="itemsLoading">Loading items…</div>
+        <table class="items-table" id="itemsTable" style="display:none;">
+          <thead><tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Brand</th>
+            <th>SKU</th>
+            <th>Client</th>
+            <th>Segment</th>
+            <th>Size</th>
+            <th>Status</th>
+            <th></th>
+          </tr></thead>
+          <tbody id="itemsTbody"></tbody>
+        </table>
+      </div>
+      <div class="items-pager" id="itemsPager" style="display:none;">
+        <span id="itemsPageInfo"></span>
+        <div style="display:flex;gap:6px;">
+          <button class="items-btn" id="itemsPrev" onclick="items_changePage(-1)">Previous</button>
+          <button class="items-btn" id="itemsNext" onclick="items_changePage(1)">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="items-editor" id="itemsEditor">
+      <div class="items-editor-head">
+        <div>
+          <div id="itemsEditorTitle" style="font-size:14px;font-weight:750;color:var(--g900);">New Item</div>
+          <div id="itemsEditorSub" style="font-size:10.5px;color:var(--g500);margin-top:2px;">The ID is created automatically</div>
+        </div>
+        <button class="items-btn" style="width:32px;padding:0;font-size:18px;" onclick="items_closeEditor()" title="Close">×</button>
+      </div>
+
+      <div class="items-editor-body">
+        <div class="items-form-section">
+          <div class="items-section-title">Product information</div>
+          <div class="items-form-grid">
+            <div class="items-field full"><label>Product Name *</label><input class="items-input" id="itemName" oninput="items_updatePreview()" placeholder="Product name…"></div>
+            <div class="items-field full"><label>Brand *</label><select class="items-input" id="itemBrand" onchange="items_brandChanged()"><option value="">Select brand…</option></select></div>
+            <div class="items-field"><label>Sub-brand</label><input class="items-input" id="itemSubBrand" placeholder="Optional"></div>
+            <div class="items-field"><label>SKU Code</label><input class="items-input" id="itemSku" type="number" min="0" step="1" placeholder="Optional"></div>
+            <div class="items-field"><label>Size</label><input class="items-input" id="itemSize" type="number" min="0" step="any" oninput="items_updatePreview()" placeholder="e.g. 75"></div>
+            <div class="items-field"><label>Unit</label><input class="items-input" id="itemUnit" list="itemUnitList" oninput="items_updatePreview()" placeholder="e.g. cl"><datalist id="itemUnitList"><option value="ml"><option value="cl"><option value="L"><option value="g"><option value="kg"><option value="Set"></datalist></div>
+            <div class="items-field"><label>Category</label><input class="items-input" id="itemCategory" placeholder="Optional"></div>
+            <div class="items-field"><label>Segment</label><select class="items-input" id="itemSegment"><option value="">Select segment…</option></select></div>
+            <div class="items-field full"><label>Client (automatic)</label><input class="items-input" id="itemClientPreview" readonly value="Select a brand"></div>
+            <div class="items-field full"><label>Full Product Name (automatic)</label><input class="items-input" id="itemFullPreview" readonly></div>
+            <label class="items-field full" style="flex-direction:row;align-items:center;gap:8px;cursor:pointer;padding:7px 9px;border:1px solid var(--g200);border-radius:var(--r);background:var(--g50);">
+              <input type="checkbox" id="itemVisible" checked style="accent-color:var(--blue);width:15px;height:15px;">
+              <span style="font-size:12px;font-weight:650;color:var(--g700);">Visible in item selections</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="items-form-section">
+          <div class="items-section-title">Prices</div>
+          <div class="items-price-grid">
+            <div class="items-field"><label>CHF Lagardère</label><input class="items-input" id="itemPriceChfLag" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>EUR Lagardère</label><input class="items-input" id="itemPriceEurLag" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>CHF Avolta</label><input class="items-input" id="itemPriceChfAvo" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>EUR Avolta</label><input class="items-input" id="itemPriceEurAvo" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>GBP</label><input class="items-input" id="itemPriceGbp" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>Kč Lagardère</label><input class="items-input" id="itemPriceCzkLag" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>zł Lagardère</label><input class="items-input" id="itemPricePlnLag" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>EUR Avolta SP</label><input class="items-input" id="itemPriceEurAvoSp" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>EUR ARI</label><input class="items-input" id="itemPriceEurAri" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>CHF Domestic</label><input class="items-input" id="itemPriceChDom" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>EUR Lagardère IT</label><input class="items-input" id="itemPriceEurLagIt" type="number" min="0" step="any"></div>
+            <div class="items-field"><label>EUR Avolta IT</label><input class="items-input" id="itemPriceEurAvoIt" type="number" min="0" step="any"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="items-editor-foot">
+        <button class="items-btn" onclick="items_closeEditor()">Cancel</button>
+        <button class="items-btn" id="itemsSaveAnotherBtn" onclick="items_save(true)">Save &amp; Add Another</button>
+        <button class="items-btn primary" id="itemsSaveBtn" onclick="items_save(false)">Save Item</button>
+      </div>
+    </aside>
+  </div>
+  <div class="items-toast" id="itemsToast"></div>
+</div>
+
+<!-- PAGE 8 – REPORTING CHECK -->
+<div class="page" id="page8" style="flex-direction:column;overflow:hidden;background:var(--g50);">
 
   <!-- Top bar: filters -->
   <div style="background:#fff;border-bottom:1px solid var(--g200);padding:10px 24px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap;">
@@ -1219,6 +1394,23 @@ window._authReady=restoreSupabaseSession();
     <div class="modal-footer">
       <button class="m-btn secondary" onclick="closeAddContact()">Cancel</button>
       <button class="m-btn primary" onclick="saveNewContact()">Save Contact</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD ACCOUNT MANAGER MODAL -->
+<div class="modal-bg" id="addAccountManagerModal" style="display:none" onclick="if(event.target===this)closeAddAccountManager()">
+  <div class="modal">
+    <h3>Add Account Manager</h3>
+    <div class="modal-grid">
+      <div class="mfg"><label>First Name *</label><input type="text" class="mfi" id="mam-fname" placeholder="First name…"></div>
+      <div class="mfg"><label>Last Name *</label><input type="text" class="mfi" id="mam-lname" placeholder="Last name…"></div>
+      <div class="mfg full"><label>Email</label><input type="email" class="mfi" id="mam-email" placeholder="email@example.com"></div>
+      <div class="mfg full"><label>Job Title</label><input type="text" class="mfi readonly" value="Account Manager" readonly></div>
+    </div>
+    <div class="modal-footer">
+      <button class="m-btn secondary" onclick="closeAddAccountManager()">Cancel</button>
+      <button class="m-btn primary" onclick="saveNewAccountManager()">Save Account Manager</button>
     </div>
   </div>
 </div>
@@ -1466,7 +1658,7 @@ const sbPost  = async (t,d)  => { await ensureFreshSession(); const r=await fetc
 const sbPatch = async (t,id,d)=>{ await ensureFreshSession(); const sid=parseInt(id); if(isNaN(sid)) throw new Error('Bad ID: '+id); const r=await fetch(SB+'/rest/v1/'+t+'?id=eq.'+sid,{method:'PATCH',headers:supabaseHeaders(),body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
 
 // ── State ──────────────────────────────────────────────────────────────────
-let allCo=[],allCl=[],allBr=[],allSt=[],allCon=[],allRT=[],allSectors=[];
+let allCo=[],allCl=[],allBr=[],allSt=[],allCon=[],allRT=[],allSectors=[],allAccountManagers=[];
 let allRec=[],filtRec=[];
 let p2All=[],p2Filt=[],p2FutureRows=[];
 let curRec=null, isNew=false;
@@ -1474,14 +1666,32 @@ let p2Filter='all', p2Search={brand:'',store:''}, p2SortDir='desc';
 let currentTab=0;
 const TODAY=new Date(); TODAY.setHours(0,0,0,0);
 
-const KEYS  =['company','client','brand','store','sector','contact','reporttype'];
-const SINGLE=new Set(['client']);
+const KEYS  =['company','client','brand','store','sector','contact','accountmanager','reporttype'];
+const SINGLE=new Set(['client','accountmanager']);
 const ms=Object.fromEntries(KEYS.map(k=>[k,{all:[],selected:[]}]));
+
+function isAccountManager(contact){
+  return String(contact?.jobtitle||'').trim().toLowerCase()==='account manager';
+}
+function accountManagerName(contact){
+  return [contact?.firstname,contact?.lastname].filter(Boolean).join(' ').trim()||'—';
+}
+function accountManagerOptions(rows=allAccountManagers){
+  return rows.map(contact=>({
+    id:contact.id,
+    label:accountManagerName(contact),
+    sub:`ID ${contact.id}${contact.email?' · '+contact.email:''}`,
+    meta:contact
+  }));
+}
+function brandOption(brand){
+  return {id:brand.id,label:brand.brand,sub:`ID ${brand.id} · Visible: ${brand.visible===true?'true':'false'}`,meta:brand};
+}
 
 // ── Navigation ─────────────────────────────────────────────────────────────
 function switchTab(n){
   currentTab=n;
-  [0,1,2,3,4,5,6,7].forEach(i=>{
+  [0,1,2,3,4,5,6,7,8].forEach(i=>{
     const p=document.getElementById('page'+i);
     const b=document.getElementById('tab'+i+'btn');
     if(p) p.classList.toggle('active',n===i);
@@ -1495,7 +1705,8 @@ function switchTab(n){
   if(n===4){ if(!p3All.length) loadP3().then(()=>renderP4()); else renderP4(); }
   if(n===5) sc_loadData();
   if(n===6) t_initIfNeeded();
-  if(n===7) rc_initIfNeeded();
+  if(n===7) items_initIfNeeded();
+  if(n===8) rc_initIfNeeded();
 }
 function goHome(){
   switchTab(0);
@@ -1508,24 +1719,27 @@ function goHome(){
 // ── Init ───────────────────────────────────────────────────────────────────
 async function init(){
   try{
-    const [co,cl,br,st,con,rt,sec,rec]=await Promise.all([
+    const [co,cl,br,st,con,rt,sec,ops,rec]=await Promise.all([
       sbGet('GI_company?select=id,name,country_id&active=eq.true&order=name'),
       sbGet('GI_clients?select=id,client&active=eq.true&order=client'),
-      sbGet('GI_brands?select=id,brand,client_giid&visible=eq.true&order=brand'),
+      sbGet('GI_brands?select=id,brand,client_giid,visible&order=brand'),
       sbGet('GI_stores?select=id,store,country_id,Sector_id&visible=eq.true&order=store'),
       sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname'),
       sbGet('report_types?select=id,type&visible=eq.true&order=type'),
       sbGet('Sector?select=id,Name,companyid&order=Name'),
-      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
+      sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname'),
+      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,campaign_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
     ]);
     allCo=co||[]; allCl=cl||[]; allBr=br||[]; allSt=st||[]; allCon=con||[]; allRT=rt||[]; allSectors=sec||[];
+    allAccountManagers=(ops||[]).filter(isAccountManager);
     allRec=filtRec=rec;
     ms.company.all   =co.map(c=>({id:c.id,label:c.name,sub:'',meta:c}));
-    ms.client.all    =cl.map(c=>({id:c.id,label:c.client,sub:'',meta:c}));
-    ms.brand.all     =br.map(b=>({id:b.id,label:b.brand,sub:'',meta:b}));
-    ms.store.all     =st.map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
-    ms.sector.all    =sec.map(s=>({id:s.id,label:s.Name,sub:'',meta:s}));
+    ms.client.all    =cl.map(c=>({id:c.id,label:c.client,sub:`ID ${c.id}`,meta:c}));
+    ms.brand.all     =br.map(brandOption);
+    ms.store.all     =st.map(s=>({id:s.id,label:s.store,sub:`ID ${s.id}`,meta:s}));
+    ms.sector.all    =sec.map(s=>({id:s.id,label:s.Name,sub:`ID ${s.id}`,meta:s}));
     ms.contact.all   =con.map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
+    ms.accountmanager.all=accountManagerOptions();
     ms.reporttype.all=rt.map(r=>({id:r.id,label:r.type,sub:'',meta:r}));
     renderList();
     renderDashboard();
@@ -1696,7 +1910,7 @@ function newRecord(){
   showEdit(); renderList();
 }
 function clearForm(){
-  ['f-title','f-sapcode','f-comments'].forEach(id=>document.getElementById(id).value='');
+  ['f-title','f-sapcode','f-campaignid','f-comments'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('f-startdate').value='';
   document.getElementById('f-enddate').value='';
   KEYS.forEach(k=>{ms[k].selected=[];renderTags(k);});
@@ -1704,6 +1918,7 @@ function clearForm(){
 function fillForm(r){
   document.getElementById('f-title').value    =r.Title   ||'';
   document.getElementById('f-sapcode').value  =r.sapcode ||'';
+  document.getElementById('f-campaignid').value=r.campaign_id??'';
   document.getElementById('f-startdate').value=r.startdate||'';
   document.getElementById('f-enddate').value  =r.enddate ||'';
   document.getElementById('f-comments').value =r.comments||'';
@@ -1728,26 +1943,33 @@ function fillForm(r){
     ms[k].selected=ids.map(id=>ms[k].all.find(o=>String(o.id)===String(id))).filter(Boolean);
     renderTags(k);
   });
+  const managerOpt=r.account_manager_id?ms.accountmanager.all.find(o=>String(o.id)===String(r.account_manager_id)):null;
+  ms.accountmanager.selected=managerOpt?[managerOpt]:[];
+  renderTags('accountmanager');
 }
 function setBadge(txt,cls){const b=document.getElementById('statusBadge');b.textContent=txt;b.className='badge '+cls;}
 
 let p2View2='active'; // 'active' or 'future'
 
-function setP2View(v){
-  // Toggle: if already on future, go back to active
-  if(v==='future'&&p2View2==='future') v='active';
+function setP2View(v,toggle=false){
+  // Direct clicks toggle Coming soon; internal re-renders preserve the current view.
+  if(toggle&&v==='future'&&p2View2==='future')v='active';
   p2View2=v;
   const wrap=document.getElementById('p2TableWrap');
   const sec=document.getElementById('p2FutureSection');
   const btnF=document.getElementById('p2BtnFuture');
   if(wrap) wrap.style.display=v==='future'?'none':'';
   if(sec)  sec.style.display=v==='future'?'':'none';
-  if(btnF){
-    btnF.style.background=v==='future'?'var(--blue)':'#fff';
-    btnF.style.color=v==='future'?'#fff':'var(--g600)';
-    btnF.style.borderColor=v==='future'?'var(--blue)':'var(--g300)';
-    btnF.title=v==='future'?'Click to go back to active records':'Click to see future activations';
+  document.querySelectorAll('#p2FilterPanel .sf-pill').forEach(button=>{
+    button.classList.remove('active');
+    button.setAttribute('aria-pressed','false');
+  });
+  const selected=v==='future'?btnF:document.getElementById('flt-'+p2Filter);
+  if(selected){
+    selected.classList.add('active');
+    selected.setAttribute('aria-pressed','true');
   }
+  if(btnF)btnF.title=v==='future'?'Click to return to the report list':'Show upcoming reports';
 }
 function toggleSection(contentId, caretId){
   const el=document.getElementById(contentId);
@@ -2247,8 +2469,10 @@ function showView(r){
   const brands=shortBrands(r).join(', ')||r.brand||'—';
   const stores=shortStores(r).join(', ')||r.store||'—';
   const rtypes=shortReportTypes(r).join(', ')||r.reportingtype||'—';
+  const manager=allAccountManagers.find(contact=>String(contact.id)===String(r.account_manager_id));
   const flds=[
     {l:'Client',v:r.client},{l:'Code SAP',v:r.sapcode},
+    {l:'Campaign ID',v:r.campaign_id},{l:'Commercial Team',v:manager?accountManagerName(manager):null},
     {l:'Start Date',v:fd(r.startdate)},{l:'End Date',v:fd(r.enddate)},
     {l:'Brand',v:brands},{l:'Store',v:stores},
     {l:'Sector',v:sectors},{l:'Report Types',v:rtypes},
@@ -2304,9 +2528,12 @@ async function saveRecord(){
   const toInt = v => { const n = parseInt(v); return isNaN(n) ? null : n; };
   const toIntArr = arr => arr.length ? arr.map(o => toInt(o.id)).filter(n => n !== null) : null;
   const cOpt=ms.client.selected[0]||null;
+  const managerOpt=ms.accountmanager.selected[0]||null;
   const payload={
     Title:           document.getElementById('f-title').value.trim()||null,
     sapcode:         document.getElementById('f-sapcode').value.trim()||null,
+    campaign_id:     toInt(document.getElementById('f-campaignid').value),
+    account_manager_id:managerOpt?toInt(managerOpt.id):null,
     startdate:       document.getElementById('f-startdate').value||null,
     enddate:         document.getElementById('f-enddate').value||null,
     comments:        document.getElementById('f-comments').value.trim()||null,
@@ -2336,7 +2563,7 @@ async function saveRecord(){
       toast('Record updated!','success');
     }
     const savedId = isNew ? payload.id : parseInt(curRec.id);
-    const fresh=await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc');
+    const fresh=await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,campaign_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc');
     allRec=filtRec=fresh;
     const saved=await sbGet('InsightsTracking?id=eq.'+savedId+'&limit=1');
     curRec=saved[0]||null; isNew=false;
@@ -2349,7 +2576,7 @@ async function saveRecord(){
 // ── Dependent filters ──────────────────────────────────────────────────────
 function applyClientFilter(reset=true){
   const cId=ms.client.selected[0]?.id||null;
-  ms.brand.all  =(cId?allBr.filter(b=>String(b.client_giid)===String(cId)):allBr).map(b=>({id:b.id,label:b.brand,sub:'',meta:b}));
+  ms.brand.all  =(cId?allBr.filter(b=>String(b.client_giid)===String(cId)):allBr).map(brandOption);
   ms.contact.all=(cId?allCon.filter(c=>String(c.client_id)===String(cId)):allCon).map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
   if(reset){ms.brand.selected=[];ms.contact.selected=[];renderTags('brand');renderTags('contact');}
 }
@@ -2362,7 +2589,7 @@ function applySectorFilter(){
   }
   // Filter stores to only those belonging to the selected sectors
   const filtered=allSt.filter(s=>s.Sector_id!=null&&sectorIds.includes(String(s.Sector_id)));
-  ms.store.all=filtered.map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
+  ms.store.all=filtered.map(s=>({id:s.id,label:s.store,sub:`ID ${s.id}`,meta:s}));
   // Remove selected stores that no longer exist in the filtered list
   ms.store.selected=ms.store.selected.filter(s=>ms.store.all.find(o=>o.id===s.id));
   renderTags('store');
@@ -2371,13 +2598,13 @@ function applySectorFilter(){
 function applyCompanyFilter(){
   const ids=ms.company.selected.map(o=>String(o.id));
   if(!ids.length){
-    ms.store.all=allSt.map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
-    ms.sector.all=allSectors.map(s=>({id:s.id,label:s.Name,sub:'',meta:s}));
+    ms.store.all=allSt.map(s=>({id:s.id,label:s.store,sub:`ID ${s.id}`,meta:s}));
+    ms.sector.all=allSectors.map(s=>({id:s.id,label:s.Name,sub:`ID ${s.id}`,meta:s}));
   }else{
     const ctry=allCo.filter(c=>ids.includes(String(c.id))).map(c=>String(c.country_id)).filter(Boolean);
-    ms.store.all=(ctry.length?allSt.filter(s=>s.country_id!=null&&ctry.includes(String(s.country_id))):allSt).map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
+    ms.store.all=(ctry.length?allSt.filter(s=>s.country_id!=null&&ctry.includes(String(s.country_id))):allSt).map(s=>({id:s.id,label:s.store,sub:`ID ${s.id}`,meta:s}));
     // Filter sectors strictly by companyid matching selected company IDs
-    ms.sector.all=allSectors.filter(s=>s.companyid!=null&&ids.includes(String(s.companyid))).map(s=>({id:s.id,label:s.Name,sub:'',meta:s}));
+    ms.sector.all=allSectors.filter(s=>s.companyid!=null&&ids.includes(String(s.companyid))).map(s=>({id:s.id,label:s.Name,sub:`ID ${s.id}`,meta:s}));
   }
   ms.store.selected=ms.store.selected.filter(s=>ms.store.all.find(o=>String(o.id)===String(s.id)));
   ms.sector.selected=ms.sector.selected.filter(s=>ms.sector.all.find(o=>String(o.id)===String(s.id)));
@@ -2423,7 +2650,12 @@ function renderTags(key){
   const trig=document.getElementById('mst-'+key),ph=document.getElementById('ph-'+key);
   trig.querySelectorAll('.tag').forEach(t=>t.remove());
   if(!ms[key].selected.length){ph.style.display='';}
-  else{ph.style.display='none';ms[key].selected.forEach(o=>{const t=document.createElement('div');t.className='tag';t.innerHTML=`<span>${esc(o.label)}</span><div class="tagx" onclick="event.stopPropagation();removeTag('${key}',${o.id})"></div>`;trig.insertBefore(t,ph);});}
+  else{ph.style.display='none';ms[key].selected.forEach(o=>{
+    const showId=['client','brand','sector','store'].includes(key);
+    const visibility=key==='brand'?` · Visible: ${o.meta?.visible===true?'true':'false'}`:'';
+    const tagLabel=`${o.label}${showId?' · ID '+o.id:''}${visibility}`;
+    const t=document.createElement('div');t.className='tag';t.innerHTML=`<span>${esc(tagLabel)}</span><div class="tagx" onclick="event.stopPropagation();removeTag('${key}',${o.id})"></div>`;trig.insertBefore(t,ph);
+  });}
 }
 
 // ── Add Contact Modal ──────────────────────────────────────────────────────
@@ -2475,6 +2707,58 @@ async function saveNewContact(){
   finally{showLoad(false);}
 }
 
+// ── Add Account Manager Modal ──────────────────────────────────────────────
+function openAddAccountManager(){
+  document.getElementById('mam-fname').value='';
+  document.getElementById('mam-lname').value='';
+  document.getElementById('mam-email').value='';
+  document.getElementById('addAccountManagerModal').style.display='flex';
+  document.getElementById('mam-fname').focus();
+}
+function closeAddAccountManager(){
+  document.getElementById('addAccountManagerModal').style.display='none';
+}
+async function saveNewAccountManager(){
+  const firstname=document.getElementById('mam-fname').value.trim();
+  const lastname=document.getElementById('mam-lname').value.trim();
+  const email=document.getElementById('mam-email').value.trim();
+  if(!firstname||!lastname){toast('First name and last name are required','error');return;}
+
+  const requestedName=`${firstname} ${lastname}`.replace(/\s+/g,' ').trim().toLocaleLowerCase();
+  const existing=allAccountManagers.find(contact=>accountManagerName(contact).replace(/\s+/g,' ').trim().toLocaleLowerCase()===requestedName);
+  if(existing){
+    const existingOpt=ms.accountmanager.all.find(option=>String(option.id)===String(existing.id));
+    ms.accountmanager.selected=existingOpt?[existingOpt]:[];
+    renderTags('accountmanager');
+    closeAddAccountManager();
+    toast('Account Manager already exists and was selected.','success');
+    return;
+  }
+
+  try{
+    showLoad(true);
+    const createdRows=await sbPost('Contacts_Operations',{
+      firstname,
+      lastname,
+      email:email||null,
+      jobtitle:'Account Manager',
+      company:null
+    });
+    const freshOps=await sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname');
+    allAccountManagers=freshOps.filter(isAccountManager);
+    ms.accountmanager.all=accountManagerOptions();
+    p3OpsContacts=freshOps;
+
+    const created=createdRows[0]||allAccountManagers.find(contact=>accountManagerName(contact).replace(/\s+/g,' ').trim().toLocaleLowerCase()===requestedName);
+    const createdOpt=created?ms.accountmanager.all.find(option=>String(option.id)===String(created.id)):null;
+    ms.accountmanager.selected=createdOpt?[createdOpt]:[];
+    renderTags('accountmanager');
+    closeAddAccountManager();
+    toast('Account Manager added and selected!','success');
+  }catch(e){toast('Failed to add Account Manager: '+e.message,'error');}
+  finally{showLoad(false);}
+}
+
 // ── Page 2 ─────────────────────────────────────────────────────────────────
 async function refreshP2(){
   const btn=event.currentTarget;
@@ -2502,9 +2786,7 @@ const p2HasAnyStatus=r=>!!(r.first_report_date||r.under_review_date);
 
 function setFilter(f){
   p2Filter=f;
-  document.querySelectorAll('.sf-pill').forEach(b=>b.classList.remove('active'));
-  const btn=document.getElementById('flt-'+f);
-  if(btn)btn.classList.add('active');
+  p2View2='active';
   applyP2Filter();
 }
 
@@ -2623,10 +2905,9 @@ function renderP2Future(){
   // Remove existing future section if present
   const existing=document.getElementById('p2FutureSection');
   if(existing)existing.remove();
-  if(!p2FutureRows.length)return;
-
   const cnt=document.getElementById('p2FutureCount');
-  if(cnt) cnt.textContent=`(${p2FutureRows.length})`;
+  if(cnt)cnt.textContent=p2FutureRows.length;
+  if(!p2FutureRows.length)return;
 
   const wrap=document.getElementById('p2ScrollContainer');
   if(!wrap)return;
@@ -2826,9 +3107,17 @@ function renderP3(){
   const body=document.getElementById('p3body');
   const cid3=getCompanyFilter('p3-company-filter');
   const sid3=getCompanyFilter('p3-sector-filter');
-  let rows = p3View==='all' ? p3All : p3All.filter(r=>!r.validated_date);
-  if(cid3) rows=rows.filter(r=>matchesCompany(r,cid3));
-  if(sid3) rows=rows.filter(r=>matchesSector(r,sid3));
+  let filteredRows=p3All;
+  if(cid3)filteredRows=filteredRows.filter(r=>matchesCompany(r,cid3));
+  if(sid3)filteredRows=filteredRows.filter(r=>matchesSector(r,sid3));
+  const pendingRows=filteredRows.filter(r=>!r.validated_date);
+  const pendingCount=document.getElementById('p3-count-pending');
+  const allCount=document.getElementById('p3-count-all');
+  if(pendingCount)pendingCount.textContent=pendingRows.length;
+  if(allCount)allCount.textContent=filteredRows.length;
+  const rows=p3View==='all'?filteredRows:pendingRows;
+  const reportCount=document.getElementById('p3-report-count');
+  if(reportCount)reportCount.textContent=`${rows.length} report${rows.length===1?'':'s'}`;
   p3CurrentRows=rows;
   p3Page=0;
   if(!rows.length){
@@ -2886,9 +3175,11 @@ function renderP4(){
     &&(sid4?matchesSector(r,sid4):true));
   // "Already sent" = email_sent_date OR first_report_date (handles legacy records)
   const isSent = r=>!!(r.email_sent_date||r.first_report_date);
-  const rows = p4View==='sent'
-    ? validated.filter(r=>isSent(r))
-    : validated.filter(r=>!isSent(r));
+  const readyRows=validated.filter(r=>!isSent(r));
+  const sentRows=validated.filter(r=>isSent(r));
+  const rows=p4View==='sent'?sentRows:readyRows;
+  const reportCount=document.getElementById('p4-report-count');
+  if(reportCount)reportCount.textContent=`${rows.length} report${rows.length===1?'':'s'}`;
 
   if(!rows.length){
     const msg = p4View==='sent'
@@ -3322,25 +3613,28 @@ function selectOpsContact(rid,cid,name=''){
 async function refreshEntryForm(){
   try{
     showLoad(true);
-    const [co,cl,br,st,con,rt,sec,rec]=await Promise.all([
+    const [co,cl,br,st,con,rt,sec,ops,rec]=await Promise.all([
       sbGet('GI_company?select=id,name,country_id&active=eq.true&order=name'),
       sbGet('GI_clients?select=id,client&active=eq.true&order=client'),
-      sbGet('GI_brands?select=id,brand,client_giid&visible=eq.true&order=brand'),
+      sbGet('GI_brands?select=id,brand,client_giid,visible&order=brand'),
       sbGet('GI_stores?select=id,store,country_id,Sector_id&visible=eq.true&order=store'),
       sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname'),
       sbGet('report_types?select=id,type&visible=eq.true&order=type'),
       sbGet('Sector?select=id,Name,companyid&order=Name'),
-      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
+      sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname'),
+      sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,campaign_id,account_manager_id,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,startdate,enddate,createdat,first_report_date,under_review_date,cancelled_date,validated_date,validated_by,company_ids,reportingtype&order=startdate.desc.nullslast,createdat.desc'),
     ]);
     allCo=co; allCl=cl; allBr=br; allSt=st; allCon=con; allRT=rt; allSectors=sec;
+    allAccountManagers=(ops||[]).filter(isAccountManager);
     allRec=rec;
     filtRec=applyGlobalFilter(allRec);
     ms.company.all   =co.map(c=>({id:c.id,label:c.name,sub:'',meta:c}));
-    ms.client.all    =cl.map(c=>({id:c.id,label:c.client,sub:'',meta:c}));
-    ms.brand.all     =br.map(b=>({id:b.id,label:b.brand,sub:'',meta:b}));
-    ms.store.all     =st.map(s=>({id:s.id,label:s.store,sub:'',meta:s}));
-    ms.sector.all    =sec.map(s=>({id:s.id,label:s.Name,sub:'',meta:s}));
+    ms.client.all    =cl.map(c=>({id:c.id,label:c.client,sub:`ID ${c.id}`,meta:c}));
+    ms.brand.all     =br.map(brandOption);
+    ms.store.all     =st.map(s=>({id:s.id,label:s.store,sub:`ID ${s.id}`,meta:s}));
+    ms.sector.all    =sec.map(s=>({id:s.id,label:s.Name,sub:`ID ${s.id}`,meta:s}));
     ms.contact.all   =con.map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
+    ms.accountmanager.all=accountManagerOptions();
     ms.reporttype.all=rt.map(r=>({id:r.id,label:r.type,sub:'',meta:r}));
     populateCompanyFilters();
     initGFOpts();
@@ -3786,7 +4080,378 @@ function t_showToast(msg,type){
 const SB_URL=SB; // alias to existing SB constant
 
 // ═══════════════════════════════════════════════════════════
-// PAGE 7 – REPORTING CHECK
+// PAGE 7 – ITEMS
+// ═══════════════════════════════════════════════════════════
+let items_all=[], items_filtered=[], items_segments=[];
+let items_initialized=false, items_visibility='all', items_page=1;
+let items_editingId=null, items_editingRow=null;
+const ITEMS_PAGE_SIZE=100;
+const ITEMS_PRICE_FIELDS=[
+  ['itemPriceChfLag','Price CHF Lagardère'],
+  ['itemPriceEurLag','Price EUR Lagardère'],
+  ['itemPriceChfAvo','Price CHF Avolta'],
+  ['itemPriceEurAvo','Price EUR Avolta'],
+  ['itemPriceGbp','Price GBP'],
+  ['itemPriceCzkLag','Price Kč Lagardère'],
+  ['itemPricePlnLag','Price zł Lagardère'],
+  ['itemPriceEurAvoSp','Price EUR Avolta SP'],
+  ['itemPriceEurAri','Price EUR ARI'],
+  ['itemPriceChDom','Price CH Dom'],
+  ['itemPriceEurLagIt','Price EUR Lagardère IT'],
+  ['itemPriceEurAvoIt','Price EUR Avolta IT']
+];
+
+async function items_initIfNeeded(){
+  if(items_initialized)return;
+  items_initialized=true;
+  items_fillBrandForm();
+  try{
+    await Promise.all([items_loadSegments(),items_loadData()]);
+  }catch(e){
+    items_initialized=false;
+    const loading=document.getElementById('itemsLoading');
+    if(loading)loading.innerHTML=`<div style="color:var(--red);font-weight:650;margin-bottom:10px;">Items could not be loaded</div><button class="items-btn" onclick="items_initIfNeeded()">Try again</button>`;
+    items_showToast('Items load failed: '+items_errorMessage(e),'error');
+  }
+}
+
+async function items_loadSegments(){
+  const res=await authenticatedFetch(`${SB_URL}/rest/v1/Retail_Segment?select=id,Segment,Description&order=id`);
+  if(!res.ok)throw new Error(await res.text());
+  items_segments=await res.json();
+  const filter=document.getElementById('itemsSegmentFilter');
+  const form=document.getElementById('itemSegment');
+  const currentFilter=filter.value;
+  filter.innerHTML='<option value="">All Segments</option>'+items_segments.map(s=>`<option value="${esc(s.id)}">${esc(s.Segment||('Segment '+s.id))}</option>`).join('');
+  form.innerHTML='<option value="">Select segment…</option>'+items_segments.map(s=>`<option value="${esc(s.id)}">${esc(s.Segment||('Segment '+s.id))}</option>`).join('');
+  filter.value=currentFilter;
+  if(items_all.length)items_applyFilters(false);
+}
+
+async function items_loadData(){
+  const loading=document.getElementById('itemsLoading');
+  const table=document.getElementById('itemsTable');
+  const pager=document.getElementById('itemsPager');
+  loading.style.display='block';
+  loading.textContent='Loading items…';
+  table.style.display='none';
+  pager.style.display='none';
+  const rows=[];
+  const batchSize=1000;
+  for(let offset=0;offset<100000;offset+=batchSize){
+    const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_items?select=*&order=created_at.desc.nullslast,id.desc&limit=${batchSize}&offset=${offset}`);
+    if(!res.ok)throw new Error(await res.text());
+    const batch=await res.json();
+    rows.push(...batch);
+    if(batch.length<batchSize)break;
+  }
+  items_all=rows.sort(items_compareNewest);
+  items_updateCounts();
+  items_populateFilters();
+  items_applyFilters(false);
+}
+
+function items_compareNewest(a,b){
+  const aDate=Date.parse(a?.created_at||'')||0;
+  const bDate=Date.parse(b?.created_at||'')||0;
+  if(aDate!==bDate)return bDate-aDate;
+  return Number(b?.id||0)-Number(a?.id||0);
+}
+
+function items_updateCounts(){
+  const visible=items_all.filter(r=>r.visible===true).length;
+  const hidden=items_all.length-visible;
+  document.getElementById('itemsCountAll').textContent=items_all.length.toLocaleString();
+  document.getElementById('itemsCountVisible').textContent=visible.toLocaleString();
+  document.getElementById('itemsCountHidden').textContent=hidden.toLocaleString();
+  document.getElementById('itemsSummary').textContent=`${items_all.length.toLocaleString()} products in legacy_items`;
+}
+
+function items_populateFilters(){
+  const brandEl=document.getElementById('itemsBrandFilter');
+  const clientEl=document.getElementById('itemsClientFilter');
+  const oldBrand=brandEl.value, oldClient=clientEl.value;
+  const brands=[...new Set(items_all.map(r=>String(r.brand||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+  brandEl.innerHTML='<option value="">All Brands</option>'+brands.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('');
+  brandEl.value=oldBrand;
+  const clientIds=[...new Set(items_all.map(r=>r.client_id==null?'':String(r.client_id)).filter(Boolean))];
+  clientIds.sort((a,b)=>items_clientLabel(a).localeCompare(items_clientLabel(b)));
+  clientEl.innerHTML='<option value="">All Clients</option>'+clientIds.map(id=>`<option value="${esc(id)}">${esc(items_clientLabel(id))}</option>`).join('');
+  clientEl.value=oldClient;
+}
+
+function items_clientLabel(id){
+  const client=allCl.find(c=>String(c.id)===String(id));
+  return client?.client||`Client ID ${id}`;
+}
+
+function items_segmentLabel(id){
+  if(id==null||id==='')return '—';
+  const segment=items_segments.find(s=>String(s.id)===String(id));
+  return segment?.Segment||`Segment ${id}`;
+}
+
+function items_setVisibility(mode){
+  items_visibility=mode;
+  ['All','Visible','Hidden'].forEach(k=>document.getElementById('itemsStat'+k).classList.toggle('active',mode===k.toLowerCase()));
+  items_applyFilters(true);
+}
+
+function items_applyFilters(resetPage=true){
+  if(resetPage)items_page=1;
+  const q=document.getElementById('itemsSearch').value.trim().toLowerCase();
+  const brand=document.getElementById('itemsBrandFilter').value;
+  const client=document.getElementById('itemsClientFilter').value;
+  const segment=document.getElementById('itemsSegmentFilter').value;
+  items_filtered=items_all.filter(r=>{
+    if(items_visibility==='visible'&&r.visible!==true)return false;
+    if(items_visibility==='hidden'&&r.visible===true)return false;
+    if(brand&&String(r.brand||'')!==brand)return false;
+    if(client&&String(r.client_id??'')!==client)return false;
+    if(segment&&String(r.Segment_Id??'')!==segment)return false;
+    if(q){
+      const hay=[r.id,r.name,r.full_productname,r.brand,r.subBrand,r['sku code'],r.categ].map(v=>String(v??'').toLowerCase());
+      if(!hay.some(v=>v.includes(q)))return false;
+    }
+    return true;
+  });
+  const maxPage=Math.max(1,Math.ceil(items_filtered.length/ITEMS_PAGE_SIZE));
+  items_page=Math.min(items_page,maxPage);
+  items_renderTable();
+}
+
+function items_renderTable(){
+  const loading=document.getElementById('itemsLoading');
+  const table=document.getElementById('itemsTable');
+  const pager=document.getElementById('itemsPager');
+  const tbody=document.getElementById('itemsTbody');
+  loading.style.display='none';
+  document.getElementById('itemsFilteredCount').textContent=`${items_filtered.length.toLocaleString()} shown`;
+  if(!items_filtered.length){
+    table.style.display='none';
+    pager.style.display='none';
+    loading.style.display='block';
+    loading.innerHTML='<div style="font-size:14px;font-weight:650;color:var(--g600);margin-bottom:5px;">No items found</div><div>Try changing the search or filters.</div>';
+    return;
+  }
+  const start=(items_page-1)*ITEMS_PAGE_SIZE;
+  const rows=items_filtered.slice(start,start+ITEMS_PAGE_SIZE);
+  tbody.innerHTML=rows.map(r=>{
+    const displayName=r.full_productname||[r.brand,r.name,r.size,r.unit].filter(v=>v!==null&&v!=='').join(' ')||'Unnamed item';
+    const id=Number(r.id);
+    return `<tr>
+      <td style="font-family:monospace;color:var(--blue);font-weight:700;white-space:nowrap;">${esc(r.id)}</td>
+      <td><div class="items-product" title="${esc(displayName)}">${esc(displayName)}</div>${r.categ?`<div class="items-muted">${esc(r.categ)}</div>`:''}</td>
+      <td><div style="font-weight:650;">${esc(r.brand||'—')}</div>${r.subBrand?`<div class="items-muted">${esc(r.subBrand)}</div>`:''}</td>
+      <td style="font-family:monospace;white-space:nowrap;">${esc(r['sku code']??'—')}</td>
+      <td>${esc(r.client_id!=null?items_clientLabel(r.client_id):'—')}</td>
+      <td>${esc(items_segmentLabel(r.Segment_Id))}</td>
+      <td style="white-space:nowrap;">${esc(r.size??'—')}${r.unit?' '+esc(r.unit):''}</td>
+      <td><span class="items-badge ${r.visible===true?'visible':'hidden'}">${r.visible===true?'Visible':'Hidden'}</span></td>
+      <td style="text-align:right;"><button class="items-btn" onclick="items_openEdit(${Number.isFinite(id)?id:0})">Edit</button></td>
+    </tr>`;
+  }).join('');
+  table.style.display='table';
+  pager.style.display='flex';
+  const end=Math.min(start+ITEMS_PAGE_SIZE,items_filtered.length);
+  document.getElementById('itemsPageInfo').textContent=`${(start+1).toLocaleString()}–${end.toLocaleString()} of ${items_filtered.length.toLocaleString()}`;
+  document.getElementById('itemsPrev').disabled=items_page<=1;
+  document.getElementById('itemsNext').disabled=end>=items_filtered.length;
+}
+
+function items_changePage(delta){
+  const maxPage=Math.max(1,Math.ceil(items_filtered.length/ITEMS_PAGE_SIZE));
+  items_page=Math.max(1,Math.min(maxPage,items_page+delta));
+  items_renderTable();
+  document.getElementById('itemsTableArea').scrollTop=0;
+}
+
+function items_resetFilters(){
+  document.getElementById('itemsSearch').value='';
+  document.getElementById('itemsBrandFilter').value='';
+  document.getElementById('itemsClientFilter').value='';
+  document.getElementById('itemsSegmentFilter').value='';
+  items_visibility='all';
+  ['All','Visible','Hidden'].forEach(k=>document.getElementById('itemsStat'+k).classList.toggle('active',k==='All'));
+  items_applyFilters(true);
+}
+
+function items_fillBrandForm(){
+  const el=document.getElementById('itemBrand');
+  if(!el)return;
+  const brands=[...allBr].sort((a,b)=>String(a.brand||'').localeCompare(String(b.brand||'')));
+  el.innerHTML='<option value="">Select brand…</option>'+brands.map(b=>`<option value="${esc(b.id)}">${esc(b.brand||'Unnamed')} · ID ${esc(b.id)} · ${b.visible===true?'Visible':'Hidden'}</option>`).join('');
+}
+
+function items_selectedBrand(){
+  const value=document.getElementById('itemBrand').value;
+  if(!value)return null;
+  if(value.startsWith('legacy:'))return {id:null,brand:value.slice(7),client_giid:items_editingRow?.client_id??null};
+  return allBr.find(b=>String(b.id)===value)||null;
+}
+
+function items_brandChanged(){
+  const brand=items_selectedBrand();
+  const clientId=brand?.client_giid??null;
+  document.getElementById('itemClientPreview').value=clientId!=null?`${items_clientLabel(clientId)} · ID ${clientId}`:'No matching client';
+  items_updatePreview();
+}
+
+function items_updatePreview(){
+  const brand=items_selectedBrand()?.brand||'';
+  const name=document.getElementById('itemName').value.trim();
+  const size=document.getElementById('itemSize').value.trim();
+  const unit=document.getElementById('itemUnit').value.trim();
+  document.getElementById('itemFullPreview').value=[brand,name,size+(unit||'')].filter(Boolean).join(' ');
+}
+
+function items_clearForm(){
+  ['itemName','itemSubBrand','itemSku','itemSize','itemUnit','itemCategory','itemClientPreview','itemFullPreview',...ITEMS_PRICE_FIELDS.map(x=>x[0])]
+    .forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('itemBrand').value='';
+  document.getElementById('itemSegment').value='';
+  document.getElementById('itemVisible').checked=true;
+  document.getElementById('itemClientPreview').value='Select a brand';
+}
+
+function items_openNew(){
+  items_editingId=null;
+  items_editingRow=null;
+  items_fillBrandForm();
+  items_clearForm();
+  document.getElementById('itemsEditorTitle').textContent='New Item';
+  document.getElementById('itemsEditorSub').textContent='The ID is created automatically';
+  document.getElementById('itemsSaveBtn').textContent='Save Item';
+  document.getElementById('itemsSaveAnotherBtn').style.display='';
+  document.getElementById('itemsEditor').classList.add('open');
+  setTimeout(()=>document.getElementById('itemName').focus(),0);
+}
+
+function items_openEdit(id){
+  const row=items_all.find(r=>String(r.id)===String(id));
+  if(!row)return;
+  items_editingId=row.id;
+  items_editingRow=row;
+  items_fillBrandForm();
+  const brandEl=document.getElementById('itemBrand');
+  let brandValue='';
+  const matched=allBr.find(b=>String(b.id)===String(row.brand_id)||String(b.brand||'').trim().toLowerCase()===String(row.brand||'').trim().toLowerCase());
+  if(matched)brandValue=String(matched.id);
+  else if(row.brand){brandValue='legacy:'+row.brand;brandEl.insertAdjacentHTML('beforeend',`<option value="${esc(brandValue)}">${esc(row.brand)} · Legacy brand</option>`);}
+  const values={
+    itemName:row.name,itemSubBrand:row.subBrand,itemSku:row['sku code'],itemSize:row.size,itemUnit:row.unit,itemCategory:row.categ,itemSegment:row.Segment_Id
+  };
+  Object.entries(values).forEach(([id,value])=>document.getElementById(id).value=value??'');
+  ITEMS_PRICE_FIELDS.forEach(([id,column])=>document.getElementById(id).value=row[column]??'');
+  brandEl.value=brandValue;
+  document.getElementById('itemVisible').checked=row.visible===true;
+  document.getElementById('itemsEditorTitle').textContent='Edit Item';
+  document.getElementById('itemsEditorSub').textContent=`Item ID ${row.id}`;
+  document.getElementById('itemsSaveBtn').textContent='Save Changes';
+  document.getElementById('itemsSaveAnotherBtn').style.display='none';
+  document.getElementById('itemsEditor').classList.add('open');
+  items_brandChanged();
+}
+
+function items_closeEditor(){
+  document.getElementById('itemsEditor').classList.remove('open');
+  items_editingId=null;
+  items_editingRow=null;
+}
+
+function items_numberOrNull(id){
+  const value=document.getElementById(id).value.trim();
+  if(value==='')return null;
+  const n=Number(value);
+  return Number.isFinite(n)?n:null;
+}
+
+function items_errorMessage(error){
+  const raw=String(error?.message||error||'Unknown error');
+  try{
+    const parsed=JSON.parse(raw);
+    return parsed.message||parsed.details||raw;
+  }catch(_){return raw;}
+}
+
+async function items_save(addAnother=false){
+  const name=document.getElementById('itemName').value.trim();
+  const brand=items_selectedBrand();
+  if(!name||!brand?.brand){items_showToast('Please enter a Product Name and select a Brand.','error');return;}
+  const payload={
+    name,
+    brand:brand.brand,
+    brand_id:brand.id==null?null:Number(brand.id),
+    size:items_numberOrNull('itemSize'),
+    unit:document.getElementById('itemUnit').value.trim()||null,
+    visible:document.getElementById('itemVisible').checked,
+    categ:document.getElementById('itemCategory').value.trim()||null,
+    subBrand:document.getElementById('itemSubBrand').value.trim()||null,
+    'sku code':items_numberOrNull('itemSku'),
+    Segment_Id:items_numberOrNull('itemSegment')
+  };
+  ITEMS_PRICE_FIELDS.forEach(([id,column])=>payload[column]=items_numberOrNull(id));
+  const editing=items_editingId!=null;
+  addAnother=addAnother&&!editing;
+  const btn=document.getElementById('itemsSaveBtn');
+  const repeatBtn=document.getElementById('itemsSaveAnotherBtn');
+  btn.disabled=true;
+  repeatBtn.disabled=true;
+  const keptBrandValue=document.getElementById('itemBrand').value;
+  try{
+    const url=editing
+      ?`${SB_URL}/rest/v1/legacy_items?id=eq.${encodeURIComponent(items_editingId)}`
+      :`${SB_URL}/rest/v1/legacy_items`;
+    const res=await authenticatedFetch(url,{
+      method:editing?'PATCH':'POST',
+      headers:{'Prefer':'return=representation'},
+      body:JSON.stringify(payload)
+    });
+    if(!res.ok)throw new Error(await res.text());
+    const saved=await res.json();
+    const savedId=saved?.[0]?.id??items_editingId;
+    const savedRow=saved?.[0];
+    if(savedRow){
+      const existingIndex=items_all.findIndex(r=>String(r.id)===String(savedRow.id));
+      if(existingIndex>=0)items_all[existingIndex]=savedRow;
+      else items_all.push(savedRow);
+      items_all.sort(items_compareNewest);
+      items_updateCounts();
+      items_populateFilters();
+      items_applyFilters(false);
+    }else{
+      await items_loadData();
+    }
+    if(addAnother){
+      items_clearForm();
+      document.getElementById('itemBrand').value=keptBrandValue;
+      items_brandChanged();
+      document.getElementById('itemsEditor').classList.add('open');
+      document.getElementById('itemName').focus();
+      items_showToast(`Item ${savedId} created. The brand is ready for the next item.`,'success');
+    }else{
+      items_closeEditor();
+      items_showToast(editing?`Item ${savedId} updated successfully.`:`Item ${savedId} created successfully.`,'success');
+    }
+  }catch(e){
+    items_showToast('Save failed: '+items_errorMessage(e),'error');
+  }finally{
+    btn.disabled=false;
+    repeatBtn.disabled=false;
+  }
+}
+
+function items_showToast(message,type='success'){
+  const el=document.getElementById('itemsToast');
+  el.textContent=message;
+  el.style.background=type==='success'?'var(--green)':'var(--red)';
+  el.style.display='block';
+  clearTimeout(items_showToast._timer);
+  items_showToast._timer=setTimeout(()=>{el.style.display='none';},4000);
+}
+
+// ═══════════════════════════════════════════════════════════
+// PAGE 8 – REPORTING CHECK
 // ═══════════════════════════════════════════════════════════
 let rc_data = [];
 let rc_initialized = false;
