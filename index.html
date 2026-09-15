@@ -1206,7 +1206,7 @@ window._authReady=restoreSupabaseSession();
     <!-- Table side -->
     <div style="display:flex;flex-direction:column;overflow:hidden;">
       <div style="padding:12px 20px;border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:10px;background:#fff;">
-        <input id="t_filter" placeholder="Filter by ID, brand, shop, type…" oninput="t_renderTable()" style="height:32px;padding:0 10px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;width:260px;background:var(--g50);">
+        <input id="t_filter" placeholder="Filter by target ID, item ID, brand…" oninput="t_renderTable()" style="height:32px;padding:0 10px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;width:260px;background:var(--g50);">
         <span id="t_countBadge" style="margin-left:auto;font-size:11px;color:var(--g500);font-family:monospace;">— entries</span>
       </div>
       <div style="overflow-y:auto;flex:1;">
@@ -1216,7 +1216,7 @@ window._authReady=restoreSupabaseSession();
             <tr style="background:var(--g50);">
               <th onclick="t_sortBy('id')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">ID</th>
               <th onclick="t_sortBy('brand')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Brand</th>
-              <th onclick="t_sortBy('item')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Item</th>
+              <th onclick="t_sortBy('item')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Item / ID</th>
               <th onclick="t_sortBy('shop')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Shop</th>
               <th onclick="t_sortBy('date')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Date</th>
               <th onclick="t_sortBy('target_type_id')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Type</th>
@@ -3983,7 +3983,7 @@ async function sc_saveRow(){
 let t_allTargets=[], t_targetTypes={}, t_selectedLevel=1, t_editingId=null;
 let t_sortCol='id', t_sortDir=-1;
 let t_multiMode=false, t_multiBy='shop', t_allShopsList=[], t_allItemsList=[];
-let t_itemIdByName={};
+let t_itemRows=[], t_itemIdByKey={};
 let t_initialized=false;
 
 async function t_initIfNeeded(){if(!t_initialized){t_initialized=true;await t_init();}}
@@ -4006,7 +4006,33 @@ async function t_init(){
   const ts=document.getElementById('t_type');
   types.forEach(t=>{t_targetTypes[t.id]=t.name;ts.insertAdjacentHTML('beforeend',`<option value="${esc(t.id)}">${esc(t.name)}</option>`);});
 
+  try{await t_loadItemLookup();}
+  catch(e){t_showToast('Item IDs could not be loaded: '+e.message,'error');}
   await t_loadTargets();
+}
+
+function t_itemKey(brand,item){
+  return `${String(brand??'').trim().toLowerCase()}\u001f${String(item??'').trim().toLowerCase()}`;
+}
+function t_itemIdFor(brand,item){
+  return item?t_itemIdByKey[t_itemKey(brand,item)]??null:null;
+}
+async function t_loadItemLookup(){
+  const rows=[];
+  const batchSize=1000;
+  for(let offset=0;offset<100000;offset+=batchSize){
+    const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_items?select=id,brand,full_productname&full_productname=not.is.null&order=id.desc&limit=${batchSize}&offset=${offset}`);
+    if(!res.ok)throw new Error(await res.text());
+    const batch=await res.json();
+    rows.push(...batch);
+    if(batch.length<batchSize)break;
+  }
+  t_itemRows=rows;
+  t_itemIdByKey={};
+  rows.forEach(item=>{
+    const key=t_itemKey(item.brand,item.full_productname);
+    if(item.full_productname&&t_itemIdByKey[key]==null)t_itemIdByKey[key]=item.id;
+  });
 }
 
 async function t_loadItems(){
@@ -4014,14 +4040,10 @@ async function t_loadItems(){
   const sel=document.getElementById('t_item');
   if(!brand){sel.innerHTML='<option value="">Select brand first…</option>';return;}
   sel.innerHTML='<option value="">Loading…</option>';sel.disabled=true;
-  const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_items?select=id,full_productname&brand=eq.${encodeURIComponent(brand)}&full_productname=not.is.null&order=full_productname,id`);
-  if(!res.ok)throw new Error(await res.text());
-  const items=await res.json();
-  t_itemIdByName={};
-  items.forEach(item=>{if(item.full_productname&&t_itemIdByName[item.full_productname]==null)t_itemIdByName[item.full_productname]=item.id;});
+  const items=t_itemRows.filter(item=>String(item.brand??'')===brand);
   t_allItemsList=[...new Set(items.map(i=>i.full_productname).filter(Boolean))];
   sel.innerHTML='<option value="">No specific item</option>';
-  t_allItemsList.forEach(name=>sel.insertAdjacentHTML('beforeend',`<option value="${esc(name)}">${esc(name)} · ID ${esc(t_itemIdByName[name])}</option>`));
+  t_allItemsList.sort((a,b)=>a.localeCompare(b)).forEach(name=>sel.insertAdjacentHTML('beforeend',`<option value="${esc(name)}">${esc(name)}</option>`));
   sel.disabled=false;
   if(t_multiMode&&t_multiBy==='item')t_updateMultiList();
 }
@@ -4049,16 +4071,20 @@ function t_sortBy(col){
 
 function t_renderTable(){
   const q=document.getElementById('t_filter').value.toLowerCase();
-  let rows=t_allTargets.filter(r=>[r.id,r.brand,r.item,r.shop,r.date,t_targetTypes[r.target_type_id]].some(v=>String(v??'').toLowerCase().includes(q)));
+  let rows=t_allTargets.filter(r=>[r.id,t_itemIdFor(r.brand,r.item),r.brand,r.item,r.shop,r.date,t_targetTypes[r.target_type_id]].some(v=>String(v??'').toLowerCase().includes(q)));
   rows.sort((a,b)=>{const av=a[t_sortCol]??'',bv=b[t_sortCol]??'';return av<bv?-t_sortDir:av>bv?t_sortDir:0;});
   document.getElementById('t_countBadge').textContent=`${rows.length} entries`;
   const levelColors={1:'var(--blue-light)',2:'#fef9c3',3:'var(--red-light)'};
   const levelText={1:'var(--blue)',2:'#92400e',3:'var(--red)'};
-  document.getElementById('t_tbody').innerHTML=rows.map(r=>`
+  document.getElementById('t_tbody').innerHTML=rows.map(r=>{
+    const itemId=t_itemIdFor(r.brand,r.item);
+    return `
     <tr style="border-bottom:1px solid var(--g100);" onmouseover="this.style.background='var(--g50)'" onmouseout="this.style.background=''">
       <td style="padding:8px 12px;font-size:11px;font-family:monospace;color:var(--blue);font-weight:700;">${esc(r.id??'—')}</td>
       <td style="padding:8px 12px;font-size:13px;font-weight:600;">${esc(r.brand||'—')}</td>
-      <td style="padding:8px 12px;font-size:12px;color:var(--g600);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${esc(r.item||'—')}</td>
+      <td style="padding:8px 12px;font-size:12px;color:var(--g600);max-width:180px;">
+        ${r.item?`<div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(r.item)}">${esc(r.item)}</div>${itemId!=null?`<div style="font-family:monospace;font-size:10px;color:var(--blue);font-weight:700;margin-top:2px;">ID ${esc(itemId)}</div>`:'<div style="font-size:10px;color:var(--g400);margin-top:2px;">ID not found</div>'}`:'—'}
+      </td>
       <td style="padding:8px 12px;font-size:12px;font-family:monospace;color:var(--g900);">${esc(r.shop||'—')}</td>
       <td style="padding:8px 12px;font-size:12px;color:var(--g600);">${esc(r.date?r.date.slice(0,7):'—')}</td>
       <td style="padding:8px 12px;"><span style="background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600;">${esc(t_targetTypes[r.target_type_id]||r.target_type_id)}</span></td>
@@ -4067,7 +4093,8 @@ function t_renderTable(){
       <td style="padding:6px 12px;text-align:right;white-space:nowrap;">
         <button data-id="${esc(r.id)}" onclick="t_startEdit(this.dataset.id)" aria-label="Edit target ${esc(r.id)}" style="height:28px;padding:0 10px;border:1px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--blue);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;">Edit</button>
       </td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
 }
 
 async function t_startEdit(id){
@@ -4112,7 +4139,6 @@ function t_cancelEdit(){
   document.getElementById('t_value').value='';
   document.getElementById('t_date').value='';
   t_allItemsList=[];
-  t_itemIdByName={};
   t_setLevel(1);
 }
 
@@ -4150,7 +4176,7 @@ function t_updateMultiList(){
     checkbox.style.cssText='accent-color:var(--blue);width:13px;height:13px;cursor:pointer;';
     checkbox.addEventListener('change',t_updateMultiCount);
     const label=document.createElement('label');
-    label.htmlFor=id;label.textContent=t_multiBy==='item'?`${opt} · ID ${t_itemIdByName[opt]??'—'}`:opt;
+    label.htmlFor=id;label.textContent=opt;
     label.style.cssText='font-size:12px;color:var(--g900);cursor:pointer;';
     div.append(checkbox,label);
     list.appendChild(div);
