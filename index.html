@@ -3983,6 +3983,7 @@ async function sc_saveRow(){
 let t_allTargets=[], t_targetTypes={}, t_selectedLevel=1, t_editingId=null;
 let t_sortCol='id', t_sortDir=-1;
 let t_multiMode=false, t_multiBy='shop', t_allShopsList=[], t_allItemsList=[];
+let t_itemIdByName={};
 let t_initialized=false;
 
 async function t_initIfNeeded(){if(!t_initialized){t_initialized=true;await t_init();}}
@@ -4013,11 +4014,14 @@ async function t_loadItems(){
   const sel=document.getElementById('t_item');
   if(!brand){sel.innerHTML='<option value="">Select brand first…</option>';return;}
   sel.innerHTML='<option value="">Loading…</option>';sel.disabled=true;
-  const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_items?select=full_productname&brand=eq.${encodeURIComponent(brand)}&full_productname=not.is.null&order=full_productname`);
+  const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_items?select=id,full_productname&brand=eq.${encodeURIComponent(brand)}&full_productname=not.is.null&order=full_productname,id`);
+  if(!res.ok)throw new Error(await res.text());
   const items=await res.json();
+  t_itemIdByName={};
+  items.forEach(item=>{if(item.full_productname&&t_itemIdByName[item.full_productname]==null)t_itemIdByName[item.full_productname]=item.id;});
   t_allItemsList=[...new Set(items.map(i=>i.full_productname).filter(Boolean))];
   sel.innerHTML='<option value="">No specific item</option>';
-  t_allItemsList.forEach(name=>sel.insertAdjacentHTML('beforeend',`<option value="${esc(name)}">${esc(name)}</option>`));
+  t_allItemsList.forEach(name=>sel.insertAdjacentHTML('beforeend',`<option value="${esc(name)}">${esc(name)} · ID ${esc(t_itemIdByName[name])}</option>`));
   sel.disabled=false;
   if(t_multiMode&&t_multiBy==='item')t_updateMultiList();
 }
@@ -4108,6 +4112,7 @@ function t_cancelEdit(){
   document.getElementById('t_value').value='';
   document.getElementById('t_date').value='';
   t_allItemsList=[];
+  t_itemIdByName={};
   t_setLevel(1);
 }
 
@@ -4145,7 +4150,7 @@ function t_updateMultiList(){
     checkbox.style.cssText='accent-color:var(--blue);width:13px;height:13px;cursor:pointer;';
     checkbox.addEventListener('change',t_updateMultiCount);
     const label=document.createElement('label');
-    label.htmlFor=id;label.textContent=opt;
+    label.htmlFor=id;label.textContent=t_multiBy==='item'?`${opt} · ID ${t_itemIdByName[opt]??'—'}`:opt;
     label.style.cssText='font-size:12px;color:var(--g900);cursor:pointer;';
     div.append(checkbox,label);
     list.appendChild(div);
