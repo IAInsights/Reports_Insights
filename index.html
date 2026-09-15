@@ -486,6 +486,12 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .items-empty{padding:52px 20px;text-align:center;color:var(--g400);font-size:12px;}
 .items-toast{position:fixed;right:24px;bottom:24px;z-index:10020;padding:10px 15px;border-radius:7px;color:#fff;font-size:12px;font-weight:650;box-shadow:var(--shadow);display:none;max-width:360px;}
 @media(max-width:1250px){.items-editor{position:absolute;right:20px;top:128px;bottom:16px;z-index:50;width:min(410px,calc(100% - 40px));}.items-main{position:relative;}.items-select{max-width:145px}.items-search{min-width:190px}}
+.cc-shell{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
+.cc-head{padding:12px 20px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex-shrink:0;}
+.cc-head-copy{margin-right:auto}.cc-title{font-size:15px;font-weight:700}.cc-sub{font-size:11.5px;color:var(--g500);margin-top:2px}.cc-filter{height:30px;min-width:125px;max-width:165px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;outline:none}.cc-filter:focus{border-color:var(--blue)}
+.cc-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(650px,1fr) 330px;gap:10px;padding:12px 20px;overflow:hidden}.cc-list,.cc-detail{background:#fff;border:1px solid var(--g200);border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden;min-height:0}.cc-list{overflow:auto}.cc-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.cc-table th{position:sticky;top:0;z-index:2;padding:8px;background:var(--g50);border-bottom:2px solid var(--g200);color:var(--g600);text-align:left;text-transform:uppercase;letter-spacing:.04em;font-size:9.5px}.cc-table td{padding:9px 8px;border-bottom:1px solid var(--g100);vertical-align:middle}.cc-row{cursor:pointer}.cc-row:hover,.cc-row.selected{background:#f8fbff}.cc-row.selected{box-shadow:inset 3px 0 0 var(--blue)}.cc-alert{display:inline-flex;align-items:center;padding:3px 7px;border-radius:20px;background:var(--amber-light);color:var(--amber);font-size:10px;font-weight:700}.cc-name{font-weight:700;color:var(--g900);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cc-meta{font-size:10px;color:var(--g500);margin-top:3px}.cc-mission{border:0;background:none;color:var(--blue);font:600 10px/1.3 monospace;text-decoration:underline;cursor:pointer;padding:0;margin-top:4px}.cc-sap{font:700 10px/1.3 monospace;color:var(--blue)}.cc-status{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700}.cc-status.ok{color:var(--green)}.cc-status.missing{color:var(--red)}.cc-status.pending{color:var(--amber)}.cc-pbi{display:inline-flex;align-items:center;padding:4px 7px;border-radius:5px;background:var(--purple-light);color:var(--purple);font-size:10px;font-weight:700;text-decoration:none}
+.cc-detail{display:flex;flex-direction:column}.cc-detail-head{padding:13px 15px;border-bottom:1px solid var(--g200)}.cc-eyebrow{font-size:9.5px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.05em}.cc-detail-title{font-size:15px;font-weight:700;margin-top:6px}.cc-detail-sub{font-size:10.5px;color:var(--g500);margin-top:4px}.cc-date-range{margin-top:9px;padding:8px 10px;border-radius:7px;background:var(--blue-light);color:var(--blue-dark);font-size:11px}.cc-date-range strong{display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}.cc-detail-body{flex:1;overflow:auto;padding:12px 15px}.cc-section+.cc-section{border-top:1px solid var(--g100);margin-top:13px;padding-top:13px}.cc-section-title{font-size:9.5px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px}.cc-check{display:grid;grid-template-columns:23px 1fr auto;align-items:center;gap:8px;min-height:48px}.cc-check+.cc-check{border-top:1px solid var(--g100)}.cc-check-box{width:22px;height:22px;border:1.5px solid var(--g300);border-radius:5px;display:grid;place-items:center;background:#fff;color:var(--g400);font-size:14px;cursor:pointer}.cc-check-box.checked{background:var(--green);border-color:var(--green);color:#fff}.cc-check-label{font-size:11px;font-weight:700}.cc-check-help{font-size:9.5px;color:var(--g500);margin-top:2px}.cc-check-tag{padding:2px 6px;border-radius:10px;background:var(--g100);color:var(--g500);font-size:9.5px}.cc-check-tag.ok{background:var(--green-light);color:var(--green)}.cc-detail-foot{padding:10px 15px;background:var(--g50);border-top:1px solid var(--g200)}.cc-ready-note{font-size:10.5px;color:var(--amber);margin-bottom:7px}.cc-email{display:flex;align-items:center;justify-content:center;width:100%;height:34px;border:0;border-radius:var(--r);background:var(--blue);color:#fff;font-family:inherit;font-size:11.5px;font-weight:700;text-decoration:none;cursor:pointer}.cc-email.disabled{background:var(--g300);color:var(--g500);pointer-events:none}.cc-empty{padding:50px;text-align:center;color:var(--g500)}
+@media(max-width:1050px){.cc-body{grid-template-columns:1fr;overflow:auto}.cc-list{min-height:430px}.cc-detail{min-height:440px}}
 </style>
 <body>
 
@@ -681,6 +687,7 @@ window._authReady=restoreSupabaseSession();
   <button class="tab-btn"        id="tab1btn" onclick="switchTab(1)">Entry Form</button>
   <button class="tab-btn"        id="tab2btn" onclick="switchTab(2)">Status Update</button>
   <button class="tab-btn"        id="tab3btn" onclick="switchTab(3)">Under Review</button>
+  <button class="tab-btn"        id="tab9btn" onclick="switchTab(9)">Closing Check</button>
   <button class="tab-btn"        id="tab4btn" onclick="switchTab(4)">Ready to Send</button>
   <button class="tab-btn"        id="tab5btn" onclick="switchTab(5)">Shift Comments</button>
   <button class="tab-btn"        id="tab6btn" onclick="switchTab(6)">Targets</button>
@@ -1024,6 +1031,25 @@ window._authReady=restoreSupabaseSession();
   </div>
 </div>
 
+<!-- PAGE 9 – CLOSING CHECK -->
+<div class="page" id="page9">
+  <div class="cc-shell">
+    <div class="cc-head">
+      <div class="cc-head-copy"><div class="cc-title">Closing Check</div><div class="cc-sub" id="cc-subline">Animations ending within 5 days · final client-send requirements</div></div>
+      <select class="cc-filter" id="cc-filter-sap" onchange="cc_render()"><option value="">All SAP codes</option></select>
+      <select class="cc-filter" id="cc-filter-client" onchange="cc_render()"><option value="">All clients</option></select>
+      <select class="cc-filter" id="cc-filter-agency" onchange="cc_render()"><option value="">All agencies</option></select>
+      <select class="cc-filter" id="cc-filter-sector" onchange="cc_render()"><option value="">All sectors</option></select>
+      <button class="cc-filter" type="button" onclick="cc_resetFilters()">Reset</button>
+      <button class="cc-filter" type="button" onclick="cc_load()">Refresh</button>
+    </div>
+    <div class="cc-body">
+      <div class="cc-list" id="cc-list"><div class="cc-empty">Loading…</div></div>
+      <aside class="cc-detail" id="cc-detail"><div class="cc-empty">Select an animation to review its final checks.</div></aside>
+    </div>
+  </div>
+</div>
+
 <!-- PAGE 4 – READY TO SEND -->
 <div class="page" id="page4">
   <div class="p3">
@@ -1353,6 +1379,13 @@ window._authReady=restoreSupabaseSession();
     <input type="date" id="rc_from" onchange="rc_scheduleLoad()" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
     <span style="font-size:12px;color:var(--g600);font-weight:500;">To</span>
     <input type="date" id="rc_to" onchange="rc_scheduleLoad()" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
+
+    <select id="rc_record_campaign" onchange="rc_pickTrackingRecord(this.value)" title="Select a campaign and load its complete date range" style="height:30px;max-width:230px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;color:var(--g600);outline:none;">
+      <option value="">Select campaign</option>
+    </select>
+    <select id="rc_record_sap" onchange="rc_pickTrackingRecord(this.value)" title="Select a SAP code and load its complete date range" style="height:30px;max-width:170px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;color:var(--g600);outline:none;">
+      <option value="">Select SAP code</option>
+    </select>
 
     <!-- Checkbox filters are generated after the reporting data loads -->
     <div id="rc_filter_bar" class="rc-filter-bar"></div>
@@ -1766,13 +1799,20 @@ function resetFiltersForPage(page){
     rc_data=[];
     rc_initialized=false;
     rc_closeFilterMenus();
+    const campaignPicker=document.getElementById('rc_record_campaign');
+    const sapPicker=document.getElementById('rc_record_sap');
+    if(campaignPicker)campaignPicker.value='';
+    if(sapPicker)sapPicker.value='';
+  }
+  if(page===9){
+    cc_resetFilters();
   }
 }
 
 function switchTab(n){
   if(n!==currentTab)resetFiltersForPage(currentTab);
   currentTab=n;
-  [0,1,2,3,4,5,6,7,8].forEach(i=>{
+  [0,1,2,3,4,5,6,7,8,9].forEach(i=>{
     const p=document.getElementById('page'+i);
     const b=document.getElementById('tab'+i+'btn');
     if(p) p.classList.toggle('active',n===i);
@@ -1788,6 +1828,7 @@ function switchTab(n){
   if(n===6) t_initIfNeeded();
   if(n===7) items_initIfNeeded();
   if(n===8) rc_initIfNeeded();
+  if(n===9) cc_initIfNeeded();
 }
 function goHome(){
   switchTab(0);
@@ -1814,6 +1855,7 @@ async function init(){
     allCo=co||[]; allCl=cl||[]; allBr=br||[]; allSt=st||[]; allCon=con||[]; allRT=rt||[]; allSectors=sec||[];
     allAccountManagers=(ops||[]).filter(isAccountManager);
     allRec=filtRec=rec;
+    rc_populateTrackingPickers();
     ms.company.all   =co.map(c=>({id:c.id,label:c.name,sub:'',meta:c}));
     ms.client.all    =cl.map(c=>({id:c.id,label:c.client,sub:`ID ${c.id}`,meta:c}));
     ms.brand.all     =br.map(brandOption);
@@ -3157,7 +3199,15 @@ let p3All=[], p3View='pending', p3EmailBodies={}, p3OpsContacts=[], p3ValidatorS
 
 async function loadP3(){
   try{
-    const rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date&under_review_date=not.is.null&order=under_review_date.desc');
+    let rows;
+    try{
+      rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date,reporting_compliant,kpis_ok,global_feedback_received&under_review_date=not.is.null&order=under_review_date.desc');
+      cc_schemaReady=true;
+    }catch(error){
+      rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date&under_review_date=not.is.null&order=under_review_date.desc');
+      rows.forEach(record=>{record.reporting_compliant=false;record.kpis_ok=false;record.global_feedback_received=false;});
+      cc_schemaReady=false;
+    }
     p3All = rows;
     p3ValidatorSelections = {};
     populateReviewSectorFilter(3);
@@ -3343,6 +3393,14 @@ function rvCard(r){
   // Email column (validated only)
   let emailCol='<div style="font-size:11px;color:var(--g400);margin-top:4px;">Validate to enable sending</div>';
   if(isVal){
+    const finalSentDate=r.email_sent_date||r.first_report_date;
+    const closingReady=!!(r.reporting_compliant&&r.kpis_ok&&r.global_feedback_received);
+    if(finalSentDate){
+      emailCol=`<div style="padding:9px;border-radius:7px;background:var(--green-light);color:var(--green);font-size:11.5px;font-weight:700;text-align:center;line-height:1.45;">✓ Final report was sent<br><span style="font-size:10.5px;font-weight:500;">${fd(finalSentDate)}</span></div>`;
+    }else if(!closingReady){
+      const missing=[!r.reporting_compliant?'Compliance':'',!r.kpis_ok?'KPIs':'',!r.global_feedback_received?'Global feedback':''].filter(Boolean);
+      emailCol=`<div style="padding:8px;border-radius:7px;background:var(--amber-light);color:var(--amber);font-size:11px;line-height:1.45;"><strong>Email locked</strong><br>Missing: ${esc(missing.join(', '))}</div><button type="button" class="btn-copy-html-sm" onclick="switchTab(9);cc_selectedId=${r.id};cc_load()" style="margin-top:6px;">Open Closing Check</button>`;
+    }else{
     const raw=r.contactName_Email||'';
     const emails=[...raw.matchAll(/<([^>]+@[^>]+)>/g)].map(m=>safeEmail(m[1])).filter(Boolean);
     const names=[...raw.matchAll(/([^<,]+)\s*</g)].map(m=>m[1].trim());
@@ -3373,9 +3431,10 @@ function rvCard(r){
       <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
       Copy HTML email
     </button>`:'<div style="font-size:11px;color:var(--g400);">No email addresses</div>'}`;
+    }
   }
 
-  const sentChip=r.first_report_date?`<div style="margin-top:4px;"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:var(--green-light);color:var(--green);">Sent ${fd(r.first_report_date)}</span></div>`:'';
+  const sentChip=(r.email_sent_date||r.first_report_date)?`<div style="margin-top:4px;"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:var(--green-light);color:var(--green);">Final report was sent · ${fd(r.email_sent_date||r.first_report_date)}</span></div>`:'';
 
   return `<div class="rv-card ${cls}">
     <div class="rv-top">
@@ -4624,6 +4683,113 @@ function items_showToast(message,type='success'){
 }
 
 // ═══════════════════════════════════════════════════════════
+// PAGE 9 – CLOSING CHECK
+// ═══════════════════════════════════════════════════════════
+let cc_rows=[],cc_initialized=false,cc_selectedId=null,cc_schemaReady=true;
+const ccSelect='id,Title,client,brand,sapcode,mission_id,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,reporting_compliant,kpis_ok,global_feedback_received,first_report_date,email_sent_date,cancelled_date,not_sent_date';
+const ccFallbackSelect='id,Title,client,brand,sapcode,mission_id,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,first_report_date,email_sent_date,cancelled_date,not_sent_date';
+const ccToday=()=>new Date().toISOString().split('T')[0];
+const ccPlusDays=days=>{const date=new Date();date.setDate(date.getDate()+days);return date.toISOString().split('T')[0];};
+const ccAgencyNames=record=>resolveIds(record.company_ids,allCo,'name').filter(Boolean);
+const ccRecordClient=record=>shortClient(record)||record.client||'';
+const ccRecordSectors=record=>shortSectors(record);
+const ccFlagLabel=value=>value?'Complete':'Missing';
+
+async function cc_initIfNeeded(){if(!cc_initialized){cc_initialized=true;await cc_load();}else cc_render();}
+async function cc_load(){
+  const list=document.getElementById('cc-list');
+  if(list)list.innerHTML='<div class="cc-empty">Loading animations ending soon…</div>';
+  try{
+    const from=ccToday(),to=ccPlusDays(5);
+    try{
+      cc_rows=await sbGet(`InsightsTracking?select=${ccSelect}&enddate=gte.${from}&enddate=lte.${to}&order=enddate.asc`);
+      cc_schemaReady=true;
+    }catch(error){
+      cc_rows=await sbGet(`InsightsTracking?select=${ccFallbackSelect}&enddate=gte.${from}&enddate=lte.${to}&order=enddate.asc`);
+      cc_rows.forEach(record=>{record.reporting_compliant=false;record.kpis_ok=false;record.global_feedback_received=false;});
+      cc_schemaReady=false;
+    }
+    cc_rows=cc_rows.filter(record=>!record.cancelled_date&&!record.not_sent_date&&!record.first_report_date&&!record.email_sent_date);
+    if(!cc_rows.some(record=>String(record.id)===String(cc_selectedId)))cc_selectedId=cc_rows[0]?.id??null;
+    cc_populateFilters();cc_render();
+  }catch(error){if(list)list.innerHTML=`<div class="cc-empty" style="color:var(--red)">Could not load Closing Check: ${esc(error.message)}</div>`;}
+}
+
+function ccSetOptions(id,values,label){
+  const select=document.getElementById(id);if(!select)return;
+  const current=select.value;
+  const unique=[...new Set(values.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true,sensitivity:'base'}));
+  select.innerHTML=`<option value="">All ${label}</option>`+unique.map(value=>`<option value="${esc(value)}">${esc(value)}</option>`).join('');
+  select.value=unique.includes(current)?current:'';
+}
+function cc_populateFilters(){
+  ccSetOptions('cc-filter-sap',cc_rows.map(record=>record.sapcode),'SAP codes');
+  ccSetOptions('cc-filter-client',cc_rows.map(ccRecordClient),'clients');
+  ccSetOptions('cc-filter-agency',cc_rows.flatMap(ccAgencyNames),'agencies');
+  ccSetOptions('cc-filter-sector',cc_rows.flatMap(ccRecordSectors),'sectors');
+}
+function cc_filteredRows(){
+  const sap=document.getElementById('cc-filter-sap')?.value||'';
+  const client=document.getElementById('cc-filter-client')?.value||'';
+  const agency=document.getElementById('cc-filter-agency')?.value||'';
+  const sector=document.getElementById('cc-filter-sector')?.value||'';
+  return cc_rows.filter(record=>(!sap||record.sapcode===sap)&&(!client||ccRecordClient(record)===client)&&(!agency||ccAgencyNames(record).includes(agency))&&(!sector||ccRecordSectors(record).includes(sector)));
+}
+function cc_resetFilters(){['cc-filter-sap','cc-filter-client','cc-filter-agency','cc-filter-sector'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});cc_render();}
+function cc_select(id){cc_selectedId=id;cc_render();}
+function cc_checkHtml(value,label,help,field,id){
+  return `<div class="cc-check"><button type="button" class="cc-check-box${value?' checked':''}" onclick="cc_toggle(${id},'${field}',${value?'false':'true'})"${cc_schemaReady?'':' disabled'}>${value?'✓':''}</button><div><div class="cc-check-label">${esc(label)}</div><div class="cc-check-help">${esc(help)}</div></div><span class="cc-check-tag${value?' ok':''}">${ccFlagLabel(value)}</span></div>`;
+}
+function cc_render(){
+  const rows=cc_filteredRows();
+  const list=document.getElementById('cc-list');
+  const sub=document.getElementById('cc-subline');
+  if(sub)sub.textContent=`${rows.length} animation${rows.length===1?'':'s'} ending within 5 days · final client-send requirements${cc_schemaReady?'':' · database setup required'}`;
+  if(!list)return;
+  if(!rows.length){list.innerHTML='<div class="cc-empty">No animations ending in the next 5 days match these filters.</div>';document.getElementById('cc-detail').innerHTML='<div class="cc-empty">No animation selected.</div>';return;}
+  if(!rows.some(record=>String(record.id)===String(cc_selectedId)))cc_selectedId=rows[0].id;
+  list.innerHTML=`<table class="cc-table"><colgroup><col style="width:62px"><col style="width:190px"><col style="width:92px"><col style="width:122px"><col style="width:95px"><col style="width:78px"><col style="width:92px"><col style="width:60px"></colgroup><thead><tr><th>Alert</th><th>Animation / mission</th><th>SAP code</th><th>Operation dates</th><th>Compliance</th><th>KPIs</th><th>Feedback</th><th>BI</th></tr></thead><tbody>${rows.map(record=>{
+    const selected=String(record.id)===String(cc_selectedId),pbi=safeHttpUrl(record.powerbi_url);
+    return `<tr class="cc-row${selected?' selected':''}" onclick="cc_select(${record.id})"><td><span class="cc-alert">N-5</span></td><td><div class="cc-name">${esc(record.Title||'Untitled animation')}</div><div class="cc-meta">${esc(ccRecordClient(record))}</div><button class="cc-mission" onclick="event.stopPropagation();cc_openReporting(${record.id})">Mission ${esc(record.mission_id??'—')} → Reporting Check</button></td><td><span class="cc-sap">${esc(record.sapcode||'—')}</span></td><td><div>${fd(record.startdate)||'—'}</div><div class="cc-meta">to ${fd(record.enddate)||'—'}</div></td><td><span class="cc-status ${record.reporting_compliant?'ok':'missing'}">${record.reporting_compliant?'✓ Complete':'✕ Missing'}</span></td><td><span class="cc-status ${record.kpis_ok?'ok':'missing'}">${record.kpis_ok?'✓ OK':'✕ Missing'}</span></td><td><span class="cc-status ${record.global_feedback_received?'ok':'missing'}">${record.global_feedback_received?'✓ Received':'✕ Missing'}</span></td><td>${pbi?`<a class="cc-pbi" href="${esc(pbi)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Open</a>`:'—'}</td></tr>`;
+  }).join('')}</tbody></table>`;
+  cc_renderDetail(rows.find(record=>String(record.id)===String(cc_selectedId))||rows[0]);
+}
+function cc_renderDetail(record){
+  const detail=document.getElementById('cc-detail');if(!detail||!record)return;
+  const allReady=!!(record.reporting_compliant&&record.kpis_ok&&record.global_feedback_received);
+  const raw=record.contactName_Email||'';
+  const emails=[...raw.matchAll(/<([^>]+@[^>]+)>/g)].map(match=>safeEmail(match[1])).filter(Boolean);
+  const pbi=safeHttpUrl(record.powerbi_url)||'[Power BI link not set]';
+  const subject=encodeURIComponent(`Globe TR - Final Report - ${record.Title||record.sapcode||''}`);
+  const body=encodeURIComponent(`Hello,\r\n\r\nThe final report for ${record.Title||'the animation'} is ready.\r\n\r\nPower BI: ${pbi}\r\n\r\nKind regards,`);
+  const mailto=`mailto:${emails.join(',')}?subject=${subject}&body=${body}`;
+  const missing=[!record.reporting_compliant?'reporting compliance':'',!record.kpis_ok?'KPI confirmation':'',!record.global_feedback_received?'global feedback':''].filter(Boolean);
+  detail.innerHTML=`<div class="cc-detail-head"><div class="cc-eyebrow">Final client check · N-5</div><div class="cc-detail-title">${esc(record.Title||'Untitled animation')}</div><div class="cc-detail-sub">Mission ${esc(record.mission_id??'—')} · SAP ${esc(record.sapcode||'—')}</div><div class="cc-date-range"><strong>Operation date range</strong>${fd(record.startdate)||'—'} → ${fd(record.enddate)||'—'}</div></div><div class="cc-detail-body"><div class="cc-section"><div class="cc-section-title">Final requirements</div>${cc_checkHtml(!!record.reporting_compliant,'Reporting compliance confirmed','Verified in Reporting Check','reporting_compliant',record.id)}${cc_checkHtml(!!record.kpis_ok,'KPIs checked','Results and data quality confirmed','kpis_ok',record.id)}${cc_checkHtml(!!record.global_feedback_received,'Global feedback received','Final feedback confirmed','global_feedback_received',record.id)}</div><div class="cc-section"><div class="cc-section-title">Power BI</div>${safeHttpUrl(record.powerbi_url)?`<a class="cc-pbi" style="width:100%;justify-content:center;padding:7px" href="${esc(safeHttpUrl(record.powerbi_url))}" target="_blank" rel="noopener noreferrer">Open Power BI report</a>`:'<div class="cc-meta">No Power BI link set.</div>'}</div></div><div class="cc-detail-foot"><div class="cc-ready-note" style="color:${allReady?'var(--green)':'var(--amber)'}">${allReady?'All requirements met · client email is ready':`Waiting for ${missing.join(', ')||'database setup'}`}</div>${allReady&&emails.length?`<a class="cc-email" href="${esc(mailto)}" onclick="cc_markEmailSent(${record.id})">Open client email</a>`:`<span class="cc-email disabled">${emails.length?'Open client email':'No client email linked'}</span>`}</div>`;
+}
+async function cc_toggle(id,field,value){
+  if(!cc_schemaReady){toast('Run the Supabase closing-check columns setup first.','error');return;}
+  try{await sbPatch('InsightsTracking',id,{[field]:value});const record=cc_rows.find(item=>String(item.id)===String(id));if(record)record[field]=value;cc_render();toast('Closing check updated.','success');}catch(error){toast('Could not update: '+error.message,'error');}
+}
+async function cc_markEmailSent(id){
+  try{const today=ccToday();await sbPatch('InsightsTracking',id,{email_sent_date:today,first_report_date:today});cc_rows=cc_rows.filter(record=>String(record.id)!==String(id));cc_selectedId=cc_rows[0]?.id??null;cc_populateFilters();cc_render();toast('Final report email opened and marked as sent.','success');}catch(error){toast('Could not mark final report as sent: '+error.message,'error');}
+}
+async function cc_openReporting(id){
+  const record=cc_rows.find(item=>String(item.id)===String(id));if(!record)return;
+  rc_initialized=true;switchTab(8);
+  rc_populateTrackingPickers();
+  const campaignPicker=document.getElementById('rc_record_campaign'),sapPicker=document.getElementById('rc_record_sap');
+  if(campaignPicker)campaignPicker.value=String(record.id);if(sapPicker)sapPicker.value=String(record.id);
+  rc_filterOptions={};rc_filterState={};rc_filterMode={};rc_forceAllFilters=true;rc_kpiFilter='';
+  document.getElementById('rc_from').value=record.startdate||ccToday();document.getElementById('rc_to').value=record.enddate||ccToday();
+  await rc_load();
+  if(record.sapcode){rc_filterMode.sapcode='custom';rc_filterState.sapcode=new Set([String(record.sapcode)]);}
+  const campaigns=[...new Set(rc_data.map(row=>row.campaignName).filter(Boolean))];
+  const matchingCampaign=campaigns.find(name=>rcSameValue(name,record.Title));
+  if(matchingCampaign){rc_filterMode.campaign='custom';rc_filterState.campaign=new Set([matchingCampaign]);}
+  rc_populateFilters();rc_render();
+}
+
+// ═══════════════════════════════════════════════════════════
 // PAGE 8 – REPORTING CHECK
 // ═══════════════════════════════════════════════════════════
 let rc_data = [];
@@ -4747,6 +4913,7 @@ function rc_resetFilters(){
 }
 
 function rc_initIfNeeded(){
+  rc_populateTrackingPickers();
   if(!rc_initialized){
     rc_initialized = true;
     const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
@@ -4755,6 +4922,36 @@ function rc_initIfNeeded(){
     document.getElementById('rc_to').value   = yStr;
     rc_load();
   }
+}
+
+function rc_populateTrackingPickers(){
+  const campaign=document.getElementById('rc_record_campaign');
+  const sap=document.getElementById('rc_record_sap');
+  if(!campaign||!sap)return;
+  const currentCampaign=campaign.value,currentSap=sap.value;
+  const records=[...allRec].filter(record=>record.startdate&&record.enddate&&(record.Title||record.sapcode))
+    .sort((a,b)=>String(b.enddate||'').localeCompare(String(a.enddate||''))||String(a.Title||'').localeCompare(String(b.Title||'')));
+  campaign.innerHTML='<option value="">Select campaign</option>'+records.filter(record=>record.Title).map(record=>`<option value="${record.id}">${esc(record.Title)}${record.sapcode?` · ${esc(record.sapcode)}`:''}</option>`).join('');
+  sap.innerHTML='<option value="">Select SAP code</option>'+records.filter(record=>record.sapcode).map(record=>`<option value="${record.id}">${esc(record.sapcode)}${record.Title?` · ${esc(record.Title)}`:''}</option>`).join('');
+  campaign.value=records.some(record=>String(record.id)===String(currentCampaign))?currentCampaign:'';
+  sap.value=records.some(record=>String(record.id)===String(currentSap))?currentSap:'';
+}
+
+async function rc_pickTrackingRecord(id){
+  if(!id)return;
+  const record=allRec.find(item=>String(item.id)===String(id));
+  if(!record||!record.startdate||!record.enddate)return;
+  const campaign=document.getElementById('rc_record_campaign'),sap=document.getElementById('rc_record_sap');
+  if(campaign)campaign.value=String(record.id);if(sap)sap.value=String(record.id);
+  document.getElementById('rc_from').value=record.startdate;
+  document.getElementById('rc_to').value=record.enddate;
+  rc_filterOptions={};rc_filterState={};rc_filterMode={};rc_forceAllFilters=true;rc_kpiFilter='';
+  await rc_load();
+  if(record.sapcode){rc_filterMode.sapcode='custom';rc_filterState.sapcode=new Set([String(record.sapcode)]);}
+  const campaignNames=[...new Set(rc_data.map(row=>row.campaignName).filter(Boolean))];
+  const selectedCampaign=campaignNames.find(name=>rcSameValue(name,record.Title));
+  if(selectedCampaign){rc_filterMode.campaign='custom';rc_filterState.campaign=new Set([selectedCampaign]);}
+  rc_populateFilters();rc_render();
 }
 
 const rcNorm=value=>String(value??'')
