@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Report Enter</title>
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=globe-insights">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
@@ -1693,7 +1694,82 @@ function brandOption(brand){
 }
 
 // ── Navigation ─────────────────────────────────────────────────────────────
+function resetFiltersForPage(page){
+  if(page<=2){
+    GF_KEYS.forEach(key=>gF[key]='');
+    closeAllGFD();
+    cascadeGF();
+    const search=document.getElementById('searchInput');
+    const sidebarCompany=document.getElementById('sb-company-filter');
+    if(search)search.value='';
+    if(sidebarCompany)sidebarCompany.value='';
+  }
+  if(page===2){
+    p2Filter='all';
+    p2Search={brand:'',store:''};
+    p2SortDir='desc';
+    p2View2='active';
+    const arrow=document.getElementById('p2-sort-arrow');
+    if(arrow)arrow.textContent='↓';
+  }
+  if(page===3){
+    const company=document.getElementById('p3-company-filter');
+    if(company)company.value='';
+    populateReviewSectorFilter(3);
+    const sector=document.getElementById('p3-sector-filter');
+    if(sector)sector.value='';
+    p3View='pending';
+    ['pending','all'].forEach(view=>document.getElementById('p3-tab-'+view)?.classList.toggle('active',view==='pending'));
+  }
+  if(page===4){
+    const company=document.getElementById('p4-company-filter');
+    if(company)company.value='';
+    populateReviewSectorFilter(4);
+    const sector=document.getElementById('p4-sector-filter');
+    if(sector)sector.value='';
+    p4View='ready';
+    ['ready','sent'].forEach(view=>document.getElementById('p4-tab-'+view)?.classList.toggle('active',view==='ready'));
+  }
+  if(page===5){
+    document.getElementById('sc_filterDate').value='';
+    document.getElementById('sc_filterBrand').value='';
+    document.getElementById('sc_filterStore').innerHTML='<option value="">All stores</option>';
+    document.getElementById('sc_filterSearch').value='';
+    sc_sortCol='Brand';
+    sc_sortAsc=true;
+  }
+  if(page===6){
+    document.getElementById('t_filter').value='';
+    t_sortCol='id';
+    t_sortDir=-1;
+    if(t_initialized)t_renderTable();
+  }
+  if(page===7){
+    document.getElementById('itemsSearch').value='';
+    document.getElementById('itemsBrandFilter').value='';
+    document.getElementById('itemsClientFilter').value='';
+    document.getElementById('itemsSegmentFilter').value='';
+    items_visibility='all';
+    items_page=1;
+    ['All','Visible','Hidden'].forEach(key=>document.getElementById('itemsStat'+key).classList.toggle('active',key==='All'));
+    if(items_initialized)items_applyFilters(false);
+  }
+  if(page===8){
+    clearTimeout(rc_loadTimer);
+    rc_loadRequest++;
+    rc_filterOptions={};
+    rc_filterState={};
+    rc_filterMode={};
+    rc_forceAllFilters=true;
+    rc_kpiFilter='';
+    rc_data=[];
+    rc_initialized=false;
+    rc_closeFilterMenus();
+  }
+}
+
 function switchTab(n){
+  if(n!==currentTab)resetFiltersForPage(currentTab);
   currentTab=n;
   [0,1,2,3,4,5,6,7,8].forEach(i=>{
     const p=document.getElementById('page'+i);
@@ -3904,7 +3980,7 @@ async function sc_saveRow(){
 // PAGE 6 – TARGETS
 // ═══════════════════════════════════════════════════════════
 let t_allTargets=[], t_targetTypes={}, t_selectedLevel=1, t_editingId=null;
-let t_sortCol='date', t_sortDir=-1;
+let t_sortCol='id', t_sortDir=-1;
 let t_multiMode=false, t_multiBy='shop', t_allShopsList=[], t_allItemsList=[];
 let t_initialized=false;
 
