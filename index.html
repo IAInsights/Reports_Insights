@@ -1125,8 +1125,8 @@ window._authReady=restoreSupabaseSession();
   <!-- Targets: form + table split layout -->
   <div style="display:grid;grid-template-columns:340px 1fr;flex:1;overflow:hidden;">
     <!-- Form side -->
-    <div style="background:#fff;border-right:1px solid var(--g200);padding:20px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:16px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g500);">New Target</div>
+    <div id="t_formPanel" style="background:#fff;border-right:1px solid var(--g200);padding:20px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:16px;">
+      <div id="t_formTitle" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g500);">New Target</div>
 
       <div style="display:flex;flex-direction:column;gap:5px;">
         <label style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);">Brand</label>
@@ -1193,9 +1193,12 @@ window._authReady=restoreSupabaseSession();
 
       <div id="t_toast" style="display:none;padding:8px 12px;border-radius:var(--r);font-size:12px;font-weight:500;"></div>
 
-      <button id="t_btnSubmit" onclick="t_submitTarget()" style="padding:10px;background:var(--blue);color:#fff;border:none;border-radius:var(--r);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
-        <span>＋</span> Add Target
-      </button>
+      <div style="display:flex;gap:8px;">
+        <button id="t_btnCancelEdit" onclick="t_cancelEdit()" style="display:none;padding:10px 13px;background:#fff;color:var(--g600);border:1px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;">Cancel</button>
+        <button id="t_btnSubmit" onclick="t_submitTarget()" style="flex:1;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:var(--r);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+          <span id="t_btnSubmitIcon">＋</span><span id="t_btnSubmitText">Add Target</span>
+        </button>
+      </div>
     </div>
 
     <!-- Table side -->
@@ -1217,6 +1220,7 @@ window._authReady=restoreSupabaseSession();
               <th onclick="t_sortBy('target_type_id')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Type</th>
               <th onclick="t_sortBy('target_level')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Level</th>
               <th onclick="t_sortBy('value')" style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);cursor:pointer;white-space:nowrap;">Value</th>
+              <th style="padding:8px 12px;text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);border-bottom:2px solid var(--g200);white-space:nowrap;">Actions</th>
             </tr>
           </thead>
           <tbody id="t_tbody"></tbody>
@@ -3899,7 +3903,7 @@ async function sc_saveRow(){
 // ═══════════════════════════════════════════════════════════
 // PAGE 6 – TARGETS
 // ═══════════════════════════════════════════════════════════
-let t_allTargets=[], t_targetTypes={}, t_selectedLevel=1;
+let t_allTargets=[], t_targetTypes={}, t_selectedLevel=1, t_editingId=null;
 let t_sortCol='date', t_sortDir=-1;
 let t_multiMode=false, t_multiBy='shop', t_allShopsList=[], t_allItemsList=[];
 let t_initialized=false;
@@ -3979,7 +3983,55 @@ function t_renderTable(){
       <td style="padding:8px 12px;"><span style="background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600;">${esc(t_targetTypes[r.target_type_id]||r.target_type_id)}</span></td>
       <td style="padding:8px 12px;">${r.target_level!=null?`<span style="background:${levelColors[r.target_level]||'var(--g100)'};color:${levelText[r.target_level]||'var(--g600)'};padding:2px 8px;border-radius:3px;font-size:11px;font-weight:700;">T${esc(r.target_level)}</span>`:'<span style="color:var(--g400);">—</span>'}</td>
       <td style="padding:8px 12px;font-size:13px;font-weight:600;font-family:monospace;">${r.value!=null?r.value.toLocaleString():'—'}</td>
+      <td style="padding:6px 12px;text-align:right;white-space:nowrap;">
+        <button data-id="${esc(r.id)}" onclick="t_startEdit(this.dataset.id)" aria-label="Edit target ${esc(r.id)}" style="height:28px;padding:0 10px;border:1px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--blue);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;">Edit</button>
+      </td>
     </tr>`).join('');
+}
+
+async function t_startEdit(id){
+  const row=t_allTargets.find(r=>String(r.id)===String(id));
+  if(!row){t_showToast('Target not found. Refresh and try again.','error');return;}
+  t_editingId=row.id;
+  if(t_multiMode)t_toggleMultiMode();
+  document.getElementById('t_multiToggleWrap').style.display='none';
+  document.getElementById('t_formTitle').textContent=`Edit Target #${row.id}`;
+  document.getElementById('t_btnCancelEdit').style.display='block';
+  document.getElementById('t_btnSubmitIcon').textContent='✓';
+  document.getElementById('t_btnSubmitText').textContent='Save Changes';
+  const brandSelect=document.getElementById('t_brand');
+  if(row.brand&&![...brandSelect.options].some(o=>o.value===row.brand))brandSelect.insertAdjacentHTML('beforeend',`<option value="${esc(row.brand)}">${esc(row.brand)} (existing)</option>`);
+  brandSelect.value=row.brand||'';
+  await t_loadItems();
+  const itemSelect=document.getElementById('t_item');
+  if(row.item&&!t_allItemsList.includes(row.item))itemSelect.insertAdjacentHTML('beforeend',`<option value="${esc(row.item)}">${esc(row.item)}</option>`);
+  itemSelect.value=row.item||'';
+  const shopSelect=document.getElementById('t_shop');
+  if(row.shop&&![...shopSelect.options].some(o=>o.value===row.shop))shopSelect.insertAdjacentHTML('beforeend',`<option value="${esc(row.shop)}">${esc(row.shop)} (existing)</option>`);
+  shopSelect.value=row.shop||'';
+  document.getElementById('t_type').value=row.target_type_id??'';
+  t_setLevel(row.target_level==null?null:Number(row.target_level));
+  document.getElementById('t_value').value=row.value??'';
+  document.getElementById('t_date').value=row.date?String(row.date).slice(0,7):'';
+  document.getElementById('t_formPanel').scrollTo({top:0,behavior:'smooth'});
+}
+
+function t_cancelEdit(){
+  t_editingId=null;
+  document.getElementById('t_btnSubmit').disabled=false;
+  document.getElementById('t_formTitle').textContent='New Target';
+  document.getElementById('t_btnCancelEdit').style.display='none';
+  document.getElementById('t_btnSubmitIcon').textContent='＋';
+  document.getElementById('t_btnSubmitText').textContent='Add Target';
+  document.getElementById('t_multiToggleWrap').style.display='flex';
+  document.getElementById('t_brand').value='';
+  document.getElementById('t_item').innerHTML='<option value="">Select brand first…</option>';
+  document.getElementById('t_shop').value='';
+  document.getElementById('t_type').value='';
+  document.getElementById('t_value').value='';
+  document.getElementById('t_date').value='';
+  t_allItemsList=[];
+  t_setLevel(1);
 }
 
 function t_toggleMultiMode(){
@@ -4046,6 +4098,19 @@ async function t_submitTarget(){
   btn.disabled=true;
   try{
     const baseRecord={brand,item,shop,target_type_id:typeId,target_level:t_selectedLevel,value,date};
+    if(t_editingId!=null){
+      const editId=t_editingId;
+      const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_targets_v2?id=eq.${encodeURIComponent(editId)}`,{
+        method:'PATCH',headers:{'Prefer':'return=representation'},body:JSON.stringify(baseRecord)
+      });
+      if(!res.ok)throw new Error(await res.text()||`HTTP ${res.status}`);
+      const updated=await res.json();
+      if(!Array.isArray(updated)||updated.length!==1)throw new Error('The target could not be updated.');
+      t_cancelEdit();
+      await t_loadTargets();
+      t_showToast(`Target #${editId} updated!`,'success');
+      return;
+    }
     const records=[baseRecord];
     if(t_multiMode){
       const selected=[...document.querySelectorAll('#t_multiList input:checked')].map(c=>c.value);
