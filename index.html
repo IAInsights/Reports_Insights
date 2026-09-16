@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Report Enter</title>
+<title>Insights Manager</title>
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=globe-insights-2">
 <link rel="shortcut icon" type="image/png" href="favicon.png?v=globe-insights-2">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,15 +24,24 @@
 body{font-family:'Inter',sans-serif;font-size:13px;color:var(--g900);background:var(--g50);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
 
 /* ─ Header ─ */
-.header{background:var(--blue);color:#fff;height:52px;display:flex;align-items:center;padding:0 20px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.2);}
-.header h1{font-size:17px;font-weight:600;margin-right:24px;}
-.tab-btn{height:36px;padding:0 16px;background:rgba(255,255,255,.12);border:none;color:rgba(255,255,255,.75);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;border-radius:6px;margin:0 3px;transition:all .15s;}
-.tab-btn:hover{background:rgba(255,255,255,.22);color:#fff;}
-.tab-btn.active{background:#fff;color:var(--blue);font-weight:600;}
-.app-release{position:relative;margin-left:-14px;margin-right:10px;flex-shrink:0}.app-release summary{list-style:none;cursor:pointer;padding:4px 8px;border:1px solid rgba(255,255,255,.38);border-radius:12px;background:rgba(255,255,255,.13);color:#fff;font-size:9.5px;font-weight:700;white-space:nowrap;user-select:none}.app-release summary::-webkit-details-marker{display:none}.app-release[open] summary{background:#fff;color:var(--blue)}.release-panel{position:absolute;z-index:10050;top:32px;left:0;width:330px;padding:14px 15px;background:#fff;color:var(--g700);border:1px solid var(--g200);border-radius:9px;box-shadow:0 12px 30px rgba(15,23,42,.22)}.release-panel:before{content:"";position:absolute;top:-6px;left:20px;width:10px;height:10px;background:#fff;border-left:1px solid var(--g200);border-top:1px solid var(--g200);transform:rotate(45deg)}.release-heading{font-size:13px;font-weight:800;color:var(--g900)}.release-date{margin-top:2px;font-size:10px;color:var(--g400)}.release-list{margin:11px 0 0;padding-left:17px;font-size:11px;line-height:1.45}.release-list li+li{margin-top:6px}.release-list strong{color:var(--blue)}
-.home-btn{margin-left:auto;width:32px;height:32px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;transition:background .15s;}
-.home-btn:hover{background:rgba(255,255,255,.28);}
-.home-btn svg{width:18px;height:18px;fill:#fff;}
+.header{background:var(--blue);color:#fff;display:flex;flex-direction:column;align-items:stretch;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+.header-meta{min-height:54px;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;gap:18px;}
+.header-user{font-size:13px;font-weight:600;color:#fff;white-space:nowrap;}
+.header-tools{margin-left:auto;display:flex;align-items:center;gap:12px;min-width:0;}
+.header-date{font-size:13px;font-weight:600;color:#fff;white-space:nowrap;letter-spacing:.01em;}
+.header-nav{display:flex;align-items:center;gap:6px;padding:6px 12px 8px;border-top:1px solid rgba(255,255,255,.2);overflow-x:auto;scrollbar-width:thin;}
+.tab-btn{height:36px;padding:0 16px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.32);color:rgba(255,255,255,.86);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;border-radius:6px;transition:all .15s;white-space:nowrap;flex:0 0 auto;}
+.tab-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.65);color:#fff;}
+.tab-btn.active{background:#fff;border-color:#fff;color:var(--blue);font-weight:600;}
+.app-release{position:relative;flex-shrink:0}.app-release summary{list-style:none;cursor:pointer;padding:3px 2px;border:0;border-bottom:1px solid rgba(255,255,255,.75);background:transparent;color:#fff;font-size:12px;font-weight:600;white-space:nowrap;user-select:none}.app-release summary::-webkit-details-marker{display:none}.app-release[open] summary{color:#fff;border-bottom-color:#fff}.release-panel{position:absolute;z-index:10050;top:31px;right:0;width:350px;padding:14px 15px;background:#fff;color:var(--g700);border:1px solid var(--g200);border-radius:9px;box-shadow:0 12px 30px rgba(15,23,42,.22)}.release-panel:before{content:"";position:absolute;top:-6px;right:32px;width:10px;height:10px;background:#fff;border-left:1px solid var(--g200);border-top:1px solid var(--g200);transform:rotate(45deg)}.release-heading{font-size:13px;font-weight:800;color:var(--g900)}.release-date{margin-top:2px;font-size:10px;color:var(--g400)}.release-list{margin:11px 0 0;padding-left:17px;font-size:11px;line-height:1.45}.release-list li+li{margin-top:6px}.release-list strong{color:var(--blue)}
+.logout-icon{width:34px;height:34px;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;flex:0 0 auto;}
+.logout-icon:hover{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.7);}
+.logout-icon svg{width:17px;height:17px;fill:currentColor;}
+.workflow-tools-bar{display:none;align-items:center;gap:8px;padding:8px 20px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0;}
+.workflow-tool-btn{height:34px;padding:0 16px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g600);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;}
+.workflow-tool-btn:hover{border-color:var(--blue);color:var(--blue);}
+.workflow-tool-btn.active{background:var(--blue-light);border-color:var(--blue);color:var(--blue);}
+@media(max-width:900px){.header-meta{padding:8px 12px}.header-tools{gap:8px}.header-date{font-size:12px}.header-user{font-size:12px}.release-panel{right:-42px}.header-nav{padding-inline:8px}}
 
 /* ─ Pages ─ */
 .page{display:none;flex:1;overflow:hidden;}
@@ -688,39 +697,39 @@ window._authReady=restoreSupabaseSession();
 
 <!-- HEADER -->
 <div class="header">
-  <h1>Insights Check</h1>
-  <details class="app-release">
-    <summary title="Open version history">v2026.09.16.7</summary>
-    <div class="release-panel">
-      <div class="release-heading">What&rsquo;s new in v2026.09.16.7</div>
-      <div class="release-date">Updated 16 September 2026</div>
-      <ul class="release-list">
-        <li><strong>Release notes:</strong> the current version and updates are now available inside the app.</li>
-        <li><strong>Responsiveness:</strong> stalled database requests now time out cleanly instead of leaving the page blocked.</li>
-        <li><strong>Reporting Check:</strong> missions or campaigns without promoters show a persistent red warning.</li>
-        <li><strong>Mission matching:</strong> unlinked promoter shifts clearly identify a Mission ID or SAP-code mismatch.</li>
-        <li><strong>Ready to Send:</strong> the Open Email action now matches the compact Copy HTML email button.</li>
-      </ul>
+  <div class="header-meta">
+    <div id="userGreeting" class="header-user"></div>
+    <div class="header-tools">
+      <div id="headerDate" class="header-date"></div>
+      <details class="app-release">
+        <summary title="Open version history">Version 2026.09.16.8</summary>
+        <div class="release-panel">
+          <div class="release-heading">What&rsquo;s new in v2026.09.16.8 &middot; Navigation &amp; Workflow</div>
+          <div class="release-date">Updated 16 September 2026</div>
+          <ul class="release-list">
+            <li><strong>Header:</strong> simplified layout with the user greeting, date, version history, and sign-out control.</li>
+            <li><strong>New Record:</strong> Entry Form has been renamed for clearer navigation.</li>
+            <li><strong>Reporting Check:</strong> moved directly after Ready to Send.</li>
+            <li><strong>Workflow Tools:</strong> Shift Comments, Targets, and Items now share one workspace.</li>
+            <li><strong>Navigation:</strong> stronger tab borders improve readability and selection.</li>
+          </ul>
+        </div>
+      </details>
+      <button class="logout-icon" onclick="doLogout()" title="Disconnect" aria-label="Disconnect">
+        <svg viewBox="0 0 24 24"><path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2c1.1 0 2 .9 2 2v2h-2V4H5v16h9v-2h2v2c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h9z"/></svg>
+      </button>
     </div>
-  </details>
-  <button class="tab-btn active" id="tab0btn" onclick="switchTab(0)">Dashboard</button>
-  <button class="tab-btn"        id="tab1btn" onclick="switchTab(1)">Entry Form</button>
-  <button class="tab-btn"        id="tab2btn" onclick="switchTab(2)">Status Update</button>
-  <button class="tab-btn"        id="tab3btn" onclick="switchTab(3)">Under Review</button>
-  <button class="tab-btn"        id="tab9btn" onclick="switchTab(9)">Closing Check</button>
-  <button class="tab-btn"        id="tab4btn" onclick="switchTab(4)">Ready to Send</button>
-  <button class="tab-btn"        id="tab5btn" onclick="switchTab(5)">Shift Comments</button>
-  <button class="tab-btn"        id="tab6btn" onclick="switchTab(6)">Targets</button>
-  <button class="tab-btn"        id="tab7btn" onclick="switchTab(7)">Items</button>
-  <button class="tab-btn"        id="tab8btn" onclick="switchTab(8)">Reporting Check</button>
-  <div id="userGreeting" style="margin-left:16px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap;display:flex;align-items:center;gap:6px;"></div>
-  <div id="headerDate" style="margin-left:16px;font-size:11.5px;font-weight:600;color:rgba(255,255,255,.7);white-space:nowrap;letter-spacing:.02em;"></div>
-  <button class="home-btn" onclick="goHome()" title="Home">
-    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-  </button>
-  <button class="home-btn" onclick="refreshAll()" title="Refresh all data" style="margin-left:4px;">
-    <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-  </button>
+  </div>
+  <div class="header-nav">
+    <button class="tab-btn active" id="tab0btn" onclick="switchTab(0)">Dashboard</button>
+    <button class="tab-btn"        id="tab1btn" onclick="switchTab(1)">New Record</button>
+    <button class="tab-btn"        id="tab2btn" onclick="switchTab(2)">Status Update</button>
+    <button class="tab-btn"        id="tab3btn" onclick="switchTab(3)">Under Review</button>
+    <button class="tab-btn"        id="tab9btn" onclick="switchTab(9)">Closing Check</button>
+    <button class="tab-btn"        id="tab4btn" onclick="switchTab(4)">Ready to Send</button>
+    <button class="tab-btn"        id="tab8btn" onclick="switchTab(8)">Reporting Check</button>
+    <button class="tab-btn"        id="tab10btn" onclick="switchWorkflowTool()">Workflow Tools</button>
+  </div>
 </div>
 
 <!-- PAGE 1 -->
@@ -809,6 +818,13 @@ window._authReady=restoreSupabaseSession();
   </div>
   <button id="gf-clear" onclick="clearGFilter()" style="display:none;padding:4px 11px;border:1.5px solid var(--red);border-radius:16px;background:var(--red-light);color:var(--red);font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;">✕ Clear</button>
   <span id="gf-count" style="font-size:11px;color:var(--g500);"></span>
+</div>
+
+<!-- WORKFLOW TOOLS SUB-NAVIGATION -->
+<div id="workflowToolsBar" class="workflow-tools-bar">
+  <button class="workflow-tool-btn" id="workflowTool5btn" onclick="switchWorkflowTool(5)">Shift Comments</button>
+  <button class="workflow-tool-btn" id="workflowTool6btn" onclick="switchWorkflowTool(6)">Targets</button>
+  <button class="workflow-tool-btn" id="workflowTool7btn" onclick="switchWorkflowTool(7)">Items</button>
 </div>
 
 <!-- PAGE 0 – DASHBOARD -->
@@ -1774,6 +1790,7 @@ let p2All=[],p2Filt=[],p2FutureRows=[];
 let curRec=null, isNew=false;
 let p2Filter='all', p2Search={brand:'',store:''}, p2SortDir='desc';
 let currentTab=0;
+let currentWorkflowTool=5;
 const TODAY=new Date(); TODAY.setHours(0,0,0,0);
 
 const KEYS  =['company','client','brand','store','sector','contact','accountmanager','reporttype'];
@@ -1886,15 +1903,31 @@ function resetFiltersForPage(page){
   }
 }
 
+function switchWorkflowTool(n=currentWorkflowTool){
+  const toolPage=[5,6,7].includes(Number(n))?Number(n):5;
+  currentWorkflowTool=toolPage;
+  switchTab(toolPage);
+}
+
 function switchTab(n){
   const pageChanged=n!==currentTab;
   if(pageChanged)resetFiltersForPage(currentTab);
   currentTab=n;
+  if([5,6,7].includes(n))currentWorkflowTool=n;
   [0,1,2,3,4,5,6,7,8,9].forEach(i=>{
     const p=document.getElementById('page'+i);
     const b=document.getElementById('tab'+i+'btn');
     if(p) p.classList.toggle('active',n===i);
     if(b) b.classList.toggle('active',n===i);
+  });
+  const workflowOpen=[5,6,7].includes(n);
+  const workflowMain=document.getElementById('tab10btn');
+  const workflowBar=document.getElementById('workflowToolsBar');
+  if(workflowMain)workflowMain.classList.toggle('active',workflowOpen);
+  if(workflowBar)workflowBar.style.display=workflowOpen?'flex':'none';
+  [5,6,7].forEach(i=>{
+    const button=document.getElementById('workflowTool'+i+'btn');
+    if(button)button.classList.toggle('active',n===i);
   });
   showGFilterBar(n<=2);
   if(n===0) renderDashboard();
@@ -2248,10 +2281,9 @@ function toggleSection(contentId, caretId){
 function setHeaderDate(){
   const el=document.getElementById('headerDate');
   if(!el)return;
-  const now=new Date();
-  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  el.textContent=`${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  el.textContent=new Intl.DateTimeFormat('en-GB',{
+    weekday:'long',day:'numeric',month:'long',year:'numeric'
+  }).format(new Date());
 }
 
 function updateUserGreeting(){
@@ -2259,10 +2291,7 @@ function updateUserGreeting(){
   if(!el) return;
   const user = window._currentUser;
   if(!user){ el.replaceChildren(); return; }
-  el.innerHTML = `Hello, ${esc(user.name)}
-    <button onclick="doLogout()" title="Sign out" style="background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;padding:2px;display:flex;align-items:center;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2c1.1 0 2 .9 2 2v2h-2V4H5v16h9v-2h2v2c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h9z"/></svg>
-    </button>`;
+  el.textContent=`Welcome, ${user.name}`;
 }
 
 async function doLogout(){
@@ -3759,7 +3788,7 @@ function buildEmailSection(r){
           ${esc(name)}
         </span>`;
       }).join('')
-    : `<span class="rv-no-contacts">No contacts linked — add contacts in the Entry Form</span>`;
+    : `<span class="rv-no-contacts">No contacts linked — add contacts in New Record</span>`;
 
   // Subject: Globe TR - Power BI Dashboard - Brand - Store - Month Year
   const _brand = shortBrands(r)[0]||r.brand||shortClient(r)||r.client||'';
