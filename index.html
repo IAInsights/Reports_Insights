@@ -702,16 +702,14 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">Version 2026.09.16.8</summary>
+        <summary title="Open version history">Version 2026.09.16.9</summary>
         <div class="release-panel">
-          <div class="release-heading">What&rsquo;s new in v2026.09.16.8 &middot; Navigation &amp; Workflow</div>
+          <div class="release-heading">What&rsquo;s new in v2026.09.16.9 &middot; Performance &amp; Polish</div>
           <div class="release-date">Updated 16 September 2026</div>
           <ul class="release-list">
-            <li><strong>Header:</strong> simplified layout with the user greeting, date, version history, and sign-out control.</li>
-            <li><strong>New Record:</strong> Entry Form has been renamed for clearer navigation.</li>
-            <li><strong>Reporting Check:</strong> moved directly after Ready to Send.</li>
-            <li><strong>Workflow Tools:</strong> Shift Comments, Targets, and Items now share one workspace.</li>
-            <li><strong>Navigation:</strong> stronger tab borders improve readability and selection.</li>
+            <li>Under Review displays its records before the compliance calculation finishes.</li>
+            <li>Compliance and operations contacts refresh in the background.</li>
+            <li>Version notes use cleaner descriptions without category labels.</li>
           </ul>
         </div>
       </details>
@@ -1056,7 +1054,7 @@ window._authReady=restoreSupabaseSession();
         <select class="company-filter" id="p3-sector-filter" onchange="renderP3()" title="Filter by sector">
           <option value="">All sectors</option>
         </select>
-        <button onclick="loadP3()" style="display:flex;align-items:center;gap:5px;padding:6px 14px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;">
+        <button onclick="loadP3(true)" style="display:flex;align-items:center;gap:5px;padding:6px 14px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
           Refresh
         </button>
@@ -1103,7 +1101,7 @@ window._authReady=restoreSupabaseSession();
         <select class="company-filter" id="p4-sector-filter" onchange="renderP4()" title="Filter by sector">
           <option value="">All sectors</option>
         </select>
-        <button onclick="loadP3().then(()=>renderP4())" title="Refresh" style="display:flex;align-items:center;gap:5px;padding:6px 14px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;">
+        <button onclick="loadP3(true).then(()=>renderP4())" title="Refresh" style="display:flex;align-items:center;gap:5px;padding:6px 14px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:var(--g600);cursor:pointer;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
           Refresh
         </button>
@@ -3384,6 +3382,7 @@ async function saveField(id,col,val){
 
 // ── Page 3 – Under Review / Validation ────────────────────────────────────
 let p3All=[], p3View='pending', p3EmailBodies={}, p3OpsContacts=[], p3ValidatorSelections={};
+let p3LoadPromise=null, p3CompliancePromise=null, p3OpsPromise=null;
 
 async function applyReportingCompliance(records,{autoConfirm=false}={}){
   const targets=records.filter(record=>record.startdate&&record.enddate);
@@ -3467,31 +3466,59 @@ function reportingComplianceHtml(record){
   </div>`;
 }
 
-async function loadP3(){
-  try{
-    let rows;
+async function loadP3(force=false){
+  // Reuse the last result immediately while fresh data loads in the background.
+  if(p3All.length)renderP3();
+  if(p3LoadPromise)return p3LoadPromise;
+
+  p3LoadPromise=(async()=>{
     try{
-      rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date,reporting_compliant,kpis_ok,global_feedback_received&under_review_date=not.is.null&order=under_review_date.desc');
-      cc_schemaReady=true;
-    }catch(error){
-      rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date&under_review_date=not.is.null&order=under_review_date.desc');
-      rows.forEach(record=>{record.reporting_compliant=false;record.kpis_ok=false;record.global_feedback_received=false;});
-      cc_schemaReady=false;
+      let rows;
+      try{
+        rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date,reporting_compliant,kpis_ok,global_feedback_received&under_review_date=not.is.null&order=under_review_date.desc');
+        cc_schemaReady=true;
+      }catch(error){
+        rows = await sbGet('InsightsTracking?select=id,Title,client,brand,sapcode,store,brand_ids,store_ids,sector_ids,report_type_ids,client_fk,company_ids,startdate,enddate,comments_status,powerbi_url,powerbi_title,contactName_Email,under_review_date,validated_date,validated_by,first_report_date,email_sent_date&under_review_date=not.is.null&order=under_review_date.desc');
+        rows.forEach(record=>{record.reporting_compliant=false;record.kpis_ok=false;record.global_feedback_received=false;});
+        cc_schemaReady=false;
+      }
+      p3All=rows;
+      p3ValidatorSelections={};
+      populateReviewSectorFilter(3);
+      populateReviewSectorFilter(4);
+      // Show the records now instead of blocking on the larger compliance queries.
+      renderP3();
+    }catch(e){
+      toast('Records load error: '+e.message,'error');
+      if(!p3All.length)renderP3();
+      return;
     }
-    p3All = rows;
-    await applyReportingCompliance(p3All.filter(record=>!record.validated_date),{autoConfirm:true});
-    p3ValidatorSelections = {};
-    populateReviewSectorFilter(3);
-    populateReviewSectorFilter(4);
-  }catch(e){ toast('Records load error: '+e.message,'error'); }
 
-  // Load ops contacts separately so a permission error doesn't break the whole page
-  try{
-    const ops = await sbGet('Contacts_Operations?select=id,firstname,lastname,company,jobtitle&order=lastname');
-    p3OpsContacts = ops;
-  }catch(e){ toast('Could not load ops contacts: '+e.message,'error'); p3OpsContacts=[]; }
+    if(!p3CompliancePromise){
+      p3CompliancePromise=applyReportingCompliance(
+        p3All.filter(record=>!record.validated_date),
+        {autoConfirm:true}
+      ).then(()=>{
+        if(currentTab===3)renderP3();
+        else if(currentTab===4)renderP4();
+      }).finally(()=>{p3CompliancePromise=null;});
+    }
 
-  renderP3();
+    // Operations contacts are independent and should never delay the record list.
+    if((force||!p3OpsContacts.length)&&!p3OpsPromise){
+      p3OpsPromise=sbGet('Contacts_Operations?select=id,firstname,lastname,company,jobtitle&order=lastname')
+        .then(ops=>{p3OpsContacts=ops;if(currentTab===3)renderP3();else if(currentTab===4)renderP4();})
+        .catch(e=>{toast('Could not load ops contacts: '+e.message,'error');p3OpsContacts=[];})
+        .finally(()=>{p3OpsPromise=null;});
+    }
+
+    // Keep one refresh cycle in flight so rapid page switches cannot replace
+    // the records while their background compliance result is still pending.
+    const backgroundTasks=[p3CompliancePromise,p3OpsPromise].filter(Boolean);
+    if(backgroundTasks.length)await Promise.allSettled(backgroundTasks);
+  })().finally(()=>{p3LoadPromise=null;});
+
+  return p3LoadPromise;
 }
 
 function setP3View(v){
