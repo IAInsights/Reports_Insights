@@ -29,6 +29,7 @@ body{font-family:'Inter',sans-serif;font-size:13px;color:var(--g900);background:
 .tab-btn{height:36px;padding:0 16px;background:rgba(255,255,255,.12);border:none;color:rgba(255,255,255,.75);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;border-radius:6px;margin:0 3px;transition:all .15s;}
 .tab-btn:hover{background:rgba(255,255,255,.22);color:#fff;}
 .tab-btn.active{background:#fff;color:var(--blue);font-weight:600;}
+.app-release{position:relative;margin-left:-14px;margin-right:10px;flex-shrink:0}.app-release summary{list-style:none;cursor:pointer;padding:4px 8px;border:1px solid rgba(255,255,255,.38);border-radius:12px;background:rgba(255,255,255,.13);color:#fff;font-size:9.5px;font-weight:700;white-space:nowrap;user-select:none}.app-release summary::-webkit-details-marker{display:none}.app-release[open] summary{background:#fff;color:var(--blue)}.release-panel{position:absolute;z-index:10050;top:32px;left:0;width:330px;padding:14px 15px;background:#fff;color:var(--g700);border:1px solid var(--g200);border-radius:9px;box-shadow:0 12px 30px rgba(15,23,42,.22)}.release-panel:before{content:"";position:absolute;top:-6px;left:20px;width:10px;height:10px;background:#fff;border-left:1px solid var(--g200);border-top:1px solid var(--g200);transform:rotate(45deg)}.release-heading{font-size:13px;font-weight:800;color:var(--g900)}.release-date{margin-top:2px;font-size:10px;color:var(--g400)}.release-list{margin:11px 0 0;padding-left:17px;font-size:11px;line-height:1.45}.release-list li+li{margin-top:6px}.release-list strong{color:var(--blue)}
 .home-btn{margin-left:auto;width:32px;height:32px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;transition:background .15s;}
 .home-btn:hover{background:rgba(255,255,255,.28);}
 .home-btn svg{width:18px;height:18px;fill:#fff;}
@@ -688,6 +689,19 @@ window._authReady=restoreSupabaseSession();
 <!-- HEADER -->
 <div class="header">
   <h1>Insights Check</h1>
+  <details class="app-release">
+    <summary title="Open version history">v2026.09.16.6</summary>
+    <div class="release-panel">
+      <div class="release-heading">What&rsquo;s new in v2026.09.16.6</div>
+      <div class="release-date">Updated 16 September 2026</div>
+      <ul class="release-list">
+        <li><strong>Release notes:</strong> the current version and updates are now available inside the app.</li>
+        <li><strong>Reporting Check:</strong> missions or campaigns without promoters show a persistent red warning.</li>
+        <li><strong>Mission matching:</strong> unlinked promoter shifts clearly identify a Mission ID or SAP-code mismatch.</li>
+        <li><strong>Ready to Send:</strong> the Open Email action now matches the compact Copy HTML email button.</li>
+      </ul>
+    </div>
+  </details>
   <button class="tab-btn active" id="tab0btn" onclick="switchTab(0)">Dashboard</button>
   <button class="tab-btn"        id="tab1btn" onclick="switchTab(1)">Entry Form</button>
   <button class="tab-btn"        id="tab2btn" onclick="switchTab(2)">Status Update</button>
@@ -5075,6 +5089,7 @@ let rc_forceAllFilters = false;
 let rc_loadTimer = null;
 let rc_loadRequest = 0;
 let rc_kpiFilter = '';
+let rc_emptyState = null;
 const RC_EMPTY = '__RC_EMPTY__';
 const RC_MIN_DATE = '2026-01-01';
 const RC_FILTER_DEFS = [
@@ -5248,6 +5263,7 @@ function rc_populateTrackingPickers(){
 async function rc_pickTrackingRecord(id){
   if(!id){
     rc_selectedTrackingId=null;
+    rc_emptyState=null;
     const campaign=document.getElementById('rc_record_campaign'),sap=document.getElementById('rc_record_sap');
     if(campaign)campaign.value='';if(sap)sap.value='';
     rc_filterMode.campaign='all';rc_filterMode.sapcode='all';rc_filterState.campaign=new Set();rc_filterState.sapcode=new Set();
@@ -5369,10 +5385,13 @@ function rcTrackingState(record){
   return{key:'none',label:'No status'};
 }
 
-function rcEmptyState(title,detail='',hint=''){
+function rcEmptyState(title,detail='',hint='',tone='amber'){
+  const isRed=tone==='red';
+  const accent=isRed?'var(--red)':'var(--amber)';
+  const background=isRed?'var(--red-light)':'var(--amber-light)';
   return `<div style="padding:54px 24px;text-align:center;color:var(--g500);">
-    <div style="width:42px;height:42px;margin:0 auto 12px;border-radius:50%;background:var(--amber-light);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:20px;">&#128100;</div>
-    <div style="font-size:15px;font-weight:700;color:var(--g700);">${esc(title)}</div>
+    <div style="width:42px;height:42px;margin:0 auto 12px;border-radius:50%;background:${background};color:${accent};display:flex;align-items:center;justify-content:center;font-size:20px;">&#128100;</div>
+    <div style="font-size:15px;font-weight:700;color:${isRed?accent:'var(--g700)'};">${esc(title)}</div>
     ${detail?`<div style="margin-top:6px;font-size:12px;color:var(--g500);">${esc(detail)}</div>`:''}
     ${hint?`<div style="margin-top:5px;font-size:11px;color:var(--g400);">${esc(hint)}</div>`:''}
   </div>`;
@@ -5524,6 +5543,7 @@ async function rc_load(){
   if(!from || !to){ toast('Please set a date range','error'); return; }
   if(from>to){ toast('The From date must be before the To date','error'); return; }
   const requestId=++rc_loadRequest;
+  rc_emptyState=null;
   const selectedTracking=(rc_trackingRecords.length?rc_trackingRecords:allRec).find(record=>String(record.id)===String(rc_selectedTrackingId));
   const selectedMissions=selectedTracking?rcMissionIds(selectedTracking):[];
   const selectedScheduleFilter=selectedMissions.length
@@ -5561,16 +5581,17 @@ async function rc_load(){
 
     if(!reportingSchedRows.length){
       rc_data=[];
+      const selectedLabel=selectedTracking?.Title||selectedTracking?.sapcode||'this mission / campaign';
+      rc_emptyState={
+        title:'No promoters assigned to this mission / campaign',
+        detail:selectedTracking
+          ?`No eligible promoter shifts are assigned to ${selectedLabel} for ${from} → ${to}.`
+          :`No eligible promoter shifts were found for ${from} → ${to}.`,
+        hint:'Assign promoters in the schedule, then refresh Reporting Check.',
+        tone:'red'
+      };
       rc_populateFilters(true);
       rc_render();
-      const selectedLabel=selectedTracking?.Title||selectedTracking?.sapcode||'this campaign';
-      document.getElementById('rc_area').innerHTML=selectedTracking
-        ?rcEmptyState(
-          'No promoters assigned',
-          `No eligible promoter shifts are assigned to ${selectedLabel} for ${from} → ${to}.`,
-          'Assign promoters in the schedule, then refresh Reporting Check.'
-        )
-        :rcEmptyState('No promoters assigned',`No eligible promoter shifts were found for ${from} → ${to}.`);
       return;
     }
 
@@ -5590,14 +5611,15 @@ async function rc_load(){
 
     if(!deduped.length){
       rc_data=[];
+      const selectedLabel=selectedTracking?.Title||selectedTracking?.sapcode||'this mission / campaign';
+      rc_emptyState={
+        title:'No promoters assigned to this mission / campaign',
+        detail:`No eligible promoter shifts are assigned to ${selectedLabel} for ${from} → ${to}.`,
+        hint:'Only supervisor or other excluded roles were found in the schedule.',
+        tone:'red'
+      };
       rc_populateFilters(true);
       rc_render();
-      const selectedLabel=selectedTracking?.Title||selectedTracking?.sapcode||'this campaign';
-      document.getElementById('rc_area').innerHTML=rcEmptyState(
-        'No promoters assigned',
-        `No eligible promoter shifts are assigned to ${selectedLabel} for ${from} → ${to}.`,
-        'Only supervisor or other excluded roles were found in the schedule.'
-      );
       return;
     }
 
@@ -5617,20 +5639,21 @@ async function rc_load(){
 
     if(!eligibleSchedules.length){
       rc_data=[];
-      rc_populateFilters(true);
-      rc_render();
       const expectedSap=selectedTracking?.sapcode||'—';
       const expectedMissions=selectedMissions.length?selectedMissions.join(', '):'none entered';
-      document.getElementById('rc_area').innerHTML=selectedTracking
-        ?rcEmptyState(
-          'Promoter shifts found, but not linked',
-          'Scheduled promoter shifts exist, but their Mission ID or SAP code does not match this Insights Check record.',
-          `Expected SAP: ${expectedSap} · Mission IDs: ${expectedMissions}`
-        )
-        :rcEmptyState(
-          'No linked promoter shifts',
-          'Promoter shifts exist, but none can be linked to an eligible BI Insights record in Insights Check.'
-        );
+      rc_emptyState=selectedTracking?{
+        title:'Promoter shifts found, but not linked',
+        detail:'Scheduled promoter shifts exist, but their Mission ID or SAP code does not match this Insights Check record.',
+        hint:`Expected SAP: ${expectedSap} · Mission IDs: ${expectedMissions}`,
+        tone:'red'
+      }:{
+        title:'No linked promoter shifts',
+        detail:'Promoter shifts exist, but none can be linked to an eligible BI Insights record in Insights Check.',
+        hint:'',
+        tone:'red'
+      };
+      rc_populateFilters(true);
+      rc_render();
       return;
     }
 
@@ -6015,7 +6038,9 @@ function rc_render(){
   }).join('');
 
   if(!rows.length){
-    document.getElementById('rc_area').innerHTML='<div style="padding:48px;text-align:center;color:var(--g400);">No results match these filters.</div>';
+    document.getElementById('rc_area').innerHTML=!rc_data.length&&rc_emptyState
+      ?rcEmptyState(rc_emptyState.title,rc_emptyState.detail,rc_emptyState.hint,rc_emptyState.tone)
+      :'<div style="padding:48px;text-align:center;color:var(--g400);">No results match these filters.</div>';
     return;
   }
 
