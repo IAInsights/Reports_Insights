@@ -702,14 +702,14 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">Version 2026.09.16.9</summary>
+        <summary title="Open version history">Version 2026.09.16.10</summary>
         <div class="release-panel">
-          <div class="release-heading">What&rsquo;s new in v2026.09.16.9 &middot; Performance &amp; Polish</div>
+          <div class="release-heading">What&rsquo;s new in v2026.09.16.10 &middot; Startup Recovery</div>
           <div class="release-date">Updated 16 September 2026</div>
           <ul class="release-list">
-            <li>Under Review displays its records before the compliance calculation finishes.</li>
-            <li>Compliance and operations contacts refresh in the background.</li>
-            <li>Version notes use cleaner descriptions without category labels.</li>
+            <li>Insights Manager now opens even when a secondary reference list is temporarily unavailable.</li>
+            <li>Startup errors identify the data source that failed.</li>
+            <li>Retry now performs a clean initialization instead of remaining stuck.</li>
           </ul>
         </div>
       </details>
@@ -1948,18 +1948,60 @@ function goHome(){
 }
 
 // ── Init ───────────────────────────────────────────────────────────────────
+let appInitPromise=null;
+let startupWarnings=[];
+
+function readableStartupError(error){
+  const raw=String(error?.message||error||'Unknown error');
+  try{
+    const parsed=JSON.parse(raw);
+    return parsed.message||parsed.details||raw;
+  }catch(e){
+    return raw;
+  }
+}
+
+async function startupGet(label,request,{required=false}={}){
+  try{
+    return await request();
+  }catch(error){
+    const message=readableStartupError(error);
+    console.error(`Startup source failed: ${label}`,error);
+    if(required)throw new Error(`${label}: ${message}`);
+    startupWarnings.push(`${label}: ${message}`);
+    return [];
+  }
+}
+
+function showStartupWarnings(){
+  if(!startupWarnings.length)return;
+  const panel=document.getElementById('dashPanel');
+  if(!panel)return;
+  const notice=document.createElement('div');
+  notice.style.cssText='margin:0 16px 12px;padding:10px 12px;border:1px solid #f6c26b;border-radius:7px;background:#fff8e8;color:#8a4b08;font-size:12px;line-height:1.45;';
+  notice.innerHTML=`<b>Some reference lists could not be refreshed.</b> Core records are available. Use Retry after checking the connection.<br><span style="font-size:11px;">${startupWarnings.map(esc).join('<br>')}</span>`;
+  panel.prepend(notice);
+}
+
+async function retryInsightsInit(){
+  appInitPromise=null;
+  window._appStarted=false;
+  await startInsightsApp();
+}
+
 async function init(){
   try{
+    startupWarnings=[];
     const [co,cl,br,st,con,rt,sec,ops,rec]=await Promise.all([
-      sbGet('GI_company?select=id,name,country_id&active=eq.true&order=name'),
-      sbGet('GI_clients?select=id,client&active=eq.true&order=client'),
-      sbGet('GI_brands?select=id,brand,client_giid,visible&order=brand'),
-      sbGet('GI_stores?select=id,store,country_id,Sector_id&visible=eq.true&order=store'),
-      sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname'),
-      sbGet('report_types?select=id,type&visible=eq.true&order=type'),
-      sbGet('Sector?select=id,Name,companyid&order=Name'),
-      sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname'),
-      sbGetAll('InsightsTracking?select=*&order=startdate.desc.nullslast,createdat.desc'),
+      startupGet('Companies',()=>sbGet('GI_company?select=id,name,country_id&active=eq.true&order=name')),
+      startupGet('Clients',()=>sbGet('GI_clients?select=id,client&active=eq.true&order=client')),
+      startupGet('Brands',()=>sbGet('GI_brands?select=id,brand,client_giid,visible&order=brand')),
+      startupGet('Stores',()=>sbGet('GI_stores?select=id,store,country_id,Sector_id&visible=eq.true&order=store')),
+      startupGet('Client contacts',()=>sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname')),
+      startupGet('Report types',()=>sbGet('report_types?select=id,type&visible=eq.true&order=type')),
+      startupGet('Sectors',()=>sbGet('Sector?select=id,Name,companyid&order=Name')),
+      startupGet('Operations contacts',()=>sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname')),
+      startupGet('Insights Tracking records',()=>sbGetAll('InsightsTracking?select=*&order=startdate.desc.nullslast,createdat.desc'),{required:true}),
     ]);
     allCo=co||[]; allCl=cl||[]; allBr=br||[]; allSt=st||[]; allCon=con||[]; allRT=rt||[]; allSectors=sec||[];
     allAccountManagers=(ops||[]).filter(isAccountManager);
@@ -1982,15 +2024,20 @@ async function init(){
     setHeaderDate();
     const loader = document.getElementById('initLoader');
     if(loader) loader.style.display = 'none';
+    showStartupWarnings();
     // Start on dashboard
     switchTab(0);
+    window._appStarted=true;
+    return true;
   }catch(e){
+    window._appStarted=false;
     const loader = document.getElementById('initLoader');
     if(loader) loader.innerHTML = `<div style="color:var(--red);padding:20px;font-size:14px;">
       ❌ Load failed: ${esc(e.message)}<br><br>
-      <button onclick="init()" style="padding:8px 16px;background:var(--blue);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;">Retry</button>
+      <button onclick="retryInsightsInit()" style="padding:8px 16px;background:var(--blue);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;">Retry</button>
     </div>`;
     console.error('init error:', e);
+    return false;
   }
 }
 
@@ -6200,11 +6247,12 @@ document.addEventListener('click', e=>{
 });
 
 function startInsightsApp(){
-  if(window._appStarted)return;
-  window._appStarted=true;
+  if(appInitPromise)return appInitPromise;
+  if(window._appStarted)return Promise.resolve(true);
   setHeaderDate();
   updateUserGreeting();
-  init();
+  appInitPromise=init().finally(()=>{appInitPromise=null;});
+  return appInitPromise;
 }
 
 Promise.resolve(window._authReady).then(authenticated=>{
