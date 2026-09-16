@@ -690,12 +690,13 @@ window._authReady=restoreSupabaseSession();
 <div class="header">
   <h1>Insights Check</h1>
   <details class="app-release">
-    <summary title="Open version history">v2026.09.16.6</summary>
+    <summary title="Open version history">v2026.09.16.7</summary>
     <div class="release-panel">
-      <div class="release-heading">What&rsquo;s new in v2026.09.16.6</div>
+      <div class="release-heading">What&rsquo;s new in v2026.09.16.7</div>
       <div class="release-date">Updated 16 September 2026</div>
       <ul class="release-list">
         <li><strong>Release notes:</strong> the current version and updates are now available inside the app.</li>
+        <li><strong>Responsiveness:</strong> stalled database requests now time out cleanly instead of leaving the page blocked.</li>
         <li><strong>Reporting Check:</strong> missions or campaigns without promoters show a persistent red warning.</li>
         <li><strong>Mission matching:</strong> unlinked promoter shifts clearly identify a Mission ID or SAP-code mismatch.</li>
         <li><strong>Ready to Send:</strong> the Open Email action now matches the compact Copy HTML email button.</li>
@@ -1741,20 +1742,28 @@ function showGFilterBar(show){
   if(bar)bar.style.display=show?'flex':'none';
 }
 
-const sbGet   = async p      => { await ensureFreshSession(); const r=await fetch(SB+'/rest/v1/'+p,{headers:supabaseHeaders()}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
+const SB_REQUEST_TIMEOUT_MS=30000;
+async function sbFetch(url,options={}){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),SB_REQUEST_TIMEOUT_MS);
+  try{return await fetch(url,{...options,signal:controller.signal});}
+  catch(error){if(error?.name==='AbortError')throw new Error('Database request timed out. Please refresh the page.');throw error;}
+  finally{clearTimeout(timer);}
+}
+const sbGet   = async p      => { await ensureFreshSession(); const r=await sbFetch(SB+'/rest/v1/'+p,{headers:supabaseHeaders()}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
 const sbGetAll= async (p,pageSize=1000)=>{
   const rows=[];
   for(let from=0;from<200000;from+=pageSize){
     await ensureFreshSession();
-    const r=await fetch(SB+'/rest/v1/'+p,{headers:{...supabaseHeaders(),'Range-Unit':'items','Range':`${from}-${from+pageSize-1}`}});
+    const r=await sbFetch(SB+'/rest/v1/'+p,{headers:{...supabaseHeaders(),'Range-Unit':'items','Range':`${from}-${from+pageSize-1}`}});
     if(!r.ok)throw new Error(await r.text());
     const page=await r.json();rows.push(...page);
     if(page.length<pageSize)return rows;
   }
   throw new Error('The data set is larger than the supported reporting range. Please narrow the dates.');
 };
-const sbPost  = async (t,d)  => { await ensureFreshSession(); const r=await fetch(SB+'/rest/v1/'+t,{method:'POST',headers:supabaseHeaders(),body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
-const sbPatch = async (t,id,d)=>{ await ensureFreshSession(); const sid=parseInt(id); if(isNaN(sid)) throw new Error('Bad ID: '+id); const r=await fetch(SB+'/rest/v1/'+t+'?id=eq.'+sid,{method:'PATCH',headers:supabaseHeaders(),body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
+const sbPost  = async (t,d)  => { await ensureFreshSession(); const r=await sbFetch(SB+'/rest/v1/'+t,{method:'POST',headers:supabaseHeaders(),body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
+const sbPatch = async (t,id,d)=>{ await ensureFreshSession(); const sid=parseInt(id); if(isNaN(sid)) throw new Error('Bad ID: '+id); const r=await sbFetch(SB+'/rest/v1/'+t+'?id=eq.'+sid,{method:'PATCH',headers:supabaseHeaders(),body:JSON.stringify(d)}); if(!r.ok) throw new Error(await r.text()); return r.json(); };
 
 // ── State ──────────────────────────────────────────────────────────────────
 let allCo=[],allCl=[],allBr=[],allSt=[],allCon=[],allRT=[],allSectors=[],allAccountManagers=[];
