@@ -5286,10 +5286,13 @@ async function rc_loadLegacy(){
       seen.add(key); return true;
     });
 
+    const reportTypeById=new Map(reportTypeRows.map(type=>[String(type.id),type.type]));
+    const isBiInsights=record=>rcTrackingIds(record?.report_type_ids)
+      .some(id=>String(reportTypeById.get(id)||'').trim().toLowerCase()==='bi insights');
     const linkedSchedules=deduped.map(schedule=>({schedule,tracking:rcFindTrackingRecord(schedule,trackingRows)}));
     const excludedSchedules=linkedSchedules.filter(item=>item.tracking&&(item.tracking.cancelled_date||rcIsNoReporting(item.tracking)));
     const eligibleSchedules=linkedSchedules
-      .filter(item=>!item.tracking||(!item.tracking.cancelled_date&&!rcIsNoReporting(item.tracking)))
+      .filter(item=>item.tracking&&!item.tracking.cancelled_date&&!rcIsNoReporting(item.tracking)&&isBiInsights(item.tracking))
       .map(item=>item.schedule);
     const trackingBySchedule=new Map(linkedSchedules.map(item=>[item.schedule,item.tracking]));
     rc_trackingSummary={
@@ -5306,7 +5309,6 @@ async function rc_loadLegacy(){
     if(requestId!==rc_loadRequest)return;
     const qAssignments=rcAssignEntries(eligibleSchedules,questRows,'Date','Promoter');
     const sAssignments=rcAssignEntries(eligibleSchedules,salesRows,'Date','Promoter Name');
-    const reportTypeById=new Map(reportTypeRows.map(type=>[String(type.id),type.type]));
     const sectorNameById=new Map(allSectors.map(sector=>[String(sector.id),sector.Name]));
     const sectorByStore=new Map(allSt
       .filter(store=>store.store&&store.Sector_id!=null)
@@ -5441,9 +5443,12 @@ async function rc_load(){
       return true;
     });
 
+    const reportTypeById=new Map(reportTypeRows.map(type=>[String(type.id),type.type]));
+    const isBiInsights=record=>rcTrackingIds(record?.report_type_ids)
+      .some(id=>String(reportTypeById.get(id)||'').trim().toLowerCase()==='bi insights');
     const linkedSchedules=deduped.map(schedule=>({schedule,tracking:rcFindTrackingRecord(schedule,trackingRows)}));
     const eligibleSchedules=linkedSchedules
-      .filter(item=>!item.tracking||(!item.tracking.cancelled_date&&!rcIsNoReporting(item.tracking)))
+      .filter(item=>item.tracking&&!item.tracking.cancelled_date&&!rcIsNoReporting(item.tracking)&&isBiInsights(item.tracking))
       .map(item=>item.schedule);
     const trackingBySchedule=new Map(linkedSchedules.map(item=>[item.schedule,item.tracking]));
     const lastSynced=deduped.reduce((latest,row)=>row.synced_at&&row.synced_at>latest?row.synced_at:latest,'');
@@ -5468,7 +5473,6 @@ async function rc_load(){
     });
 
     const uniqueEntries=entries=>[...new Map(entries.map(entry=>[JSON.stringify(entry),entry])).values()];
-    const reportTypeById=new Map(reportTypeRows.map(type=>[String(type.id),type.type]));
     rc_data=eligibleSchedules.map(schedule=>{
       const storeCode=rcNorm(schedule.store_code);
       const idKey=`${schedule.day}|${schedule.promoter_id}|${storeCode}`;
