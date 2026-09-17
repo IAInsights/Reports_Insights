@@ -33,7 +33,7 @@ body{font-family:'Inter',sans-serif;font-size:13px;color:var(--g900);background:
 .tab-btn{height:36px;padding:0 16px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.32);color:rgba(255,255,255,.86);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;border-radius:6px;transition:all .15s;white-space:nowrap;flex:0 0 auto;}
 .tab-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.65);color:#fff;}
 .tab-btn.active{background:#fff;border-color:#fff;color:var(--blue);font-weight:600;}
-.app-release{position:relative;flex-shrink:0}.app-release summary{list-style:none;cursor:pointer;padding:3px 2px;border:0;border-bottom:1px solid rgba(255,255,255,.75);background:transparent;color:#fff;font-size:12px;font-weight:600;white-space:nowrap;user-select:none}.app-release summary::-webkit-details-marker{display:none}.app-release[open] summary{color:#fff;border-bottom-color:#fff}.release-panel{position:absolute;z-index:10050;top:31px;right:0;width:350px;padding:14px 15px;background:#fff;color:var(--g700);border:1px solid var(--g200);border-radius:9px;box-shadow:0 12px 30px rgba(15,23,42,.22)}.release-panel:before{content:"";position:absolute;top:-6px;right:32px;width:10px;height:10px;background:#fff;border-left:1px solid var(--g200);border-top:1px solid var(--g200);transform:rotate(45deg)}.release-heading{font-size:13px;font-weight:800;color:var(--g900)}.release-date{margin-top:2px;font-size:10px;color:var(--g400)}.release-list{margin:11px 0 0;padding-left:17px;font-size:11px;line-height:1.45}.release-list li+li{margin-top:6px}.release-list strong{color:var(--blue)}
+.app-release{position:relative;flex-shrink:0}.app-release[open]{z-index:20000}.app-release summary{list-style:none;cursor:pointer;padding:3px 2px;border:0;border-bottom:1px solid rgba(255,255,255,.75);background:transparent;color:#fff;font-size:12px;font-weight:600;white-space:nowrap;user-select:none}.app-release summary::-webkit-details-marker{display:none}.app-release[open] summary{color:#fff;border-bottom-color:#fff}.release-panel{position:absolute;z-index:20001;top:31px;right:0;width:350px;max-height:min(440px,calc(100vh - 70px));overflow-y:auto;padding:14px 15px;background:#fff;color:var(--g700);border:1px solid var(--g200);border-radius:9px;box-shadow:0 12px 30px rgba(15,23,42,.22)}.release-panel:before{content:"";position:absolute;top:-6px;right:32px;width:10px;height:10px;background:#fff;border-left:1px solid var(--g200);border-top:1px solid var(--g200);transform:rotate(45deg)}.release-heading{font-size:13px;font-weight:800;color:var(--g900)}.release-date{margin-top:2px;font-size:10px;color:var(--g400)}.release-list{display:block!important;visibility:visible!important;margin:11px 0 0;padding-left:19px;font-size:11px;line-height:1.45;color:var(--g700);list-style:disc}.release-list li{display:list-item!important;visibility:visible!important;list-style:disc}.release-list li+li{margin-top:6px}.release-list strong{color:var(--blue)}
 .logout-icon{width:34px;height:34px;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;flex:0 0 auto;}
 .logout-icon:hover{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.7);}
 .logout-icon svg{width:17px;height:17px;fill:currentColor;}
@@ -41,6 +41,8 @@ body{font-family:'Inter',sans-serif;font-size:13px;color:var(--g900);background:
 .workflow-tool-btn{height:34px;padding:0 16px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g600);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;}
 .workflow-tool-btn:hover{border-color:var(--blue);color:var(--blue);}
 .workflow-tool-btn.active{background:var(--blue-light);border-color:var(--blue);color:var(--blue);}
+#gFilterBar{justify-content:flex-end}
+#gFilterBar>span:first-child{margin-right:auto}
 @media(max-width:900px){.header-meta{padding:8px 12px}.header-tools{gap:8px}.header-date{font-size:12px}.header-user{font-size:12px}.release-panel{right:-42px}.header-nav{padding-inline:8px}}
 
 /* ─ Pages ─ */
@@ -50,7 +52,7 @@ body{font-family:'Inter',sans-serif;font-size:13px;color:var(--g900);background:
 /* ── Global filter bar ── */
 /* Smart cascading filter dropdowns */
 .gfd{position:relative;flex-shrink:0;}
-.gfd-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px 0 11px;border:1.5px solid var(--g300);border-radius:16px;background:#fff;font-family:inherit;font-size:11.5px;font-weight:500;color:var(--g600);cursor:pointer;white-space:nowrap;transition:all .15s;max-width:150px;}
+.gfd-btn{display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 8px 0 11px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;font-weight:500;color:var(--g600);cursor:pointer;white-space:nowrap;transition:all .15s;max-width:150px;}
 .gfd-btn:hover{border-color:var(--blue);color:var(--blue);}
 .gfd-btn.active{border-color:var(--blue);background:var(--blue-light);color:var(--blue);font-weight:700;}
 .gfd-btn-val{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px;}
@@ -272,7 +274,7 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .sbtn.s-notsent .sbtn-lbl{color:#7c3aed;}
 .sbtn.s-notsent .sbtn-date{color:#7c3aed;opacity:.8;}
 
-.company-filter{padding:5px 26px 5px 12px;border-radius:20px;border:1.5px solid var(--g300);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239ca3af'/%3E%3C/svg%3E") no-repeat right 9px center;appearance:none;-webkit-appearance:none;font-family:inherit;font-size:12px;font-weight:500;color:var(--g600);cursor:pointer;outline:none;min-width:120px;transition:border-color .15s;}
+.company-filter{height:30px;padding:0 26px 0 12px;border-radius:var(--r);border:1.5px solid var(--g300);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%239ca3af'/%3E%3C/svg%3E") no-repeat right 9px center;appearance:none;-webkit-appearance:none;font-family:inherit;font-size:11.5px;font-weight:500;color:var(--g600);cursor:pointer;outline:none;min-width:120px;transition:border-color .15s;}
 .company-filter:hover{border-color:var(--blue);color:var(--blue);}
 .company-filter:focus{border-color:var(--blue);}
 .p2-sent-row td{background:#f0fdf4 !important;}
@@ -309,8 +311,9 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 /* ══════════════ PAGE 3 – UNDER REVIEW ══════════════ */
 .p3{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
 .p3-header{padding:14px 24px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0;}
-.p3-top{display:flex;align-items:center;gap:12px;margin-bottom:4px;}
-.p3-top h2{font-size:15px;font-weight:600;flex:1;}
+.p3-top{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-bottom:4px;}
+.p3-top h2{display:none;}
+#p3-count-pending,#p3-count-all{display:none;}
 .p3-subtitle{font-size:12px;color:var(--g500);margin-bottom:10px;}
 .p3-tabs{display:flex;gap:6px;}
 .p3-tab{padding:5px 14px;border-radius:20px;border:1.5px solid var(--g300);background:#fff;font-family:inherit;font-size:12px;font-weight:500;color:var(--g600);cursor:pointer;}
@@ -429,7 +432,21 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .t-lvl-btn:hover{border-color:var(--g400);}
 .t-lvl-btn.active{background:var(--blue-light);border-color:var(--blue);color:var(--blue);font-weight:700;}
 /* Reporting Check multi-select filters */
-.rc-filter-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.rc-toolbar{background:#fff;border-bottom:1px solid var(--g200);padding:8px 10px;display:flex;align-items:center;gap:6px;flex-shrink:0;flex-wrap:nowrap;position:relative;z-index:20;}
+.rc-toolbar-title{display:none;}
+.rc-toolbar-label{font-size:11px;color:var(--g600);font-weight:600;white-space:nowrap;}
+.rc-toolbar-control{height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;color:var(--g600);outline:none;min-width:0;}
+.rc-toolbar input[type="date"]{width:128px;min-width:128px;flex:0 0 128px;}
+.rc-subline{margin-left:auto!important;font-size:9.5px!important;color:var(--g400)!important;}
+.rc-sync-pill{display:inline-flex;align-items:center;padding:2px 6px;border-radius:12px;background:var(--green-light);color:var(--green);font-size:9.5px;font-weight:700;}
+.rc-filter-bar{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
+.rc-sap-picker{position:relative;flex:0 1 260px;min-width:190px;}
+.rc-sap-picker .rc-ms-btn{width:100%;max-width:none;justify-content:space-between;}
+.rc-sap-picker .rc-ms-panel{width:390px;}
+.rc-sap-primary{font-weight:700;color:var(--g800);}
+.rc-sap-secondary{display:block;font-size:10.5px;color:var(--g500);margin-top:2px;}
+.rc-sap-active{background:#edf8f0;}
+@media(max-width:1250px){.rc-toolbar{flex-wrap:wrap}.rc-filter-bar{flex-wrap:wrap}.rc-subline{margin-left:0!important;width:100%}}
 .rc-ms{position:relative;flex-shrink:0;}
 .rc-ms-btn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;white-space:nowrap;max-width:170px;}
 .rc-ms-btn:hover{border-color:var(--blue);color:var(--blue);}
@@ -451,7 +468,8 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .rc-kpi:focus-visible{outline:2px solid var(--blue);outline-offset:2px;}
 .rc-kpi-static{cursor:default;transition:none;}
 .rc-kpi-static:hover{transform:none;border-color:var(--g200);box-shadow:0 1px 3px rgba(0,0,0,.05);}
-#rc_kpis{gap:0!important;align-items:stretch}.rc-kpi{min-width:92px;padding:4px 13px;border:0;border-right:1px solid var(--g200);border-radius:0;box-shadow:none!important;background:#fff!important}.rc-kpi:first-child{padding-left:0}.rc-kpi:last-child{border-right:0}.rc-kpi:hover{transform:none;border-color:var(--g200);background:var(--g50)!important}.rc-kpi.active{box-shadow:inset 0 -2px 0 var(--kpi-color)!important}.rc-kpi span:first-child{font-size:16px!important}.rc-kpi span:last-child{font-size:9.5px!important}#rc_area{border:0!important;border-radius:0!important;box-shadow:none!important}#rc_area tbody tr:nth-child(even){background:var(--g50)}#rc_area tbody tr:hover{background:var(--blue-light)!important}
+#rc_stats{padding:10px 16px!important;background:var(--g50)!important;border-bottom:1px solid var(--g200)!important}#rc_kpis{display:grid!important;grid-template-columns:repeat(9,minmax(88px,1fr));gap:8px!important;align-items:stretch;width:100%}.rc-kpi{min-width:0;padding:8px 10px;border:1px solid var(--g200)!important;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)!important}.rc-kpi:hover{transform:translateY(-1px);border-color:var(--kpi-color)!important}.rc-kpi.active{border-color:var(--kpi-color)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--kpi-color) 18%,transparent)!important}.rc-kpi span:first-child{font-size:18px!important}.rc-kpi span:last-child{font-size:9px!important}#rc_area{border:1.5px solid var(--g300)!important;border-radius:8px!important;box-shadow:0 2px 7px rgba(0,0,0,.07)!important}#rc_area tbody td{border-bottom:1px solid var(--g100)}#rc_area tbody tr:nth-child(even){background:var(--g50)}#rc_area tbody tr:hover{background:var(--blue-light)!important}
+@media(max-width:1100px){#rc_kpis{grid-template-columns:repeat(3,minmax(100px,1fr))}}
 /* Items manager */
 .items-toolbar{background:#fff;border-bottom:1px solid var(--g200);padding:12px 20px;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
 .items-title{font-size:16px;font-weight:750;color:var(--g900);margin-right:8px;}
@@ -498,8 +516,9 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .items-toast{position:fixed;right:24px;bottom:24px;z-index:10020;padding:10px 15px;border-radius:7px;color:#fff;font-size:12px;font-weight:650;box-shadow:var(--shadow);display:none;max-width:360px;}
 @media(max-width:1250px){.items-editor{position:absolute;right:20px;top:128px;bottom:16px;z-index:50;width:min(410px,calc(100% - 40px));}.items-main{position:relative;}.items-select{max-width:145px}.items-search{min-width:190px}}
 .cc-shell{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
-.cc-head{padding:12px 20px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex-shrink:0;}
-.cc-head-copy{margin-right:auto}.cc-title{font-size:15px;font-weight:700}.cc-sub{font-size:11.5px;color:var(--g500);margin-top:2px}.cc-filter{height:30px;min-width:125px;max-width:165px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;outline:none}.cc-filter:focus{border-color:var(--blue)}
+.cc-head{padding:12px 20px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;flex-shrink:0;}
+.cc-head-copy{display:none}.cc-title{font-size:15px;font-weight:700}.cc-sub{font-size:11.5px;color:var(--g500);margin-top:2px}.cc-filter{height:30px;min-width:125px;max-width:165px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;outline:none}.cc-filter:focus{border-color:var(--blue)}
+#rc_subline_text{display:none!important}
 .cc-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(650px,1fr) 330px;gap:10px;padding:12px 20px;overflow:hidden}.cc-list,.cc-detail{background:#fff;border:1px solid var(--g200);border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden;min-height:0}.cc-list{overflow:auto}.cc-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.cc-table th{position:sticky;top:0;z-index:2;padding:8px;background:var(--g50);border-bottom:2px solid var(--g200);color:var(--g600);text-align:left;text-transform:uppercase;letter-spacing:.04em;font-size:9.5px}.cc-table td{padding:9px 8px;border-bottom:1px solid var(--g100);vertical-align:middle}.cc-row{cursor:pointer}.cc-row:hover,.cc-row.selected{background:#f8fbff}.cc-row.selected{box-shadow:inset 3px 0 0 var(--blue)}.cc-alert{display:inline-flex;align-items:center;padding:3px 7px;border-radius:20px;background:var(--amber-light);color:var(--amber);font-size:10px;font-weight:700}.cc-name{font-weight:700;color:var(--g900);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cc-meta{font-size:10px;color:var(--g500);margin-top:3px}.cc-mission{border:0;background:none;color:var(--blue);font:600 10px/1.3 monospace;text-decoration:underline;cursor:pointer;padding:0;margin-top:4px}.cc-sap{font:700 10px/1.3 monospace;color:var(--blue)}.cc-status{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:700}.cc-status.ok{color:var(--green)}.cc-status.missing{color:var(--red)}.cc-status.pending{color:var(--amber)}.cc-pbi{display:inline-flex;align-items:center;padding:4px 7px;border-radius:5px;background:var(--purple-light);color:var(--purple);font-size:10px;font-weight:700;text-decoration:none}
 .cc-detail{display:flex;flex-direction:column}.cc-detail-head{padding:13px 15px;border-bottom:1px solid var(--g200)}.cc-eyebrow{font-size:9.5px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.05em}.cc-detail-title{font-size:15px;font-weight:700;margin-top:6px}.cc-detail-sub{font-size:10.5px;color:var(--g500);margin-top:4px}.cc-date-range{margin-top:9px;padding:8px 10px;border-radius:7px;background:var(--blue-light);color:var(--blue-dark);font-size:11px}.cc-date-range strong{display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}.cc-detail-body{flex:1;overflow:auto;padding:12px 15px}.cc-section+.cc-section{border-top:1px solid var(--g100);margin-top:13px;padding-top:13px}.cc-section-title{font-size:9.5px;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:7px}.cc-check{display:grid;grid-template-columns:23px 1fr auto;align-items:center;gap:8px;min-height:48px}.cc-check+.cc-check{border-top:1px solid var(--g100)}.cc-check-box{width:22px;height:22px;border:1.5px solid var(--g300);border-radius:5px;display:grid;place-items:center;background:#fff;color:var(--g400);font-size:14px;cursor:pointer}.cc-check-box.checked{background:var(--green);border-color:var(--green);color:#fff}.cc-check-label{font-size:11px;font-weight:700}.cc-check-help{font-size:9.5px;color:var(--g500);margin-top:2px}.cc-check-tag{padding:2px 6px;border-radius:10px;background:var(--g100);color:var(--g500);font-size:9.5px}.cc-check-tag.ok{background:var(--green-light);color:var(--green)}.cc-detail-foot{padding:10px 15px;background:var(--g50);border-top:1px solid var(--g200)}.cc-ready-note{font-size:10.5px;color:var(--amber);margin-bottom:7px}.cc-email{display:flex;align-items:center;justify-content:center;width:100%;height:34px;border:0;border-radius:var(--r);background:var(--blue);color:#fff;font-family:inherit;font-size:11.5px;font-weight:700;text-decoration:none;cursor:pointer}.cc-email.disabled{background:var(--g300);color:var(--g500);pointer-events:none}.cc-empty{padding:50px;text-align:center;color:var(--g500)}
 .mission-entry{display:flex;gap:6px;align-items:center}.mission-entry .fi{flex:1}.mission-add{height:34px;padding:0 11px;border:1.5px solid var(--blue);border-radius:var(--r);background:var(--blue-light);color:var(--blue);font-family:inherit;font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap}.mission-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.mission-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 7px;border-radius:14px;background:var(--green-light);color:var(--green);font:700 10.5px/1.2 monospace}.mission-chip button{border:0;background:none;color:inherit;font:800 13px/1 monospace;cursor:pointer;padding:0}.mission-empty{font-size:10.5px;color:var(--g400);font-style:italic}.mission-standby{display:none;margin-top:6px;height:29px;padding:0 10px;border:1px solid var(--amber);border-radius:var(--r);background:var(--amber-light);color:var(--amber);font-family:inherit;font-size:10.5px;font-weight:700;cursor:pointer}
@@ -702,14 +721,15 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">Version 2026.09.16.11</summary>
+        <summary title="Open version history">V2026.09.17.4</summary>
         <div class="release-panel">
-          <div class="release-heading">What&rsquo;s new in v2026.09.16.11 &middot; Closing Countdown</div>
-          <div class="release-date">Updated 16 September 2026</div>
+          <div class="release-heading">New version V2026.09.17.4</div>
+          <div class="release-date">What&rsquo;s new:</div>
           <ul class="release-list">
-            <li>Reporting compliance now passes automatically from 75%.</li>
-            <li>Closing Check alerts count down dynamically from N-5 to N-0.</li>
-            <li>Compliance colours and labels use the same 75% rule throughout the app.</li>
+            <li>Removed the Reporting overview row from the Operations Home page.</li>
+            <li>Reporting Check now shows only the last synchronization time.</li>
+            <li>Removed the Closing Check title beside the filters.</li>
+            <li>Fixed the version popup so all improvements and fixes remain visible.</li>
           </ul>
         </div>
       </details>
@@ -1074,7 +1094,6 @@ window._authReady=restoreSupabaseSession();
 <div class="page" id="page9">
   <div class="cc-shell">
     <div class="cc-head">
-      <div class="cc-head-copy"><div class="cc-title">Closing Check</div><div class="cc-sub" id="cc-subline">Animations ending within 5 days · final client-send requirements</div></div>
       <select class="cc-filter" id="cc-filter-sap" onchange="cc_render()"><option value="">All SAP codes</option></select>
       <select class="cc-filter" id="cc-filter-client" onchange="cc_render()"><option value="">All clients</option></select>
       <select class="cc-filter" id="cc-filter-agency" onchange="cc_render()"><option value="">All agencies</option></select>
@@ -1410,25 +1429,27 @@ window._authReady=restoreSupabaseSession();
 <div class="page" id="page8" style="flex-direction:column;overflow:hidden;background:var(--g50);">
 
   <!-- Top bar: filters -->
-  <div style="background:#fff;border-bottom:1px solid var(--g200);padding:10px 24px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap;">
-    <div style="font-size:15px;font-weight:700;color:var(--g900);margin-right:8px;">Reporting Check</div>
+  <div class="rc-toolbar">
 
     <!-- Date range -->
-    <span style="font-size:12px;color:var(--g600);font-weight:500;">From</span>
-    <input type="date" id="rc_from" min="2026-01-01" onchange="rc_scheduleLoad()" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
-    <span style="font-size:12px;color:var(--g600);font-weight:500;">To</span>
-    <input type="date" id="rc_to" min="2026-01-01" onchange="rc_scheduleLoad()" style="height:30px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:12px;outline:none;">
+    <span class="rc-toolbar-label">From</span>
+    <input class="rc-toolbar-control" type="date" id="rc_from" min="2026-01-01" onchange="rc_scheduleLoad()">
+    <span class="rc-toolbar-label">To</span>
+    <input class="rc-toolbar-control" type="date" id="rc_to" min="2026-01-01" onchange="rc_scheduleLoad()">
 
-    <input type="search" id="rc_record_search" oninput="rc_populateTrackingPickers()" placeholder="Search campaign / SAP…" title="Search the campaign and SAP lists" style="height:30px;width:175px;padding:0 9px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;color:var(--g600);outline:none;">
-    <select id="rc_record_campaign" onchange="rc_pickTrackingRecord(this.value)" title="Select a campaign and load its complete date range" style="height:30px;max-width:230px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;color:var(--g600);outline:none;">
-      <option value="">Select campaign</option>
-    </select>
-    <select id="rc_record_sap" onchange="rc_pickTrackingRecord(this.value)" title="Select a SAP code and load its complete date range" style="height:30px;max-width:170px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;color:var(--g600);outline:none;">
-      <option value="">Select SAP code</option>
-    </select>
-    <select id="rc_record_report_type" onchange="rc_defaultReportTypePending=false;rc_populateTrackingPickers()" title="Filter the campaign and SAP lists by report type" style="height:30px;max-width:175px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;font-family:inherit;font-size:11.5px;color:var(--g600);outline:none;">
+    <select class="rc-toolbar-control" id="rc_record_report_type" onchange="rc_reportTypeChanged()" title="Choose the report type">
       <option value="">All report types</option>
     </select>
+    <div class="rc-sap-picker rc-ms" id="rc_sap_picker">
+      <button type="button" class="rc-ms-btn" id="rc_sap_btn" onclick="rc_toggleSapPicker(event)" aria-expanded="false" title="Search and select one or more SAP codes or campaigns">
+        <span id="rc_sap_label">SAP / Campaign: All</span><svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg>
+      </button>
+      <div class="rc-ms-panel" id="rc_sap_panel" onclick="event.stopPropagation()">
+        <input class="rc-ms-search" id="rc_sap_search" type="search" placeholder="Search SAP code or campaign name…" oninput="rc_renderSapOptions(this.value)">
+        <div class="rc-ms-actions"><button type="button" onclick="rc_clearSapSelection()">Show all</button><button type="button" onclick="rc_closeSapPicker()">Done</button></div>
+        <div class="rc-ms-list" id="rc_sap_options"></div>
+      </div>
+    </div>
 
     <!-- Checkbox filters are generated after the reporting data loads -->
     <div id="rc_filter_bar" class="rc-filter-bar"></div>
@@ -1441,7 +1462,7 @@ window._authReady=restoreSupabaseSession();
       <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M14 2H6a1 1 0 0 0-1 1v2H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM8 6.5l1.5 2L11 6.5h1.2L10.1 9.5l2.1 3H11l-1.5-2.1L8 12.5H6.8l2.1-3L6.8 6.5H8z"/></svg>
       Export
     </button>
-    <div id="rc_subline" style="margin-left:auto;font-size:12px;color:var(--g500);display:flex;align-items:center;gap:8px;">
+    <div id="rc_subline" class="rc-subline" style="margin-left:0;font-size:11px;color:var(--g500);display:flex;align-items:center;gap:6px;white-space:nowrap;">
       <span id="rc_subline_text"></span>
       <span id="rc_sync_badge"></span>
     </div>
@@ -1886,15 +1907,10 @@ function resetFiltersForPage(page){
     rc_initialized=false;
     rc_defaultReportTypePending=true;
     rc_closeFilterMenus();
-    const campaignPicker=document.getElementById('rc_record_campaign');
-    const sapPicker=document.getElementById('rc_record_sap');
-    const searchPicker=document.getElementById('rc_record_search');
     const reportTypePicker=document.getElementById('rc_record_report_type');
-    if(campaignPicker)campaignPicker.value='';
-    if(sapPicker)sapPicker.value='';
-    if(searchPicker)searchPicker.value='';
     if(reportTypePicker)reportTypePicker.value='';
     rc_selectedTrackingId=null;
+    rc_selectedTrackingIds=new Set();
   }
   if(page===9){
     cc_resetFilters();
@@ -3431,11 +3447,15 @@ async function saveField(id,col,val){
 let p3All=[], p3View='pending', p3EmailBodies={}, p3OpsContacts=[], p3ValidatorSelections={};
 let p3LoadPromise=null, p3CompliancePromise=null, p3OpsPromise=null;
 
-async function applyReportingCompliance(records,{autoConfirm=false}={}){
+async function applyReportingCompliance(records,{autoConfirm=false,asOfDate=''}={}){
   const targets=records.filter(record=>record.startdate&&record.enddate);
   if(!targets.length)return;
   const from=targets.map(record=>record.startdate).sort()[0];
-  const to=targets.map(record=>record.enddate).sort().reverse()[0];
+  const latestEnd=targets.map(record=>record.enddate).sort().reverse()[0];
+  const now=new Date();
+  const today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  const cutoff=asOfDate||today;
+  const to=cutoff<latestEnd?cutoff:latestEnd;
   try{
     const [scheduleRows,questionnaireRows]=await Promise.all([
       sbGetAll(`GI_ScheduleV2?select=day,promoter_id,promoter_fullname,store_code,pos,brand,client,role,campaign_name,campaign_sapcode,timeslot_status&day=gte.${from}&day=lte.${to}&promoter_status=neq.Pending&brand=not.ilike.*JTI*&client=neq.${encodeURIComponent('GLOBE TRAVEL RETAIL')}&pos=neq.${encodeURIComponent('TOURNEE TERRAIN')}&campaign_name=not.ilike.*FIELD SUPERVISOR*&or=(timeslot_status.is.null,timeslot_status.neq.Annulé)&order=day.desc`),
@@ -3591,6 +3611,7 @@ function workflowDetail(record,page){
   const isValidated=!!record.validated_date;
   const isSent=!!(record.email_sent_date||record.first_report_date);
   const pbi=safeHttpUrl(record.powerbi_url);
+  const pbiName=record.powerbi_title||'Open Power BI report';
   const missions=missionIdsForRecord(record).join(', ')||'—';
   const compliance=Number.isFinite(record.reporting_compliance_pct)
     ?`${record.reporting_compliance_pct}% · ${record.reporting_compliance_reported}/${record.reporting_compliance_total} reportable shifts · Absent: ${Number(record.reporting_compliance_absent)||0}`
@@ -3605,12 +3626,16 @@ function workflowDetail(record,page){
   }else{
     action=buildEmailSection(record);
   }
-  return `<div class="wf-detail-head"><div class="wf-eyebrow">${page===3?'Under review':'Client delivery'}</div><div class="wf-detail-title">${esc(record.Title||shortBrands(record).join(', ')||'Untitled report')}</div><div class="wf-detail-sub">Mission ${esc(missions)} · SAP ${esc(record.sapcode||'—')}</div><div class="wf-range"><strong>Operation date range</strong>${fd(record.startdate)||'—'} → ${fd(record.enddate)||'—'}</div></div><div class="wf-detail-body"><div class="wf-section"><div class="wf-section-title">Reporting compliance</div><div style="font-size:11.5px;color:${Number(record.reporting_compliance_pct)>=75?'var(--green)':'var(--amber)'};font-weight:700;">${esc(compliance)}</div></div><div class="wf-section"><div class="wf-section-title">Power BI</div>${pbi?`<a class="cc-pbi" style="width:100%;justify-content:center;padding:7px" href="${esc(pbi)}" target="_blank" rel="noopener noreferrer">Open Power BI report</a>`:'<div class="wf-meta">No Power BI link set.</div>'}</div><div class="wf-section"><div class="wf-section-title">Review notes</div>${page===3&&!isValidated?`<textarea class="ie" rows="4" placeholder="Add notes…" onblur="saveField(${record.id},'comments_status',this.value)" style="width:100%;resize:vertical;font-size:11.5px;">${esc(record.comments_status||'')}</textarea>`:`<div style="font-size:11.5px;color:var(--g600);">${esc(record.comments_status||'No review notes.')}</div>`}</div><div class="wf-section"><div class="wf-section-title">${page===3?'Validation':'Email'}</div>${action}</div></div><div class="wf-detail-foot"><span class="wf-status ${isSent||isValidated?'ok':'pending'}">${isSent?'Sent':isValidated?'Validated':'Awaiting validation'}</span></div>`;
+  return `<div class="wf-detail-head"><div class="wf-eyebrow">${page===3?'Under review':'Client delivery'}</div><div class="wf-detail-title">${esc(record.Title||shortBrands(record).join(', ')||'Untitled report')}</div><div class="wf-detail-sub">Mission ${esc(missions)} · SAP ${esc(record.sapcode||'—')}</div><div class="wf-range"><strong>Operation date range</strong>${fd(record.startdate)||'—'} → ${fd(record.enddate)||'—'}</div></div><div class="wf-detail-body"><div class="wf-section"><div class="wf-section-title">Reporting compliance</div><div style="font-size:11.5px;color:${Number(record.reporting_compliance_pct)>=75?'var(--green)':'var(--amber)'};font-weight:700;">${esc(compliance)}</div></div><div class="wf-section"><div class="wf-section-title">Power BI</div>${pbi?`<a class="cc-pbi" style="width:100%;justify-content:center;padding:7px" href="${esc(pbi)}" target="_blank" rel="noopener noreferrer">${esc(pbiName)}</a>`:'<div class="wf-meta">No Power BI link set.</div>'}</div><div class="wf-section"><div class="wf-section-title">Review notes</div>${page===3&&!isValidated?`<textarea class="ie" rows="4" placeholder="Add notes…" onblur="saveField(${record.id},'comments_status',this.value)" style="width:100%;resize:vertical;font-size:11.5px;">${esc(record.comments_status||'')}</textarea>`:`<div style="font-size:11.5px;color:var(--g600);">${esc(record.comments_status||'No review notes.')}</div>`}</div><div class="wf-section"><div class="wf-section-title">${page===3?'Validation':'Email'}</div>${action}</div></div><div class="wf-detail-foot"><span class="wf-status ${isSent||isValidated?'ok':'pending'}">${isSent?'Sent':isValidated?'Validated':'Awaiting validation'}</span></div>`;
 }
 function renderWorkflowLayout(body,rows,page){
   if(!rows.length)return;
   if(!rows.some(record=>String(record.id)===String(workflowSelected[page])))workflowSelected[page]=rows[0].id;
   const selected=rows.find(record=>String(record.id)===String(workflowSelected[page]))||rows[0];
+  if(page===4){
+    body.innerHTML=`<div class="wf-layout"><div class="wf-list"><table class="wf-table"><colgroup><col style="width:85px"><col style="width:220px"><col style="width:95px"><col style="width:125px"><col style="width:125px"><col style="width:150px"></colgroup><thead><tr><th>Status</th><th>Report / Mission</th><th>SAP code</th><th>Operation dates</th><th>Report Type</th><th>Power BI</th></tr></thead><tbody>${rows.map(record=>{const rowSelected=String(record.id)===String(selected.id),sent=!!(record.email_sent_date||record.first_report_date),status=sent?'Sent':'Ready',missions=missionIdsForRecord(record).join(', ')||'—',pbi=safeHttpUrl(record.powerbi_url),pbiName=record.powerbi_title||'Open Power BI',reportTypes=shortReportTypes(record).join(', ')||'—';return `<tr class="wf-row${rowSelected?' selected':''}" onclick="selectWorkflowRecord(${page},${record.id})"><td><span class="wf-status ok">${status}</span></td><td><div class="wf-name">${esc(record.Title||shortBrands(record).join(', ')||'Untitled report')}</div><div class="wf-meta">Mission ${esc(missions)} · ${esc(shortClient(record)||record.client||'')}</div></td><td><span class="cc-sap">${esc(record.sapcode||'—')}</span></td><td><div>${fd(record.startdate)||'—'}</div><div class="wf-meta">to ${fd(record.enddate)||'—'}</div></td><td><span class="wf-meta">${esc(reportTypes)}</span></td><td>${pbi?`<a class="cc-pbi" href="${esc(pbi)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${esc(pbiName)}</a>`:'—'}</td></tr>`;}).join('')}</tbody></table></div><aside class="wf-detail">${workflowDetail(selected,page)}</aside></div>`;
+    return;
+  }
   body.innerHTML=`<div class="wf-layout"><div class="wf-list"><table class="wf-table"><colgroup><col style="width:85px"><col style="width:220px"><col style="width:95px"><col style="width:125px"><col style="width:95px"><col style="width:58px"></colgroup><thead><tr><th>Status</th><th>Report / Mission</th><th>SAP code</th><th>Operation dates</th><th>Compliance</th><th>BI</th></tr></thead><tbody>${rows.map(record=>{const rowSelected=String(record.id)===String(selected.id),validated=!!record.validated_date,sent=!!(record.email_sent_date||record.first_report_date),status=page===4?(sent?'Sent':'Ready'):(validated?'Validated':'In review'),statusClass=validated||sent?'ok':'pending',missions=missionIdsForRecord(record).join(', ')||'—',pbi=safeHttpUrl(record.powerbi_url);return `<tr class="wf-row${rowSelected?' selected':''}" onclick="selectWorkflowRecord(${page},${record.id})"><td><span class="wf-status ${statusClass}">${status}</span></td><td><div class="wf-name">${esc(record.Title||shortBrands(record).join(', ')||'Untitled report')}</div><div class="wf-meta">Mission ${esc(missions)} · ${esc(shortClient(record)||record.client||'')}</div></td><td><span class="cc-sap">${esc(record.sapcode||'—')}</span></td><td><div>${fd(record.startdate)||'—'}</div><div class="wf-meta">to ${fd(record.enddate)||'—'}</div></td><td>${workflowCompliance(record)}</td><td>${pbi?`<a class="cc-pbi" href="${esc(pbi)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Open</a>`:'—'}</td></tr>`;}).join('')}</tbody></table></div><aside class="wf-detail">${workflowDetail(selected,page)}</aside></div>`;
 }
 
@@ -5054,9 +5079,9 @@ function items_showToast(message,type='success'){
 // PAGE 9 – CLOSING CHECK
 // ═══════════════════════════════════════════════════════════
 let cc_rows=[],cc_initialized=false,cc_selectedId=null,cc_schemaReady=true;
-const ccSelect='id,Title,client,brand,sapcode,mission_id,mission_ids,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,reporting_compliant,kpis_ok,global_feedback_received,first_report_date,email_sent_date,cancelled_date,not_sent_date';
-const ccStatusSelect='id,Title,client,brand,sapcode,mission_id,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,reporting_compliant,kpis_ok,global_feedback_received,first_report_date,email_sent_date,cancelled_date,not_sent_date';
-const ccFallbackSelect='id,Title,client,brand,sapcode,mission_id,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,first_report_date,email_sent_date,cancelled_date,not_sent_date';
+const ccSelect='id,Title,client,brand,sapcode,mission_id,mission_ids,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,report_type_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,reporting_compliant,kpis_ok,global_feedback_received,first_report_date,email_sent_date,cancelled_date,not_sent_date';
+const ccStatusSelect='id,Title,client,brand,sapcode,mission_id,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,report_type_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,reporting_compliant,kpis_ok,global_feedback_received,first_report_date,email_sent_date,cancelled_date,not_sent_date';
+const ccFallbackSelect='id,Title,client,brand,sapcode,mission_id,store,brand_ids,store_ids,sector_ids,client_fk,company_ids,report_type_ids,startdate,enddate,powerbi_url,powerbi_title,contactName_Email,first_report_date,email_sent_date,cancelled_date,not_sent_date';
 const ccToday=()=>new Date().toISOString().split('T')[0];
 const ccPlusDays=days=>{const date=new Date();date.setDate(date.getDate()+days);return date.toISOString().split('T')[0];};
 const ccCountdownLabel=enddate=>{
@@ -5145,11 +5170,12 @@ function cc_render(){
   if(!list)return;
   if(!rows.length){list.innerHTML='<div class="cc-empty">No animations ending in the next 5 days match these filters.</div>';document.getElementById('cc-detail').innerHTML='<div class="cc-empty">No animation selected.</div>';return;}
   if(!rows.some(record=>String(record.id)===String(cc_selectedId)))cc_selectedId=rows[0].id;
-  list.innerHTML=`<table class="cc-table"><colgroup><col style="width:62px"><col style="width:190px"><col style="width:92px"><col style="width:122px"><col style="width:120px"><col style="width:78px"><col style="width:105px"><col style="width:60px"></colgroup><thead><tr><th>Alert</th><th>Animation / mission</th><th>SAP code</th><th>Operation dates</th><th>Compliance</th><th>KPIs</th><th>Global Feedback</th><th>BI</th></tr></thead><tbody>${rows.map(record=>{
+  list.innerHTML=`<table class="cc-table"><colgroup><col style="width:62px"><col style="width:190px"><col style="width:92px"><col style="width:122px"><col style="width:120px"><col style="width:78px"><col style="width:105px"><col style="width:105px"><col style="width:120px"></colgroup><thead><tr><th>Alert</th><th>Animation / mission</th><th>SAP code</th><th>Operation dates</th><th>Compliance</th><th>KPIs</th><th>Global Feedback</th><th>Report Type</th><th>BI</th></tr></thead><tbody>${rows.map(record=>{
     const selected=String(record.id)===String(cc_selectedId),pbi=safeHttpUrl(record.powerbi_url);
     const pct=Number.isFinite(record.reporting_compliance_pct)?`${record.reporting_compliance_pct}% · ${record.reporting_compliance_reported}/${record.reporting_compliance_total}`:'—';
     const absent=Number(record.reporting_compliance_absent)||0,backup=Number(record.reporting_compliance_backup)||0;
-    return `<tr class="cc-row${selected?' selected':''}" onclick="cc_select(${record.id})"><td><span class="cc-alert">${ccCountdownLabel(record.enddate)}</span></td><td><div class="cc-name">${esc(record.Title||'Untitled animation')}</div><div class="cc-meta">${esc(ccRecordClient(record))}</div><button class="cc-mission" onclick="event.stopPropagation();cc_openReporting(${record.id})">Mission ${esc(missionIdsForRecord(record).join(', ')||'—')} → Reporting Check</button></td><td><span class="cc-sap">${esc(record.sapcode||'—')}</span></td><td><div>${fd(record.startdate)||'—'}</div><div class="cc-meta">to ${fd(record.enddate)||'—'}</div></td><td><span class="cc-status ${record.reporting_compliant?'ok':'missing'}">${pct}</span><div class="cc-meta">Absent: ${absent}${backup?` · Backup: ${backup}`:''}</div></td><td><span class="cc-status ${record.kpis_ok?'ok':'missing'}">${record.kpis_ok?'✓ OK':'✕ Missing'}</span></td><td><span class="cc-status ${record.global_feedback_received?'ok':'missing'}">${record.global_feedback_received?'✓ Received':'✕ Missing'}</span></td><td>${pbi?`<a class="cc-pbi" href="${esc(pbi)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Open</a>`:'—'}</td></tr>`;
+    const reportTypes=shortReportTypes(record).join(', ')||'—',pbiName=record.powerbi_title||'Open Power BI';
+    return `<tr class="cc-row${selected?' selected':''}" onclick="cc_select(${record.id})"><td><span class="cc-alert">${ccCountdownLabel(record.enddate)}</span></td><td><div class="cc-name">${esc(record.Title||'Untitled animation')}</div><div class="cc-meta">${esc(ccRecordClient(record))}</div><button class="cc-mission" onclick="event.stopPropagation();cc_openReporting(${record.id})">Mission ${esc(missionIdsForRecord(record).join(', ')||'—')} → Reporting Check</button></td><td><span class="cc-sap">${esc(record.sapcode||'—')}</span></td><td><div>${fd(record.startdate)||'—'}</div><div class="cc-meta">to ${fd(record.enddate)||'—'}</div></td><td><span class="cc-status ${record.reporting_compliant?'ok':'missing'}">${pct}</span><div class="cc-meta">Absent: ${absent}${backup?` · Backup: ${backup}`:''}</div></td><td><span class="cc-status ${record.kpis_ok?'ok':'missing'}">${record.kpis_ok?'✓ OK':'✕ Missing'}</span></td><td><span class="cc-status ${record.global_feedback_received?'ok':'missing'}">${record.global_feedback_received?'✓ Received':'✕ Missing'}</span></td><td><span class="cc-meta">${esc(reportTypes)}</span></td><td>${pbi?`<a class="cc-pbi" href="${esc(pbi)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${esc(pbiName)}</a>`:'—'}</td></tr>`;
   }).join('')}</tbody></table>`;
   cc_renderDetail(rows.find(record=>String(record.id)===String(cc_selectedId))||rows[0]);
 }
@@ -5166,7 +5192,7 @@ function cc_renderDetail(record){
   const absent=Number(record.reporting_compliance_absent)||0,backup=Number(record.reporting_compliance_backup)||0;
   const complianceHelp=Number.isFinite(record.reporting_compliance_pct)?`${record.reporting_compliance_pct}% · ${record.reporting_compliance_reported}/${record.reporting_compliance_total} reportable shifts · Absent: ${absent}${backup?` · Absent with backup: ${backup}`:''}${record.reporting_compliance_pct>=75?' · auto-confirmed at 75%+':' · manual override available'}`:'Calculated from Reporting Check · manual override available';
   const emailActions=allReady&&emails.length?`<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px"><a class="cc-email" href="${esc(mailto)}">Open client email</a><button class="cc-email" type="button" onclick="cc_confirmEmailSent(${record.id})" style="background:var(--green)">Mark email sent</button></div>`:`<span class="cc-email disabled">${emails.length?'Open client email':'No client email linked'}</span>`;
-  detail.innerHTML=`<div class="cc-detail-head"><div class="cc-eyebrow">Final client check · ${ccCountdownLabel(record.enddate)}</div><div class="cc-detail-title">${esc(record.Title||'Untitled animation')}</div><div class="cc-detail-sub">Mission ${esc(missionIdsForRecord(record).join(', ')||'—')} · SAP ${esc(record.sapcode||'—')}</div><div class="cc-date-range"><strong>Operation date range</strong>${fd(record.startdate)||'—'} → ${fd(record.enddate)||'—'}</div></div><div class="cc-detail-body"><div class="cc-section"><div class="cc-section-title">Final requirements</div>${cc_checkHtml(!!record.reporting_compliant,'Reporting compliance (75% minimum)',complianceHelp,'reporting_compliant',record.id)}${cc_checkHtml(!!record.kpis_ok,'KPIs checked','Select when results and data quality are confirmed','kpis_ok',record.id)}${cc_checkHtml(!!record.global_feedback_received,'Global feedback received','Select when final feedback is confirmed','global_feedback_received',record.id)}</div><div class="cc-section"><div class="cc-section-title">Power BI</div>${safeHttpUrl(record.powerbi_url)?`<a class="cc-pbi" style="width:100%;justify-content:center;padding:7px" href="${esc(safeHttpUrl(record.powerbi_url))}" target="_blank" rel="noopener noreferrer">Open Power BI report</a>`:'<div class="cc-meta">No Power BI link set.</div>'}</div></div><div class="cc-detail-foot"><div class="cc-ready-note" style="color:${allReady?'var(--green)':'var(--amber)'}">${allReady?'All requirements met · client email is ready':`Waiting for ${missing.join(', ')||'database setup'}`}</div>${emailActions}</div>`;
+  detail.innerHTML=`<div class="cc-detail-head"><div class="cc-eyebrow">Final client check · ${ccCountdownLabel(record.enddate)}</div><div class="cc-detail-title">${esc(record.Title||'Untitled animation')}</div><div class="cc-detail-sub">Mission ${esc(missionIdsForRecord(record).join(', ')||'—')} · SAP ${esc(record.sapcode||'—')} · ${esc(shortReportTypes(record).join(', ')||'No report type')}</div><div class="cc-date-range"><strong>Operation date range</strong>${fd(record.startdate)||'—'} → ${fd(record.enddate)||'—'}</div></div><div class="cc-detail-body"><div class="cc-section"><div class="cc-section-title">Final requirements</div>${cc_checkHtml(!!record.reporting_compliant,'Reporting compliance (75% minimum)',complianceHelp,'reporting_compliant',record.id)}${cc_checkHtml(!!record.kpis_ok,'KPIs checked','Select when results and data quality are confirmed','kpis_ok',record.id)}${cc_checkHtml(!!record.global_feedback_received,'Global feedback received','Select when final feedback is confirmed','global_feedback_received',record.id)}</div><div class="cc-section"><div class="cc-section-title">Power BI</div>${safeHttpUrl(record.powerbi_url)?`<a class="cc-pbi" style="width:100%;justify-content:center;padding:7px" href="${esc(safeHttpUrl(record.powerbi_url))}" target="_blank" rel="noopener noreferrer">${esc(record.powerbi_title||'Open Power BI report')}</a>`:'<div class="cc-meta">No Power BI link set.</div>'}</div></div><div class="cc-detail-foot"><div class="cc-ready-note" style="color:${allReady?'var(--green)':'var(--amber)'}">${allReady?'All requirements met · client email is ready':`Waiting for ${missing.join(', ')||'database setup'}`}</div>${emailActions}</div>`;
 }
 async function cc_toggle(id,field,value){
   try{await sbPatch('InsightsTracking',id,{[field]:value});const record=cc_rows.find(item=>String(item.id)===String(id));if(record)record[field]=value;cc_schemaReady=true;cc_render();toast('Closing check updated.','success');}catch(error){toast('Could not save this check. Confirm the Closing Check columns exist in Supabase.','error');}
@@ -5178,16 +5204,13 @@ function cc_confirmEmailSent(id){if(confirm('Confirm that the final client email
 async function cc_openReporting(id){
   const record=cc_rows.find(item=>String(item.id)===String(id));if(!record)return;
   rc_selectedTrackingId=String(record.id);
+  rc_selectedTrackingIds=new Set([String(record.id)]);
   rc_initialized=true;switchTab(8);
   rc_populateTrackingPickers();
-  const campaignPicker=document.getElementById('rc_record_campaign'),sapPicker=document.getElementById('rc_record_sap');
-  if(campaignPicker)campaignPicker.value=String(record.id);if(sapPicker)sapPicker.value=String(record.id);
   rc_filterOptions={};rc_filterState={};rc_filterMode={};rc_forceAllFilters=true;rc_kpiFilter='';
   document.getElementById('rc_from').value=record.startdate||ccToday();document.getElementById('rc_to').value=record.enddate||ccToday();
   await rc_load();
-  rc_filterMode.campaign='custom';rc_filterState.campaign=new Set([String(record.Title||record.brand||'')].filter(Boolean));
-  rc_filterMode.sapcode='custom';rc_filterState.sapcode=new Set([String(record.sapcode||'')].filter(Boolean));
-  rc_populateFilters();rc_render();
+  rc_populateFilters();rc_render();rc_renderSapOptions();
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -5199,6 +5222,7 @@ let rc_defaultReportTypePending = true;
 let rc_trackingRecords = [];
 let rc_trackingReportTypes = [];
 let rc_selectedTrackingId = null;
+let rc_selectedTrackingIds = new Set();
 let rc_trackingSummary = {linked:0,unlinked:0,excluded:0};
 let rc_filterOptions = {};
 let rc_filterState = {};
@@ -5208,25 +5232,16 @@ let rc_loadTimer = null;
 let rc_loadRequest = 0;
 let rc_kpiFilter = '';
 let rc_emptyState = null;
+let rc_effectiveFrom = '';
+let rc_effectiveTo = '';
 const RC_EMPTY = '__RC_EMPTY__';
 const RC_MIN_DATE = '2026-01-01';
 const RC_FILTER_DEFS = [
   {key:'agency',label:'Agency',values:r=>r.trackingAgencies},
   {key:'sector',label:'Sector',values:r=>r.trackingSectors},
-  {key:'campaign',label:'Campaign',values:r=>[r.trackingTitle]},
-  {key:'reportType',label:'Report Type',values:r=>r.reportTypes},
+  {key:'store',label:'Store',values:r=>r.trackingStores},
   {key:'client',label:'Client',values:r=>r.trackingClients},
   {key:'brand',label:'Brand',values:r=>r.trackingBrands},
-  {key:'store',label:'Store',values:r=>r.trackingStores},
-  {key:'sapcode',label:'SAP Code',values:r=>[r.trackingSapCode]},
-  {key:'status',label:'Status',values:r=>[r.status],staticOptions:[
-    {value:'complete',label:'Reported'},
-    {value:'partial',label:'Partial'},
-    {value:'missing',label:'Missing'},
-    {value:'absent',label:'Absent'},
-    {value:'absent_backup',label:'Absent + Backup'},
-    {value:'pending',label:'Pending'},
-  ]},
 ];
 
 function rcFilterValues(row,def){
@@ -5312,11 +5327,12 @@ function rc_resetFilters(){
   rc_forceAllFilters=true;
   rc_kpiFilter='';
   rc_defaultReportTypePending=true;
+  rc_selectedTrackingId=null;
+  rc_selectedTrackingIds=new Set();
   const reportTypePicker=document.getElementById('rc_record_report_type');
   if(reportTypePicker)reportTypePicker.value='';
-  const campaignPicker=document.getElementById('rc_record_campaign'),sapPicker=document.getElementById('rc_record_sap'),searchPicker=document.getElementById('rc_record_search');
-  if(campaignPicker)campaignPicker.value='';if(sapPicker)sapPicker.value='';if(searchPicker)searchPicker.value='';
-  rc_selectedTrackingId=null;
+  const sapSearch=document.getElementById('rc_sap_search');
+  if(sapSearch)sapSearch.value='';
   const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
   const yStr = yesterday.toISOString().split('T')[0];
   document.getElementById('rc_from').value = yStr;
@@ -5350,55 +5366,93 @@ async function rc_refreshTrackingPickers(){
 }
 
 function rc_populateTrackingPickers(){
-  const campaign=document.getElementById('rc_record_campaign');
-  const sap=document.getElementById('rc_record_sap');
   const reportType=document.getElementById('rc_record_report_type');
-  const search=document.getElementById('rc_record_search');
-  if(!campaign||!sap||!reportType||!search)return;
-  const currentCampaign=campaign.value,currentSap=sap.value;
+  if(!reportType)return;
   const typeRows=rc_trackingReportTypes.length?rc_trackingReportTypes:allRT;
   const defaultType=typeRows.find(type=>String(type.type||'').trim().toLowerCase()==='bi insights');
-  reportType.innerHTML=defaultType?`<option value="${esc(defaultType.id)}">BI Insights</option>`:'<option value="">BI Insights unavailable</option>';
-  reportType.value=defaultType?String(defaultType.id):'';
-  reportType.disabled=true;
+  const previous=reportType.value;
+  reportType.innerHTML='<option value="">All report types</option>'+typeRows.map(type=>`<option value="${esc(type.id)}">${esc(type.type||`Type ${type.id}`)}</option>`).join('');
+  const nextType=rc_defaultReportTypePending?(defaultType?String(defaultType.id):''):previous;
+  reportType.value=[...reportType.options].some(option=>option.value===nextType)?nextType:'';
+  reportType.disabled=false;
   rc_defaultReportTypePending=false;
+  rc_renderSapOptions(document.getElementById('rc_sap_search')?.value||'');
+}
+
+function rcRecordBusinessValues(record,key){
+  if(key==='agency')return resolveIds(record.company_ids,allCo,'name');
+  if(key==='sector')return shortSectors(record);
+  if(key==='store')return [...new Set([...shortStores(record),...String(record.store||'').split(',').map(value=>value.trim()).filter(Boolean)])];
+  if(key==='client')return [shortClient(record)||record.client||''].filter(Boolean);
+  if(key==='brand')return [...new Set([...shortBrands(record),...String(record.brand||'').split(',').map(value=>value.trim()).filter(Boolean)])];
+  return [];
+}
+function rcTrackingMatchesBusinessFilters(record){
+  return RC_FILTER_DEFS.every(def=>{
+    if((rc_filterMode[def.key]||'all')==='all')return true;
+    const selected=rc_filterState[def.key]||new Set();
+    const values=rcRecordBusinessValues(record,def.key).map(value=>String(value).trim()).filter(Boolean);
+    return values.some(value=>selected.has(value));
+  });
+}
+function rcSelectedTrackingRecords(source=rc_trackingRecords.length?rc_trackingRecords:allRec){
+  return source.filter(record=>rc_selectedTrackingIds.has(String(record.id)));
+}
+function rcAvailableTrackingRecords(){
+  const reportTypeId=document.getElementById('rc_record_report_type')?.value||'';
   const today=new Date().toISOString().slice(0,10);
   const isActive=record=>record.startdate<=today&&record.enddate>=today;
   const sourceRecords=[...(rc_trackingRecords.length?rc_trackingRecords:allRec)];
-  const records=sourceRecords
+  return sourceRecords
     .filter(record=>record.startdate&&record.enddate&&record.enddate>=RC_MIN_DATE&&(record.Title||record.sapcode))
-    .filter(record=>defaultType&&rcTrackingIds(record.report_type_ids).includes(String(defaultType.id)))
+    .filter(record=>!reportTypeId||rcTrackingIds(record.report_type_ids).includes(String(reportTypeId)))
     .filter(record=>!rcIsStandby(record,sourceRecords))
-    .filter(record=>!rcNorm(search.value)||rcNorm(`${record.Title||''} ${record.sapcode||''} ${missionIdsForRecord(record).join(' ')}`).includes(rcNorm(search.value)))
+    .filter(rcTrackingMatchesBusinessFilters)
     .sort((a,b)=>Number(isActive(b))-Number(isActive(a))||String(b.enddate||'').localeCompare(String(a.enddate||''))||String(a.Title||'').localeCompare(String(b.Title||'')));
-  const option=(record,label)=>`<option value="${record.id}"${isActive(record)?' style="background:#e6f4ea;color:#137333;font-weight:600;"':''}>${isActive(record)?'● ACTIVE · ':''}${label}</option>`;
-  campaign.innerHTML='<option value="">Select campaign</option>'+records.filter(record=>record.Title).map(record=>option(record,`${esc(record.Title)}${record.sapcode?` · ${esc(record.sapcode)}`:''}${missionIdsForRecord(record).length?` · Missions ${esc(missionIdsForRecord(record).join(', '))}`:''}`)).join('');
-  sap.innerHTML='<option value="">Select SAP code</option>'+records.filter(record=>record.sapcode).map(record=>option(record,`${esc(record.sapcode)}${missionIdsForRecord(record).length?` · Missions ${esc(missionIdsForRecord(record).join(', '))}`:''}${record.Title?` · ${esc(record.Title)}`:''}`)).join('');
-  campaign.value=records.some(record=>String(record.id)===String(currentCampaign))?currentCampaign:'';
-  sap.value=records.some(record=>String(record.id)===String(currentSap))?currentSap:'';
 }
-
-async function rc_pickTrackingRecord(id){
-  if(!id){
-    rc_selectedTrackingId=null;
-    rc_emptyState=null;
-    const campaign=document.getElementById('rc_record_campaign'),sap=document.getElementById('rc_record_sap');
-    if(campaign)campaign.value='';if(sap)sap.value='';
-    rc_filterMode.campaign='all';rc_filterMode.sapcode='all';rc_filterState.campaign=new Set();rc_filterState.sapcode=new Set();
-    rc_populateFilters();rc_render();return;
+function rc_updateSapButton(){
+  const label=document.getElementById('rc_sap_label'),button=document.getElementById('rc_sap_btn');
+  if(!label||!button)return;
+  const selected=rcSelectedTrackingRecords();
+  label.textContent=!selected.length?'SAP / Campaign: All':selected.length===1?`${selected[0].sapcode||'No SAP'} — ${selected[0].Title||selected[0].brand||'Untitled'}`:`SAP / Campaign: ${selected.length} selected`;
+  button.classList.toggle('active',selected.length>0);
+}
+function rc_renderSapOptions(query=''){
+  const list=document.getElementById('rc_sap_options');if(!list)return;
+  const term=rcNorm(query),today=new Date().toISOString().slice(0,10);
+  const records=rcAvailableTrackingRecords().filter(record=>!term||rcNorm(`${record.sapcode||''} ${record.Title||''} ${record.brand||''} ${missionIdsForRecord(record).join(' ')}`).includes(term));
+  list.innerHTML=records.map(record=>{
+    const active=record.startdate<=today&&record.enddate>=today;
+    const missions=missionIdsForRecord(record);
+    return `<label class="rc-ms-opt${active?' rc-sap-active':''}"><input type="checkbox" value="${esc(record.id)}"${rc_selectedTrackingIds.has(String(record.id))?' checked':''} onchange="rc_toggleSapSelection('${esc(record.id)}',this.checked)"><span><span class="rc-sap-primary">${active?'● ACTIVE · ':''}${esc(record.sapcode||'No SAP code')} — ${esc(record.Title||record.brand||'Untitled')}</span><span class="rc-sap-secondary">${esc(record.startdate||'—')} → ${esc(record.enddate||'—')}${missions.length?` · Mission ${esc(missions.join(', '))}`:''}</span></span></label>`;
+  }).join('')||'<div class="rc-dd-none">No matching Insights Manager records</div>';
+  rc_updateSapButton();
+}
+function rc_toggleSapPicker(event){
+  event?.stopPropagation();
+  const panel=document.getElementById('rc_sap_panel'),button=document.getElementById('rc_sap_btn');if(!panel||!button)return;
+  const opening=panel.style.display!=='block';rc_closeFilterMenus();
+  if(opening){panel.style.display='block';button.setAttribute('aria-expanded','true');rc_renderSapOptions(document.getElementById('rc_sap_search')?.value||'');setTimeout(()=>document.getElementById('rc_sap_search')?.focus(),0);}
+}
+function rc_closeSapPicker(){const panel=document.getElementById('rc_sap_panel'),button=document.getElementById('rc_sap_btn');if(panel)panel.style.display='none';if(button)button.setAttribute('aria-expanded','false');}
+async function rc_applyTrackingSelection(){
+  const records=rcSelectedTrackingRecords();
+  rc_selectedTrackingId=records.length===1?String(records[0].id):null;
+  if(records.length){
+    document.getElementById('rc_from').value=records.map(record=>record.startdate).filter(Boolean).sort()[0]||document.getElementById('rc_from').value;
+    document.getElementById('rc_to').value=records.map(record=>record.enddate).filter(Boolean).sort().at(-1)||document.getElementById('rc_to').value;
   }
-  const record=(rc_trackingRecords.length?rc_trackingRecords:allRec).find(item=>String(item.id)===String(id));
-  if(!record||!record.startdate||!record.enddate)return;
-  rc_selectedTrackingId=String(record.id);
-  const campaign=document.getElementById('rc_record_campaign'),sap=document.getElementById('rc_record_sap');
-  if(campaign)campaign.value=String(record.id);if(sap)sap.value=String(record.id);
-  document.getElementById('rc_from').value=record.startdate;
-  document.getElementById('rc_to').value=record.enddate;
-  rc_filterOptions={};rc_filterState={};rc_filterMode={};rc_forceAllFilters=true;rc_kpiFilter='';
+  rc_kpiFilter='';rc_emptyState=null;rc_updateSapButton();
   await rc_load();
-  rc_filterMode.campaign='custom';rc_filterState.campaign=new Set([String(record.Title||record.brand||'')].filter(Boolean));
-  rc_filterMode.sapcode='custom';rc_filterState.sapcode=new Set([String(record.sapcode||'')].filter(Boolean));
-  rc_populateFilters();rc_render();
+  rc_renderSapOptions(document.getElementById('rc_sap_search')?.value||'');
+}
+async function rc_toggleSapSelection(id,checked){if(checked)rc_selectedTrackingIds.add(String(id));else rc_selectedTrackingIds.delete(String(id));await rc_applyTrackingSelection();}
+async function rc_clearSapSelection(){rc_selectedTrackingIds=new Set();rc_selectedTrackingId=null;const search=document.getElementById('rc_sap_search');if(search)search.value='';await rc_applyTrackingSelection();}
+async function rc_reportTypeChanged(){
+  rc_defaultReportTypePending=false;
+  const typeId=document.getElementById('rc_record_report_type')?.value||'';
+  rc_selectedTrackingIds=new Set([...rc_selectedTrackingIds].filter(id=>{const record=(rc_trackingRecords.length?rc_trackingRecords:allRec).find(item=>String(item.id)===id);return record&&(!typeId||rcTrackingIds(record.report_type_ids).includes(String(typeId)));}));
+  await rc_applyTrackingSelection();
 }
 
 const rcNorm=value=>String(value??'')
@@ -5656,17 +5710,24 @@ async function rc_loadLegacy(){
 async function rc_load(){
   const fromInput=document.getElementById('rc_from');
   const from = fromInput.value&&fromInput.value<RC_MIN_DATE?RC_MIN_DATE:fromInput.value;
-  const to   = document.getElementById('rc_to').value;
+  const requestedTo=document.getElementById('rc_to').value;
+  const now=new Date();
+  const today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  const to=requestedTo&&requestedTo<today?requestedTo:today;
   if(fromInput.value!==from)fromInput.value=from;
-  if(!from || !to){ toast('Please set a date range','error'); return; }
-  if(from>to){ toast('The From date must be before the To date','error'); return; }
+  if(!from || !requestedTo){toast('Please set a date range','error');return;}
+  if(from>requestedTo){toast('The From date must be before the To date','error');return;}
+  rc_effectiveFrom=from;rc_effectiveTo=to;
   const requestId=++rc_loadRequest;
   rc_emptyState=null;
-  const selectedTracking=(rc_trackingRecords.length?rc_trackingRecords:allRec).find(record=>String(record.id)===String(rc_selectedTrackingId));
-  const selectedMissions=selectedTracking?rcMissionIds(selectedTracking):[];
-  const selectedScheduleFilter=selectedMissions.length
+  const selectedTrackings=rcSelectedTrackingRecords();
+  const selectedTracking=selectedTrackings.length===1?selectedTrackings[0]:null;
+  const selectedMissions=[...new Set(selectedTrackings.flatMap(rcMissionIds))];
+  const selectedSaps=[...new Set(selectedTrackings.map(record=>String(record.sapcode||'').trim()).filter(Boolean))];
+  const selectedScheduleFilter=selectedTrackings.length&&selectedTrackings.every(record=>rcMissionIds(record).length)
     ?`&mission_id=in.(${selectedMissions.map(id=>encodeURIComponent(id)).join(',')})`
-    :(selectedTracking?.sapcode?`&campaign_sapcode=eq.${encodeURIComponent(selectedTracking.sapcode)}`:'');
+    :(selectedTrackings.length&&selectedTrackings.every(record=>record.sapcode)&&!selectedMissions.length
+      ?`&campaign_sapcode=in.(${selectedSaps.map(value=>encodeURIComponent(value)).join(',')})`:'');
 
   document.getElementById('rc_area').innerHTML = `
     <div style="padding:48px;text-align:center;color:var(--g400);">
@@ -5676,6 +5737,12 @@ async function rc_load(){
   document.getElementById('rc_kpis').innerHTML = '';
   document.getElementById('rc_subline_text').textContent = '';
   document.getElementById('rc_sync_badge').innerHTML = '';
+
+  if(from>to){
+    rc_data=[];
+    rc_emptyState={title:'No shifts due yet',detail:`This period starts on ${from}. Compliance and missing shifts are calculated through today (${today}).`,hint:'Future shifts will appear automatically on their scheduled date.',tone:'amber'};
+    rc_populateFilters(true);rc_render();return;
+  }
 
   try{
     const [schedRows,trackingRows,reportTypeRows,storesWithSector] = await Promise.all([
@@ -5699,10 +5766,10 @@ async function rc_load(){
 
     if(!reportingSchedRows.length){
       rc_data=[];
-      const selectedLabel=selectedTracking?.Title||selectedTracking?.sapcode||'this mission / campaign';
+      const selectedLabel=selectedTrackings.length?selectedTrackings.map(record=>record.Title||record.sapcode).filter(Boolean).join(', '):'this mission / campaign';
       rc_emptyState={
         title:'No promoters assigned to this mission / campaign',
-        detail:selectedTracking
+        detail:selectedTrackings.length
           ?`No eligible promoter shifts are assigned to ${selectedLabel} for ${from} → ${to}.`
           :`No eligible promoter shifts were found for ${from} → ${to}.`,
         hint:'Assign promoters in the schedule, then refresh Reporting Check.',
@@ -5729,7 +5796,7 @@ async function rc_load(){
 
     if(!deduped.length){
       rc_data=[];
-      const selectedLabel=selectedTracking?.Title||selectedTracking?.sapcode||'this mission / campaign';
+      const selectedLabel=selectedTrackings.length?selectedTrackings.map(record=>record.Title||record.sapcode).filter(Boolean).join(', '):'this mission / campaign';
       rc_emptyState={
         title:'No promoters assigned to this mission / campaign',
         detail:`No eligible promoter shifts are assigned to ${selectedLabel} for ${from} → ${to}.`,
@@ -5742,11 +5809,12 @@ async function rc_load(){
     }
 
     const reportTypeById=new Map(reportTypeRows.map(type=>[String(type.id),type.type]));
-    const isBiInsights=record=>rcTrackingIds(record?.report_type_ids)
-      .some(id=>String(reportTypeById.get(id)||'').trim().toLowerCase()==='bi insights');
+    const selectedReportTypeId=document.getElementById('rc_record_report_type')?.value||'';
+    const hasSelectedReportType=record=>!selectedReportTypeId||rcTrackingIds(record?.report_type_ids).includes(String(selectedReportTypeId));
+    const selectedTrackingSet=new Set(selectedTrackings.map(record=>String(record.id)));
     const eligibleTrackingRows=trackingRows.filter(record=>
-      !record.cancelled_date&&!rcIsNoReporting(record)&&isBiInsights(record)&&!rcIsStandby(record,trackingRows)
-      &&(!selectedTracking||String(record.id)===String(selectedTracking.id))
+      !record.cancelled_date&&!rcIsNoReporting(record)&&hasSelectedReportType(record)&&!rcIsStandby(record,trackingRows)
+      &&(!selectedTrackingSet.size||selectedTrackingSet.has(String(record.id)))
     );
     const linkedSchedules=deduped.map(schedule=>({schedule,tracking:rcFindTrackingRecord(schedule,eligibleTrackingRows)}));
     const eligibleSchedules=linkedSchedules
@@ -5757,9 +5825,9 @@ async function rc_load(){
 
     if(!eligibleSchedules.length){
       rc_data=[];
-      const expectedSap=selectedTracking?.sapcode||'—';
+      const expectedSap=selectedSaps.join(', ')||'—';
       const expectedMissions=selectedMissions.length?selectedMissions.join(', '):'none entered';
-      rc_emptyState=selectedTracking?{
+      rc_emptyState=selectedTrackings.length?{
         title:'Promoter shifts found, but not linked',
         detail:'Scheduled promoter shifts exist, but their Mission ID or SAP code does not match this Insights Check record.',
         hint:`Expected SAP: ${expectedSap} · Mission IDs: ${expectedMissions}`,
@@ -5864,8 +5932,7 @@ async function rc_load(){
     rc_forceAllFilters=false;
     rc_render();
     document.getElementById('rc_sync_badge').innerHTML=lastSynced
-      ?`<span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600;">🔄 Azure sync ${rc_timeAgo(lastSynced)}</span>`
-      :'';
+      ?`<span class="rc-sync-pill">↻ ${rc_timeAgo(lastSynced)}</span>`:'';
   }catch(error){
     if(requestId!==rc_loadRequest)return;
     document.getElementById('rc_area').innerHTML=`<div style="padding:48px;text-align:center;color:var(--red);">Error: ${esc(error.message)}</div>`;
@@ -5956,6 +6023,7 @@ function rc_filterChanged(key,changedInput){
     ? new Set([changedInput.value])
     : new Set([...root.querySelectorAll('input[type="checkbox"]:checked')].map(input=>input.value));
   rc_populateFilters();
+  rc_renderSapOptions(document.getElementById('rc_sap_search')?.value||'');
   rc_render();
   const panel=document.getElementById('rc_filter_panel_'+key);
   const button=document.getElementById('rc_filter_btn_'+key);
@@ -5974,6 +6042,7 @@ function rc_setFilterSelection(key,checked){
   rc_filterMode[key]=checked?'all':'custom';
   rc_filterState[key]=new Set();
   rc_populateFilters();
+  rc_renderSapOptions(document.getElementById('rc_sap_search')?.value||'');
   rc_render();
   const panel=document.getElementById('rc_filter_panel_'+key);
   const button=document.getElementById('rc_filter_btn_'+key);
@@ -6133,9 +6202,9 @@ function rc_render(){
   const pct=complianceBase?Math.round(complete/complianceBase*100):0;
   const totalPieces=contextRows.reduce((sum,row)=>sum+(row.pieces||0),0);
   const totalTurnover=contextRows.reduce((sum,row)=>sum+(row.turnover||0),0);
-  const from=document.getElementById('rc_from')?.value||'';
-  const to=document.getElementById('rc_to')?.value||'';
-  document.getElementById('rc_subline_text').textContent=`${total} displayed · ${complete} reported · Insights Check source · ${from} → ${to}`;
+  const from=rc_effectiveFrom||document.getElementById('rc_from')?.value||'';
+  const to=rc_effectiveTo||document.getElementById('rc_to')?.value||'';
+  document.getElementById('rc_subline_text').textContent='';
 
   document.getElementById('rc_kpis').innerHTML=[
     {key:'all',val:total,label:'Promoters',col:'var(--blue)',bg:'#fff',title:'Show all promoters'},
