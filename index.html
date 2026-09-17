@@ -552,7 +552,7 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 @media(max-width:1250px){.items-editor{position:absolute;right:20px;top:128px;bottom:16px;z-index:50;width:min(410px,calc(100% - 40px));}.items-main{position:relative;}.items-select{max-width:145px}.items-search{min-width:190px}}
 .led-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 20px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0}.led-title{margin-right:10px}.led-title strong{display:block;font-size:15px}.led-title span{display:block;margin-top:2px;color:var(--g500);font-size:10.5px}.led-tabs{display:flex;gap:5px}.led-tab,.led-btn{height:32px;padding:0 12px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g600);font:650 11.5px/1 inherit;cursor:pointer}.led-tab.active{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}.led-btn.primary{border-color:var(--blue);background:var(--blue);color:#fff}.led-control{height:32px;padding:0 9px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g700);font:inherit;font-size:11.5px;outline:none}.led-control:focus{border-color:var(--blue)}.led-search{min-width:210px}.led-shell{position:relative;display:grid;grid-template-columns:1fr;gap:10px;flex:1;min-height:0;padding:12px 20px 16px;overflow:hidden}.led-shell.editor-open{grid-template-columns:minmax(680px,1fr) 390px}.led-card,.led-editor{min-height:0;border:1px solid var(--g200);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}.led-card{display:flex;flex-direction:column}.led-table-wrap{flex:1;overflow:auto}.led-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.led-table th{position:sticky;top:0;z-index:2;padding:8px 9px;border-bottom:2px solid var(--g200);background:var(--g50);color:var(--g600);font-size:9.5px;letter-spacing:.04em;text-align:left;text-transform:uppercase;white-space:nowrap}.led-table td{padding:8px 9px;border-bottom:1px solid var(--g100);color:var(--g700);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.led-row{cursor:pointer}.led-row:hover,.led-row.selected{background:#f7faff}.led-row.selected{box-shadow:inset 3px 0 0 var(--blue)}.led-empty{padding:54px 20px;color:var(--g400);font-size:12px;text-align:center}.led-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-top:1px solid var(--g200);background:var(--g50);color:var(--g500);font-size:10.5px}.led-editor{display:none;flex-direction:column}.led-editor.open{display:flex}.led-editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid var(--g200)}.led-editor-body{flex:1;overflow:auto;padding:13px 15px}.led-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.led-field{display:flex;flex-direction:column;gap:4px;min-width:0}.led-field.full{grid-column:1/-1}.led-field label{color:var(--g500);font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.led-input{width:100%;min-height:34px;padding:7px 9px;border:1px solid var(--g300);border-radius:6px;background:#fff;color:var(--g800);font:inherit;font-size:11.5px;outline:none}.led-input:focus{border-color:var(--blue)}textarea.led-input{min-height:72px;line-height:1.45;resize:vertical}.led-editor-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 15px;border-top:1px solid var(--g200);background:var(--g50)}.led-save-state{color:var(--g500);font-size:10.5px}.led-save-state.dirty{color:var(--amber)}.led-save-state.saved{color:var(--green)}.led-save-state.error{color:var(--red)}
 .led-tab,.led-btn{font-family:inherit;font-size:11.5px;font-weight:650;line-height:1}
-.led-lookup-id{min-height:15px;color:var(--blue);font-size:9.5px;font-weight:650}.led-lookup-note{grid-column:1/-1;padding:7px 9px;border:1px solid #c9d8fb;border-radius:6px;background:var(--blue-light);color:var(--blue-dark);font-size:10.5px;line-height:1.4}
+.led-lookup-id{min-height:15px;color:var(--blue);font-size:9.5px;font-weight:650}.led-lookup-note{grid-column:1/-1;padding:7px 9px;border:1px solid #c9d8fb;border-radius:6px;background:var(--blue-light);color:var(--blue-dark);font-size:10.5px;line-height:1.4}.led-bulk-option{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;padding:9px 10px;border:1px solid #c9d8fb;border-radius:7px;background:#f7faff;color:var(--g700);font-size:10.5px;line-height:1.35;cursor:pointer}.led-bulk-option input{margin:2px 0 0;accent-color:var(--blue)}.led-bulk-option strong{display:block;color:var(--blue-dark);font-size:11px}.led-bulk-option span{display:block;margin-top:2px;color:var(--g500)}
 @media(max-width:1100px){.led-shell,.led-shell.editor-open{grid-template-columns:1fr}.led-editor{position:absolute;right:20px;top:12px;bottom:16px;z-index:40;width:min(420px,calc(100% - 40px))}}
 .cc-shell{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
 .cc-head{padding:12px 20px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;flex-shrink:0;}
@@ -761,14 +761,14 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">V2026.09.17.14</summary>
+        <summary title="Open version history">V2026.09.17.15</summary>
         <div class="release-panel">
-          <div class="release-heading">New version V2026.09.17.14</div>
+          <div class="release-heading">New version V2026.09.17.15</div>
           <div class="release-date">What&rsquo;s new:</div>
           <ul class="release-list">
-            <li>Legacy Sales and Questionnaire entity fields now use linked selection lists.</li>
-            <li>Choosing a product, brand, client, promoter or store updates its database ID automatically.</li>
-            <li>Product, Brand and Client selections now cascade to prevent mismatched records.</li>
+            <li>Sales records can optionally apply Brand, Promoter and Store corrections to their matching same-day group.</li>
+            <li>The group is limited to the same original Date, Brand, Promoter and Store to prevent unrelated records being changed.</li>
+            <li>Linked names and database IDs remain synchronized during both single-record and group updates.</li>
           </ul>
         </div>
       </details>
@@ -5166,6 +5166,7 @@ function led_renderEditorForm(){
   const row=led_currentRow;
   document.getElementById('ledForm').innerHTML=`<div class="led-lookup-note">Select the names from the lists. Their database IDs are updated automatically; Product, Brand and Client are linked.</div>`+
     config.lookups.map(led_lookupFieldHtml).join('')+
+    (led_table==='sales'?`<label class="led-bulk-option"><input type="checkbox" id="ledBulkSameDay"><span><strong>Apply entity changes to this same-day Sales group</strong><span>Also update rows with the same original Date, Brand, Promoter and Store. Only changed Brand, Promoter or Store values will be applied.</span></span></label>`:'')+
     config.fields.map(([name,label,type],index)=>{
       const value=row[name]??'';
       const full=led_isLongField(type)?' full':'';
@@ -5263,12 +5264,65 @@ function led_buildPayload(){
   });
   return payload;
 }
+function led_lookupChangedFromOriginal(def){
+  const selected=led_lookupSelection[def.key];
+  const oldId=led_originalRow?.[def.idColumn];
+  const newId=selected?.id;
+  const oldHasId=oldId!==null&&oldId!==undefined&&String(oldId)!=='';
+  const newHasId=newId!==null&&newId!==undefined&&String(newId)!=='';
+  if(oldHasId||newHasId)return String(oldId??'')!==String(newId??'');
+  return !!def.textColumn&&led_norm(led_originalRow?.[def.textColumn])!==led_norm(selected?.label);
+}
+function led_salesBulkPayload(){
+  if(led_table!=='sales'||!document.getElementById('ledBulkSameDay')?.checked)return null;
+  const payload={};
+  ['brand','promoter','store'].forEach(key=>{
+    const def=led_config().lookups.find(item=>item.key===key);
+    if(!def||!led_lookupChangedFromOriginal(def))return;
+    const selected=led_lookupSelection[key];
+    payload[def.idColumn]=selected?.id!==null&&selected?.id!==undefined&&String(selected.id)!==''?Number(selected.id):null;
+    if(def.textColumn)payload[def.textColumn]=selected?.label||null;
+    if(key==='brand'){
+      const client=led_lookupSelection.client;
+      payload.Clientid=client?.id!==null&&client?.id!==undefined&&String(client.id)!==''?Number(client.id):null;
+    }
+  });
+  return Object.keys(payload).length?payload:null;
+}
+function led_addOriginalGroupFilter(url,def){
+  const oldId=led_originalRow?.[def.idColumn];
+  if(oldId!==null&&oldId!==undefined&&String(oldId)!==''){
+    url.searchParams.set(led_quoteColumn(def.idColumn),`eq.${oldId}`);
+    return;
+  }
+  const oldText=def.textColumn?led_originalRow?.[def.textColumn]:null;
+  if(oldText!==null&&oldText!==undefined&&String(oldText)!=='')url.searchParams.set(led_quoteColumn(def.textColumn),`eq.${oldText}`);
+  else url.searchParams.set(led_quoteColumn(def.idColumn),'is.null');
+}
+async function led_applySalesGroupUpdate(config,id,payload){
+  if(led_table!=='sales'||!payload)return 0;
+  const originalDate=led_originalRow?.[config.date];
+  if(!originalDate)throw new Error('A date is required for the same-day group update.');
+  const url=new URL(`${SB}/rest/v1/${config.table}`);
+  url.searchParams.set('select',config.pk);
+  url.searchParams.set(led_quoteColumn(config.date),`eq.${originalDate}`);
+  ['brand','promoter','store'].forEach(key=>{
+    const def=config.lookups.find(item=>item.key===key);
+    if(def)led_addOriginalGroupFilter(url,def);
+  });
+  url.searchParams.set(led_quoteColumn(config.pk),`neq.${id}`);
+  const response=await authenticatedFetch(url.toString(),{method:'PATCH',headers:{'Prefer':'return=representation'},body:JSON.stringify(payload)});
+  if(!response.ok)throw new Error(await response.text()||`HTTP ${response.status}`);
+  const rows=await response.json();
+  return Array.isArray(rows)?rows.length:0;
+}
 async function led_saveRecord(){
   if(!led_currentRow)return;
   const config=led_config();
   const id=led_currentRow[config.pk];
   let payload;
   try{payload=led_buildPayload();}catch(error){led_setState('error',error.message);return;}
+  const bulkPayload=led_salesBulkPayload();
   led_setState('saving');
   try{
     const url=new URL(`${SB}/rest/v1/${config.table}`);
@@ -5277,10 +5331,21 @@ async function led_saveRecord(){
     if(!response.ok)throw new Error(await response.text()||`HTTP ${response.status}`);
     const updated=(await response.json())[0];
     if(!updated)throw new Error('The database did not return the updated record.');
+    let bulkCount=0;
+    let bulkError=null;
+    if(bulkPayload){
+      try{bulkCount=await led_applySalesGroupUpdate(config,id,bulkPayload);}
+      catch(error){bulkError=error;}
+    }
     led_rows=led_rows.map(row=>String(row[config.pk])===String(id)?updated:row);
     led_currentRow={...updated};led_originalRow={...updated};led_dirty=false;
-    led_initializeLookups(updated);led_renderEditorForm();led_setState('saved');led_renderTable();
-    toast(`${config.label} record ${id} updated.`,'success');
+    led_initializeLookups(updated);led_renderEditorForm();led_setState('saved');
+    if(bulkPayload&&!bulkError)await led_loadPage();else led_renderTable();
+    if(bulkError){
+      led_setState('saved','Record saved; group update failed');
+      toast(`Record ${id} was saved, but the same-day group update failed: ${bulkError.message}`,'error');
+    }else if(bulkPayload)toast(`Sales record ${id} and ${bulkCount} matching same-day row${bulkCount===1?'':'s'} updated.`,'success');
+    else toast(`${config.label} record ${id} updated.`,'success');
   }catch(error){led_dirty=true;led_setState('error',error.message);toast('Save failed: '+error.message,'error');}
 }
 
