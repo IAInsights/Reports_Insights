@@ -552,6 +552,7 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 @media(max-width:1250px){.items-editor{position:absolute;right:20px;top:128px;bottom:16px;z-index:50;width:min(410px,calc(100% - 40px));}.items-main{position:relative;}.items-select{max-width:145px}.items-search{min-width:190px}}
 .led-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 20px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0}.led-title{margin-right:10px}.led-title strong{display:block;font-size:15px}.led-title span{display:block;margin-top:2px;color:var(--g500);font-size:10.5px}.led-tabs{display:flex;gap:5px}.led-tab,.led-btn{height:32px;padding:0 12px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g600);font:650 11.5px/1 inherit;cursor:pointer}.led-tab.active{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}.led-btn.primary{border-color:var(--blue);background:var(--blue);color:#fff}.led-control{height:32px;padding:0 9px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g700);font:inherit;font-size:11.5px;outline:none}.led-control:focus{border-color:var(--blue)}.led-search{min-width:210px}.led-shell{position:relative;display:grid;grid-template-columns:1fr;gap:10px;flex:1;min-height:0;padding:12px 20px 16px;overflow:hidden}.led-shell.editor-open{grid-template-columns:minmax(680px,1fr) 390px}.led-card,.led-editor{min-height:0;border:1px solid var(--g200);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}.led-card{display:flex;flex-direction:column}.led-table-wrap{flex:1;overflow:auto}.led-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.led-table th{position:sticky;top:0;z-index:2;padding:8px 9px;border-bottom:2px solid var(--g200);background:var(--g50);color:var(--g600);font-size:9.5px;letter-spacing:.04em;text-align:left;text-transform:uppercase;white-space:nowrap}.led-table td{padding:8px 9px;border-bottom:1px solid var(--g100);color:var(--g700);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.led-row{cursor:pointer}.led-row:hover,.led-row.selected{background:#f7faff}.led-row.selected{box-shadow:inset 3px 0 0 var(--blue)}.led-empty{padding:54px 20px;color:var(--g400);font-size:12px;text-align:center}.led-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-top:1px solid var(--g200);background:var(--g50);color:var(--g500);font-size:10.5px}.led-editor{display:none;flex-direction:column}.led-editor.open{display:flex}.led-editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid var(--g200)}.led-editor-body{flex:1;overflow:auto;padding:13px 15px}.led-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.led-field{display:flex;flex-direction:column;gap:4px;min-width:0}.led-field.full{grid-column:1/-1}.led-field label{color:var(--g500);font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.led-input{width:100%;min-height:34px;padding:7px 9px;border:1px solid var(--g300);border-radius:6px;background:#fff;color:var(--g800);font:inherit;font-size:11.5px;outline:none}.led-input:focus{border-color:var(--blue)}textarea.led-input{min-height:72px;line-height:1.45;resize:vertical}.led-editor-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 15px;border-top:1px solid var(--g200);background:var(--g50)}.led-save-state{color:var(--g500);font-size:10.5px}.led-save-state.dirty{color:var(--amber)}.led-save-state.saved{color:var(--green)}.led-save-state.error{color:var(--red)}
 .led-tab,.led-btn{font-family:inherit;font-size:11.5px;font-weight:650;line-height:1}
+.led-lookup-id{min-height:15px;color:var(--blue);font-size:9.5px;font-weight:650}.led-lookup-note{grid-column:1/-1;padding:7px 9px;border:1px solid #c9d8fb;border-radius:6px;background:var(--blue-light);color:var(--blue-dark);font-size:10.5px;line-height:1.4}
 @media(max-width:1100px){.led-shell,.led-shell.editor-open{grid-template-columns:1fr}.led-editor{position:absolute;right:20px;top:12px;bottom:16px;z-index:40;width:min(420px,calc(100% - 40px))}}
 .cc-shell{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
 .cc-head{padding:12px 20px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;flex-shrink:0;}
@@ -760,15 +761,14 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">V2026.09.17.13</summary>
+        <summary title="Open version history">V2026.09.17.14</summary>
         <div class="release-panel">
-          <div class="release-heading">New version V2026.09.17.13</div>
+          <div class="release-heading">New version V2026.09.17.14</div>
           <div class="release-date">What&rsquo;s new:</div>
           <ul class="release-list">
-            <li>Workflow Tools now includes a paginated editor for legacy Sales and Questionnaire records.</li>
-            <li>Legacy records can be searched, filtered by date and safely updated from one panel.</li>
-            <li>The Shift Comments editor now remains stable while records refresh.</li>
-            <li>Shift and stand comments can be cleared with confirmation.</li>
+            <li>Legacy Sales and Questionnaire entity fields now use linked selection lists.</li>
+            <li>Choosing a product, brand, client, promoter or store updates its database ID automatically.</li>
+            <li>Product, Brand and Client selections now cascade to prevent mismatched records.</li>
           </ul>
         </div>
       </details>
@@ -4926,32 +4926,68 @@ const LED_CONFIG={
     label:'Sales',table:'legacy_sales',pk:'id',date:'Date',
     columns:[['id','ID'],['Date','Date'],['Brand','Brand'],['Item','Item'],['Store','Store'],['Promoter Name','Promoter'],['Qty sold','Qty sold'],['Stock level','Stock']],
     search:[['id','ID','number'],['Brand','Brand','text'],['Store','Store','text'],['Promoter Name','Promoter','text'],['Item','Item','text']],
+    lookups:[
+      {key:'client',label:'Client',idColumn:'Clientid'},
+      {key:'brand',label:'Brand',idColumn:'Brandid',textColumn:'Brand'},
+      {key:'item',label:'Product',idColumn:'Itemid',textColumn:'Item'},
+      {key:'promoter',label:'Promoter',idColumn:'Promoterid',textColumn:'Promoter Name'},
+      {key:'store',label:'Store',idColumn:'Storeid',textColumn:'Store'}
+    ],
     fields:[
-      ['Date','Date','date'],['Store','Store','text'],['Promoter Name','Promoter name','text'],['Qty sold','Quantity sold','number'],
-      ['Stock level','Stock level','number'],['Brand','Brand','text'],['Item','Item','text'],['Tasting stock level','Tasting stock level','number'],
-      ['Clientid','Client ID','number'],['Brandid','Brand ID','number'],['Promoterid','Promoter ID','number'],['Itemid','Item ID','number'],['Storeid','Store ID','number']
+      ['Date','Date','date'],['Qty sold','Quantity sold','number'],['Stock level','Stock level','number'],['Tasting stock level','Tasting stock level','number']
     ]
   },
   questionnaire:{
     label:'Questionnaire',table:'legacy_questionnaire',pk:'ID',date:'Date',
     columns:[['ID','ID'],['Date','Date'],['Brand','Brand'],['Store','Store'],['Promoter','Promoter'],['Pieces Sold','Pieces sold'],['Turnover of the day','Turnover'],["Comments on today's shift",'Shift comment']],
     search:[['ID','ID','number'],['Brand','Brand','text'],['Store','Store','text'],['Promoter','Promoter','text'],["Comments on today's shift",'Shift comment','text']],
+    lookups:[
+      {key:'client',label:'Client',idColumn:'Clientid'},
+      {key:'brand',label:'Brand',idColumn:'Brandid',textColumn:'Brand'},
+      {key:'promoter',label:'Promoter',idColumn:'Promoterid',textColumn:'Promoter'},
+      {key:'store',label:'Store',idColumn:'Storeid',textColumn:'Store'}
+    ],
     fields:[
-      ['Brand','Brand','text'],['Store','Store','text'],['Promoter','Promoter','text'],['Date','Date','date'],
+      ['Date','Date','date'],
       ['Destinations','Destinations','textarea'],['Nationalities','Nationalities','textarea'],['Turnover of the day','Turnover of the day','number'],['Stopping rate','Stopping rate','number'],
       ['Male customers','Male customers','number'],['Age groups','Age groups','text'],['Conversion rate','Conversion rate','number'],['Purpose','Purpose','textarea'],
       ['Traffic density','Traffic density','number'],["Comments on today's shift",'Comments on today\'s shift','textarea'],['Interactions','Interactions','number'],
       ['customa','Custom A','number'],['customb','Custom B','number'],['stand_comments','Stand comments','textarea'],['ftbuyer','FT buyer','number'],
-      ['Tastings','Tastings','number'],['Pieces Sold','Pieces sold','number'],['Clientid','Client ID','number'],['Brandid','Brand ID','number'],
-      ['Promoterid','Promoter ID','number'],['Storeid','Store ID','number']
+      ['Tastings','Tastings','number'],['Pieces Sold','Pieces sold','number']
     ]
   }
 };
 let led_table='sales',led_page=1,led_pageSize=50,led_rows=[],led_total=0,led_initialized=false;
 let led_currentRow=null,led_originalRow=null,led_dirty=false,led_loadTimer=null,led_loadRequest=0;
+let led_refs={client:[],brand:[],promoter:[],store:[],item:[]},led_refsLoaded=false,led_refsPromise=null,led_lookupSelection={};
 
 const led_config=()=>LED_CONFIG[led_table];
 const led_quoteColumn=name=>/[A-Z\s']/.test(name)?`"${String(name).replace(/"/g,'""')}"`:name;
+const led_norm=value=>String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
+function led_referenceRows(key,rows){
+  const labelFor={client:row=>row.client,brand:row=>row.brand,promoter:row=>row.full_name,store:row=>row.store,item:row=>row.full_productname||row.name};
+  return (rows||[]).map(row=>({...row,_key:String(row.id),label:String(labelFor[key](row)||`ID ${row.id}`)})).sort((a,b)=>a.label.localeCompare(b.label,undefined,{sensitivity:'base'}));
+}
+async function led_loadReferences(){
+  if(led_refsLoaded)return led_refs;
+  if(led_refsPromise)return led_refsPromise;
+  led_refsPromise=(async()=>{
+    const [clients,brands,promoters,stores,items]=await Promise.all([
+      sbGetAll('GI_clients?select=id,client,active&order=client'),
+      sbGetAll('GI_brands?select=id,brand,client_giid,visible&order=brand'),
+      sbGetAll('GI_promoters?select=id,full_name,email,Active&order=full_name'),
+      sbGetAll('GI_stores?select=id,store,visible&order=store'),
+      sbGetAll('legacy_items?select=id,full_productname,name,brand,brand_id,client_id,visible&order=full_productname.asc.nullslast,id.asc')
+    ]);
+    led_refs={
+      client:led_referenceRows('client',clients),brand:led_referenceRows('brand',brands),promoter:led_referenceRows('promoter',promoters),
+      store:led_referenceRows('store',stores),item:led_referenceRows('item',items)
+    };
+    led_refsLoaded=true;
+    return led_refs;
+  })().catch(error=>{led_refsPromise=null;throw error;});
+  return led_refsPromise;
+}
 function led_initIfNeeded(){
   if(!led_initialized){led_initialized=true;led_populateSearchFields();}
   led_loadPage();
@@ -5060,7 +5096,109 @@ function led_changePage(direction){
   led_loadPage();
 }
 function led_isLongField(type){return type==='textarea';}
-function led_openEditor(id){
+function led_findReference(key,id,label=''){
+  const rows=led_refs[key]||[];
+  let match=(id!==null&&id!==undefined&&String(id)!=='')?rows.find(row=>String(row.id)===String(id)):null;
+  if(!match&&label)match=rows.find(row=>led_norm(row.label)===led_norm(label));
+  if(match)return match;
+  if((id===null||id===undefined||String(id)==='')&&!label)return null;
+  return {_key:`legacy:${key}:${id??label}`,id:id??null,label:String(label||`Unmatched ${key} ID ${id}`),_fallback:true};
+}
+function led_initializeLookups(row){
+  led_lookupSelection={};
+  led_config().lookups.forEach(def=>{
+    led_lookupSelection[def.key]=led_findReference(def.key,row[def.idColumn],def.textColumn?row[def.textColumn]:'');
+  });
+}
+function led_brandMatchesClient(brand,client){return !client||client.id==null||String(brand?.client_giid)===String(client.id);}
+function led_itemMatchesClient(item,client,brand=null){
+  if(!client||client.id==null)return true;
+  if(item?.client_id!==null&&item?.client_id!==undefined&&String(item.client_id)!=='')return String(item.client_id)===String(client.id);
+  return !!brand&&led_brandMatchesClient(brand,client)&&led_itemMatchesBrand(item,brand);
+}
+function led_itemMatchesBrand(item,brand){
+  if(!brand)return true;
+  return (brand.id!=null&&item?.brand_id!=null&&String(item.brand_id)===String(brand.id))||led_norm(item?.brand)===led_norm(brand.label);
+}
+function led_brandForItem(item){
+  if(!item)return null;
+  if(item.brand_id!==null&&item.brand_id!==undefined&&String(item.brand_id)!==''){
+    const exact=led_refs.brand.find(row=>String(row.id)===String(item.brand_id));
+    if(exact)return exact;
+  }
+  const named=led_refs.brand.filter(row=>led_norm(row.label)===led_norm(item.brand));
+  if(item.client_id!==null&&item.client_id!==undefined&&String(item.client_id)!==''){
+    const forClient=named.find(row=>String(row.client_giid)===String(item.client_id));
+    if(forClient)return forClient;
+  }
+  return named[0]||null;
+}
+function led_lookupOptions(key){
+  let rows=[...(led_refs[key]||[])];
+  const client=led_lookupSelection.client;
+  const brand=led_lookupSelection.brand;
+  if(key==='brand'&&client)rows=rows.filter(row=>led_brandMatchesClient(row,client));
+  if(key==='item'){
+    if(brand)rows=rows.filter(row=>led_itemMatchesBrand(row,brand));
+    if(client)rows=rows.filter(row=>led_itemMatchesClient(row,client,brand));
+  }
+  const selected=led_lookupSelection[key];
+  if(selected&&!rows.some(row=>row._key===selected._key))rows.unshift(selected);
+  return rows;
+}
+function led_lookupFieldHtml(def){
+  const full=def.key==='item'?' full':'';
+  return `<div class="led-field${full}"><label>${esc(def.label)}</label><select class="led-input" id="ledLookup-${def.key}" onchange="led_lookupChanged('${def.key}',this.value)"></select><div class="led-lookup-id" id="ledLookupId-${def.key}"></div></div>`;
+}
+function led_refreshLookupControls(){
+  led_config().lookups.forEach(def=>{
+    const select=document.getElementById(`ledLookup-${def.key}`);
+    const hint=document.getElementById(`ledLookupId-${def.key}`);
+    if(!select)return;
+    const selected=led_lookupSelection[def.key];
+    const rows=led_lookupOptions(def.key);
+    select.innerHTML=`<option value="">Select ${esc(def.label.toLowerCase())}…</option>`+rows.map(row=>`<option value="${esc(row._key)}"${selected&&row._key===selected._key?' selected':''}>${esc(row.label)}${row.id!=null?` · ID ${esc(row.id)}`:''}</option>`).join('');
+    if(hint)hint.textContent=selected?(selected.id!=null?`${def.label} ID: ${selected.id}`:`Legacy value without a linked ${def.label} ID`):`No ${def.label.toLowerCase()} selected`;
+  });
+}
+function led_renderEditorForm(){
+  const config=led_config();
+  const row=led_currentRow;
+  document.getElementById('ledForm').innerHTML=`<div class="led-lookup-note">Select the names from the lists. Their database IDs are updated automatically; Product, Brand and Client are linked.</div>`+
+    config.lookups.map(led_lookupFieldHtml).join('')+
+    config.fields.map(([name,label,type],index)=>{
+      const value=row[name]??'';
+      const full=led_isLongField(type)?' full':'';
+      if(type==='textarea')return `<div class="led-field${full}"><label>${esc(label)}</label><textarea class="led-input" id="ledScalar${index}" data-column="${esc(name)}" data-type="${type}" oninput="led_markDirty()">${esc(value)}</textarea></div>`;
+      return `<div class="led-field${full}"><label>${esc(label)}</label><input class="led-input" id="ledScalar${index}" data-column="${esc(name)}" data-type="${type}" type="${type==='number'?'number':type==='date'?'date':'text'}" ${type==='number'?'step="any"':''} value="${esc(value)}" oninput="led_markDirty()"></div>`;
+    }).join('');
+  led_refreshLookupControls();
+}
+function led_lookupChanged(key,value){
+  const options=led_lookupOptions(key);
+  led_lookupSelection[key]=options.find(row=>row._key===value)||null;
+  if(key==='client'&&led_lookupSelection.client){
+    if(led_lookupSelection.brand&&!led_brandMatchesClient(led_lookupSelection.brand,led_lookupSelection.client))led_lookupSelection.brand=null;
+    if(led_lookupSelection.item&&!led_itemMatchesClient(led_lookupSelection.item,led_lookupSelection.client,led_lookupSelection.brand))led_lookupSelection.item=null;
+  }
+  if(key==='brand'&&led_lookupSelection.brand){
+    const brand=led_lookupSelection.brand;
+    const client=led_findReference('client',brand.client_giid);
+    if(client)led_lookupSelection.client=client;
+    if(led_lookupSelection.item&&!led_itemMatchesBrand(led_lookupSelection.item,brand))led_lookupSelection.item=null;
+  }
+  if(key==='item'&&led_lookupSelection.item){
+    const item=led_lookupSelection.item;
+    const brand=led_brandForItem(item);
+    if(brand)led_lookupSelection.brand=brand;
+    const clientId=item.client_id??brand?.client_giid;
+    const client=led_findReference('client',clientId);
+    if(client)led_lookupSelection.client=client;
+  }
+  led_markDirty();
+  led_refreshLookupControls();
+}
+async function led_openEditor(id){
   const config=led_config();
   const row=led_rows.find(item=>String(item[config.pk])===String(id));
   if(!row)return;
@@ -5068,16 +5206,22 @@ function led_openEditor(id){
   led_currentRow={...row};led_originalRow={...row};led_dirty=false;
   document.getElementById('ledEditorTitle').textContent=`Edit ${config.label} record`;
   document.getElementById('ledEditorSub').textContent=`Record ${config.pk} ${row[config.pk]}`;
-  document.getElementById('ledForm').innerHTML=config.fields.map(([name,label,type],index)=>{
-    const value=row[name]??'';
-    const full=led_isLongField(type)?' full':'';
-    if(type==='textarea')return `<div class="led-field${full}"><label>${esc(label)}</label><textarea class="led-input" id="ledField${index}" data-column="${esc(name)}" data-type="${type}" oninput="led_markDirty()">${esc(value)}</textarea></div>`;
-    return `<div class="led-field${full}"><label>${esc(label)}</label><input class="led-input" id="ledField${index}" data-column="${esc(name)}" data-type="${type}" type="${type==='number'?'number':type==='date'?'date':'text'}" ${type==='number'?'step="any"':''} value="${esc(value)}" oninput="led_markDirty()"></div>`;
-  }).join('');
   document.getElementById('ledEditor').classList.add('open');
   document.getElementById('ledShell').classList.add('editor-open');
-  led_setState('idle');
+  document.getElementById('ledForm').innerHTML='<div class="led-empty" style="grid-column:1/-1;padding:35px 10px;">Loading linked lists…</div>';
+  led_setState('saving','Loading lists…');
   led_renderTable();
+  const openedId=String(row[config.pk]);
+  try{
+    await led_loadReferences();
+    if(!led_currentRow||String(led_currentRow[config.pk])!==openedId||led_config()!==config)return;
+    led_initializeLookups(row);
+    led_renderEditorForm();
+    led_setState('idle');
+  }catch(error){
+    document.getElementById('ledForm').innerHTML=`<div class="led-empty" style="grid-column:1/-1;color:var(--red);">Could not load the linked lists.<br>${esc(error.message)}</div>`;
+    led_setState('error','Lists unavailable');
+  }
 }
 function led_markDirty(){led_dirty=true;led_setState('dirty');}
 function led_setState(state,message=''){
@@ -5086,20 +5230,29 @@ function led_setState(state,message=''){
   const labels={idle:'No changes',dirty:'Unsaved changes',saving:'Saving…',saved:'Saved',error:'Save failed'};
   label.textContent=message||labels[state]||'';
   label.className=`led-save-state ${state}`;
-  save.disabled=state!=='dirty'&&state!=='error';
+  save.disabled=!led_dirty||state==='saving';
 }
 function led_closeEditor(force=false){
   if(!force&&led_dirty&&!confirm('Discard the unsaved changes?'))return false;
   document.getElementById('ledEditor')?.classList.remove('open');
   document.getElementById('ledShell')?.classList.remove('editor-open');
-  led_currentRow=null;led_originalRow=null;led_dirty=false;
+  led_currentRow=null;led_originalRow=null;led_lookupSelection={};led_dirty=false;
   if(led_initialized)led_renderTable();
   return true;
 }
 function led_buildPayload(){
   const payload={};
+  led_config().lookups.forEach(def=>{
+    const selected=led_lookupSelection[def.key];
+    if(selected?.id!==null&&selected?.id!==undefined&&String(selected.id)!==''){
+      const id=Number(selected.id);
+      if(!Number.isFinite(id))throw new Error(`${def.label} ID is invalid.`);
+      payload[def.idColumn]=id;
+    }else payload[def.idColumn]=null;
+    if(def.textColumn)payload[def.textColumn]=selected?.label||null;
+  });
   led_config().fields.forEach(([name,,type],index)=>{
-    const input=document.getElementById(`ledField${index}`);
+    const input=document.getElementById(`ledScalar${index}`);
     const raw=String(input?.value??'').trim();
     if(!raw){payload[name]=null;return;}
     if(type==='number'){
@@ -5126,7 +5279,7 @@ async function led_saveRecord(){
     if(!updated)throw new Error('The database did not return the updated record.');
     led_rows=led_rows.map(row=>String(row[config.pk])===String(id)?updated:row);
     led_currentRow={...updated};led_originalRow={...updated};led_dirty=false;
-    led_setState('saved');led_renderTable();
+    led_initializeLookups(updated);led_renderEditorForm();led_setState('saved');led_renderTable();
     toast(`${config.label} record ${id} updated.`,'success');
   }catch(error){led_dirty=true;led_setState('error',error.message);toast('Save failed: '+error.message,'error');}
 }
