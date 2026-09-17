@@ -238,12 +238,12 @@ textarea.fi{height:72px;padding:8px 10px;resize:vertical;line-height:1.5;}
 .entry-form-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 14px;align-items:start;max-width:1500px;margin:0 auto;}
 .entry-form-grid .entry-span-2{grid-column:span 2;}.entry-form-grid .fg.full{grid-column:1/-1;}
 .entry-form-grid textarea.fi{height:54px;min-height:54px;}.entry-form-grid .fg label{font-size:10px;}.entry-form-grid .fi,.entry-form-grid .mst{min-height:33px;}
-.client-retailer-summary{display:flex;align-items:center;gap:5px;flex-wrap:wrap;min-height:25px;margin-top:5px;padding:5px 7px;border:1px solid var(--g200);border-radius:6px;background:var(--g50);}
-.client-retailer-empty{font-size:10px;color:var(--g400);font-style:italic;}.retailer-chip{display:inline-flex;align-items:center;padding:3px 7px;border-radius:12px;background:var(--green-light);color:var(--green);font-size:9.5px;font-weight:700;}.client-retailer-manage{margin-left:auto;border:0;background:transparent;color:var(--blue);font-family:inherit;font-size:9.5px;font-weight:750;cursor:pointer;padding:2px 3px;}.client-retailer-manage:hover{text-decoration:underline;}
+.contact-retailer-summary{display:flex;flex-direction:column;gap:5px;min-height:25px;margin-top:5px;padding:5px 7px;border:1px solid var(--g200);border-radius:6px;background:var(--g50);}
+.contact-retailer-empty{font-size:10px;color:var(--g400);font-style:italic;}.contact-retailer-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}.contact-retailer-name{font-size:10px;font-weight:750;color:var(--g700);}.retailer-chip{display:inline-flex;align-items:center;padding:3px 7px;border-radius:12px;background:var(--green-light);color:var(--green);font-size:9.5px;font-weight:700;}.contact-retailer-manage{margin-left:auto;border:0;background:transparent;color:var(--blue);font-family:inherit;font-size:9.5px;font-weight:750;cursor:pointer;padding:2px 3px;}.contact-retailer-manage:hover{text-decoration:underline;}
 
 .v-body{background:var(--g50);}.v-title{max-width:1250px;margin:0 auto 12px;font-size:19px;}.v-grid{max-width:1250px;margin:0 auto;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}.vf{min-height:76px;padding:12px 13px;background:#fff;border:1px solid var(--g200);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.045);}.vf.full{grid-column:1/-1;}.vf-label{font-size:9.5px;color:var(--g400);}.vf-val{font-size:12.5px;line-height:1.45;word-break:break-word;}.vf.recap-accent{border-top:3px solid var(--blue);}.vf.recap-retailers{border-top:3px solid var(--green);}
 
-.client-modal{width:580px;}.retailer-picker{border:1px solid var(--g200);border-radius:7px;overflow:hidden;background:#fff;}.retailer-picker-search{width:100%;height:34px;padding:0 10px;border:0;border-bottom:1px solid var(--g200);background:var(--g50);font-family:inherit;font-size:12px;outline:none;}.retailer-picker-list{max-height:190px;overflow-y:auto;padding:5px;}.retailer-choice{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:5px;cursor:pointer;}.retailer-choice:hover{background:var(--g50);}.retailer-choice.selected{background:var(--blue-light);}.retailer-choice input{accent-color:var(--blue);}.retailer-choice-main{font-size:12px;font-weight:650;color:var(--g900);}.retailer-choice-id{font:700 9.5px/1.2 monospace;color:var(--g400);margin-top:2px;}.retailer-create-row{display:flex;gap:7px;margin-top:8px;}.retailer-create-row .mfi{flex:1;}.retailer-create-btn{height:34px;padding:0 11px;border:1.5px solid var(--blue);border-radius:var(--r);background:var(--blue-light);color:var(--blue);font-family:inherit;font-size:10.5px;font-weight:750;cursor:pointer;white-space:nowrap;}
+.retailer-modal{width:580px;}.retailer-picker{border:1px solid var(--g200);border-radius:7px;overflow:hidden;background:#fff;}.retailer-picker-search{width:100%;height:34px;padding:0 10px;border:0;border-bottom:1px solid var(--g200);background:var(--g50);font-family:inherit;font-size:12px;outline:none;}.retailer-picker-list{max-height:190px;overflow-y:auto;padding:5px;}.retailer-choice{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:5px;cursor:pointer;}.retailer-choice:hover{background:var(--g50);}.retailer-choice.selected{background:var(--blue-light);}.retailer-choice input{accent-color:var(--blue);}.retailer-choice-main{font-size:12px;font-weight:650;color:var(--g900);}.retailer-choice-id{font:700 9.5px/1.2 monospace;color:var(--g400);margin-top:2px;}.retailer-create-row{display:flex;gap:7px;margin-top:8px;}.retailer-create-row .mfi{flex:1;}.retailer-create-btn{height:34px;padding:0 11px;border:1.5px solid var(--blue);border-radius:var(--r);background:var(--blue-light);color:var(--blue);font-family:inherit;font-size:10.5px;font-weight:750;cursor:pointer;white-space:nowrap;}
 @media(max-width:1200px){.entry-form-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.ef-metrics{grid-template-columns:repeat(2,minmax(145px,1fr));}.v-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:760px){.entry-form-grid{grid-template-columns:1fr}.entry-form-grid .entry-span-2,.entry-form-grid .fg.full{grid-column:1}.ef-metrics{grid-template-columns:1fr 1fr}.v-grid{grid-template-columns:1fr}.vf.full{grid-column:1}.ef-landing-head{align-items:flex-start;}.sidebar{display:none;}}
 
@@ -754,16 +754,16 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">V2026.09.17.8</summary>
+        <summary title="Open version history">V2026.09.17.9</summary>
         <div class="release-panel">
-          <div class="release-heading">New version V2026.09.17.8</div>
+          <div class="release-heading">New version V2026.09.17.9</div>
           <div class="release-date">What&rsquo;s new:</div>
           <ul class="release-list">
-            <li>New Record now uses compact Active Now and Coming Soon campaign lists.</li>
-            <li>Records without a Mission ID are clearly marked as Provisional.</li>
-            <li>Client choices now show linked retailer names and retailer IDs.</li>
-            <li>New and existing clients can be linked to several retailers, including newly created retailers.</li>
-            <li>The report-entry form and saved-record recap now use a cleaner, compact card layout.</li>
+            <li>Retailer assignments now belong to client contacts, not clients.</li>
+            <li>A contact can be linked to one or several retailers.</li>
+            <li>Retailer names and IDs are visible in the contact selector and record recap.</li>
+            <li>Retailers can be added while creating a contact or managed later.</li>
+            <li>Existing single-retailer contact assignments are preserved for compatibility.</li>
           </ul>
         </div>
       </details>
@@ -957,7 +957,6 @@ window._authReady=restoreSupabaseSession();
               <div class="mst" id="mst-client" tabindex="0" onclick="toggleDD('client')"><span class="mph" id="ph-client">Find items</span></div>
               <div class="ddm" id="dm-client" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('client',this.value)"></div><div class="ddl" id="dl-client"></div></div>
             </div>
-            <div class="client-retailer-summary" id="clientRetailerSummary"><span class="client-retailer-empty">Select a client to view its retailers.</span></div>
           </div>
           <div class="fg"><label>Brand</label>
             <div class="msw" id="ms-brand">
@@ -1002,6 +1001,7 @@ window._authReady=restoreSupabaseSession();
               <div class="mst" id="mst-contact" tabindex="0" onclick="toggleDD('contact')"><span class="mph" id="ph-contact">Find items</span></div>
               <div class="ddm" id="dm-contact" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('contact',this.value)"></div><div class="ddl" id="dl-contact"></div></div>
             </div>
+            <div class="contact-retailer-summary" id="contactRetailerSummary"><span class="contact-retailer-empty">Select a contact to view or manage retailers.</span></div>
           </div>
           <div class="fg"><label>Commercial Team
             <button class="lbl-add" onclick="openAddAccountManager()" title="Add new Account Manager">+ Add Account Manager</button>
@@ -1519,47 +1519,69 @@ window._authReady=restoreSupabaseSession();
   </div>
 </div>
 
-<!-- ADD / MANAGE CLIENT MODAL -->
+<!-- ADD CLIENT MODAL -->
 <div class="modal-bg" id="addClientModal" style="display:none" onclick="if(event.target===this)closeAddClient()">
-  <div class="modal client-modal">
-    <h3 id="mcl-title">Add New Client</h3>
+  <div class="modal">
+    <h3>Add New Client</h3>
     <div class="modal-grid">
       <div class="mfg full"><label>Client name *</label><input type="text" class="mfi" id="mcl-name" placeholder="Client name…"></div>
-      <div class="mfg full">
-        <label>Retailers <span style="font-size:9.5px;font-weight:500;text-transform:none;color:var(--g400);">Select one or several</span></label>
-        <div class="retailer-picker">
-          <input class="retailer-picker-search" id="mcl-retailer-search" placeholder="Search by retailer name or ID…" oninput="renderClientRetailerPicker(this.value)">
-          <div class="retailer-picker-list" id="mcl-retailer-list"></div>
-        </div>
-      </div>
-      <div class="mfg full">
-        <label>Retailer not listed?</label>
-        <div class="retailer-create-row">
-          <input type="text" class="mfi" id="mcl-new-retailer" placeholder="New retailer name…" onkeydown="if(event.key==='Enter'){event.preventDefault();createRetailerFromModal()}">
-          <button type="button" class="retailer-create-btn" onclick="createRetailerFromModal()">+ Create retailer</button>
-        </div>
-      </div>
     </div>
     <div class="modal-footer">
       <button class="m-btn secondary" onclick="closeAddClient()">Cancel</button>
-      <button class="m-btn primary" id="mcl-save" onclick="saveClientModal()">Save Client</button>
+      <button class="m-btn primary" onclick="saveClientModal()">Save Client</button>
     </div>
   </div>
 </div>
 
 <!-- ADD CONTACT MODAL -->
 <div class="modal-bg" id="addContactModal" style="display:none" onclick="if(event.target===this)closeAddContact()">
-  <div class="modal">
+  <div class="modal retailer-modal">
     <h3>Add New Contact</h3>
     <div class="modal-grid">
       <div class="mfg"><label>First Name *</label><input type="text" class="mfi" id="mc-fname" placeholder="First name…"></div>
       <div class="mfg"><label>Last Name *</label><input type="text" class="mfi" id="mc-lname" placeholder="Last name…"></div>
       <div class="mfg full"><label>Email</label><input type="email" class="mfi" id="mc-email" placeholder="email@example.com"></div>
       <div class="mfg full"><label>Client</label><input type="text" class="mfi readonly" id="mc-client" readonly></div>
+      <div class="mfg full">
+        <label>Retailers <span style="font-size:9.5px;font-weight:500;text-transform:none;color:var(--g400);">Optional · select one or several</span></label>
+        <div class="retailer-picker">
+          <input class="retailer-picker-search" id="mc-retailer-search" placeholder="Search by retailer name or ID…" oninput="renderNewContactRetailerPicker(this.value)">
+          <div class="retailer-picker-list" id="mc-retailer-list"></div>
+        </div>
+        <div class="retailer-create-row">
+          <input type="text" class="mfi" id="mc-new-retailer" placeholder="Retailer not listed? Enter its name…" onkeydown="if(event.key==='Enter'){event.preventDefault();createRetailerForContact('new')}">
+          <button type="button" class="retailer-create-btn" onclick="createRetailerForContact('new')">+ Create retailer</button>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="m-btn secondary" onclick="closeAddContact()">Cancel</button>
       <button class="m-btn primary" onclick="saveNewContact()">Save Contact</button>
+    </div>
+  </div>
+</div>
+
+<!-- MANAGE CONTACT RETAILERS MODAL -->
+<div class="modal-bg" id="manageContactRetailerModal" style="display:none" onclick="if(event.target===this)closeManageContactRetailers()">
+  <div class="modal retailer-modal">
+    <h3>Manage Contact Retailers</h3>
+    <div class="modal-grid">
+      <div class="mfg full"><label>Client contact</label><input type="text" class="mfi readonly" id="mcr-contact" readonly></div>
+      <div class="mfg full">
+        <label>Retailers <span style="font-size:9.5px;font-weight:500;text-transform:none;color:var(--g400);">Select one or several</span></label>
+        <div class="retailer-picker">
+          <input class="retailer-picker-search" id="mcr-retailer-search" placeholder="Search by retailer name or ID…" oninput="renderManagedContactRetailerPicker(this.value)">
+          <div class="retailer-picker-list" id="mcr-retailer-list"></div>
+        </div>
+        <div class="retailer-create-row">
+          <input type="text" class="mfi" id="mcr-new-retailer" placeholder="Retailer not listed? Enter its name…" onkeydown="if(event.key==='Enter'){event.preventDefault();createRetailerForContact('manage')}">
+          <button type="button" class="retailer-create-btn" onclick="createRetailerForContact('manage')">+ Create retailer</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="m-btn secondary" onclick="closeManageContactRetailers()">Cancel</button>
+      <button class="m-btn primary" onclick="saveManagedContactRetailers()">Save Retailers</button>
     </div>
   </div>
 </div>
@@ -1865,7 +1887,7 @@ const sbPatch = async (t,id,d)=>{ await ensureFreshSession(); const sid=parseInt
 
 // ── State ──────────────────────────────────────────────────────────────────
 let allCo=[],allCl=[],allBr=[],allSt=[],allCon=[],allRT=[],allSectors=[],allAccountManagers=[];
-let allRetailers=[],allClientRetailers=[];
+let allRetailers=[],allContactRetailers=[];
 let allRec=[],filtRec=[];
 let formMissionIds=[];
 let missionIdsColumnReady=false;
@@ -1897,16 +1919,12 @@ function accountManagerOptions(rows=allAccountManagers){
 function brandOption(brand){
   return {id:brand.id,label:brand.brand,sub:`ID ${brand.id} · Visible: ${brand.visible===true?'true':'false'}`,meta:brand};
 }
-function retailersForClient(clientId){
-  const linkedIds=new Set(allClientRetailers.filter(link=>String(link.client_id)===String(clientId)).map(link=>String(link.retailer_id)));
+function retailersForContact(contactId){
+  const linkedIds=new Set(allContactRetailers.filter(link=>String(link.contact_id)===String(contactId)).map(link=>String(link.retailer_id)));
   return allRetailers.filter(retailer=>linkedIds.has(String(retailer.id))).sort((a,b)=>String(a.retailer||'').localeCompare(String(b.retailer||'')));
 }
 function clientOption(client){
-  const retailers=retailersForClient(client.id);
-  const retailerText=retailers.length
-    ?retailers.map(retailer=>`${retailer.id} · ${retailer.retailer}`).join(', ')
-    :'No retailer linked';
-  return{id:client.id,label:client.client,sub:`Client ID ${client.id} · ${retailerText}`,meta:{...client,retailers}};
+  return{id:client.id,label:client.client,sub:`Client ID ${client.id}`,meta:client};
 }
 function rebuildClientOptions(selectedClientId=null){
   const keepId=selectedClientId??ms.client.selected[0]?.id??null;
@@ -1916,16 +1934,32 @@ function rebuildClientOptions(selectedClientId=null){
   renderTags('client');
   applyClientFilter(false);
 }
-function renderClientRetailerSummary(){
-  const root=document.getElementById('clientRetailerSummary');
+function contactOption(contact){
+  const retailers=retailersForContact(contact.id);
+  const retailerText=retailers.length
+    ?retailers.map(retailer=>`${retailer.id} · ${retailer.retailer}`).join(', ')
+    :'No retailer linked';
+  return{id:contact.id,label:contact.Fullname||'—',sub:`${contact.email||'No email'} · ${retailerText}`,meta:{...contact,retailers}};
+}
+function rebuildContactOptions(selectedContactIds=[]){
+  const keepIds=new Set((selectedContactIds.length?selectedContactIds:ms.contact.selected.map(option=>option.id)).map(String));
+  const clientId=ms.client.selected[0]?.id||null;
+  const source=clientId?allCon.filter(contact=>String(contact.client_id)===String(clientId)):allCon;
+  ms.contact.all=source.map(contactOption);
+  ms.contact.selected=ms.contact.all.filter(option=>keepIds.has(String(option.id)));
+  renderTags('contact');
+}
+function renderContactRetailerSummary(){
+  const root=document.getElementById('contactRetailerSummary');
   if(!root)return;
-  const client=ms.client.selected[0]||null;
-  if(!client){root.innerHTML='<span class="client-retailer-empty">Select a client to view its retailers.</span>';return;}
-  const retailers=retailersForClient(client.id);
-  root.innerHTML=`${retailers.length
-    ?retailers.map(retailer=>`<span class="retailer-chip">ID ${esc(retailer.id)} · ${esc(retailer.retailer)}</span>`).join('')
-    :'<span class="client-retailer-empty">No retailer linked yet.</span>'}
-    <button type="button" class="client-retailer-manage" onclick="event.stopPropagation();openManageClientRetailers(${Number(client.id)})">Manage retailers</button>`;
+  if(!ms.contact.selected.length){root.innerHTML='<span class="contact-retailer-empty">Select a contact to view or manage retailers.</span>';return;}
+  root.innerHTML=ms.contact.selected.map(contact=>{
+    const retailers=retailersForContact(contact.id);
+    return `<div class="contact-retailer-row"><span class="contact-retailer-name">${esc(contact.label)}</span>${retailers.length
+      ?retailers.map(retailer=>`<span class="retailer-chip">ID ${esc(retailer.id)} · ${esc(retailer.retailer)}</span>`).join('')
+      :'<span class="contact-retailer-empty">No retailer linked yet.</span>'}
+      <button type="button" class="contact-retailer-manage" onclick="event.stopPropagation();openManageContactRetailers(${Number(contact.id)})">Manage</button></div>`;
+  }).join('');
 }
 
 // ── Navigation ─────────────────────────────────────────────────────────────
@@ -2102,21 +2136,21 @@ async function retryInsightsInit(){
 async function init(){
   try{
     startupWarnings=[];
-    const [co,cl,br,st,con,rt,sec,ops,retailers,clientRetailers,rec]=await Promise.all([
+    const [co,cl,br,st,con,rt,sec,ops,retailers,contactRetailers,rec]=await Promise.all([
       startupGet('Companies',()=>sbGet('GI_company?select=id,name,country_id&active=eq.true&order=name')),
       startupGet('Clients',()=>sbGet('GI_clients?select=id,client&active=eq.true&order=client')),
       startupGet('Brands',()=>sbGet('GI_brands?select=id,brand,client_giid,visible&order=brand')),
       startupGet('Stores',()=>sbGet('GI_stores?select=id,store,country_id,Sector_id&visible=eq.true&order=store')),
-      startupGet('Client contacts',()=>sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname')),
+      startupGet('Client contacts',()=>sbGet('C_contacts?select=id,Fullname,email,client_id,Retailer&active=eq.true&order=Fullname')),
       startupGet('Report types',()=>sbGet('report_types?select=id,type&visible=eq.true&order=type')),
       startupGet('Sectors',()=>sbGet('Sector?select=id,Name,companyid&order=Name')),
       startupGet('Operations contacts',()=>sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname')),
       startupGet('Retailers',()=>sbGet('retailers?select=id,retailer&order=retailer')),
-      startupGet('Client retailer links',()=>sbGet('client_retailers?select=client_id,retailer_id&order=client_id,retailer_id')),
+      startupGet('Contact retailer links',()=>sbGet('contact_retailers?select=contact_id,retailer_id&order=contact_id,retailer_id')),
       startupGet('Insights Tracking records',()=>sbGetAll('InsightsTracking?select=*&order=startdate.desc.nullslast,createdat.desc'),{required:true}),
     ]);
     allCo=co||[]; allCl=cl||[]; allBr=br||[]; allSt=st||[]; allCon=con||[]; allRT=rt||[]; allSectors=sec||[];
-    allRetailers=retailers||[]; allClientRetailers=clientRetailers||[];
+    allRetailers=retailers||[]; allContactRetailers=contactRetailers||[];
     allAccountManagers=(ops||[]).filter(isAccountManager);
     allRec=filtRec=rec;
     missionIdsColumnReady=!allRec.length||Object.prototype.hasOwnProperty.call(allRec[0],'mission_ids');
@@ -2126,7 +2160,7 @@ async function init(){
     ms.brand.all     =br.map(brandOption);
     ms.store.all     =st.map(s=>({id:s.id,label:s.store,sub:`ID ${s.id}`,meta:s}));
     ms.sector.all    =sec.map(s=>({id:s.id,label:s.Name,sub:`ID ${s.id}`,meta:s}));
-    ms.contact.all   =con.map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
+    ms.contact.all   =con.map(contactOption);
     ms.accountmanager.all=accountManagerOptions();
     ms.reporttype.all=rt.map(r=>({id:r.id,label:r.type,sub:'',meta:r}));
     renderList();
@@ -2985,15 +3019,19 @@ function showView(r){
   const rtypes=shortReportTypes(r).join(', ')||r.reportingtype||'—';
   const manager=allAccountManagers.find(contact=>String(contact.id)===String(r.account_manager_id));
   const clientName=shortClient(r)||r.client||'—';
-  const retailers=retailersForClient(r.client_fk);
-  const retailerSummary=retailers.length?retailers.map(retailer=>`ID ${retailer.id} · ${retailer.retailer}`).join(', '):'No retailer linked';
+  const contactIds=Array.isArray(r.contact_ids)?r.contact_ids.map(String):[];
+  const retailerSummary=contactIds.length?contactIds.map(contactId=>{
+    const contact=allCon.find(item=>String(item.id)===contactId);
+    const retailers=retailersForContact(contactId);
+    return `${contact?.Fullname||'Contact '+contactId}: ${retailers.length?retailers.map(retailer=>`ID ${retailer.id} · ${retailer.retailer}`).join(', '):'No retailer linked'}`;
+  }).join(' | '):'No contact selected';
   const flds=[
     {l:'Client',v:clientName,c:'recap-accent'},{l:'Code SAP',v:r.sapcode,c:'recap-accent'},
     {l:'Mission IDs',v:missionIdsForRecord(r).join(', ')},{l:'Commercial Team',v:manager?accountManagerName(manager):null},
     {l:'Start Date',v:fd(r.startdate)},{l:'End Date',v:fd(r.enddate)},
     {l:'Brand',v:brands},{l:'Store',v:stores},
     {l:'Sector',v:sectors},{l:'Report Types',v:rtypes},
-    {l:'Client Retailers',v:retailerSummary,full:true,c:'recap-retailers'},
+    {l:'Contact Retailers',v:retailerSummary,full:true,c:'recap-retailers'},
     {l:'Contacts',v:r.contactName_Email,full:true},
     {l:'Comments',v:r.comments,full:true},
   ];
@@ -3112,7 +3150,7 @@ async function saveRecord(asStandby=false){
 function applyClientFilter(reset=true){
   const cId=ms.client.selected[0]?.id||null;
   ms.brand.all  =(cId?allBr.filter(b=>String(b.client_giid)===String(cId)):allBr).map(brandOption);
-  ms.contact.all=(cId?allCon.filter(c=>String(c.client_id)===String(cId)):allCon).map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
+  ms.contact.all=(cId?allCon.filter(c=>String(c.client_id)===String(cId)):allCon).map(contactOption);
   if(reset){ms.brand.selected=[];ms.contact.selected=[];renderTags('brand');renderTags('contact');}
 }
 function applySectorFilter(){
@@ -3192,146 +3230,107 @@ function renderTags(key){
     const tagLabel=`${o.label}${showId?' · ID '+o.id:''}${visibility}`;
     const t=document.createElement('div');t.className='tag';t.innerHTML=`<span>${esc(tagLabel)}</span><div class="tagx" onclick="event.stopPropagation();removeTag('${key}',${o.id})"></div>`;trig.insertBefore(t,ph);
   });}
-  if(key==='client')renderClientRetailerSummary();
+  if(key==='contact')renderContactRetailerSummary();
 }
 
-// ── Add / manage Client and Retailers ─────────────────────────────────────
-let clientModalMode='new';
-let clientModalClientId=null;
-let clientModalRetailerIds=new Set();
-
+// ── Add Client ─────────────────────────────────────────────────────────────
 function openAddClient(){
-  clientModalMode='new';
-  clientModalClientId=null;
-  clientModalRetailerIds=new Set();
-  document.getElementById('mcl-title').textContent='Add New Client';
   document.getElementById('mcl-name').value='';
-  document.getElementById('mcl-name').readOnly=false;
-  document.getElementById('mcl-name').classList.remove('readonly');
-  document.getElementById('mcl-save').textContent='Save Client';
-  document.getElementById('mcl-retailer-search').value='';
-  document.getElementById('mcl-new-retailer').value='';
-  renderClientRetailerPicker('');
   document.getElementById('addClientModal').style.display='flex';
   document.getElementById('mcl-name').focus();
 }
-function openManageClientRetailers(clientId){
-  const client=allCl.find(item=>String(item.id)===String(clientId));
-  if(!client){toast('Client not found.','error');return;}
-  clientModalMode='manage';
-  clientModalClientId=client.id;
-  clientModalRetailerIds=new Set(retailersForClient(client.id).map(retailer=>String(retailer.id)));
-  document.getElementById('mcl-title').textContent='Manage Client Retailers';
-  document.getElementById('mcl-name').value=client.client||'';
-  document.getElementById('mcl-name').readOnly=true;
-  document.getElementById('mcl-name').classList.add('readonly');
-  document.getElementById('mcl-save').textContent='Save Retailers';
-  document.getElementById('mcl-retailer-search').value='';
-  document.getElementById('mcl-new-retailer').value='';
-  renderClientRetailerPicker('');
-  document.getElementById('addClientModal').style.display='flex';
-  document.getElementById('mcl-retailer-search').focus();
-}
 function closeAddClient(){document.getElementById('addClientModal').style.display='none';}
-function renderClientRetailerPicker(query=''){
-  const root=document.getElementById('mcl-retailer-list');
-  if(!root)return;
-  const q=String(query||'').trim().toLowerCase();
-  const retailers=allRetailers.filter(retailer=>!q||String(retailer.retailer||'').toLowerCase().includes(q)||String(retailer.id).includes(q));
-  root.innerHTML=retailers.length?retailers.map(retailer=>{
-    const selected=clientModalRetailerIds.has(String(retailer.id));
-    return `<label class="retailer-choice${selected?' selected':''}">
-      <input type="checkbox" ${selected?'checked':''} onchange="toggleClientModalRetailer(${Number(retailer.id)},this.checked)">
-      <span><span class="retailer-choice-main">${esc(retailer.retailer||'Unnamed retailer')}</span><span class="retailer-choice-id">Retailer ID ${esc(retailer.id)}</span></span>
-    </label>`;
-  }).join(''):'<div class="dde">No retailers found. Create it below.</div>';
-}
-function toggleClientModalRetailer(retailerId,checked){
-  const value=String(retailerId);
-  if(checked)clientModalRetailerIds.add(value);else clientModalRetailerIds.delete(value);
-  renderClientRetailerPicker(document.getElementById('mcl-retailer-search')?.value||'');
-}
-async function createRetailerFromModal(){
-  const input=document.getElementById('mcl-new-retailer');
-  const name=input.value.replace(/\s+/g,' ').trim();
-  if(!name){toast('Enter a retailer name.','error');input.focus();return;}
-  const existing=allRetailers.find(retailer=>String(retailer.retailer||'').trim().toLowerCase()===name.toLowerCase());
-  if(existing){
-    clientModalRetailerIds.add(String(existing.id));
-    input.value='';
-    renderClientRetailerPicker('');
-    toast('Retailer already exists and was selected.','success');
-    return;
-  }
-  try{
-    showLoad(true);
-    const createdRows=await sbPost('retailers',{retailer:name});
-    let created=createdRows[0]||null;
-    if(!created){
-      const matches=await sbGet(`retailers?select=id,retailer&retailer=eq.${encodeURIComponent(name)}&limit=1`);
-      created=matches[0]||null;
-    }
-    if(!created)throw new Error('Retailer was not returned by the database.');
-    allRetailers.push(created);
-    allRetailers.sort((a,b)=>String(a.retailer||'').localeCompare(String(b.retailer||'')));
-    clientModalRetailerIds.add(String(created.id));
-    input.value='';
-    document.getElementById('mcl-retailer-search').value='';
-    renderClientRetailerPicker('');
-    toast(`Retailer created with ID ${created.id}.`,'success');
-  }catch(error){toast('Could not create retailer: '+error.message,'error');}
-  finally{showLoad(false);}
-}
-async function deleteClientRetailerLink(clientId,retailerId){
-  await ensureFreshSession();
-  const response=await sbFetch(`${SB}/rest/v1/client_retailers?client_id=eq.${encodeURIComponent(clientId)}&retailer_id=eq.${encodeURIComponent(retailerId)}`,{
-    method:'DELETE',headers:supabaseHeaders(null)
-  });
-  if(!response.ok)throw new Error(await response.text());
-}
-async function saveClientRetailerLinks(clientId,selectedIds){
-  const existingIds=new Set(allClientRetailers.filter(link=>String(link.client_id)===String(clientId)).map(link=>String(link.retailer_id)));
-  const desiredIds=new Set([...selectedIds].map(String));
-  const additions=[...desiredIds].filter(id=>!existingIds.has(id));
-  const removals=[...existingIds].filter(id=>!desiredIds.has(id));
-  if(additions.length){
-    await sbPost('client_retailers',additions.map(retailerId=>({client_id:Number(clientId),retailer_id:Number(retailerId)})));
-  }
-  if(removals.length)await Promise.all(removals.map(retailerId=>deleteClientRetailerLink(clientId,retailerId)));
-  allClientRetailers=await sbGet('client_retailers?select=client_id,retailer_id&order=client_id,retailer_id');
-}
 async function saveClientModal(){
   const name=document.getElementById('mcl-name').value.replace(/\s+/g,' ').trim();
   if(!name){toast('Client name is required.','error');document.getElementById('mcl-name').focus();return;}
   try{
     showLoad(true);
-    let clientId=clientModalClientId;
-    if(clientModalMode==='new'){
-      const existing=allCl.find(client=>String(client.client||'').trim().toLowerCase()===name.toLowerCase());
-      if(existing){
-        clientId=existing.id;
-        retailersForClient(existing.id).forEach(retailer=>clientModalRetailerIds.add(String(retailer.id)));
-        toast('This client already exists. Its retailers will be updated.','');
-      }else{
-        const createdRows=await sbPost('GI_clients',{client:name,active:true});
-        let created=createdRows[0]||null;
-        if(!created){
-          const matches=await sbGet(`GI_clients?select=id,client,active&client=eq.${encodeURIComponent(name)}&limit=1`);
-          created=matches[0]||null;
-        }
-        if(!created)throw new Error('Client was not returned by the database.');
-        allCl.push(created);
-        allCl.sort((a,b)=>String(a.client||'').localeCompare(String(b.client||'')));
-        clientId=created.id;
+    let client=allCl.find(item=>String(item.client||'').trim().toLowerCase()===name.toLowerCase())||null;
+    if(!client){
+      const createdRows=await sbPost('GI_clients',{client:name,active:true});
+      client=createdRows[0]||null;
+      if(!client){
+        const matches=await sbGet(`GI_clients?select=id,client,active&client=eq.${encodeURIComponent(name)}&limit=1`);
+        client=matches[0]||null;
       }
+      if(!client)throw new Error('Client was not returned by the database.');
+      allCl.push(client);
+      allCl.sort((a,b)=>String(a.client||'').localeCompare(String(b.client||'')));
     }
-    await saveClientRetailerLinks(clientId,clientModalRetailerIds);
-    rebuildClientOptions(clientId);
-    if(clientModalMode==='new')applyClientFilter(true);
+    rebuildClientOptions(client.id);
+    applyClientFilter(true);
     closeAddClient();
-    toast(clientModalMode==='new'?'Client saved and selected!':'Retailers updated!','success');
+    toast('Client saved and selected!','success');
   }catch(error){toast('Could not save the client: '+error.message,'error');}
   finally{showLoad(false);}
+}
+
+// ── Contact Retailers ──────────────────────────────────────────────────────
+let newContactRetailerIds=new Set();
+let managedContactId=null;
+let managedContactRetailerIds=new Set();
+
+function renderRetailerChoices(rootId,selectedIds,query,toggleFunction){
+  const root=document.getElementById(rootId);
+  if(!root)return;
+  const q=String(query||'').trim().toLowerCase();
+  const retailers=allRetailers.filter(retailer=>!q||String(retailer.retailer||'').toLowerCase().includes(q)||String(retailer.id).includes(q));
+  root.innerHTML=retailers.length?retailers.map(retailer=>{
+    const selected=selectedIds.has(String(retailer.id));
+    return `<label class="retailer-choice${selected?' selected':''}"><input type="checkbox" ${selected?'checked':''} onchange="${toggleFunction}(${Number(retailer.id)},this.checked)"><span><span class="retailer-choice-main">${esc(retailer.retailer||'Unnamed retailer')}</span><span class="retailer-choice-id">Retailer ID ${esc(retailer.id)}</span></span></label>`;
+  }).join(''):'<div class="dde">No retailers found. Create it below.</div>';
+}
+function renderNewContactRetailerPicker(query=''){renderRetailerChoices('mc-retailer-list',newContactRetailerIds,query,'toggleNewContactRetailer');}
+function renderManagedContactRetailerPicker(query=''){renderRetailerChoices('mcr-retailer-list',managedContactRetailerIds,query,'toggleManagedContactRetailer');}
+function toggleNewContactRetailer(retailerId,checked){
+  if(checked)newContactRetailerIds.add(String(retailerId));else newContactRetailerIds.delete(String(retailerId));
+  renderNewContactRetailerPicker(document.getElementById('mc-retailer-search')?.value||'');
+}
+function toggleManagedContactRetailer(retailerId,checked){
+  if(checked)managedContactRetailerIds.add(String(retailerId));else managedContactRetailerIds.delete(String(retailerId));
+  renderManagedContactRetailerPicker(document.getElementById('mcr-retailer-search')?.value||'');
+}
+async function createRetailerForContact(context){
+  const isManage=context==='manage';
+  const input=document.getElementById(isManage?'mcr-new-retailer':'mc-new-retailer');
+  const selectedIds=isManage?managedContactRetailerIds:newContactRetailerIds;
+  const name=input.value.replace(/\s+/g,' ').trim();
+  if(!name){toast('Enter a retailer name.','error');input.focus();return;}
+  try{
+    showLoad(true);
+    let retailer=allRetailers.find(item=>String(item.retailer||'').trim().toLowerCase()===name.toLowerCase())||null;
+    if(!retailer){
+      const createdRows=await sbPost('retailers',{retailer:name});
+      retailer=createdRows[0]||null;
+      if(!retailer){
+        const matches=await sbGet(`retailers?select=id,retailer&retailer=eq.${encodeURIComponent(name)}&limit=1`);
+        retailer=matches[0]||null;
+      }
+      if(!retailer)throw new Error('Retailer was not returned by the database.');
+      allRetailers.push(retailer);
+      allRetailers.sort((a,b)=>String(a.retailer||'').localeCompare(String(b.retailer||'')));
+    }
+    selectedIds.add(String(retailer.id));
+    input.value='';
+    if(isManage){document.getElementById('mcr-retailer-search').value='';renderManagedContactRetailerPicker('');}
+    else{document.getElementById('mc-retailer-search').value='';renderNewContactRetailerPicker('');}
+    toast(`Retailer ${retailer.id} selected.`,'success');
+  }catch(error){toast('Could not create retailer: '+error.message,'error');}
+  finally{showLoad(false);}
+}
+async function deleteContactRetailerLink(contactId,retailerId){
+  await ensureFreshSession();
+  const response=await sbFetch(`${SB}/rest/v1/contact_retailers?contact_id=eq.${encodeURIComponent(contactId)}&retailer_id=eq.${encodeURIComponent(retailerId)}`,{method:'DELETE',headers:supabaseHeaders(null)});
+  if(!response.ok)throw new Error(await response.text());
+}
+async function saveContactRetailerLinks(contactId,selectedIds){
+  const existingIds=new Set(allContactRetailers.filter(link=>String(link.contact_id)===String(contactId)).map(link=>String(link.retailer_id)));
+  const desiredIds=new Set([...selectedIds].map(String));
+  const additions=[...desiredIds].filter(id=>!existingIds.has(id));
+  const removals=[...existingIds].filter(id=>!desiredIds.has(id));
+  if(additions.length)await sbPost('contact_retailers',additions.map(retailerId=>({contact_id:Number(contactId),retailer_id:Number(retailerId)})));
+  if(removals.length)await Promise.all(removals.map(retailerId=>deleteContactRetailerLink(contactId,retailerId)));
+  allContactRetailers=await sbGet('contact_retailers?select=contact_id,retailer_id&order=contact_id,retailer_id');
 }
 
 // ── Add Contact Modal ──────────────────────────────────────────────────────
@@ -3342,6 +3341,10 @@ function openAddContact(){
   document.getElementById('mc-lname').value='';
   document.getElementById('mc-email').value='';
   document.getElementById('mc-client').value=cOpt.label;
+  document.getElementById('mc-retailer-search').value='';
+  document.getElementById('mc-new-retailer').value='';
+  newContactRetailerIds=new Set();
+  renderNewContactRetailerPicker('');
   document.getElementById('addContactModal').style.display='flex';
   document.getElementById('mc-fname').focus();
 }
@@ -3355,31 +3358,51 @@ async function saveNewContact(){
   if(!cOpt){toast('No client selected','error');return;}
   try{
     showLoad(true);
-    const mxCon = await sbGet('C_contacts?select=id&order=id.desc&limit=1');
-    const newId  = mxCon.length ? parseInt(mxCon[0].id) + 1 : 1;
-    const newCon = await sbPost('C_contacts',{
-      id:        newId,
-      Fname:     fname,
-      Lname:     lname,
-      email:     email||null,
-      Fullname:  fname+' '+lname,
-      client_id: parseInt(cOpt.id),
-      active:    true
-    });
-    // refresh contacts
-    const freshCon=await sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname');
-    allCon=freshCon;
+    const mxCon=await sbGet('C_contacts?select=id&order=id.desc&limit=1');
+    const newId=mxCon.length?parseInt(mxCon[0].id)+1:1;
+    const primaryRetailer=[...newContactRetailerIds][0]||null;
+    const createdRows=await sbPost('C_contacts',{id:newId,Fname:fname,Lname:lname,email:email||null,Fullname:fname+' '+lname,client_id:parseInt(cOpt.id),Retailer:primaryRetailer?Number(primaryRetailer):null,active:true});
+    const created=createdRows[0]||{id:newId,Fullname:fname+' '+lname,email:email||'',client_id:parseInt(cOpt.id),Retailer:primaryRetailer?Number(primaryRetailer):null};
+    await saveContactRetailerLinks(created.id,newContactRetailerIds);
+    allCon=await sbGet('C_contacts?select=id,Fullname,email,client_id,Retailer&active=eq.true&order=Fullname');
     applyClientFilter(false);
-    // auto-select the new contact
-    const created=newCon[0]||null;
-    if(created){
-      const newOpt=ms.contact.all.find(o=>o.id===created.id)||{id:created.id,label:fname+' '+lname,sub:email||'',meta:created};
-      if(!ms.contact.selected.find(o=>o.id===newOpt.id))ms.contact.selected.push(newOpt);
-      renderTags('contact');
-    }
+    const newOpt=ms.contact.all.find(option=>String(option.id)===String(created.id));
+    if(newOpt&&!ms.contact.selected.find(option=>String(option.id)===String(newOpt.id)))ms.contact.selected.push(newOpt);
+    renderTags('contact');
     closeAddContact();
     toast('Contact added and selected!','success');
-  }catch(e){toast('Failed to add contact: '+e.message,'error');}
+  }catch(error){toast('Failed to add contact: '+error.message,'error');}
+  finally{showLoad(false);}
+}
+function openManageContactRetailers(contactId){
+  const contact=allCon.find(item=>String(item.id)===String(contactId));
+  if(!contact){toast('Contact not found.','error');return;}
+  managedContactId=contact.id;
+  const linked=retailersForContact(contact.id).map(retailer=>String(retailer.id));
+  managedContactRetailerIds=new Set(contact.Retailer!=null?[String(contact.Retailer),...linked]:linked);
+  document.getElementById('mcr-contact').value=contact.Fullname||`Contact ${contact.id}`;
+  document.getElementById('mcr-retailer-search').value='';
+  document.getElementById('mcr-new-retailer').value='';
+  renderManagedContactRetailerPicker('');
+  document.getElementById('manageContactRetailerModal').style.display='flex';
+  document.getElementById('mcr-retailer-search').focus();
+}
+function closeManageContactRetailers(){document.getElementById('manageContactRetailerModal').style.display='none';managedContactId=null;}
+async function saveManagedContactRetailers(){
+  if(managedContactId==null)return;
+  try{
+    showLoad(true);
+    const contactId=managedContactId;
+    const selectedContactIds=ms.contact.selected.map(option=>option.id);
+    await saveContactRetailerLinks(contactId,managedContactRetailerIds);
+    const primaryRetailer=[...managedContactRetailerIds][0]||null;
+    await sbPatch('C_contacts',contactId,{Retailer:primaryRetailer?Number(primaryRetailer):null});
+    const contact=allCon.find(item=>String(item.id)===String(contactId));
+    if(contact)contact.Retailer=primaryRetailer?Number(primaryRetailer):null;
+    rebuildContactOptions(selectedContactIds);
+    closeManageContactRetailers();
+    toast('Contact retailers updated!','success');
+  }catch(error){toast('Could not update contact retailers: '+error.message,'error');}
   finally{showLoad(false);}
 }
 
@@ -4450,21 +4473,21 @@ function selectOpsContact(rid,cid,name=''){
 async function refreshEntryForm(){
   try{
     showLoad(true);
-    const [co,cl,br,st,con,rt,sec,ops,retailers,clientRetailers,rec]=await Promise.all([
+    const [co,cl,br,st,con,rt,sec,ops,retailers,contactRetailers,rec]=await Promise.all([
       sbGet('GI_company?select=id,name,country_id&active=eq.true&order=name'),
       sbGet('GI_clients?select=id,client&active=eq.true&order=client'),
       sbGet('GI_brands?select=id,brand,client_giid,visible&order=brand'),
       sbGet('GI_stores?select=id,store,country_id,Sector_id&visible=eq.true&order=store'),
-      sbGet('C_contacts?select=id,Fullname,email,client_id&active=eq.true&order=Fullname'),
+      sbGet('C_contacts?select=id,Fullname,email,client_id,Retailer&active=eq.true&order=Fullname'),
       sbGet('report_types?select=id,type&visible=eq.true&order=type'),
       sbGet('Sector?select=id,Name,companyid&order=Name'),
       sbGet('Contacts_Operations?select=id,firstname,lastname,email,jobtitle,company&order=lastname,firstname'),
       sbGet('retailers?select=id,retailer&order=retailer'),
-      sbGet('client_retailers?select=client_id,retailer_id&order=client_id,retailer_id'),
+      sbGet('contact_retailers?select=contact_id,retailer_id&order=contact_id,retailer_id'),
       sbGetAll('InsightsTracking?select=*&order=startdate.desc.nullslast,createdat.desc'),
     ]);
     allCo=co; allCl=cl; allBr=br; allSt=st; allCon=con; allRT=rt; allSectors=sec;
-    allRetailers=retailers||[]; allClientRetailers=clientRetailers||[];
+    allRetailers=retailers||[]; allContactRetailers=contactRetailers||[];
     allAccountManagers=(ops||[]).filter(isAccountManager);
     allRec=rec;
     missionIdsColumnReady=!allRec.length||Object.prototype.hasOwnProperty.call(allRec[0],'mission_ids');
@@ -4474,7 +4497,7 @@ async function refreshEntryForm(){
     ms.brand.all     =br.map(brandOption);
     ms.store.all     =st.map(s=>({id:s.id,label:s.store,sub:`ID ${s.id}`,meta:s}));
     ms.sector.all    =sec.map(s=>({id:s.id,label:s.Name,sub:`ID ${s.id}`,meta:s}));
-    ms.contact.all   =con.map(c=>({id:c.id,label:c.Fullname||'—',sub:c.email||'',meta:c}));
+    ms.contact.all   =con.map(contactOption);
     ms.accountmanager.all=accountManagerOptions();
     ms.reporttype.all=rt.map(r=>({id:r.id,label:r.type,sub:'',meta:r}));
     populateCompanyFilters();
