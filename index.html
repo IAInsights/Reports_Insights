@@ -550,6 +550,9 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .items-empty{padding:52px 20px;text-align:center;color:var(--g400);font-size:12px;}
 .items-toast{position:fixed;right:24px;bottom:24px;z-index:10020;padding:10px 15px;border-radius:7px;color:#fff;font-size:12px;font-weight:650;box-shadow:var(--shadow);display:none;max-width:360px;}
 @media(max-width:1250px){.items-editor{position:absolute;right:20px;top:128px;bottom:16px;z-index:50;width:min(410px,calc(100% - 40px));}.items-main{position:relative;}.items-select{max-width:145px}.items-search{min-width:190px}}
+.led-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 20px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0}.led-title{margin-right:10px}.led-title strong{display:block;font-size:15px}.led-title span{display:block;margin-top:2px;color:var(--g500);font-size:10.5px}.led-tabs{display:flex;gap:5px}.led-tab,.led-btn{height:32px;padding:0 12px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g600);font:650 11.5px/1 inherit;cursor:pointer}.led-tab.active{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}.led-btn.primary{border-color:var(--blue);background:var(--blue);color:#fff}.led-control{height:32px;padding:0 9px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g700);font:inherit;font-size:11.5px;outline:none}.led-control:focus{border-color:var(--blue)}.led-search{min-width:210px}.led-shell{position:relative;display:grid;grid-template-columns:1fr;gap:10px;flex:1;min-height:0;padding:12px 20px 16px;overflow:hidden}.led-shell.editor-open{grid-template-columns:minmax(680px,1fr) 390px}.led-card,.led-editor{min-height:0;border:1px solid var(--g200);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}.led-card{display:flex;flex-direction:column}.led-table-wrap{flex:1;overflow:auto}.led-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.led-table th{position:sticky;top:0;z-index:2;padding:8px 9px;border-bottom:2px solid var(--g200);background:var(--g50);color:var(--g600);font-size:9.5px;letter-spacing:.04em;text-align:left;text-transform:uppercase;white-space:nowrap}.led-table td{padding:8px 9px;border-bottom:1px solid var(--g100);color:var(--g700);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.led-row{cursor:pointer}.led-row:hover,.led-row.selected{background:#f7faff}.led-row.selected{box-shadow:inset 3px 0 0 var(--blue)}.led-empty{padding:54px 20px;color:var(--g400);font-size:12px;text-align:center}.led-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-top:1px solid var(--g200);background:var(--g50);color:var(--g500);font-size:10.5px}.led-editor{display:none;flex-direction:column}.led-editor.open{display:flex}.led-editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid var(--g200)}.led-editor-body{flex:1;overflow:auto;padding:13px 15px}.led-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.led-field{display:flex;flex-direction:column;gap:4px;min-width:0}.led-field.full{grid-column:1/-1}.led-field label{color:var(--g500);font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.led-input{width:100%;min-height:34px;padding:7px 9px;border:1px solid var(--g300);border-radius:6px;background:#fff;color:var(--g800);font:inherit;font-size:11.5px;outline:none}.led-input:focus{border-color:var(--blue)}textarea.led-input{min-height:72px;line-height:1.45;resize:vertical}.led-editor-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 15px;border-top:1px solid var(--g200);background:var(--g50)}.led-save-state{color:var(--g500);font-size:10.5px}.led-save-state.dirty{color:var(--amber)}.led-save-state.saved{color:var(--green)}.led-save-state.error{color:var(--red)}
+.led-tab,.led-btn{font-family:inherit;font-size:11.5px;font-weight:650;line-height:1}
+@media(max-width:1100px){.led-shell,.led-shell.editor-open{grid-template-columns:1fr}.led-editor{position:absolute;right:20px;top:12px;bottom:16px;z-index:40;width:min(420px,calc(100% - 40px))}}
 .cc-shell{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
 .cc-head{padding:12px 20px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;flex-shrink:0;}
 .cc-head-copy{display:none}.cc-title{font-size:15px;font-weight:700}.cc-sub{font-size:11.5px;color:var(--g500);margin-top:2px}.cc-filter{height:30px;min-width:125px;max-width:165px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;outline:none}.cc-filter:focus{border-color:var(--blue)}
@@ -757,14 +760,15 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">V2026.09.17.12</summary>
+        <summary title="Open version history">V2026.09.17.13</summary>
         <div class="release-panel">
-          <div class="release-heading">New version V2026.09.17.12</div>
+          <div class="release-heading">New version V2026.09.17.13</div>
           <div class="release-date">What&rsquo;s new:</div>
           <ul class="release-list">
-            <li>Mission IDs are now suggested directly from the live schedule.</li>
-            <li>Suggestions are ranked using SAP code, operation dates, store, brand and client.</li>
-            <li>Clicking a suggestion adds the Mission ID to the record without saving it automatically.</li>
+            <li>Workflow Tools now includes a paginated editor for legacy Sales and Questionnaire records.</li>
+            <li>Legacy records can be searched, filtered by date and safely updated from one panel.</li>
+            <li>The Shift Comments editor now remains stable while records refresh.</li>
+            <li>Shift and stand comments can be cleared with confirmation.</li>
           </ul>
         </div>
       </details>
@@ -878,6 +882,7 @@ window._authReady=restoreSupabaseSession();
   <button class="workflow-tool-btn" id="workflowTool5btn" onclick="switchWorkflowTool(5)">Shift Comments</button>
   <button class="workflow-tool-btn" id="workflowTool6btn" onclick="switchWorkflowTool(6)">Targets</button>
   <button class="workflow-tool-btn" id="workflowTool7btn" onclick="switchWorkflowTool(7)">Items</button>
+  <button class="workflow-tool-btn" id="workflowTool11btn" onclick="switchWorkflowTool(11)">Legacy Data</button>
 </div>
 
 <!-- PAGE 0 – DASHBOARD -->
@@ -1220,12 +1225,14 @@ window._authReady=restoreSupabaseSession();
       <div>
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);margin-bottom:6px;display:flex;align-items:center;gap:6px;">
           Comments on today's shift <span id="sc_countComments" style="font-size:10px;color:var(--g400);font-weight:400;text-transform:none;letter-spacing:0;">0 chars</span>
+          <button type="button" onclick="sc_clearField('comments')" style="margin-left:auto;padding:3px 7px;border:1px solid #efb4ae;border-radius:5px;background:var(--red-light);color:var(--red);font-family:inherit;font-size:10px;font-weight:650;line-height:1.2;cursor:pointer;text-transform:none;letter-spacing:0;">Clear</button>
         </div>
         <textarea id="sc_editComments" rows="7" oninput="sc_onTextChange()" placeholder="No comments yet…" style="width:100%;padding:8px 10px;border:1px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:13px;line-height:1.6;resize:vertical;min-height:120px;outline:none;transition:border-color .15s;"></textarea>
       </div>
       <div>
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g600);margin-bottom:6px;display:flex;align-items:center;gap:6px;">
           Stand comments <span id="sc_countStand" style="font-size:10px;color:var(--g400);font-weight:400;text-transform:none;letter-spacing:0;">0 chars</span>
+          <button type="button" onclick="sc_clearField('stand')" style="margin-left:auto;padding:3px 7px;border:1px solid #efb4ae;border-radius:5px;background:var(--red-light);color:var(--red);font-family:inherit;font-size:10px;font-weight:650;line-height:1.2;cursor:pointer;text-transform:none;letter-spacing:0;">Clear</button>
         </div>
         <textarea id="sc_editStand" rows="4" oninput="sc_onTextChange()" placeholder="No stand comments yet…" style="width:100%;padding:8px 10px;border:1px solid var(--g300);border-radius:var(--r);font-family:inherit;font-size:13px;line-height:1.6;resize:vertical;min-height:90px;outline:none;transition:border-color .15s;"></textarea>
       </div>
@@ -1460,6 +1467,46 @@ window._authReady=restoreSupabaseSession();
     </aside>
   </div>
   <div class="items-toast" id="itemsToast"></div>
+</div>
+
+<!-- PAGE 11 – LEGACY DATA EDITOR -->
+<div class="page" id="page11" style="flex-direction:column;overflow:hidden;background:var(--g50);">
+  <div class="led-toolbar">
+    <div class="led-title"><strong>Legacy Data Editor</strong><span>Edit existing Supabase records</span></div>
+    <div class="led-tabs">
+      <button class="led-tab active" id="ledTabSales" onclick="led_switchTable('sales')">Sales</button>
+      <button class="led-tab" id="ledTabQuestionnaire" onclick="led_switchTable('questionnaire')">Questionnaire</button>
+    </div>
+    <select class="led-control" id="ledSearchField" onchange="led_scheduleLoad(true)"></select>
+    <input class="led-control led-search" id="ledSearch" type="search" placeholder="Search records…" oninput="led_scheduleLoad(true)">
+    <span style="font-size:11px;color:var(--g500);font-weight:600;">From</span>
+    <input class="led-control" id="ledFrom" type="date" onchange="led_scheduleLoad(true)">
+    <span style="font-size:11px;color:var(--g500);font-weight:600;">To</span>
+    <input class="led-control" id="ledTo" type="date" onchange="led_scheduleLoad(true)">
+    <button class="led-btn" onclick="led_resetFilters()">Reset</button>
+    <button class="led-btn" onclick="led_loadPage()">Refresh</button>
+    <span id="ledSummary" style="margin-left:auto;color:var(--g500);font-size:10.5px;">Not loaded</span>
+  </div>
+  <div class="led-shell" id="ledShell">
+    <section class="led-card">
+      <div class="led-table-wrap" id="ledTableArea"><div class="led-empty">Open Sales or Questionnaire to load records.</div></div>
+      <div class="led-pager" id="ledPager" style="display:none;">
+        <span id="ledPageInfo"></span>
+        <div style="display:flex;gap:6px;"><button class="led-btn" id="ledPrev" onclick="led_changePage(-1)">Previous</button><button class="led-btn" id="ledNext" onclick="led_changePage(1)">Next</button></div>
+      </div>
+    </section>
+    <aside class="led-editor" id="ledEditor">
+      <div class="led-editor-head">
+        <div><div id="ledEditorTitle" style="font-size:14px;font-weight:750;">Edit record</div><div id="ledEditorSub" style="margin-top:2px;color:var(--g500);font-size:10.5px;"></div></div>
+        <button class="led-btn" style="width:32px;padding:0;font-size:17px;" onclick="led_closeEditor()" title="Close">×</button>
+      </div>
+      <div class="led-editor-body"><div class="led-form" id="ledForm"></div></div>
+      <div class="led-editor-foot">
+        <span class="led-save-state" id="ledSaveState">No changes</span>
+        <div style="display:flex;gap:7px;"><button class="led-btn" onclick="led_closeEditor()">Cancel</button><button class="led-btn primary" id="ledSave" onclick="led_saveRecord()" disabled>Save changes</button></div>
+      </div>
+    </aside>
+  </div>
 </div>
 
 <!-- PAGE 8 – REPORTING CHECK -->
@@ -2005,6 +2052,15 @@ function resetFiltersForPage(page){
     ['All','Visible','Hidden'].forEach(key=>document.getElementById('itemsStat'+key).classList.toggle('active',key==='All'));
     if(items_initialized)items_applyFilters(false);
   }
+  if(page===11){
+    const search=document.getElementById('ledSearch');
+    const from=document.getElementById('ledFrom');
+    const to=document.getElementById('ledTo');
+    if(search)search.value='';
+    if(from)from.value='';
+    if(to)to.value='';
+    led_page=1;
+  }
   if(page===8){
     clearTimeout(rc_loadTimer);
     rc_loadRequest++;
@@ -2028,7 +2084,7 @@ function resetFiltersForPage(page){
 }
 
 function switchWorkflowTool(n=currentWorkflowTool){
-  const toolPage=[5,6,7].includes(Number(n))?Number(n):5;
+  const toolPage=[5,6,7,11].includes(Number(n))?Number(n):5;
   currentWorkflowTool=toolPage;
   switchTab(toolPage);
 }
@@ -2037,19 +2093,19 @@ function switchTab(n){
   const pageChanged=n!==currentTab;
   if(pageChanged)resetFiltersForPage(currentTab);
   currentTab=n;
-  if([5,6,7].includes(n))currentWorkflowTool=n;
-  [0,1,2,3,4,5,6,7,8,9].forEach(i=>{
+  if([5,6,7,11].includes(n))currentWorkflowTool=n;
+  [0,1,2,3,4,5,6,7,8,9,11].forEach(i=>{
     const p=document.getElementById('page'+i);
     const b=document.getElementById('tab'+i+'btn');
     if(p) p.classList.toggle('active',n===i);
     if(b) b.classList.toggle('active',n===i);
   });
-  const workflowOpen=[5,6,7].includes(n);
+  const workflowOpen=[5,6,7,11].includes(n);
   const workflowMain=document.getElementById('tab10btn');
   const workflowBar=document.getElementById('workflowToolsBar');
   if(workflowMain)workflowMain.classList.toggle('active',workflowOpen);
   if(workflowBar)workflowBar.style.display=workflowOpen?'flex':'none';
-  [5,6,7].forEach(i=>{
+  [5,6,7,11].forEach(i=>{
     const button=document.getElementById('workflowTool'+i+'btn');
     if(button)button.classList.toggle('active',n===i);
   });
@@ -2062,6 +2118,7 @@ function switchTab(n){
   if(n===5) sc_loadData();
   if(n===6) t_initIfNeeded();
   if(n===7) items_initIfNeeded();
+  if(n===11) led_initIfNeeded();
   if(n===8) rc_initIfNeeded(pageChanged);
   if(n===9) cc_initIfNeeded();
 }
@@ -4664,10 +4721,11 @@ function showLoad(v){if(v&&!lEl){lEl=document.createElement('div');lEl.className
 // ═══════════════════════════════════════════════════════════
 // PAGE 5 – SHIFT COMMENTS
 // ═══════════════════════════════════════════════════════════
-let sc_allRows=[], sc_currentRow=null, sc_origComments='', sc_origStand='';
+let sc_allRows=[], sc_currentRow=null, sc_origComments='', sc_origStand='',sc_loadRequest=0;
 let sc_sortCol='Brand', sc_sortAsc=true;
 
 function sc_loadData(){
+  const requestId=++sc_loadRequest;
   const today=new Date().toISOString().split('T')[0];
   const dateEl=document.getElementById('sc_filterDate');
   if(!dateEl.value) dateEl.value=today;
@@ -4675,15 +4733,16 @@ function sc_loadData(){
   const area=document.getElementById('sc_tableArea');
   area.innerHTML='<div style="padding:40px;text-align:center;color:var(--g400);">Loading shifts…</div>';
   authenticatedFetch(`${SB_URL}/rest/v1/legacy_questionnaire?select=*&order=Brand.asc,Store.asc&"Date"=eq.${date}`)
-    .then(r=>r.json())
+    .then(async r=>{if(!r.ok)throw new Error(await r.text()||`HTTP ${r.status}`);return r.json();})
     .then(data=>{
+      if(requestId!==sc_loadRequest)return;
       sc_allRows=data;
       sc_populateBrandFilter();
       sc_renderTable();
       sc_updateStats();
       document.getElementById('sc_subline').textContent=`${sc_allRows.length} shift${sc_allRows.length!==1?'s':''} on ${new Date(date+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
     })
-    .catch(e=>{area.innerHTML=`<div style="padding:40px;text-align:center;color:var(--red);">Error: ${esc(e.message)}</div>`;});
+    .catch(e=>{if(requestId===sc_loadRequest)area.innerHTML=`<div style="padding:40px;text-align:center;color:var(--red);">Error: ${esc(e.message)}</div>`;});
 }
 
 function sc_populateBrandFilter(){
@@ -4761,7 +4820,14 @@ function sc_updateStats(){
   </div>`).join('');
 }
 function sc_openPanel(id){
-  sc_currentRow=sc_allRows.find(r=>r.ID===id);
+  const currentId=sc_currentRow?.ID;
+  const sameOpen=currentId!=null&&String(currentId)===String(id)&&document.getElementById('sc_backdrop').style.display==='flex';
+  const preservedDraft=sameOpen?{
+    comments:document.getElementById('sc_editComments').value,
+    stand:document.getElementById('sc_editStand').value
+  }:null;
+  if(currentId!=null&&String(currentId)!==String(id)&&sc_hasUnsavedChanges()&&!confirm('Discard the unsaved comment changes and open another record?'))return;
+  sc_currentRow=sc_allRows.find(r=>String(r.ID)===String(id));
   if(!sc_currentRow)return;
   document.getElementById('sc_panelTitle').textContent=sc_currentRow.Promoter||'—';
   document.getElementById('sc_panelSub').textContent=`${sc_currentRow.Brand} · ${sc_currentRow.Store}`;
@@ -4771,15 +4837,21 @@ function sc_openPanel(id){
     <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g400);">Store</div><div style="font-size:13px;font-weight:500;margin-top:2px;">${esc(sc_currentRow.Store||'—')}</div></div>`;
   sc_origComments=sc_currentRow["Comments on today's shift"]||'';
   sc_origStand=sc_currentRow.stand_comments||'';
-  document.getElementById('sc_editComments').value=sc_origComments;
-  document.getElementById('sc_editStand').value=sc_origStand;
-  document.getElementById('sc_countComments').textContent=sc_origComments.length+' chars';
-  document.getElementById('sc_countStand').textContent=sc_origStand.length+' chars';
-  sc_setStatus('idle');
+  document.getElementById('sc_editComments').value=preservedDraft?.comments??sc_origComments;
+  document.getElementById('sc_editStand').value=preservedDraft?.stand??sc_origStand;
+  sc_onTextChange();
   const bd=document.getElementById('sc_backdrop');
   bd.style.display='flex';
 }
-function sc_closePanel(){document.getElementById('sc_backdrop').style.display='none';sc_currentRow=null;}
+function sc_hasUnsavedChanges(){
+  if(!sc_currentRow)return false;
+  return document.getElementById('sc_editComments').value!==sc_origComments||document.getElementById('sc_editStand').value!==sc_origStand;
+}
+function sc_closePanel(force=false){
+  if(!force&&sc_hasUnsavedChanges()&&!confirm('Discard the unsaved comment changes?'))return false;
+  document.getElementById('sc_backdrop').style.display='none';sc_currentRow=null;
+  return true;
+}
 function sc_onTextChange(){
   const c=document.getElementById('sc_editComments').value;
   const s=document.getElementById('sc_editStand').value;
@@ -4813,11 +4885,250 @@ async function sc_saveRow(){
     if(!res.ok)throw new Error('HTTP '+res.status);
     sc_currentRow["Comments on today's shift"]=comments;
     sc_currentRow.stand_comments=stand;
+    const listRow=sc_allRows.find(row=>String(row.ID)===String(sc_currentRow.ID));
+    if(listRow){listRow["Comments on today's shift"]=comments;listRow.stand_comments=stand;}
     sc_origComments=comments;sc_origStand=stand;
     sc_setStatus('saved');
     sc_renderTable();sc_updateStats();
     toast('Comment saved','success');
   }catch(e){sc_setStatus('error');toast('Save failed: '+e.message,'error');}
+}
+async function sc_clearField(field){
+  if(!sc_currentRow)return;
+  const isStand=field==='stand';
+  const column=isStand?'stand_comments':"Comments on today's shift";
+  const input=document.getElementById(isStand?'sc_editStand':'sc_editComments');
+  const current=String(input?.value||'');
+  if(!current.trim()){toast('This comment is already empty.');return;}
+  const label=isStand?'stand comment':'shift comment';
+  if(!confirm(`Clear this ${label}? This cannot be undone.`))return;
+  sc_setStatus('saving');
+  try{
+    const res=await authenticatedFetch(`${SB_URL}/rest/v1/legacy_questionnaire?"ID"=eq.${encodeURIComponent(sc_currentRow.ID)}`,{
+      method:'PATCH',headers:{'Prefer':'return=minimal'},body:JSON.stringify({[column]:null})
+    });
+    if(!res.ok)throw new Error(await res.text()||`HTTP ${res.status}`);
+    sc_currentRow[column]=null;
+    const listRow=sc_allRows.find(row=>String(row.ID)===String(sc_currentRow.ID));
+    if(listRow)listRow[column]=null;
+    input.value='';
+    if(isStand)sc_origStand='';else sc_origComments='';
+    sc_onTextChange();sc_renderTable();sc_updateStats();
+    toast(`${isStand?'Stand':'Shift'} comment cleared.`,'success');
+  }catch(error){sc_setStatus('error');toast('Clear failed: '+error.message,'error');}
+}
+
+// ═══════════════════════════════════════════════════════════
+// PAGE 11 – LEGACY DATA EDITOR
+// ═══════════════════════════════════════════════════════════
+const LED_CONFIG={
+  sales:{
+    label:'Sales',table:'legacy_sales',pk:'id',date:'Date',
+    columns:[['id','ID'],['Date','Date'],['Brand','Brand'],['Item','Item'],['Store','Store'],['Promoter Name','Promoter'],['Qty sold','Qty sold'],['Stock level','Stock']],
+    search:[['id','ID','number'],['Brand','Brand','text'],['Store','Store','text'],['Promoter Name','Promoter','text'],['Item','Item','text']],
+    fields:[
+      ['Date','Date','date'],['Store','Store','text'],['Promoter Name','Promoter name','text'],['Qty sold','Quantity sold','number'],
+      ['Stock level','Stock level','number'],['Brand','Brand','text'],['Item','Item','text'],['Tasting stock level','Tasting stock level','number'],
+      ['Clientid','Client ID','number'],['Brandid','Brand ID','number'],['Promoterid','Promoter ID','number'],['Itemid','Item ID','number'],['Storeid','Store ID','number']
+    ]
+  },
+  questionnaire:{
+    label:'Questionnaire',table:'legacy_questionnaire',pk:'ID',date:'Date',
+    columns:[['ID','ID'],['Date','Date'],['Brand','Brand'],['Store','Store'],['Promoter','Promoter'],['Pieces Sold','Pieces sold'],['Turnover of the day','Turnover'],["Comments on today's shift",'Shift comment']],
+    search:[['ID','ID','number'],['Brand','Brand','text'],['Store','Store','text'],['Promoter','Promoter','text'],["Comments on today's shift",'Shift comment','text']],
+    fields:[
+      ['Brand','Brand','text'],['Store','Store','text'],['Promoter','Promoter','text'],['Date','Date','date'],
+      ['Destinations','Destinations','textarea'],['Nationalities','Nationalities','textarea'],['Turnover of the day','Turnover of the day','number'],['Stopping rate','Stopping rate','number'],
+      ['Male customers','Male customers','number'],['Age groups','Age groups','text'],['Conversion rate','Conversion rate','number'],['Purpose','Purpose','textarea'],
+      ['Traffic density','Traffic density','number'],["Comments on today's shift",'Comments on today\'s shift','textarea'],['Interactions','Interactions','number'],
+      ['customa','Custom A','number'],['customb','Custom B','number'],['stand_comments','Stand comments','textarea'],['ftbuyer','FT buyer','number'],
+      ['Tastings','Tastings','number'],['Pieces Sold','Pieces sold','number'],['Clientid','Client ID','number'],['Brandid','Brand ID','number'],
+      ['Promoterid','Promoter ID','number'],['Storeid','Store ID','number']
+    ]
+  }
+};
+let led_table='sales',led_page=1,led_pageSize=50,led_rows=[],led_total=0,led_initialized=false;
+let led_currentRow=null,led_originalRow=null,led_dirty=false,led_loadTimer=null,led_loadRequest=0;
+
+const led_config=()=>LED_CONFIG[led_table];
+const led_quoteColumn=name=>/[A-Z\s']/.test(name)?`"${String(name).replace(/"/g,'""')}"`:name;
+function led_initIfNeeded(){
+  if(!led_initialized){led_initialized=true;led_populateSearchFields();}
+  led_loadPage();
+}
+function led_switchTable(table){
+  if(!LED_CONFIG[table]||table===led_table)return;
+  if(!led_closeEditor())return;
+  led_table=table;led_page=1;
+  document.getElementById('ledTabSales').classList.toggle('active',table==='sales');
+  document.getElementById('ledTabQuestionnaire').classList.toggle('active',table==='questionnaire');
+  document.getElementById('ledSearch').value='';
+  document.getElementById('ledFrom').value='';
+  document.getElementById('ledTo').value='';
+  led_populateSearchFields();
+  led_loadPage();
+}
+function led_populateSearchFields(){
+  const select=document.getElementById('ledSearchField');
+  if(!select)return;
+  select.innerHTML=led_config().search.map(([name,label])=>`<option value="${esc(name)}">Search: ${esc(label)}</option>`).join('');
+}
+function led_scheduleLoad(resetPage=false){
+  if(resetPage)led_page=1;
+  clearTimeout(led_loadTimer);
+  led_loadTimer=setTimeout(led_loadPage,300);
+}
+function led_resetFilters(){
+  document.getElementById('ledSearch').value='';
+  document.getElementById('ledFrom').value='';
+  document.getElementById('ledTo').value='';
+  led_populateSearchFields();
+  led_page=1;
+  led_loadPage();
+}
+function led_searchType(name){return led_config().search.find(field=>field[0]===name)?.[2]||'text';}
+function led_safeSearch(value){return String(value||'').trim().replace(/[*,()]/g,' ');}
+async function led_loadPage(){
+  const requestId=++led_loadRequest;
+  const config=led_config();
+  const area=document.getElementById('ledTableArea');
+  area.innerHTML='<div class="led-empty">Loading records…</div>';
+  const url=new URL(`${SB}/rest/v1/${config.table}`);
+  url.searchParams.set('select','*');
+  url.searchParams.set('order',`${led_quoteColumn(config.date)}.desc.nullslast,${led_quoteColumn(config.pk)}.desc`);
+  const search=led_safeSearch(document.getElementById('ledSearch').value);
+  const searchField=document.getElementById('ledSearchField').value||config.search[0][0];
+  if(search){
+    const operator=led_searchType(searchField)==='number'&&/^-?\d+(?:\.\d+)?$/.test(search)?`eq.${search}`:`ilike.*${search}*`;
+    url.searchParams.set(led_quoteColumn(searchField),operator);
+  }
+  const from=document.getElementById('ledFrom').value;
+  const to=document.getElementById('ledTo').value;
+  if(from)url.searchParams.set(led_quoteColumn(config.date),`gte.${from}`);
+  if(to)url.searchParams.append(led_quoteColumn(config.date),`lte.${to}`);
+  const first=(led_page-1)*led_pageSize;
+  try{
+    const response=await authenticatedFetch(url.toString(),{headers:{'Range-Unit':'items','Range':`${first}-${first+led_pageSize-1}`,'Prefer':'count=planned'}});
+    if(!response.ok)throw new Error(await response.text()||`HTTP ${response.status}`);
+    const rows=await response.json();
+    if(requestId!==led_loadRequest)return;
+    const contentRange=response.headers.get('content-range')||'';
+    const totalPart=contentRange.split('/')[1];
+    led_total=totalPart&&totalPart!=='*'?Number(totalPart):Math.max(first+rows.length,led_total||0);
+    led_rows=Array.isArray(rows)?rows:[];
+    led_renderTable();
+  }catch(error){
+    if(requestId!==led_loadRequest)return;
+    area.innerHTML=`<div class="led-empty" style="color:var(--red);">Could not load records.<br>${esc(error.message)}</div>`;
+    document.getElementById('ledSummary').textContent='Load failed';
+    document.getElementById('ledPager').style.display='none';
+  }
+}
+function led_displayValue(value){
+  if(value===null||value===undefined||value==='')return '—';
+  if(typeof value==='boolean')return value?'Yes':'No';
+  return String(value);
+}
+function led_renderTable(){
+  const config=led_config();
+  const area=document.getElementById('ledTableArea');
+  const selectedId=led_currentRow?.[config.pk];
+  if(!led_rows.length){area.innerHTML='<div class="led-empty">No records match these filters.</div>';}
+  else{
+    const head=config.columns.map(([,label])=>`<th>${esc(label)}</th>`).join('');
+    const body=led_rows.map(row=>{
+      const id=row[config.pk];
+      const selected=selectedId!=null&&String(selectedId)===String(id);
+      const cells=config.columns.map(([name])=>{const value=led_displayValue(row[name]);return `<td title="${esc(value)}">${esc(value)}</td>`;}).join('');
+      return `<tr class="led-row${selected?' selected':''}" onclick="led_openEditor(${Number(id)})">${cells}</tr>`;
+    }).join('');
+    area.innerHTML=`<table class="led-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+  }
+  const first=led_rows.length?(led_page-1)*led_pageSize+1:0;
+  const last=(led_page-1)*led_pageSize+led_rows.length;
+  const totalLabel=Number.isFinite(led_total)?led_total.toLocaleString('en-GB'):'many';
+  document.getElementById('ledSummary').textContent=`${config.label} · ${totalLabel} records`;
+  document.getElementById('ledPageInfo').textContent=led_rows.length?`${first.toLocaleString('en-GB')}–${last.toLocaleString('en-GB')} of ${totalLabel}`:'No records';
+  document.getElementById('ledPager').style.display='flex';
+  document.getElementById('ledPrev').disabled=led_page<=1;
+  document.getElementById('ledNext').disabled=led_rows.length<led_pageSize||(Number.isFinite(led_total)&&last>=led_total);
+}
+function led_changePage(direction){
+  const next=led_page+Number(direction);
+  if(next<1)return;
+  led_page=next;
+  led_loadPage();
+}
+function led_isLongField(type){return type==='textarea';}
+function led_openEditor(id){
+  const config=led_config();
+  const row=led_rows.find(item=>String(item[config.pk])===String(id));
+  if(!row)return;
+  if(led_dirty&&led_currentRow&&String(led_currentRow[config.pk])!==String(id)&&!confirm('Discard the unsaved changes and open another record?'))return;
+  led_currentRow={...row};led_originalRow={...row};led_dirty=false;
+  document.getElementById('ledEditorTitle').textContent=`Edit ${config.label} record`;
+  document.getElementById('ledEditorSub').textContent=`Record ${config.pk} ${row[config.pk]}`;
+  document.getElementById('ledForm').innerHTML=config.fields.map(([name,label,type],index)=>{
+    const value=row[name]??'';
+    const full=led_isLongField(type)?' full':'';
+    if(type==='textarea')return `<div class="led-field${full}"><label>${esc(label)}</label><textarea class="led-input" id="ledField${index}" data-column="${esc(name)}" data-type="${type}" oninput="led_markDirty()">${esc(value)}</textarea></div>`;
+    return `<div class="led-field${full}"><label>${esc(label)}</label><input class="led-input" id="ledField${index}" data-column="${esc(name)}" data-type="${type}" type="${type==='number'?'number':type==='date'?'date':'text'}" ${type==='number'?'step="any"':''} value="${esc(value)}" oninput="led_markDirty()"></div>`;
+  }).join('');
+  document.getElementById('ledEditor').classList.add('open');
+  document.getElementById('ledShell').classList.add('editor-open');
+  led_setState('idle');
+  led_renderTable();
+}
+function led_markDirty(){led_dirty=true;led_setState('dirty');}
+function led_setState(state,message=''){
+  const label=document.getElementById('ledSaveState');
+  const save=document.getElementById('ledSave');
+  const labels={idle:'No changes',dirty:'Unsaved changes',saving:'Saving…',saved:'Saved',error:'Save failed'};
+  label.textContent=message||labels[state]||'';
+  label.className=`led-save-state ${state}`;
+  save.disabled=state!=='dirty'&&state!=='error';
+}
+function led_closeEditor(force=false){
+  if(!force&&led_dirty&&!confirm('Discard the unsaved changes?'))return false;
+  document.getElementById('ledEditor')?.classList.remove('open');
+  document.getElementById('ledShell')?.classList.remove('editor-open');
+  led_currentRow=null;led_originalRow=null;led_dirty=false;
+  if(led_initialized)led_renderTable();
+  return true;
+}
+function led_buildPayload(){
+  const payload={};
+  led_config().fields.forEach(([name,,type],index)=>{
+    const input=document.getElementById(`ledField${index}`);
+    const raw=String(input?.value??'').trim();
+    if(!raw){payload[name]=null;return;}
+    if(type==='number'){
+      const number=Number(raw);
+      if(!Number.isFinite(number))throw new Error(`${name} must be a valid number.`);
+      payload[name]=number;
+    }else payload[name]=raw;
+  });
+  return payload;
+}
+async function led_saveRecord(){
+  if(!led_currentRow)return;
+  const config=led_config();
+  const id=led_currentRow[config.pk];
+  let payload;
+  try{payload=led_buildPayload();}catch(error){led_setState('error',error.message);return;}
+  led_setState('saving');
+  try{
+    const url=new URL(`${SB}/rest/v1/${config.table}`);
+    url.searchParams.set(led_quoteColumn(config.pk),`eq.${id}`);
+    const response=await authenticatedFetch(url.toString(),{method:'PATCH',headers:{'Prefer':'return=representation'},body:JSON.stringify(payload)});
+    if(!response.ok)throw new Error(await response.text()||`HTTP ${response.status}`);
+    const updated=(await response.json())[0];
+    if(!updated)throw new Error('The database did not return the updated record.');
+    led_rows=led_rows.map(row=>String(row[config.pk])===String(id)?updated:row);
+    led_currentRow={...updated};led_originalRow={...updated};led_dirty=false;
+    led_setState('saved');led_renderTable();
+    toast(`${config.label} record ${id} updated.`,'success');
+  }catch(error){led_dirty=true;led_setState('error',error.message);toast('Save failed: '+error.message,'error');}
 }
 
 // ═══════════════════════════════════════════════════════════
