@@ -237,7 +237,7 @@ textarea.fi{height:72px;padding:8px 10px;resize:vertical;line-height:1.5;}
 .ef-record-name{font-size:11.5px;font-weight:750;color:var(--g900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.ef-record-meta{font-size:9.5px;color:var(--g500);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.ef-code{font:700 10px/1.35 monospace;color:var(--blue);}.ef-status{display:inline-flex;align-items:center;padding:3px 7px;border-radius:12px;font-size:9.5px;font-weight:750;white-space:nowrap;}.ef-status.active{background:var(--blue-light);color:var(--blue);}.ef-status.review{background:var(--amber-light);color:var(--amber);}.ef-status.sent{background:var(--green-light);color:var(--green);}.ef-status.provisional{background:#fff1c7;color:#9a5a00;border:1px solid #f1cf72;}.ef-status.cancelled{background:var(--red-light);color:var(--red);}.ef-empty{padding:25px;text-align:center;color:var(--g400);font-size:12px;}
 
 #formWrap .fb{padding:12px 16px;}
-.entry-form-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 14px;align-items:start;max-width:1500px;margin:0 auto;}
+.entry-form-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 14px;align-items:start;max-width:1500px;margin:0 auto;}
 .entry-form-grid .entry-span-2{grid-column:span 2;}.entry-form-grid .fg.full{grid-column:1/-1;}
 .entry-form-grid textarea.fi{height:54px;min-height:54px;}.entry-form-grid .fg label{font-size:10px;}.entry-form-grid .fi,.entry-form-grid .mst{min-height:33px;}
 .contact-retailer-summary{display:flex;flex-direction:column;gap:5px;min-height:25px;margin-top:5px;padding:5px 7px;border:1px solid var(--g200);border-radius:6px;background:var(--g50);}
@@ -550,10 +550,10 @@ tr.cancelled-row .rec-title{text-decoration:line-through;}
 .items-empty{padding:52px 20px;text-align:center;color:var(--g400);font-size:12px;}
 .items-toast{position:fixed;right:24px;bottom:24px;z-index:10020;padding:10px 15px;border-radius:7px;color:#fff;font-size:12px;font-weight:650;box-shadow:var(--shadow);display:none;max-width:360px;}
 @media(max-width:1250px){.items-editor{position:absolute;right:20px;top:128px;bottom:16px;z-index:50;width:min(410px,calc(100% - 40px));}.items-main{position:relative;}.items-select{max-width:145px}.items-search{min-width:190px}}
-.led-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 20px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0}.led-title{margin-right:10px}.led-title strong{display:block;font-size:15px}.led-title span{display:block;margin-top:2px;color:var(--g500);font-size:10.5px}.led-tabs{display:flex;gap:5px}.led-tab,.led-btn{height:32px;padding:0 12px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g600);font:650 11.5px/1 inherit;cursor:pointer}.led-tab.active{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}.led-btn.primary{border-color:var(--blue);background:var(--blue);color:#fff}.led-control{height:32px;padding:0 9px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g700);font:inherit;font-size:11.5px;outline:none}.led-control:focus{border-color:var(--blue)}.led-search{min-width:210px}.led-shell{position:relative;display:grid;grid-template-columns:1fr;gap:10px;flex:1;min-height:0;padding:12px 20px 16px;overflow:hidden}.led-shell.editor-open{grid-template-columns:minmax(680px,1fr) 390px}.led-card,.led-editor{min-height:0;border:1px solid var(--g200);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}.led-card{display:flex;flex-direction:column}.led-table-wrap{flex:1;overflow:auto}.led-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.led-table th{position:sticky;top:0;z-index:2;padding:8px 9px;border-bottom:2px solid var(--g200);background:var(--g50);color:var(--g600);font-size:9.5px;letter-spacing:.04em;text-align:left;text-transform:uppercase;white-space:nowrap}.led-table td{padding:8px 9px;border-bottom:1px solid var(--g100);color:var(--g700);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.led-row{cursor:pointer}.led-row:hover,.led-row.selected{background:#f7faff}.led-row.selected{box-shadow:inset 3px 0 0 var(--blue)}.led-empty{padding:54px 20px;color:var(--g400);font-size:12px;text-align:center}.led-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-top:1px solid var(--g200);background:var(--g50);color:var(--g500);font-size:10.5px}.led-editor{display:none;flex-direction:column}.led-editor.open{display:flex}.led-editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid var(--g200)}.led-editor-body{flex:1;overflow:auto;padding:13px 15px}.led-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.led-field{display:flex;flex-direction:column;gap:4px;min-width:0}.led-field.full{grid-column:1/-1}.led-field label{color:var(--g500);font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.led-input{width:100%;min-height:34px;padding:7px 9px;border:1px solid var(--g300);border-radius:6px;background:#fff;color:var(--g800);font:inherit;font-size:11.5px;outline:none}.led-input:focus{border-color:var(--blue)}textarea.led-input{min-height:72px;line-height:1.45;resize:vertical}.led-editor-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 15px;border-top:1px solid var(--g200);background:var(--g50)}.led-save-state{color:var(--g500);font-size:10.5px}.led-save-state.dirty{color:var(--amber)}.led-save-state.saved{color:var(--green)}.led-save-state.error{color:var(--red)}
+.led-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 20px;background:#fff;border-bottom:1px solid var(--g200);flex-shrink:0}.led-title{margin-right:10px}.led-title strong{display:block;font-size:15px}.led-title span{display:block;margin-top:2px;color:var(--g500);font-size:10.5px}.led-tabs{display:flex;gap:5px}.led-tab,.led-btn{height:32px;padding:0 12px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g600);font:650 11.5px/1 inherit;cursor:pointer}.led-tab.active{border-color:var(--blue);background:var(--blue-light);color:var(--blue)}.led-btn.primary{border-color:var(--blue);background:var(--blue);color:#fff}.led-btn.danger{border-color:#f3b2ac;background:var(--red-light);color:var(--red)}.led-btn:disabled{opacity:.55;cursor:not-allowed}.led-control{height:32px;padding:0 9px;border:1.5px solid var(--g300);border-radius:6px;background:#fff;color:var(--g700);font:inherit;font-size:11.5px;outline:none}.led-control:focus{border-color:var(--blue)}.led-search{min-width:180px}.led-shell{position:relative;display:grid;grid-template-columns:1fr;gap:10px;flex:1;min-height:0;padding:12px 20px 16px;overflow:hidden}.led-shell.editor-open{grid-template-columns:minmax(680px,1fr) 390px}.led-card,.led-editor{min-height:0;border:1px solid var(--g200);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden}.led-card{display:flex;flex-direction:column}.led-table-wrap{flex:1;overflow:auto}.led-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:11px}.led-table th{position:sticky;top:0;z-index:2;padding:8px 9px;border-bottom:2px solid var(--g200);background:var(--g50);color:var(--g600);font-size:9.5px;letter-spacing:.04em;text-align:left;text-transform:uppercase;white-space:nowrap}.led-table td{padding:8px 9px;border-bottom:1px solid var(--g100);color:var(--g700);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.led-row{cursor:pointer}.led-row:hover,.led-row.selected{background:#f7faff}.led-row.selected{box-shadow:inset 3px 0 0 var(--blue)}.led-empty{padding:54px 20px;color:var(--g400);font-size:12px;text-align:center}.led-pager{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-top:1px solid var(--g200);background:var(--g50);color:var(--g500);font-size:10.5px}.led-editor{display:none;flex-direction:column}.led-editor.open{display:flex}.led-editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid var(--g200)}.led-editor-body{flex:1;overflow:auto;padding:13px 15px}.led-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.led-field{display:flex;flex-direction:column;gap:4px;min-width:0}.led-field.full{grid-column:1/-1}.led-field label{color:var(--g500);font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.led-input{width:100%;min-height:34px;padding:7px 9px;border:1px solid var(--g300);border-radius:6px;background:#fff;color:var(--g800);font:inherit;font-size:11.5px;outline:none}.led-input:focus{border-color:var(--blue)}textarea.led-input{min-height:72px;line-height:1.45;resize:vertical}.led-editor-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 15px;border-top:1px solid var(--g200);background:var(--g50)}.led-save-state{color:var(--g500);font-size:10.5px}.led-save-state.dirty{color:var(--amber)}.led-save-state.saved{color:var(--green)}.led-save-state.error{color:var(--red)}
 .led-tab,.led-btn{font-family:inherit;font-size:11.5px;font-weight:650;line-height:1}
-.led-lookup-id{min-height:15px;color:var(--blue);font-size:9.5px;font-weight:650}.led-lookup-note{grid-column:1/-1;padding:7px 9px;border:1px solid #c9d8fb;border-radius:6px;background:var(--blue-light);color:var(--blue-dark);font-size:10.5px;line-height:1.4}.led-bulk-option{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;padding:9px 10px;border:1px solid #c9d8fb;border-radius:7px;background:#f7faff;color:var(--g700);font-size:10.5px;line-height:1.35;cursor:pointer}.led-bulk-option input{margin:2px 0 0;accent-color:var(--blue)}.led-bulk-option strong{display:block;color:var(--blue-dark);font-size:11px}.led-bulk-option span{display:block;margin-top:2px;color:var(--g500)}
-@media(max-width:1100px){.led-shell,.led-shell.editor-open{grid-template-columns:1fr}.led-editor{position:absolute;right:20px;top:12px;bottom:16px;z-index:40;width:min(420px,calc(100% - 40px))}}
+.led-lookup-id{min-height:15px;color:var(--blue);font-size:9.5px;font-weight:650}.led-lookup-note{grid-column:1/-1;padding:7px 9px;border:1px solid #c9d8fb;border-radius:6px;background:var(--blue-light);color:var(--blue-dark);font-size:10.5px;line-height:1.4}.led-bulk-option{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;padding:9px 10px;border:1px solid #c9d8fb;border-radius:7px;background:#f7faff;color:var(--g700);font-size:10.5px;line-height:1.35;cursor:pointer}.led-bulk-option input{margin:2px 0 0;accent-color:var(--blue)}.led-bulk-option strong{display:block;color:var(--blue-dark);font-size:11px}.led-bulk-option span{display:block;margin-top:2px;color:var(--g500)}.led-shell.editor-open.questionnaire-editor{grid-template-columns:minmax(620px,1fr) 560px}.led-form.questionnaire{grid-template-columns:repeat(3,minmax(0,1fr))}.led-form-section{grid-column:1/-1;margin-top:3px;padding-top:9px;border-top:1px solid var(--g200);color:var(--g500);font-size:9.5px;font-weight:750;letter-spacing:.05em;text-transform:uppercase}
+@media(max-width:1100px){.led-shell,.led-shell.editor-open,.led-shell.editor-open.questionnaire-editor{grid-template-columns:1fr}.led-editor{position:absolute;right:20px;top:12px;bottom:16px;z-index:40;width:min(560px,calc(100% - 40px))}.led-form.questionnaire{grid-template-columns:1fr 1fr}}
 .cc-shell{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g50);}
 .cc-head{padding:12px 20px;background:#fff;border-bottom:1px solid var(--g200);display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;flex-shrink:0;}
 .cc-head-copy{display:none}.cc-title{font-size:15px;font-weight:700}.cc-sub{font-size:11.5px;color:var(--g500);margin-top:2px}.cc-filter{height:30px;min-width:125px;max-width:165px;padding:0 8px;border:1.5px solid var(--g300);border-radius:var(--r);background:#fff;color:var(--g600);font-family:inherit;font-size:11.5px;outline:none}.cc-filter:focus{border-color:var(--blue)}
@@ -761,14 +761,14 @@ window._authReady=restoreSupabaseSession();
     <div class="header-tools">
       <div id="headerDate" class="header-date"></div>
       <details class="app-release">
-        <summary title="Open version history">V2026.09.17.15</summary>
+        <summary title="Open version history">V2026.09.18.2</summary>
         <div class="release-panel">
-          <div class="release-heading">New version V2026.09.17.15</div>
+          <div class="release-heading">New version V2026.09.18.2</div>
           <div class="release-date">What&rsquo;s new:</div>
           <ul class="release-list">
-            <li>Sales records can optionally apply Brand, Promoter and Store corrections to their matching same-day group.</li>
-            <li>The group is limited to the same original Date, Brand, Promoter and Store to prevent unrelated records being changed.</li>
-            <li>Linked names and database IDs remain synchronized during both single-record and group updates.</li>
+            <li>The Questionnaire editor now prioritizes Brand, Promoter and Store.</li>
+            <li>Date, Turnover, Pieces Sold, Interactions, rates and Custom A/B are grouped at the top.</li>
+            <li>Client and all remaining questionnaire information stay available in a separate lower section.</li>
           </ul>
         </div>
       </details>
@@ -949,29 +949,13 @@ window._authReady=restoreSupabaseSession();
       <div class="fb">
         <div class="grid entry-form-grid">
 
-          <!-- Company — full width standalone -->
+          <!-- Row 1: Company | Sector | Store -->
           <div class="fg"><label>Company</label>
             <div class="msw" id="ms-company">
               <div class="mst" id="mst-company" tabindex="0" onclick="toggleDD('company')"><span class="mph" id="ph-company">Find items</span></div>
               <div class="ddm" id="dm-company" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('company',this.value)"></div><div class="ddl" id="dl-company"></div></div>
             </div>
           </div>
-
-          <!-- Client | Brand -->
-          <div class="fg"><label>Client</label>
-            <div class="msw" id="ms-client">
-              <div class="mst" id="mst-client" tabindex="0" onclick="toggleDD('client')"><span class="mph" id="ph-client">Find items</span></div>
-              <div class="ddm" id="dm-client" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('client',this.value)"></div><div class="ddl" id="dl-client"></div></div>
-            </div>
-          </div>
-          <div class="fg"><label>Brand</label>
-            <div class="msw" id="ms-brand">
-              <div class="mst" id="mst-brand" tabindex="0" onclick="toggleDD('brand')"><span class="mph" id="ph-brand">Find items</span></div>
-              <div class="ddm" id="dm-brand" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('brand',this.value)"></div><div class="ddl" id="dl-brand"></div></div>
-            </div>
-          </div>
-
-          <!-- Sector | Store -->
           <div class="fg"><label>Sector <span style="font-size:10px;color:var(--g400);font-weight:400;">(by company)</span></label>
             <div class="msw" id="ms-sector">
               <div class="mst" id="mst-sector" tabindex="0" onclick="toggleDD('sector')"><span class="mph" id="ph-sector">Find items</span></div>
@@ -985,22 +969,19 @@ window._authReady=restoreSupabaseSession();
             </div>
           </div>
 
-          <!-- Report identifiers -->
-          <div class="fg entry-span-2"><label>Name Conf DOPE</label><input type="text" class="fi" id="f-title" placeholder="Enter title…" oninput="scheduleMissionSuggestions()"></div>
-          <div class="fg"><label id="f-missionid-label">Mission IDs</label>
-            <div class="mission-entry"><input type="number" min="1" step="1" inputmode="numeric" class="fi" id="f-missionid" placeholder="Add a Mission ID…" onkeydown="if(event.key==='Enter'){event.preventDefault();addMissionIdFromInput()}"><button type="button" class="mission-add" onclick="addMissionIdFromInput()">+ Add</button></div>
-            <div class="mission-chips" id="f-missionid-chips"><span class="mission-empty">No Mission IDs linked</span></div>
-            <div id="f-missionid-help" style="display:none;margin-top:4px;font-size:10.5px;color:var(--amber);"></div>
-            <div class="mission-suggestions" id="f-mission-suggestions" style="display:none"></div>
-            <button type="button" class="mission-standby" id="f-mission-standby" onclick="saveRecord(true)">Save as standby</button>
+          <!-- Row 2: Client | Brand | Client Contact -->
+          <div class="fg"><label>Client</label>
+            <div class="msw" id="ms-client">
+              <div class="mst" id="mst-client" tabindex="0" onclick="toggleDD('client')"><span class="mph" id="ph-client">Find items</span></div>
+              <div class="ddm" id="dm-client" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('client',this.value)"></div><div class="ddl" id="dl-client"></div></div>
+            </div>
           </div>
-          <div class="fg"><label>Code SAP</label><input type="text" class="fi" id="f-sapcode" placeholder="SAP code…" oninput="updateMissionRequirement();scheduleMissionSuggestions()"></div>
-
-          <!-- Start Date | End Date -->
-          <div class="fg"><label>Start Date</label><input type="date" class="fi" id="f-startdate" oninput="updateMissionRequirement();scheduleMissionSuggestions()"></div>
-          <div class="fg"><label>End Date</label><input type="date" class="fi" id="f-enddate" oninput="scheduleMissionSuggestions()"></div>
-
-          <!-- Client Contact | Commercial Team -->
+          <div class="fg"><label>Brand</label>
+            <div class="msw" id="ms-brand">
+              <div class="mst" id="mst-brand" tabindex="0" onclick="toggleDD('brand')"><span class="mph" id="ph-brand">Find items</span></div>
+              <div class="ddm" id="dm-brand" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('brand',this.value)"></div><div class="ddl" id="dl-brand"></div></div>
+            </div>
+          </div>
           <div class="fg"><label>Client Contact
             <button class="lbl-add" onclick="openAddContact()" title="Add new contact">+ Add contact</button>
           </label>
@@ -1010,6 +991,21 @@ window._authReady=restoreSupabaseSession();
             </div>
             <div class="contact-retailer-summary" id="contactRetailerSummary"><span class="contact-retailer-empty">Select a contact to view or manage retailers.</span></div>
           </div>
+
+          <!-- Row 3: Name | Start Date | End Date -->
+          <div class="fg"><label>Name Conf DOPE</label><input type="text" class="fi" id="f-title" placeholder="Enter title…" oninput="scheduleMissionSuggestions()"></div>
+          <div class="fg"><label>Start Date</label><input type="date" class="fi" id="f-startdate" oninput="updateMissionRequirement();scheduleMissionSuggestions()"></div>
+          <div class="fg"><label>End Date</label><input type="date" class="fi" id="f-enddate" oninput="scheduleMissionSuggestions()"></div>
+
+          <!-- Row 4: SAP Code | Mission IDs | Commercial Team -->
+          <div class="fg"><label>Code SAP</label><input type="text" class="fi" id="f-sapcode" placeholder="SAP code…" oninput="updateMissionRequirement();scheduleMissionSuggestions()"></div>
+          <div class="fg"><label id="f-missionid-label">Mission IDs</label>
+            <div class="mission-entry"><input type="number" min="1" step="1" inputmode="numeric" class="fi" id="f-missionid" placeholder="Add a Mission ID…" onkeydown="if(event.key==='Enter'){event.preventDefault();addMissionIdFromInput()}"><button type="button" class="mission-add" onclick="addMissionIdFromInput()">+ Add</button></div>
+            <div class="mission-chips" id="f-missionid-chips"><span class="mission-empty">No Mission IDs linked</span></div>
+            <div id="f-missionid-help" style="display:none;margin-top:4px;font-size:10.5px;color:var(--amber);"></div>
+            <div class="mission-suggestions" id="f-mission-suggestions" style="display:none"></div>
+            <button type="button" class="mission-standby" id="f-mission-standby" onclick="saveRecord(true)">Save as standby</button>
+          </div>
           <div class="fg"><label>Commercial Team
             <button class="lbl-add" onclick="openAddAccountManager()" title="Add new Account Manager">+ Add Account Manager</button>
           </label>
@@ -1018,14 +1014,14 @@ window._authReady=restoreSupabaseSession();
               <div class="ddm" id="dm-accountmanager" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('accountmanager',this.value)"></div><div class="ddl" id="dl-accountmanager"></div></div>
             </div>
           </div>
+
+          <!-- Row 5: Report Types | Comments -->
           <div class="fg"><label>Type Reports</label>
             <div class="msw" id="ms-reporttype">
               <div class="mst" id="mst-reporttype" tabindex="0" onclick="toggleDD('reporttype')"><span class="mph" id="ph-reporttype">Find items</span></div>
               <div class="ddm" id="dm-reporttype" style="display:none"><div class="dds"><input type="text" placeholder="Search…" oninput="filterDD('reporttype',this.value)"></div><div class="ddl" id="dl-reporttype"></div></div>
             </div>
           </div>
-
-          <!-- Comments — full width -->
           <div class="fg entry-span-2"><label>Comments</label><textarea class="fi" id="f-comments" placeholder="Add comments…"></textarea></div>
 
         </div>
@@ -1479,6 +1475,9 @@ window._authReady=restoreSupabaseSession();
     </div>
     <select class="led-control" id="ledSearchField" onchange="led_scheduleLoad(true)"></select>
     <input class="led-control led-search" id="ledSearch" type="search" placeholder="Search records…" oninput="led_scheduleLoad(true)">
+    <select class="led-control" id="ledBrandFilter" onchange="led_scheduleLoad(true)"><option value="">All brands</option></select>
+    <select class="led-control" id="ledStoreFilter" onchange="led_scheduleLoad(true)"><option value="">All stores</option></select>
+    <select class="led-control" id="ledPromoterFilter" onchange="led_scheduleLoad(true)"><option value="">All promoters</option></select>
     <span style="font-size:11px;color:var(--g500);font-weight:600;">From</span>
     <input class="led-control" id="ledFrom" type="date" onchange="led_scheduleLoad(true)">
     <span style="font-size:11px;color:var(--g500);font-weight:600;">To</span>
@@ -1503,7 +1502,7 @@ window._authReady=restoreSupabaseSession();
       <div class="led-editor-body"><div class="led-form" id="ledForm"></div></div>
       <div class="led-editor-foot">
         <span class="led-save-state" id="ledSaveState">No changes</span>
-        <div style="display:flex;gap:7px;"><button class="led-btn" onclick="led_closeEditor()">Cancel</button><button class="led-btn primary" id="ledSave" onclick="led_saveRecord()" disabled>Save changes</button></div>
+        <div style="display:flex;gap:7px;"><button class="led-btn danger" id="ledDelete" onclick="led_deleteRecord()">Delete entry</button><button class="led-btn" onclick="led_closeEditor()">Cancel</button><button class="led-btn primary" id="ledSave" onclick="led_saveRecord()" disabled>Save changes</button></div>
       </div>
     </aside>
   </div>
@@ -4989,7 +4988,11 @@ async function led_loadReferences(){
   return led_refsPromise;
 }
 function led_initIfNeeded(){
-  if(!led_initialized){led_initialized=true;led_populateSearchFields();}
+  if(!led_initialized){
+    led_initialized=true;
+    led_populateSearchFields();
+    led_loadReferences().then(led_populateEntityFilters).catch(error=>toast('Legacy filters could not be loaded: '+error.message,'error'));
+  }
   led_loadPage();
 }
 function led_switchTable(table){
@@ -5001,6 +5004,7 @@ function led_switchTable(table){
   document.getElementById('ledSearch').value='';
   document.getElementById('ledFrom').value='';
   document.getElementById('ledTo').value='';
+  led_clearEntityFilters();
   led_populateSearchFields();
   led_loadPage();
 }
@@ -5008,6 +5012,23 @@ function led_populateSearchFields(){
   const select=document.getElementById('ledSearchField');
   if(!select)return;
   select.innerHTML=led_config().search.map(([name,label])=>`<option value="${esc(name)}">Search: ${esc(label)}</option>`).join('');
+}
+function led_populateEntityFilters(){
+  const definitions=[
+    ['ledBrandFilter','brand','All brands'],
+    ['ledStoreFilter','store','All stores'],
+    ['ledPromoterFilter','promoter','All promoters']
+  ];
+  definitions.forEach(([id,key,allLabel])=>{
+    const select=document.getElementById(id);
+    if(!select)return;
+    const current=select.value;
+    select.innerHTML=`<option value="">${allLabel}</option>`+(led_refs[key]||[]).map(row=>`<option value="${esc(row.id)}">${esc(row.label)} · ID ${esc(row.id)}</option>`).join('');
+    if(current&&[...select.options].some(option=>option.value===current))select.value=current;
+  });
+}
+function led_clearEntityFilters(){
+  ['ledBrandFilter','ledStoreFilter','ledPromoterFilter'].forEach(id=>{const select=document.getElementById(id);if(select)select.value='';});
 }
 function led_scheduleLoad(resetPage=false){
   if(resetPage)led_page=1;
@@ -5018,6 +5039,7 @@ function led_resetFilters(){
   document.getElementById('ledSearch').value='';
   document.getElementById('ledFrom').value='';
   document.getElementById('ledTo').value='';
+  led_clearEntityFilters();
   led_populateSearchFields();
   led_page=1;
   led_loadPage();
@@ -5038,6 +5060,12 @@ async function led_loadPage(){
     const operator=led_searchType(searchField)==='number'&&/^-?\d+(?:\.\d+)?$/.test(search)?`eq.${search}`:`ilike.*${search}*`;
     url.searchParams.set(led_quoteColumn(searchField),operator);
   }
+  const brandId=document.getElementById('ledBrandFilter')?.value;
+  const storeId=document.getElementById('ledStoreFilter')?.value;
+  const promoterId=document.getElementById('ledPromoterFilter')?.value;
+  if(brandId)url.searchParams.set('Brandid',`eq.${brandId}`);
+  if(storeId)url.searchParams.set('Storeid',`eq.${storeId}`);
+  if(promoterId)url.searchParams.set('Promoterid',`eq.${promoterId}`);
   const from=document.getElementById('ledFrom').value;
   const to=document.getElementById('ledTo').value;
   if(from)url.searchParams.set(led_quoteColumn(config.date),`gte.${from}`);
@@ -5161,18 +5189,37 @@ function led_refreshLookupControls(){
     if(hint)hint.textContent=selected?(selected.id!=null?`${def.label} ID: ${selected.id}`:`Legacy value without a linked ${def.label} ID`):`No ${def.label.toLowerCase()} selected`;
   });
 }
+function led_scalarFieldHtml(field,index,row){
+  const [name,label,type]=field;
+  const value=row[name]??'';
+  const full=led_isLongField(type)?' full':'';
+  if(type==='textarea')return `<div class="led-field${full}"><label>${esc(label)}</label><textarea class="led-input" id="ledScalar${index}" data-column="${esc(name)}" data-type="${type}" oninput="led_markDirty()">${esc(value)}</textarea></div>`;
+  return `<div class="led-field${full}"><label>${esc(label)}</label><input class="led-input" id="ledScalar${index}" data-column="${esc(name)}" data-type="${type}" type="${type==='number'?'number':type==='date'?'date':'text'}" ${type==='number'?'step="any"':''} value="${esc(value)}" oninput="led_markDirty()"></div>`;
+}
 function led_renderEditorForm(){
   const config=led_config();
   const row=led_currentRow;
-  document.getElementById('ledForm').innerHTML=`<div class="led-lookup-note">Select the names from the lists. Their database IDs are updated automatically; Product, Brand and Client are linked.</div>`+
-    config.lookups.map(led_lookupFieldHtml).join('')+
-    (led_table==='sales'?`<label class="led-bulk-option"><input type="checkbox" id="ledBulkSameDay"><span><strong>Apply entity changes to this same-day Sales group</strong><span>Also update rows with the same original Date, Brand, Promoter and Store. Only changed Brand, Promoter or Store values will be applied.</span></span></label>`:'')+
-    config.fields.map(([name,label,type],index)=>{
-      const value=row[name]??'';
-      const full=led_isLongField(type)?' full':'';
-      if(type==='textarea')return `<div class="led-field${full}"><label>${esc(label)}</label><textarea class="led-input" id="ledScalar${index}" data-column="${esc(name)}" data-type="${type}" oninput="led_markDirty()">${esc(value)}</textarea></div>`;
-      return `<div class="led-field${full}"><label>${esc(label)}</label><input class="led-input" id="ledScalar${index}" data-column="${esc(name)}" data-type="${type}" type="${type==='number'?'number':type==='date'?'date':'text'}" ${type==='number'?'step="any"':''} value="${esc(value)}" oninput="led_markDirty()"></div>`;
-    }).join('');
+  const form=document.getElementById('ledForm');
+  form.className=`led-form${led_table==='questionnaire'?' questionnaire':''}`;
+  const note=`<div class="led-lookup-note">Select the names from the lists. Their database IDs are updated automatically; ${led_table==='sales'?'Product, Brand and Client':'Brand and Client'} are linked.</div>`;
+  if(led_table==='questionnaire'){
+    const lookup=key=>led_lookupFieldHtml(config.lookups.find(def=>def.key===key));
+    const priorityNames=['Date','Turnover of the day','Pieces Sold','Interactions','Stopping rate','Conversion rate','customa','customb'];
+    const priorityFields=priorityNames.map(name=>config.fields.findIndex(field=>field[0]===name)).filter(index=>index>=0);
+    const prioritySet=new Set(priorityFields);
+    const remainingFields=config.fields.map((field,index)=>({field,index})).filter(item=>!prioritySet.has(item.index));
+    form.innerHTML=note+
+      ['brand','promoter','store'].map(lookup).join('')+
+      priorityFields.map(index=>led_scalarFieldHtml(config.fields[index],index,row)).join('')+
+      `<div class="led-form-section">Remaining questionnaire information</div>`+
+      lookup('client')+
+      remainingFields.map(item=>led_scalarFieldHtml(item.field,item.index,row)).join('');
+  }else{
+    form.innerHTML=note+
+      config.lookups.map(led_lookupFieldHtml).join('')+
+      `<label class="led-bulk-option"><input type="checkbox" id="ledBulkSameDay"><span><strong>Apply entity changes to this same-day Sales group</strong><span>Also update rows with the same original Date, Brand, Promoter and Store. Only changed Brand, Promoter or Store values will be applied.</span></span></label>`+
+      config.fields.map((field,index)=>led_scalarFieldHtml(field,index,row)).join('');
+  }
   led_refreshLookupControls();
 }
 function led_lookupChanged(key,value){
@@ -5209,6 +5256,7 @@ async function led_openEditor(id){
   document.getElementById('ledEditorSub').textContent=`Record ${config.pk} ${row[config.pk]}`;
   document.getElementById('ledEditor').classList.add('open');
   document.getElementById('ledShell').classList.add('editor-open');
+  document.getElementById('ledShell').classList.toggle('questionnaire-editor',led_table==='questionnaire');
   document.getElementById('ledForm').innerHTML='<div class="led-empty" style="grid-column:1/-1;padding:35px 10px;">Loading linked lists…</div>';
   led_setState('saving','Loading lists…');
   led_renderTable();
@@ -5228,15 +5276,18 @@ function led_markDirty(){led_dirty=true;led_setState('dirty');}
 function led_setState(state,message=''){
   const label=document.getElementById('ledSaveState');
   const save=document.getElementById('ledSave');
+  const remove=document.getElementById('ledDelete');
   const labels={idle:'No changes',dirty:'Unsaved changes',saving:'Saving…',saved:'Saved',error:'Save failed'};
   label.textContent=message||labels[state]||'';
   label.className=`led-save-state ${state}`;
   save.disabled=!led_dirty||state==='saving';
+  if(remove)remove.disabled=state==='saving';
 }
 function led_closeEditor(force=false){
   if(!force&&led_dirty&&!confirm('Discard the unsaved changes?'))return false;
   document.getElementById('ledEditor')?.classList.remove('open');
   document.getElementById('ledShell')?.classList.remove('editor-open');
+  document.getElementById('ledShell')?.classList.remove('questionnaire-editor');
   led_currentRow=null;led_originalRow=null;led_lookupSelection={};led_dirty=false;
   if(led_initialized)led_renderTable();
   return true;
@@ -5347,6 +5398,31 @@ async function led_saveRecord(){
     }else if(bulkPayload)toast(`Sales record ${id} and ${bulkCount} matching same-day row${bulkCount===1?'':'s'} updated.`,'success');
     else toast(`${config.label} record ${id} updated.`,'success');
   }catch(error){led_dirty=true;led_setState('error',error.message);toast('Save failed: '+error.message,'error');}
+}
+async function led_deleteRecord(){
+  if(!led_currentRow)return;
+  const config=led_config();
+  const id=led_currentRow[config.pk];
+  const description=`${config.label} record ${id}`;
+  if(!confirm(`Delete ${description}?\n\nThis will permanently remove the selected entry from Supabase.`))return;
+  if(!confirm(`Final confirmation\n\nPermanently delete ${description}? This action cannot be undone.`))return;
+  led_setState('saving','Deleting…');
+  try{
+    const url=new URL(`${SB}/rest/v1/${config.table}`);
+    url.searchParams.set(led_quoteColumn(config.pk),`eq.${id}`);
+    const response=await authenticatedFetch(url.toString(),{method:'DELETE',headers:{'Prefer':'return=representation'}});
+    if(!response.ok)throw new Error(await response.text()||`HTTP ${response.status}`);
+    const deleted=await response.json();
+    if(!Array.isArray(deleted)||deleted.length!==1)throw new Error('The database did not confirm deletion of exactly one record.');
+    const moveBack=led_rows.length===1&&led_page>1;
+    led_closeEditor(true);
+    if(moveBack)led_page-=1;
+    await led_loadPage();
+    toast(`${description} deleted.`,'success');
+  }catch(error){
+    led_setState(led_dirty?'dirty':'error','Delete failed');
+    toast('Delete failed: '+error.message,'error');
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
